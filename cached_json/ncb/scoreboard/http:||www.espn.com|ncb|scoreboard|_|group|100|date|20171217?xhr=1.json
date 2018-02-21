@@ -1,0 +1,6176 @@
+{
+  "ads": {
+    "amznAdConfig": {
+      "espn-en": 10000,
+      "useAmznBids": true
+    },
+    "base": "espn.com",
+    "breakpoints": {
+      "l": [
+        1024,
+        1279
+      ],
+      "m": [
+        768,
+        1023
+      ],
+      "s": [
+        0,
+        767
+      ],
+      "xl": [
+        1280
+      ]
+    },
+    "delayInPageAdSlots": true,
+    "disabled": "false",
+    "dynamicKeyValues": {
+      "profile": {
+        "key": "prof"
+      }
+    },
+    "id": 12129264,
+    "incontentPositions": {
+      "defaults": {
+        "favorites": -1,
+        "news": 4,
+        "now": 4
+      },
+      "index": {
+        "nfl": {},
+        "top": {
+          "favorites": -1
+        }
+      }
+    },
+    "kvps": [
+      {
+        "name": "ed",
+        "value": "us"
+      },
+      {
+        "name": "sp",
+        "value": "cbb"
+      },
+      {
+        "name": "pgtyp",
+        "value": "scoreboard"
+      }
+    ],
+    "level": "espn.com/cbb/scoreboard",
+    "load": {
+      "defaults": {
+        "desktop": "init",
+        "mobile": "window.load",
+        "tablet": "init"
+      },
+      "frontpage": {
+        "desktop": "init",
+        "mobile": "window.load",
+        "tablet": "init"
+      },
+      "index": {
+        "desktop": "window.load",
+        "mobile": "window.load",
+        "tablet": "window.load"
+      },
+      "schedule": {
+        "desktop": "window.load",
+        "mobile": "window.load",
+        "tablet": "window.load"
+      },
+      "scoreboard": {
+        "desktop": "window.load",
+        "mobile": "window.load",
+        "tablet": "window.load"
+      },
+      "standings": {
+        "desktop": "window.load",
+        "mobile": "window.load",
+        "tablet": "window.load"
+      },
+      "story": {
+        "desktop": "window.load",
+        "mobile": "window.load",
+        "tablet": "window.load"
+      }
+    },
+    "network": "6444",
+    "refreshOnBreakpointChange": true,
+    "selector": ".ad-slot",
+    "sizes": {
+      "banner": {
+        "defaultSize": [
+          970,
+          66
+        ],
+        "mappings": [
+          {
+            "slot": [
+              [
+                1280,
+                100
+              ],
+              [
+                970,
+                250
+              ]
+            ],
+            "viewport": [
+              1280,
+              0
+            ]
+          },
+          {
+            "slot": [
+              [
+                970,
+                66
+              ],
+              [
+                970,
+                250
+              ],
+              [
+                728,
+                90
+              ]
+            ],
+            "viewport": [
+              1024,
+              0
+            ]
+          },
+          {
+            "slot": [
+              [
+                728,
+                90
+              ]
+            ],
+            "viewport": [
+              768,
+              0
+            ]
+          },
+          {
+            "slot": [
+              [
+                320,
+                50
+              ]
+            ],
+            "viewport": [
+              320,
+              0
+            ]
+          },
+          {
+            "slot": [
+              [
+                240,
+                38
+              ]
+            ],
+            "viewport": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "exclusions": {
+        "defaultSize": [
+          1,
+          2
+        ],
+        "mappings": [
+          {
+            "slot": [
+              [
+                1,
+                2
+              ]
+            ],
+            "viewport": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "incontent": {
+        "defaultSize": [
+          300,
+          250
+        ],
+        "mappings": [
+          {
+            "slot": [
+              [
+                300,
+                250
+              ],
+              [
+                300,
+                600
+              ]
+            ],
+            "viewport": [
+              1024,
+              0
+            ]
+          }
+        ]
+      },
+      "incontent2": {
+        "defaultSize": [
+          300,
+          250
+        ],
+        "mappings": [
+          {
+            "slot": [
+              [
+                300,
+                250
+              ]
+            ],
+            "viewport": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "incontentstrip": {
+        "defaultSize": [
+          298,
+          50
+        ],
+        "mappings": [
+          {
+            "slot": [
+              298,
+              50
+            ],
+            "viewport": [
+              1024,
+              0
+            ]
+          },
+          {
+            "slot": [],
+            "viewport": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "incontentstrip2": {
+        "defaultSize": [
+          298,
+          50
+        ],
+        "mappings": [
+          {
+            "slot": [
+              [
+                298,
+                50
+              ]
+            ],
+            "viewport": [
+              320,
+              0
+            ]
+          }
+        ]
+      },
+      "instream": {
+        "defaultSize": [
+          1,
+          3
+        ],
+        "mappings": [
+          {
+            "slot": [
+              [
+                1,
+                3
+              ]
+            ],
+            "viewport": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "midpage": {
+        "defaultSize": [
+          320,
+          250
+        ],
+        "mappings": [
+          {
+            "slot": [
+              [
+                700,
+                400
+              ]
+            ],
+            "viewport": [
+              1280,
+              0
+            ]
+          },
+          {
+            "slot": [
+              [
+                440,
+                330
+              ]
+            ],
+            "viewport": [
+              1024,
+              0
+            ]
+          },
+          {
+            "slot": [
+              [
+                320,
+                250
+              ]
+            ],
+            "viewport": [
+              768,
+              0
+            ]
+          },
+          {
+            "slot": [
+              [
+                320,
+                250
+              ]
+            ],
+            "viewport": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "native": {
+        "defaultSize": "fluid",
+        "mappings": [
+          {
+            "slot": [
+              "fluid"
+            ],
+            "viewport": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "overlay": {
+        "defaultSize": [
+          0,
+          0
+        ],
+        "mappings": [
+          {
+            "slot": [
+              [
+                0,
+                0
+              ]
+            ],
+            "viewport": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "presby": {
+        "defaultSize": [
+          112,
+          62
+        ],
+        "mappings": [
+          {
+            "slot": [
+              [
+                112,
+                62
+              ]
+            ],
+            "viewport": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "presentedbylogo": {
+        "defaultSize": [
+          128,
+          30
+        ],
+        "mappings": [
+          {
+            "slot": [
+              [
+                128,
+                30
+              ]
+            ],
+            "viewport": [
+              1024,
+              0
+            ]
+          },
+          {
+            "slot": [
+              [
+                90,
+                20
+              ]
+            ],
+            "viewport": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "wallpaper": {
+        "defaultSize": [
+          1680,
+          1050
+        ],
+        "mappings": [
+          {
+            "slot": [
+              [
+                1680,
+                1050
+              ]
+            ],
+            "viewport": [
+              1280,
+              0
+            ]
+          },
+          {
+            "slot": [
+              [
+                1280,
+                455
+              ]
+            ],
+            "viewport": [
+              1024,
+              0
+            ]
+          },
+          {
+            "slot": [],
+            "viewport": [
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    },
+    "supportDynamicPageLoad": true
+  },
+  "analytics": {
+    "ABTest": {
+      "domain": "www.espn.com",
+      "environment": "prod",
+      "host": "espn.com",
+      "isOptimizied": true,
+      "oScript": "http://cdn.optimizely.com/js/310987714.js",
+      "optimizely": true,
+      "optimizelyURLs": [
+        {
+          "flag": true,
+          "regexp": "(/)",
+          "site": "espn.co.uk"
+        },
+        {
+          "flag": true,
+          "regexp": "(/.*)",
+          "site": "www.espn.com"
+        },
+        {
+          "flag": true,
+          "regexp": "(/.*)",
+          "site": "www.espnqa.com"
+        },
+        {
+          "flag": true,
+          "regexp": "(/.*)",
+          "site": "onefeed.espn.go.com.sandbox.aws.espn.com"
+        }
+      ],
+      "raw": "{\"fastcast\":{\"placements\":{\"/nba/index\":\"true\",\"^/.+$\":\"false\",\"/ncf/index\":\"true\"},\"enabled\":false,\"script\":\"http://a.espncdn.com/combiner/c?js=analytics/espn.fastcastTracking.4.js\"},\"optimizely\":{\"oldscript\":\"http://a.espncdn.com/sports/optimizely.js\",\"placements\":[{\"regexp\":\"(/)\",\"site\":\"espn.co.uk\",\"flag\":true},{\"regexp\":\"(/.*)\",\"site\":\"www.espn.com\",\"flag\":true},{\"regexp\":\"(/.*)\",\"site\":\"www.espnqa.com\",\"flag\":true},{\"regexp\":\"(/.*)\",\"site\":\"onefeed.espn.go.com.sandbox.aws.espn.com\",\"flag\":true}],\"enabled\":true,\"script\":\"http://cdn.optimizely.com/js/310987714.js\"},\"target\":{\"placements\":[{\"regexp\":\"(/)\",\"site\":\"espn.co.uk\",\"flag\":false},{\"regexp\":\"(/.*)\",\"site\":\"www.espn.com\",\"flag\":false}],\"enabled\":false,\"script\":\"http://a.espncdn.com/prod/scripts/analytics/target.20.r2.js\"}}",
+      "tScript": "http://a.espncdn.com/prod/scripts/analytics/target.20.r2.js",
+      "target": false,
+      "targetURLs": [
+        {
+          "flag": false,
+          "regexp": "(/)",
+          "site": "espn.co.uk"
+        },
+        {
+          "flag": false,
+          "regexp": "(/.*)",
+          "site": "www.espn.com"
+        }
+      ]
+    },
+    "chartbeat": {
+      "authors": "scoreboard",
+      "domain": "www.espn.com",
+      "loadPubJS": false,
+      "loadVidJS": true,
+      "path": "/mens-college-basketball/scoreboard",
+      "sections": "ncb",
+      "title": "NCAAM College Basketball Scores - NCAAM Scoreboard - ESPN",
+      "zone": "www.espn.com.us.ncb"
+    },
+    "cto": true,
+    "device": "desktop",
+    "isFeaturePhone": false,
+    "nielsen": {
+      "cricinfo": {
+        "apid": "PED8CDAC2-F114-41BE-8B98-AFA06FAEA06E",
+        "vc": "c04"
+      },
+      "espn": {
+        "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+        "vc": "b01"
+      },
+      "espnau": {
+        "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+        "vc": "b01"
+      },
+      "espnbr": {
+        "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+        "vc": "b01"
+      },
+      "espndeportes": {
+        "apid": "P890E2723-EDBC-4CCE-96BA-F35EA3E50650",
+        "vc": "c02"
+      },
+      "espnfc": {
+        "apid": "PE6995AAE-0C49-4372-B5E7-54C61BFE2AA5",
+        "vc": "c03"
+      },
+      "espnin": {
+        "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+        "vc": "b01"
+      },
+      "espnuk": {
+        "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+        "vc": "b01"
+      },
+      "espnww": {
+        "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+        "vc": "b01"
+      },
+      "espnza": {
+        "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+        "vc": "b01"
+      },
+      "fantasy": {
+        "apid": "P302B69D5-F1DD-4E7A-BF8D-3E60F0EB5E5A",
+        "vc": "c07"
+      },
+      "general": {
+        "apn": "espnCOM",
+        "assetid": "N/A",
+        "ci": "us-600140",
+        "section": "N/A",
+        "segA": "N/A",
+        "segB": "N/A",
+        "segC": "N/A",
+        "sfcode": "dcr"
+      },
+      "watchespn": {
+        "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+        "vc": "b01"
+      }
+    },
+    "omniture": {
+      "account": "wdgespcom",
+      "contentType": "scoreboard",
+      "convrSport": "basketball",
+      "countryRegion": "en-us",
+      "espn3ContentType": "scoreboard:null:ncb",
+      "hier1": "ncb:scoreboard",
+      "lang": "en_us",
+      "league": "ncb",
+      "pageName": "ncb:scoreboard",
+      "pageURL": "www.espn.com/mens-college-basketball/scoreboard",
+      "premium": "premium-no",
+      "prop58": "isIndex=false",
+      "section": "ncb",
+      "sections": "ncb:scoreboard",
+      "site": "espn",
+      "siteType": "full",
+      "sport": "basketball"
+    },
+    "qualtrics": false
+  },
+  "content": {
+    "altSbDropdown": {
+      "label": "NCAA Tournament",
+      "options": [
+        {
+          "data": {
+            "group": "100",
+            "week": "null-null-null"
+          },
+          "isSelected": true,
+          "label": "NCAA Tournament",
+          "value": "#"
+        },
+        {
+          "data": {
+            "group": "50",
+            "week": "null-null-null"
+          },
+          "isSelected": false,
+          "label": "NIT",
+          "value": "#"
+        },
+        {
+          "data": {
+            "group": "55",
+            "week": "null-null-null"
+          },
+          "isSelected": false,
+          "label": "CBI",
+          "value": "#"
+        },
+        {
+          "data": {
+            "group": "56",
+            "week": "null-null-null"
+          },
+          "isSelected": false,
+          "label": "CIT",
+          "value": "#"
+        }
+      ]
+    },
+    "calendar": [],
+    "canonical": "/mens-college-basketball/scoreboard",
+    "dateParams": {
+      "date": "20171217"
+    },
+    "defaults": {},
+    "description": "Real-time NCAAM College Basketball scores on ESPN",
+    "isWeekOriented": false,
+    "keywords": "NCAAM Scores, NCAAM scoreboard, College Basketball Scores, College Basketball scoreboard",
+    "league": "mens-college-basketball",
+    "og_type": "website",
+    "sbData": {
+      "events": [],
+      "groups": [
+        "100"
+      ],
+      "leagues": [
+        {
+          "abbreviation": "NCAAM",
+          "calendar": [],
+          "calendarEndDate": "2018-04-12T06:59Z",
+          "calendarIsWhitelist": false,
+          "calendarStartDate": "2017-07-01T07:00Z",
+          "calendarType": "day",
+          "id": "41",
+          "midsizeName": "NCAA Basketball",
+          "name": "NCAA Men's Basketball",
+          "season": {
+            "endDate": "2018-04-12T06:59Z",
+            "startDate": "2017-07-01T07:00Z",
+            "type": {
+              "abbreviation": "reg",
+              "id": "2",
+              "name": "Regular Season",
+              "type": 2
+            },
+            "year": 2018
+          },
+          "slug": "mens-college-basketball",
+          "uid": "s:40~l:41"
+        }
+      ]
+    },
+    "sbGroup": {
+      "altTitle": "NCAA Men's Basketball",
+      "defaultGroup": 0,
+      "isCollege": true,
+      "league": "mens-college-basketball",
+      "pageTitle": "NCAAM Basketball",
+      "scheduleStartDate": "2002-10-10",
+      "sport": "basketball"
+    },
+    "title": "NCAAM College Basketball Scores - NCAAM Scoreboard - ESPN"
+  },
+  "meta": {
+    "canonical": "http://www.espn.com/mens-college-basketball/scoreboard",
+    "description": "Real-time NCAAM College Basketball scores on ESPN",
+    "fb_app_id": "116656161708917",
+    "image": "http://a.espncdn.com/i/espn/espn_logos/espn_red.png",
+    "imageHeight": 630,
+    "imageWidth": 1200,
+    "keywords": "NCAAM Scores, NCAAM scoreboard, College Basketball Scores, College Basketball scoreboard",
+    "label": "NCAAM",
+    "news_keywords": "NCAAM Scores, NCAAM scoreboard, College Basketball Scores, College Basketball scoreboard",
+    "og_site_name": "ESPN.com",
+    "og_type": "website",
+    "root": "ncb",
+    "title": "NCAAM College Basketball Scores - NCAAM Scoreboard - ESPN",
+    "twitter_app_id_googleplay": "com.espn.score_center",
+    "twitter_app_id_iphone": "317469184",
+    "twitter_app_name_googleplay": "ESPN",
+    "twitter_app_name_iphone": "ESPN",
+    "twitter_card": "summary",
+    "twitter_site": "espn",
+    "type": "scoreboard"
+  },
+  "nowFeed": [
+    {
+      "byline": "Jeff Borzello",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "groupId": 2,
+          "sportId": 41,
+          "type": "group",
+          "uid": "s:40~l:41~g:2"
+        },
+        {
+          "description": "Duke Blue Devils",
+          "sportId": 41,
+          "team": {
+            "description": "Duke Blue Devils",
+            "id": 150,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/150"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=150"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/150/duke-blue-devils"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/150.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/150.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 150,
+          "type": "team",
+          "uid": "s:40~l:41~t:150"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T21:26:14Z",
+      "externalId": "05qy1y3e3ri54",
+      "headline": "Marvin Bagley III is out again for Duke tomorrow. Will be his third straight missed game.",
+      "id": 756627170054381464,
+      "images": [
+        {
+          "height": 90,
+          "type": "small",
+          "url": "http://a.espncdn.com/i/columnists/full/borzello_jeff.png",
+          "width": 65
+        }
+      ],
+      "lastModified": "2018-02-17T21:26:14Z",
+      "links": {
+        "mobile": {
+          "href": "http://m.espn.go.com/wireless/story?storyId=756627170054381464"
+        },
+        "web": {
+          "href": "http://www.espn.com/espn/now?nowId=21-0756627170054381464-4",
+          "short": {
+            "href": "http://www.espn.com/espn/now?nowId=21-0756627170054381464-4"
+          },
+          "shortstop": {
+            "profile": {
+              "href": "http://search.espn.com/jeff-borzello/"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-756627170054381464",
+      "premium": false,
+      "published": "2018-02-17T21:26:14Z",
+      "source": "ESPN Staff Writer",
+      "story": "Marvin Bagley III is out again for Duke tomorrow. Will be his third straight missed game.",
+      "type": "Shortstop"
+    },
+    {
+      "byline": "Jeff Borzello",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "groupId": 7,
+          "sportId": 41,
+          "type": "group",
+          "uid": "s:40~l:41~g:7"
+        },
+        {
+          "description": "Northwestern Wildcats",
+          "sportId": 41,
+          "team": {
+            "description": "Northwestern Wildcats",
+            "id": 77,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/77"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=77"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/77/northwestern-wildcats"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/77.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/77.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 77,
+          "type": "team",
+          "uid": "s:40~l:41~t:77"
+        },
+        {
+          "description": "Michigan State Spartans",
+          "sportId": 41,
+          "team": {
+            "description": "Michigan State Spartans",
+            "id": 127,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/127"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=127"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/127/michigan-state-spartans"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/127.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/127.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 127,
+          "type": "team",
+          "uid": "s:40~l:41~t:127"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T21:17:36Z",
+      "externalId": "05qy16cuzhrbd",
+      "headline": "Northwestern scores 11 second-half points and blows a 27-point lead to fall to Michigan State, 65-60. Wildcats missed 17 straight shots at one point.",
+      "id": 756624996469579657,
+      "images": [
+        {
+          "height": 90,
+          "type": "small",
+          "url": "http://a.espncdn.com/i/columnists/full/borzello_jeff.png",
+          "width": 65
+        }
+      ],
+      "lastModified": "2018-02-17T21:17:36Z",
+      "links": {
+        "mobile": {
+          "href": "http://m.espn.go.com/wireless/story?storyId=756624996469579657"
+        },
+        "web": {
+          "href": "http://www.espn.com/espn/now?nowId=21-0756624996469579657-4",
+          "short": {
+            "href": "http://www.espn.com/espn/now?nowId=21-0756624996469579657-4"
+          },
+          "shortstop": {
+            "profile": {
+              "href": "http://search.espn.com/jeff-borzello/"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-756624996469579657",
+      "premium": false,
+      "published": "2018-02-17T21:17:36Z",
+      "source": "ESPN Staff Writer",
+      "story": "Northwestern scores 11 second-half points and blows a 27-point lead to fall to Michigan State, 65-60. Wildcats missed 17 straight shots at one point.",
+      "type": "Shortstop"
+    },
+    {
+      "byline": "Alex Scarborough",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "groupId": 23,
+          "sportId": 41,
+          "type": "group",
+          "uid": "s:40~l:41~g:23"
+        },
+        {
+          "description": "Kentucky Wildcats",
+          "sportId": 41,
+          "team": {
+            "description": "Kentucky Wildcats",
+            "id": 96,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/96"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=96"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/96/kentucky-wildcats"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/96.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/96.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 96,
+          "type": "team",
+          "uid": "s:40~l:41~t:96"
+        },
+        {
+          "description": "Alabama Crimson Tide",
+          "sportId": 41,
+          "team": {
+            "description": "Alabama Crimson Tide",
+            "id": 333,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/333"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=333"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/333/alabama-crimson-tide"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/333.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/333.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 333,
+          "type": "team",
+          "uid": "s:40~l:41~t:333"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T21:12:27Z",
+      "externalId": "40016653",
+      "headline": "Kentucky's four-game losing streak is over as the it beats Alabama, 81-71, at home. It wasn't always pretty, but the Wildcats dominated the boards, out-rebounding the Tide by 17. Turnovers down the stretch doomed Alabama                                                                          .",
+      "id": 40016653,
+      "images": [
+        {
+          "height": 90,
+          "type": "small",
+          "url": "http://assets.espn.go.com/i/columnists/scarborough_alex_m.jpg",
+          "width": 65
+        }
+      ],
+      "lastModified": "2018-02-17T21:12:27Z",
+      "links": {
+        "mobile": {
+          "href": "http://m.espn.go.com/wireless/story?storyId=40016653"
+        },
+        "web": {
+          "href": "http://www.espn.com/espn/now?nowId=21-40016653-4",
+          "short": {
+            "href": "http://www.espn.com/espn/now?nowId=21-40016653-4"
+          },
+          "shortstop": {
+            "profile": {
+              "href": "http://search.espn.go.com/alex-scarborough/"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-40016653",
+      "premium": false,
+      "published": "2018-02-17T21:12:27Z",
+      "source": "ESPN Staff Writer",
+      "story": "Kentucky's four-game losing streak is over as the it beats Alabama, 81-71, at home. It wasn't always pretty, but the Wildcats dominated the boards, out-rebounding the Tide by 17. Turnovers down the stretch doomed Alabama                                                                          .",
+      "type": "Shortstop"
+    },
+    {
+      "byline": "Jeff Borzello",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "groupId": 23,
+          "sportId": 41,
+          "type": "group",
+          "uid": "s:40~l:41~g:23"
+        },
+        {
+          "description": "LSU Tigers",
+          "sportId": 41,
+          "team": {
+            "description": "LSU Tigers",
+            "id": 99,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/99"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=99"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/99/lsu-tigers"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/99.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/99.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 99,
+          "type": "team",
+          "uid": "s:40~l:41~t:99"
+        },
+        {
+          "description": "Missouri Tigers",
+          "sportId": 41,
+          "team": {
+            "description": "Missouri Tigers",
+            "id": 142,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/142"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=142"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/142/missouri-tigers"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/142.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/142.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 142,
+          "type": "team",
+          "uid": "s:40~l:41~t:142"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T20:58:26Z",
+      "externalId": "05qxzgsiybvpi",
+      "headline": "Will Wade coming out in an aggressive 1-3-1 zone out of back-to-back timeouts late against Missouri worked to perfection. Tremont Waters and LSU escape, snapping Mizzou's five-game wining streak.",
+      "id": 756620171992375110,
+      "images": [
+        {
+          "height": 90,
+          "type": "small",
+          "url": "http://a.espncdn.com/i/columnists/full/borzello_jeff.png",
+          "width": 65
+        }
+      ],
+      "lastModified": "2018-02-17T20:58:26Z",
+      "links": {
+        "mobile": {
+          "href": "http://m.espn.go.com/wireless/story?storyId=756620171992375110"
+        },
+        "web": {
+          "href": "http://www.espn.com/espn/now?nowId=21-0756620171992375110-4",
+          "short": {
+            "href": "http://www.espn.com/espn/now?nowId=21-0756620171992375110-4"
+          },
+          "shortstop": {
+            "profile": {
+              "href": "http://search.espn.com/jeff-borzello/"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-756620171992375110",
+      "premium": false,
+      "published": "2018-02-17T20:58:26Z",
+      "source": "ESPN Staff Writer",
+      "story": "Will Wade coming out in an aggressive 1-3-1 zone out of back-to-back timeouts late against Missouri worked to perfection. Tremont Waters and LSU escape, snapping Mizzou's five-game wining streak.",
+      "type": "Shortstop"
+    },
+    {
+      "byline": "Alex Scarborough",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "groupId": 23,
+          "sportId": 41,
+          "type": "group",
+          "uid": "s:40~l:41~g:23"
+        },
+        {
+          "description": "Kentucky Wildcats",
+          "sportId": 41,
+          "team": {
+            "description": "Kentucky Wildcats",
+            "id": 96,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/96"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=96"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/96/kentucky-wildcats"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/96.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/96.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 96,
+          "type": "team",
+          "uid": "s:40~l:41~t:96"
+        },
+        {
+          "description": "Alabama Crimson Tide",
+          "sportId": 41,
+          "team": {
+            "description": "Alabama Crimson Tide",
+            "id": 333,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/333"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=333"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/333/alabama-crimson-tide"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/333.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/333.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 333,
+          "type": "team",
+          "uid": "s:40~l:41~t:333"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T20:48:22Z",
+      "externalId": "40016652",
+      "headline": "It's amazing that Kentucky is +17 rebounding yet is leading Alabama by just 2 points with under 8 minutes remaining. The Wildcats have missed some point-blank shots this afternoon.",
+      "id": 40016652,
+      "images": [
+        {
+          "height": 90,
+          "type": "small",
+          "url": "http://assets.espn.go.com/i/columnists/scarborough_alex_m.jpg",
+          "width": 65
+        }
+      ],
+      "lastModified": "2018-02-17T20:48:22Z",
+      "links": {
+        "mobile": {
+          "href": "http://m.espn.go.com/wireless/story?storyId=40016652"
+        },
+        "web": {
+          "href": "http://www.espn.com/espn/now?nowId=21-40016652-4",
+          "short": {
+            "href": "http://www.espn.com/espn/now?nowId=21-40016652-4"
+          },
+          "shortstop": {
+            "profile": {
+              "href": "http://search.espn.go.com/alex-scarborough/"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-40016652",
+      "premium": false,
+      "published": "2018-02-17T20:48:22Z",
+      "source": "ESPN Staff Writer",
+      "story": "It's amazing that Kentucky is +17 rebounding yet is leading Alabama by just 2 points with under 8 minutes remaining. The Wildcats have missed some point-blank shots this afternoon.",
+      "type": "Shortstop"
+    },
+    {
+      "byline": "Alex Scarborough",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "groupId": 23,
+          "sportId": 41,
+          "type": "group",
+          "uid": "s:40~l:41~g:23"
+        },
+        {
+          "description": "Kentucky Wildcats",
+          "sportId": 41,
+          "team": {
+            "description": "Kentucky Wildcats",
+            "id": 96,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/96"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=96"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/96/kentucky-wildcats"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/96.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/96.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 96,
+          "type": "team",
+          "uid": "s:40~l:41~t:96"
+        },
+        {
+          "description": "Alabama Crimson Tide",
+          "sportId": 41,
+          "team": {
+            "description": "Alabama Crimson Tide",
+            "id": 333,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/333"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=333"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/333/alabama-crimson-tide"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/333.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/333.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 333,
+          "type": "team",
+          "uid": "s:40~l:41~t:333"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T20:41:41Z",
+      "externalId": "40016651",
+      "headline": "Alabama big man Donta Hall may be wearing two different shoes (one white, one crimson), but he's playing very good basketball. He's 7 of 8 from the field and a big reason why the Tide have the lead over Kentucky with under 9 minutes to play.",
+      "id": 40016651,
+      "images": [
+        {
+          "height": 90,
+          "type": "small",
+          "url": "http://assets.espn.go.com/i/columnists/scarborough_alex_m.jpg",
+          "width": 65
+        }
+      ],
+      "lastModified": "2018-02-17T20:41:41Z",
+      "links": {
+        "mobile": {
+          "href": "http://m.espn.go.com/wireless/story?storyId=40016651"
+        },
+        "web": {
+          "href": "http://www.espn.com/espn/now?nowId=21-40016651-4",
+          "short": {
+            "href": "http://www.espn.com/espn/now?nowId=21-40016651-4"
+          },
+          "shortstop": {
+            "profile": {
+              "href": "http://search.espn.go.com/alex-scarborough/"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-40016651",
+      "premium": false,
+      "published": "2018-02-17T20:41:41Z",
+      "source": "ESPN Staff Writer",
+      "story": "Alabama big man Donta Hall may be wearing two different shoes (one white, one crimson), but he's playing very good basketball. He's 7 of 8 from the field and a big reason why the Tide have the lead over Kentucky with under 9 minutes to play.",
+      "type": "Shortstop"
+    },
+    {
+      "byline": "Jake Trotter",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "groupId": 8,
+          "sportId": 41,
+          "type": "group",
+          "uid": "s:40~l:41~g:8"
+        },
+        {
+          "description": "Oklahoma Sooners",
+          "sportId": 41,
+          "team": {
+            "description": "Oklahoma Sooners",
+            "id": 201,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/201"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=201"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/201/oklahoma-sooners"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/201.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/201.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 201,
+          "type": "team",
+          "uid": "s:40~l:41~t:201"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T20:35:27Z",
+      "externalId": "40016650",
+      "headline": "Oklahoma's Trae Young, on his recent offensive struggles: \"I’m getting guarded like nobody else in the country is being guarded, scouted on like no one else in the country. It’s a mystery coming out each and every game to try and figure out how a team is going to guard me and how I’m going to dictate how my team wins. … It’s a lot tougher for me to score now than it was in the beginning. ... It’s a process. Right now, it’s tough.\"",
+      "id": 40016650,
+      "images": [
+        {
+          "height": 90,
+          "type": "small",
+          "url": "http://a.espncdn.com/i/columnists/trotter_jake_m.jpg",
+          "width": 65
+        }
+      ],
+      "lastModified": "2018-02-17T20:35:27Z",
+      "links": {
+        "mobile": {
+          "href": "http://m.espn.go.com/wireless/story?storyId=40016650"
+        },
+        "web": {
+          "href": "http://www.espn.com/espn/now?nowId=21-40016650-4",
+          "short": {
+            "href": "http://www.espn.com/espn/now?nowId=21-40016650-4"
+          },
+          "shortstop": {
+            "profile": {
+              "href": "http://search.espn.com/jake-trotter/"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-40016650",
+      "premium": false,
+      "published": "2018-02-17T20:35:27Z",
+      "source": "ESPN Staff Writer",
+      "story": "Oklahoma's Trae Young, on his recent offensive struggles: \"I’m getting guarded like nobody else in the country is being guarded, scouted on like no one else in the country. It’s a mystery coming out each and every game to try and figure out how a team is going to guard me and how I’m going to dictate how my team wins. … It’s a lot tougher for me to score now than it was in the beginning. ... It’s a process. Right now, it’s tough.\"",
+      "type": "Shortstop"
+    },
+    {
+      "byline": "Fran Fraschilla",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "description": "Northwestern Wildcats",
+          "sportId": 41,
+          "team": {
+            "description": "Northwestern Wildcats",
+            "id": 77,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/77"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=77"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/77/northwestern-wildcats"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/77.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/77.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 77,
+          "type": "team",
+          "uid": "s:40~l:41~t:77"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T20:03:09Z",
+      "headline": ".@NUMensBball crushing Michigan State. Best performance in Rosemont Horizon  (Allstate Arena) since Aguirre & Cummings.",
+      "id": 964953384947191808,
+      "images": [
+        {
+          "height": 48,
+          "type": "small",
+          "url": "http://pbs.twimg.com/profile_images/469639814963159040/rAog0SN6_normal.jpeg",
+          "width": 48
+        },
+        {
+          "height": 73,
+          "type": "medium",
+          "url": "http://pbs.twimg.com/profile_images/469639814963159040/rAog0SN6_bigger.jpeg",
+          "width": 73
+        },
+        {
+          "type": "full",
+          "url": "http://pbs.twimg.com/profile_images/469639814963159040/rAog0SN6.jpeg"
+        }
+      ],
+      "lastModified": "2018-02-17T20:03:09Z",
+      "links": {
+        "api": {
+          "news": {
+            "href": "https://api.twitter.com/1/statuses/oembed.json?id=964953384947191808&align=center"
+          },
+          "self": {
+            "href": "https://api.twitter.com/1/statuses/oembed.json?id=964953384947191808&align=center"
+          }
+        },
+        "mobile": {
+          "href": "https://mobile.twitter.com/franfraschilla/status/964953384947191808",
+          "twitter": {
+            "href": "https://mobile.twitter.com/franfraschilla/status/964953384947191808",
+            "profile": {
+              "href": "https://mobile.twitter.com/franfraschilla"
+            }
+          }
+        },
+        "web": {
+          "href": "https://twitter.com/franfraschilla/status/964953384947191808",
+          "short": {
+            "href": "https://twitter.com/franfraschilla/status/964953384947191808"
+          },
+          "twitter": {
+            "href": "https://twitter.com/franfraschilla/status/964953384947191808",
+            "profile": {
+              "href": "https://twitter.com/franfraschilla"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-964953384947191808",
+      "premium": false,
+      "published": "2018-02-17T20:03:09Z",
+      "source": "franfraschilla",
+      "story": ".<a href=\"https://twitter.com/NUMensBball\">@NUMensBball</a> crushing Michigan State. Best performance in Rosemont Horizon  (Allstate Arena) since Aguirre & Cummings.",
+      "type": "Tweet"
+    },
+    {
+      "byline": "Jeff Borzello",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "groupId": 7,
+          "sportId": 41,
+          "type": "group",
+          "uid": "s:40~l:41~g:7"
+        },
+        {
+          "description": "Northwestern Wildcats",
+          "sportId": 41,
+          "team": {
+            "description": "Northwestern Wildcats",
+            "id": 77,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/77"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=77"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/77/northwestern-wildcats"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/77.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/77.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 77,
+          "type": "team",
+          "uid": "s:40~l:41~t:77"
+        },
+        {
+          "description": "Michigan State Spartans",
+          "sportId": 41,
+          "team": {
+            "description": "Michigan State Spartans",
+            "id": 127,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/127"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=127"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/127/michigan-state-spartans"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/127.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/127.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 127,
+          "type": "team",
+          "uid": "s:40~l:41~t:127"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T20:03:07Z",
+      "externalId": "05qxuj5t8pwxi",
+      "headline": "Northwestern lost to Rutgers four days ago.\n\nNorthwestern is up 22 at halftime on Michigan State right now.",
+      "id": 756606252091449078,
+      "images": [
+        {
+          "height": 90,
+          "type": "small",
+          "url": "http://a.espncdn.com/i/columnists/full/borzello_jeff.png",
+          "width": 65
+        }
+      ],
+      "lastModified": "2018-02-17T20:03:07Z",
+      "links": {
+        "mobile": {
+          "href": "http://m.espn.go.com/wireless/story?storyId=756606252091449078"
+        },
+        "web": {
+          "href": "http://www.espn.com/espn/now?nowId=21-0756606252091449078-4",
+          "short": {
+            "href": "http://www.espn.com/espn/now?nowId=21-0756606252091449078-4"
+          },
+          "shortstop": {
+            "profile": {
+              "href": "http://search.espn.com/jeff-borzello/"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-756606252091449078",
+      "premium": false,
+      "published": "2018-02-17T20:03:07Z",
+      "source": "ESPN Staff Writer",
+      "story": "Northwestern lost to Rutgers four days ago.\n\nNorthwestern is up 22 at halftime on Michigan State right now.",
+      "type": "Shortstop"
+    },
+    {
+      "byline": "Alex Scarborough",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "groupId": 23,
+          "sportId": 41,
+          "type": "group",
+          "uid": "s:40~l:41~g:23"
+        },
+        {
+          "description": "Kentucky Wildcats",
+          "sportId": 41,
+          "team": {
+            "description": "Kentucky Wildcats",
+            "id": 96,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/96"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=96"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/96/kentucky-wildcats"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/96.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/96.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 96,
+          "type": "team",
+          "uid": "s:40~l:41~t:96"
+        },
+        {
+          "description": "Alabama Crimson Tide",
+          "sportId": 41,
+          "team": {
+            "description": "Alabama Crimson Tide",
+            "id": 333,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/333"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=333"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/333/alabama-crimson-tide"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/333.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/333.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 333,
+          "type": "team",
+          "uid": "s:40~l:41~t:333"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T19:54:54Z",
+      "externalId": "40016649",
+      "headline": "Collin Sexton has returned from the locker room with a bandage on his chin. Alabama's leading scorer took a hard fall on the court earlier and went straight to the locker room. He's now back on the court against Kentucky.",
+      "id": 40016649,
+      "images": [
+        {
+          "height": 90,
+          "type": "small",
+          "url": "http://assets.espn.go.com/i/columnists/scarborough_alex_m.jpg",
+          "width": 65
+        }
+      ],
+      "lastModified": "2018-02-17T19:54:54Z",
+      "links": {
+        "mobile": {
+          "href": "http://m.espn.go.com/wireless/story?storyId=40016649"
+        },
+        "web": {
+          "href": "http://www.espn.com/espn/now?nowId=21-40016649-4",
+          "short": {
+            "href": "http://www.espn.com/espn/now?nowId=21-40016649-4"
+          },
+          "shortstop": {
+            "profile": {
+              "href": "http://search.espn.go.com/alex-scarborough/"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-40016649",
+      "premium": false,
+      "published": "2018-02-17T19:54:54Z",
+      "source": "ESPN Staff Writer",
+      "story": "Collin Sexton has returned from the locker room with a bandage on his chin. Alabama's leading scorer took a hard fall on the court earlier and went straight to the locker room. He's now back on the court against Kentucky.",
+      "type": "Shortstop"
+    },
+    {
+      "byline": "Alex Scarborough",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "groupId": 23,
+          "sportId": 41,
+          "type": "group",
+          "uid": "s:40~l:41~g:23"
+        },
+        {
+          "description": "Kentucky Wildcats",
+          "sportId": 41,
+          "team": {
+            "description": "Kentucky Wildcats",
+            "id": 96,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/96"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=96"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/96/kentucky-wildcats"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/96.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/96.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 96,
+          "type": "team",
+          "uid": "s:40~l:41~t:96"
+        },
+        {
+          "description": "Alabama Crimson Tide",
+          "sportId": 41,
+          "team": {
+            "description": "Alabama Crimson Tide",
+            "id": 333,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/333"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=333"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/333/alabama-crimson-tide"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/333.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/333.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 333,
+          "type": "team",
+          "uid": "s:40~l:41~t:333"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T19:47:20Z",
+      "externalId": "40016648",
+      "headline": "Collin Sexton fell and smashed the side of his face on the court after a drive to the basket. He was slow getting up and when he did, he went straight to the locker room. He's Alabama's best scoring option.",
+      "id": 40016648,
+      "images": [
+        {
+          "height": 90,
+          "type": "small",
+          "url": "http://assets.espn.go.com/i/columnists/scarborough_alex_m.jpg",
+          "width": 65
+        }
+      ],
+      "lastModified": "2018-02-17T19:47:20Z",
+      "links": {
+        "mobile": {
+          "href": "http://m.espn.go.com/wireless/story?storyId=40016648"
+        },
+        "web": {
+          "href": "http://www.espn.com/espn/now?nowId=21-40016648-4",
+          "short": {
+            "href": "http://www.espn.com/espn/now?nowId=21-40016648-4"
+          },
+          "shortstop": {
+            "profile": {
+              "href": "http://search.espn.go.com/alex-scarborough/"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-40016648",
+      "premium": false,
+      "published": "2018-02-17T19:47:20Z",
+      "source": "ESPN Staff Writer",
+      "story": "Collin Sexton fell and smashed the side of his face on the court after a drive to the basket. He was slow getting up and when he did, he went straight to the locker room. He's Alabama's best scoring option.",
+      "type": "Shortstop"
+    },
+    {
+      "byline": "Mike Couzens",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "groupId": 2,
+          "sportId": 41,
+          "type": "group",
+          "uid": "s:40~l:41~g:2"
+        },
+        {
+          "description": "Virginia Tech Hokies",
+          "sportId": 41,
+          "team": {
+            "description": "Virginia Tech Hokies",
+            "id": 259,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/259"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=259"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/259/virginia-tech-hokies"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/259.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/259.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 259,
+          "type": "team",
+          "uid": "s:40~l:41~t:259"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T19:21:48Z",
+      "externalId": "05qxqug85mysh",
+      "headline": "One of the cool things about calling a game at Georgia Tech is being setup by the visiting team's bench. Usually we are across the floor, and don't get to see into the huddle like this.",
+      "id": 756595852327263905,
+      "images": [
+        {
+          "height": 90,
+          "type": "small",
+          "url": "http://a.espncdn.com/i/columnists/full/couzens_michael.png",
+          "width": 65
+        },
+        {
+          "height": 640,
+          "url": "http://d2s3dt9f4iyeup.cloudfront.net/images/standard_v1/0b524af2-1e5d-4b08-a57b-7e8620aad79c.jpg",
+          "width": 854
+        }
+      ],
+      "lastModified": "2018-02-17T19:21:48Z",
+      "links": {
+        "mobile": {
+          "href": "http://m.espn.go.com/wireless/story?storyId=756595852327263905"
+        },
+        "web": {
+          "href": "http://www.espn.com/espn/now?nowId=21-0756595852327263905-4",
+          "short": {
+            "href": "http://www.espn.com/espn/now?nowId=21-0756595852327263905-4"
+          },
+          "shortstop": {
+            "profile": {
+              "href": "http://www.espn.com"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-756595852327263905",
+      "premium": false,
+      "published": "2018-02-17T19:21:48Z",
+      "source": "ESPN College Football",
+      "story": "One of the cool things about calling a game at Georgia Tech is being setup by the visiting team's bench. Usually we are across the floor, and don't get to see into the huddle like this.",
+      "type": "Shortstop",
+      "video": [
+        {
+          "ad": {
+            "bundle": "no_show",
+            "sport": "misc"
+          },
+          "caption": "One of the cool things about calling a game at Georgia Tech is being setup by the visiting team's bench. Usually we are across the floor, and don't get to see into the huddle like this. Video by Michael Couzens",
+          "categories": [],
+          "cerebroId": "5a8880d1e4b0fdf64d055896",
+          "contributingPartner": "Shortstop",
+          "contributingSystem": "Media Exchange",
+          "description": "One of the cool things about calling a game at Georgia Tech is being setup by the visiting team's bench. Usually we are across the floor, and don't get to see into the huddle like this. Video by Michael Couzens",
+          "deviceRestrictions": {
+            "devices": [
+              "desktop",
+              "settop",
+              "handset",
+              "tablet"
+            ],
+            "type": "whitelist"
+          },
+          "duration": 17,
+          "headline": "One of the cool things about calling a game at Georgia Tech",
+          "id": 22480097,
+          "images": [
+            {
+              "alt": "",
+              "caption": "",
+              "credit": "",
+              "height": 324,
+              "name": "Poster Image",
+              "url": "http://media.video-cdn.espn.com/images/2018/0217/ss_20180217_142154959_994827/ss_20180217_142154959_994827.jpg",
+              "width": 576
+            }
+          ],
+          "keywords": [],
+          "lastModified": "2018-02-17T19:23:24Z",
+          "links": {
+            "api": {
+              "self": {
+                "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/video/clips/22480097"
+              }
+            },
+            "mobile": {
+              "alert": {
+                "href": "http://m.espn.go.com/general/video/videoAlert?vid=22480097"
+              },
+              "href": "http://once.unicornmedia.com/now/od/auto/4d993388-8b49-4f34-9e48-87906e690281/85957be9-026a-415e-a8ce-7bfdc19d5e23/e2aaddf6-d457-4c9e-92e5-7dc641c44256/content.once?UMADPARAMreferer=http://www.espn.com/video/clip?id=22480097",
+              "progressiveDownload": {
+                "href": "http://once.unicornmedia.com/now/od/auto/4d993388-8b49-4f34-9e48-87906e690281/85957be9-026a-415e-a8ce-7bfdc19d5e23/e2aaddf6-d457-4c9e-92e5-7dc641c44256/content.once?UMADPARAMreferer=http://www.espn.com/video/clip?id=22480097"
+              },
+              "source": {
+                "href": "http://media.video-cdn.espn.com/motion/2018/0217/ss_20180217_142154959_994827/ss_20180217_142154959_994827.mp4"
+              },
+              "streaming": {
+                "href": "http://once.unicornmedia.com/now/od/auto/4d993388-8b49-4f34-9e48-87906e690281/85957be9-026a-415e-a8ce-7bfdc19d5e23/e2aaddf6-d457-4c9e-92e5-7dc641c44256/content.once?UMADPARAMreferer=http://www.espn.com/video/clip?id=22480097"
+              }
+            },
+            "source": {
+              "HD": {
+                "href": "http://media.video-cdn.espn.com/motion/2018/0217/ss_20180217_142154959_994827/ss_20180217_142154959_994827_720p30_2896k.mp4"
+              },
+              "HLS": {
+                "HD": {
+                  "href": "http://pkg.video-cdn.espn.com/i/motion/2018/0217/ss_20180217_142154959_994827/ss_20180217_142154959_994827.smil/master.m3u8"
+                },
+                "href": "http://pkg.video-cdn.espn.com/i/motion/2018/0217/ss_20180217_142154959_994827/ss_20180217_142154959_994827.smil/master.m3u8"
+              },
+              "flash": {
+                "href": "http://media.video-cdn.espn.com/motion/2018/0217/ss_20180217_142154959_994827/ss_20180217_142154959_994827.smil"
+              },
+              "full": {
+                "href": "http://media.video-cdn.espn.com/motion/2018/0217/ss_20180217_142154959_994827/ss_20180217_142154959_994827_360p30_1464k.mp4"
+              },
+              "hds": {
+                "href": "http://hds.video-cdn.espn.com/z/motion/2018/0217/ss_20180217_142154959_994827/ss_20180217_142154959_994827_rel.smil/manifest.f4m"
+              },
+              "href": "http://media.video-cdn.espn.com/motion/2018/0217/ss_20180217_142154959_994827/ss_20180217_142154959_994827_360p30_1464k.mp4",
+              "mezzanine": {
+                "href": "http://media.video-origin.espn.com/espnvideo/2018/0217/ss_20180217_142154959_994827/ss_20180217_142154959_994827.mp4"
+              }
+            },
+            "web": {
+              "href": "http://espn.go.com/video/clip?id=22480097",
+              "self": {
+                "href": "http://espn.go.com/video/clip?id=22480097"
+              },
+              "short": {
+                "href": "http://es.pn/2Cs9Z8k"
+              }
+            }
+          },
+          "originalPublishDate": "2018-02-17T19:21:53Z",
+          "posterImages": {
+            "default": {
+              "height": 324,
+              "href": "http://media.video-cdn.espn.com/motion/2018/0217/ss_20180217_142154959_994827/ss_20180217_142154959_994827_default.jpg",
+              "width": 576
+            },
+            "full": {
+              "href": "http://media.video-cdn.espn.com/motion/2018/0217/ss_20180217_142154959_994827/ss_20180217_142154959_994827.jpg"
+            }
+          },
+          "premium": false,
+          "source": "espn",
+          "syndicatable": true,
+          "thumbnail": "http://a.espncdn.com/media/motion/2018/0217/ss_20180217_142154959_994827/ss_20180217_142154959_994827.jpg",
+          "timeRestrictions": {
+            "embargoDate": "2018-02-17T19:21:53Z",
+            "expirationDate": "2018-03-19T19:21:53Z"
+          },
+          "title": "One of the cool things about calling a game at Georgia Tech",
+          "tracking": {
+            "leagueName": "No League",
+            "sportName": "misc",
+            "trackingId": "05qxqug85mysh",
+            "trackingName": "05qxqug85mysh"
+          }
+        }
+      ]
+    },
+    {
+      "byline": "Jeff Borzello",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "groupId": 23,
+          "sportId": 41,
+          "type": "group",
+          "uid": "s:40~l:41~g:23"
+        },
+        {
+          "description": "South Carolina Gamecocks",
+          "sportId": 41,
+          "team": {
+            "description": "South Carolina Gamecocks",
+            "id": 2579,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/2579"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=2579"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/2579/south-carolina-gamecocks"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/2579.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2579.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 2579,
+          "type": "team",
+          "uid": "s:40~l:41~t:2579"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T19:20:04Z",
+      "externalId": "05qxqoxa19v2x",
+      "headline": "South Carolina guard Kory Holden is leaving the program. Former Delaware transfer scored just 47 points in 14 games this season after averaging 17.7 at Delaware.",
+      "id": 756595419261181593,
+      "images": [
+        {
+          "height": 90,
+          "type": "small",
+          "url": "http://a.espncdn.com/i/columnists/full/borzello_jeff.png",
+          "width": 65
+        }
+      ],
+      "lastModified": "2018-02-17T19:20:04Z",
+      "links": {
+        "mobile": {
+          "href": "http://m.espn.go.com/wireless/story?storyId=756595419261181593"
+        },
+        "web": {
+          "href": "http://www.espn.com/espn/now?nowId=21-0756595419261181593-4",
+          "short": {
+            "href": "http://www.espn.com/espn/now?nowId=21-0756595419261181593-4"
+          },
+          "shortstop": {
+            "profile": {
+              "href": "http://search.espn.com/jeff-borzello/"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-756595419261181593",
+      "premium": false,
+      "published": "2018-02-17T19:20:04Z",
+      "source": "ESPN Staff Writer",
+      "story": "South Carolina guard Kory Holden is leaving the program. Former Delaware transfer scored just 47 points in 14 games this season after averaging 17.7 at Delaware.",
+      "type": "Shortstop"
+    },
+    {
+      "byline": "Alex Scarborough",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "groupId": 23,
+          "sportId": 41,
+          "type": "group",
+          "uid": "s:40~l:41~g:23"
+        },
+        {
+          "description": "Kentucky Wildcats",
+          "sportId": 41,
+          "team": {
+            "description": "Kentucky Wildcats",
+            "id": 96,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/96"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=96"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/96/kentucky-wildcats"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/96.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/96.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 96,
+          "type": "team",
+          "uid": "s:40~l:41~t:96"
+        },
+        {
+          "description": "Alabama Crimson Tide",
+          "sportId": 41,
+          "team": {
+            "description": "Alabama Crimson Tide",
+            "id": 333,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/333"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=333"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/333/alabama-crimson-tide"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/333.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/333.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 333,
+          "type": "team",
+          "uid": "s:40~l:41~t:333"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T19:16:13Z",
+      "externalId": "40016646",
+      "headline": "Not a good sign for Alabama when big man Donta Hall heads to the locker room early against Kentucky after appearing to aggravate his already injured wrist. The Tide need his ability to protect the rim against the Wildcats, who want to make a living in the paint.",
+      "id": 40016646,
+      "images": [
+        {
+          "height": 90,
+          "type": "small",
+          "url": "http://assets.espn.go.com/i/columnists/scarborough_alex_m.jpg",
+          "width": 65
+        }
+      ],
+      "lastModified": "2018-02-17T19:16:13Z",
+      "links": {
+        "mobile": {
+          "href": "http://m.espn.go.com/wireless/story?storyId=40016646"
+        },
+        "web": {
+          "href": "http://www.espn.com/espn/now?nowId=21-40016646-4",
+          "short": {
+            "href": "http://www.espn.com/espn/now?nowId=21-40016646-4"
+          },
+          "shortstop": {
+            "profile": {
+              "href": "http://search.espn.go.com/alex-scarborough/"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-40016646",
+      "premium": false,
+      "published": "2018-02-17T19:16:13Z",
+      "source": "ESPN Staff Writer",
+      "story": "Not a good sign for Alabama when big man Donta Hall heads to the locker room early against Kentucky after appearing to aggravate his already injured wrist. The Tide need his ability to protect the rim against the Wildcats, who want to make a living in the paint.",
+      "type": "Shortstop"
+    },
+    {
+      "byline": "Jeff Borzello",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "groupId": 2,
+          "sportId": 41,
+          "type": "group",
+          "uid": "s:40~l:41~g:2"
+        },
+        {
+          "description": "Syracuse Orange",
+          "sportId": 41,
+          "team": {
+            "description": "Syracuse Orange",
+            "id": 183,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/183"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=183"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/183/syracuse-orange"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/183.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/183.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 183,
+          "type": "team",
+          "uid": "s:40~l:41~t:183"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T19:01:33Z",
+      "externalId": "05qxp1grmnibe",
+      "headline": "Key road win for Syracuse at Miami. Orange are squarely on the bubble, but hold their Selection Sunday destiny in their hands. Final four games: vs. UNC, at Duke, at BC, vs. Clemson. They'll have their chances down the stretch.",
+      "id": 756590759834033786,
+      "images": [
+        {
+          "height": 90,
+          "type": "small",
+          "url": "http://a.espncdn.com/i/columnists/full/borzello_jeff.png",
+          "width": 65
+        }
+      ],
+      "lastModified": "2018-02-17T19:01:33Z",
+      "links": {
+        "mobile": {
+          "href": "http://m.espn.go.com/wireless/story?storyId=756590759834033786"
+        },
+        "web": {
+          "href": "http://www.espn.com/espn/now?nowId=21-0756590759834033786-4",
+          "short": {
+            "href": "http://www.espn.com/espn/now?nowId=21-0756590759834033786-4"
+          },
+          "shortstop": {
+            "profile": {
+              "href": "http://search.espn.com/jeff-borzello/"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-756590759834033786",
+      "premium": false,
+      "published": "2018-02-17T19:01:33Z",
+      "source": "ESPN Staff Writer",
+      "story": "Key road win for Syracuse at Miami. Orange are squarely on the bubble, but hold their Selection Sunday destiny in their hands. Final four games: vs. UNC, at Duke, at BC, vs. Clemson. They'll have their chances down the stretch.",
+      "type": "Shortstop"
+    },
+    {
+      "byline": "Jeff Borzello",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "groupId": 8,
+          "sportId": 41,
+          "type": "group",
+          "uid": "s:40~l:41~g:8"
+        },
+        {
+          "description": "Oklahoma Sooners",
+          "sportId": 41,
+          "team": {
+            "description": "Oklahoma Sooners",
+            "id": 201,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/201"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=201"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/201/oklahoma-sooners"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/201.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/201.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 201,
+          "type": "team",
+          "uid": "s:40~l:41~t:201"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T18:57:29Z",
+      "externalId": "05qxoodbc2els",
+      "headline": "Oklahoma has now lost five in a row and eight of its last 10 games — with a road game at Kansas coming on Monday.",
+      "id": 756589733584313968,
+      "images": [
+        {
+          "height": 90,
+          "type": "small",
+          "url": "http://a.espncdn.com/i/columnists/full/borzello_jeff.png",
+          "width": 65
+        }
+      ],
+      "lastModified": "2018-02-17T18:57:29Z",
+      "links": {
+        "mobile": {
+          "href": "http://m.espn.go.com/wireless/story?storyId=756589733584313968"
+        },
+        "web": {
+          "href": "http://www.espn.com/espn/now?nowId=21-0756589733584313968-4",
+          "short": {
+            "href": "http://www.espn.com/espn/now?nowId=21-0756589733584313968-4"
+          },
+          "shortstop": {
+            "profile": {
+              "href": "http://search.espn.com/jeff-borzello/"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-756589733584313968",
+      "premium": false,
+      "published": "2018-02-17T18:57:29Z",
+      "source": "ESPN Staff Writer",
+      "story": "Oklahoma has now lost five in a row and eight of its last 10 games — with a road game at Kansas coming on Monday.",
+      "type": "Shortstop"
+    },
+    {
+      "byline": "Jake Trotter",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "groupId": 8,
+          "sportId": 41,
+          "type": "group",
+          "uid": "s:40~l:41~g:8"
+        },
+        {
+          "description": "Oklahoma Sooners",
+          "sportId": 41,
+          "team": {
+            "description": "Oklahoma Sooners",
+            "id": 201,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/201"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=201"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/201/oklahoma-sooners"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/201.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/201.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 201,
+          "type": "team",
+          "uid": "s:40~l:41~t:201"
+        },
+        {
+          "description": "Texas Longhorns",
+          "sportId": 41,
+          "team": {
+            "description": "Texas Longhorns",
+            "id": 251,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/251"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=251"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/251/texas-longhorns"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/251.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/251.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 251,
+          "type": "team",
+          "uid": "s:40~l:41~t:251"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T18:56:41Z",
+      "externalId": "40016645",
+      "headline": "Oklahoma is not a bubble team yet. But following a fifth straight loss, Trae Young and the Sooners are watching their NCAA Tournament seed plummet.",
+      "id": 40016645,
+      "images": [
+        {
+          "height": 90,
+          "type": "small",
+          "url": "http://a.espncdn.com/i/columnists/trotter_jake_m.jpg",
+          "width": 65
+        }
+      ],
+      "lastModified": "2018-02-17T18:56:41Z",
+      "links": {
+        "mobile": {
+          "href": "http://m.espn.go.com/wireless/story?storyId=40016645"
+        },
+        "web": {
+          "href": "http://www.espn.com/espn/now?nowId=21-40016645-4",
+          "short": {
+            "href": "http://www.espn.com/espn/now?nowId=21-40016645-4"
+          },
+          "shortstop": {
+            "profile": {
+              "href": "http://search.espn.com/jake-trotter/"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-40016645",
+      "premium": false,
+      "published": "2018-02-17T18:56:41Z",
+      "source": "ESPN Staff Writer",
+      "story": "Oklahoma is not a bubble team yet. But following a fifth straight loss, Trae Young and the Sooners are watching their NCAA Tournament seed plummet.",
+      "type": "Shortstop"
+    },
+    {
+      "byline": "TexasTech Basketball",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "description": "Texas Tech Red Raiders",
+          "sportId": 41,
+          "team": {
+            "description": "Texas Tech Red Raiders",
+            "id": 2641,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/2641"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=2641"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/2641/texas-tech-red-raiders"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/2641.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2641.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 2641,
+          "type": "team",
+          "uid": "s:40~l:41~t:2641"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T18:43:21Z",
+      "headline": "RT @TexasTechMBB: ESPN's @CollegeGameday is paying a visit to Lubbock next Saturday!\n\nYou know what that means... ⚫️⚫️⚫️ #Blackout\n\n📰➡️ htt…",
+      "id": 964933301776650245,
+      "images": [
+        {
+          "height": 48,
+          "type": "small",
+          "url": "http://pbs.twimg.com/profile_images/926463228091224065/5AODhVkX_normal.jpg",
+          "width": 48
+        },
+        {
+          "height": 73,
+          "type": "medium",
+          "url": "http://pbs.twimg.com/profile_images/926463228091224065/5AODhVkX_bigger.jpg",
+          "width": 73
+        },
+        {
+          "type": "full",
+          "url": "http://pbs.twimg.com/profile_images/926463228091224065/5AODhVkX.jpg"
+        }
+      ],
+      "lastModified": "2018-02-17T18:43:21Z",
+      "links": {
+        "api": {
+          "news": {
+            "href": "https://api.twitter.com/1/statuses/oembed.json?id=964933301776650245&align=center"
+          },
+          "self": {
+            "href": "https://api.twitter.com/1/statuses/oembed.json?id=964933301776650245&align=center"
+          }
+        },
+        "mobile": {
+          "href": "https://mobile.twitter.com/SethOnHoops/status/964933301776650245",
+          "twitter": {
+            "href": "https://mobile.twitter.com/SethOnHoops/status/964933301776650245",
+            "profile": {
+              "href": "https://mobile.twitter.com/SethOnHoops"
+            }
+          }
+        },
+        "web": {
+          "href": "https://twitter.com/SethOnHoops/status/964933301776650245",
+          "short": {
+            "href": "https://twitter.com/SethOnHoops/status/964933301776650245"
+          },
+          "twitter": {
+            "href": "https://twitter.com/SethOnHoops/status/964933301776650245",
+            "profile": {
+              "href": "https://twitter.com/SethOnHoops"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-964933301776650245",
+      "premium": false,
+      "published": "2018-02-17T18:43:21Z",
+      "retweet": {
+        "byline": "Seth Greenberg",
+        "source": "SethOnHoops"
+      },
+      "source": "TexasTechMBB",
+      "story": "ESPN's <a href=\"https://twitter.com/CollegeGameDay\">@CollegeGameDay</a> is paying a visit to Lubbock next Saturday!\n\nYou know what that means... ⚫️⚫️⚫️ <a href=\"https://twitter.com/search?q=%23Blackout&src=hash\">#Blackout</a>\n\n&#128240;… <a href=\"https://t.co/s7rM9NkWhn\">twitter.com/i/web/status/9…</a>",
+      "type": "Tweet"
+    },
+    {
+      "byline": "Jake Trotter",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "groupId": 8,
+          "sportId": 41,
+          "type": "group",
+          "uid": "s:40~l:41~g:8"
+        },
+        {
+          "description": "Oklahoma Sooners",
+          "sportId": 41,
+          "team": {
+            "description": "Oklahoma Sooners",
+            "id": 201,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/201"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=201"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/201/oklahoma-sooners"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/201.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/201.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 201,
+          "type": "team",
+          "uid": "s:40~l:41~t:201"
+        },
+        {
+          "description": "Texas Longhorns",
+          "sportId": 41,
+          "team": {
+            "description": "Texas Longhorns",
+            "id": 251,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/251"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=251"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/251/texas-longhorns"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/251.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/251.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 251,
+          "type": "team",
+          "uid": "s:40~l:41~t:251"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T18:25:26Z",
+      "externalId": "40016644",
+      "headline": "Following an airball from deep, Oklahoma freshman Trae Young is just 1-of-15 from 3-point land over his last two games. With Young ice-cold, the Sooners are in trouble at home against Texas.",
+      "id": 40016644,
+      "images": [
+        {
+          "height": 90,
+          "type": "small",
+          "url": "http://a.espncdn.com/i/columnists/trotter_jake_m.jpg",
+          "width": 65
+        }
+      ],
+      "lastModified": "2018-02-17T18:25:26Z",
+      "links": {
+        "mobile": {
+          "href": "http://m.espn.go.com/wireless/story?storyId=40016644"
+        },
+        "web": {
+          "href": "http://www.espn.com/espn/now?nowId=21-40016644-4",
+          "short": {
+            "href": "http://www.espn.com/espn/now?nowId=21-40016644-4"
+          },
+          "shortstop": {
+            "profile": {
+              "href": "http://search.espn.com/jake-trotter/"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-40016644",
+      "premium": false,
+      "published": "2018-02-17T18:25:26Z",
+      "source": "ESPN Staff Writer",
+      "story": "Following an airball from deep, Oklahoma freshman Trae Young is just 1-of-15 from 3-point land over his last two games. With Young ice-cold, the Sooners are in trouble at home against Texas.",
+      "type": "Shortstop"
+    },
+    {
+      "byline": "Tom Hart",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "sportId": 0,
+          "topicId": 529,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "groupId": 23,
+          "sportId": 41,
+          "type": "group",
+          "uid": "s:40~l:41~g:23"
+        },
+        {
+          "description": "Florida Gators",
+          "sportId": 41,
+          "team": {
+            "description": "Florida Gators",
+            "id": 57,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/57"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=57"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/57/florida-gators"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/57.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/57.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 57,
+          "type": "team",
+          "uid": "s:40~l:41~t:57"
+        },
+        {
+          "description": "Vanderbilt Commodores",
+          "sportId": 41,
+          "team": {
+            "description": "Vanderbilt Commodores",
+            "id": 238,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/238"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=238"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/238/vanderbilt-commodores"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/238.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/238.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 238,
+          "type": "team",
+          "uid": "s:40~l:41~t:238"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T18:09:12Z",
+      "externalId": "05qxkdcc1nlkt",
+      "headline": "Vanderbilt used a little Memorial Magic to beat Mississippi State last week. We tried to recreate Riley LaChance's game winner today. ‘Dores host Florida 4:00 ET on eapn2.",
+      "id": 756577585005075965,
+      "images": [
+        {
+          "height": 90,
+          "type": "small",
+          "url": "http://a.espncdn.com/i/columnists/full/hart_tom.png",
+          "width": 65
+        },
+        {
+          "height": 640,
+          "url": "http://d2s3dt9f4iyeup.cloudfront.net/images/standard_v1/cbc39dfb-2b1a-4988-9fe6-4d8111280f9e.jpg",
+          "width": 854
+        }
+      ],
+      "lastModified": "2018-02-17T18:09:12Z",
+      "links": {
+        "mobile": {
+          "href": "http://m.espn.go.com/wireless/story?storyId=756577585005075965"
+        },
+        "web": {
+          "href": "http://www.espn.com/espn/now?nowId=21-0756577585005075965-4",
+          "short": {
+            "href": "http://www.espn.com/espn/now?nowId=21-0756577585005075965-4"
+          },
+          "shortstop": {
+            "profile": {
+              "href": "http://www.espn.com"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-756577585005075965",
+      "premium": false,
+      "published": "2018-02-17T18:09:12Z",
+      "source": "ESPN College Football",
+      "story": "Vanderbilt used a little Memorial Magic to beat Mississippi State last week. We tried to recreate Riley LaChance's game winner today. ‘Dores host Florida 4:00 ET on eapn2.",
+      "type": "Shortstop",
+      "video": [
+        {
+          "ad": {
+            "bundle": "no_show",
+            "sport": "ncb"
+          },
+          "caption": "ESPN's Sean Farnham and Tom Hart reenact Vanderbilt guard Riley LaChance's buzzer beater to beat Mississippi State at Memorial Gymnasium.",
+          "categories": [
+            {
+              "description": "Men's College Basketball",
+              "id": 9576,
+              "league": {
+                "description": "Men's College Basketball",
+                "id": 41,
+                "links": {
+                  "api": {
+                    "leagues": {}
+                  },
+                  "mobile": {
+                    "leagues": {
+                      "href": "http://m.espn.go.com/ncb/"
+                    }
+                  },
+                  "web": {
+                    "leagues": {
+                      "href": "http://www.espn.com/mens-college-basketball/"
+                    }
+                  }
+                }
+              },
+              "leagueId": 41,
+              "sportId": 41,
+              "type": "league",
+              "uid": "s:40~l:41"
+            },
+            {
+              "description": "Vanderbilt Commodores",
+              "id": 3363,
+              "sportId": 41,
+              "team": {
+                "description": "Vanderbilt Commodores",
+                "id": 238,
+                "links": {
+                  "api": {
+                    "teams": {}
+                  },
+                  "mobile": {
+                    "teams": {
+                      "href": "http://m.espn.go.com/ncb/clubhouse?teamId=238"
+                    }
+                  },
+                  "web": {
+                    "teams": {
+                      "href": "http://www.espn.com/mens-college-basketball/team/_/id/238/vanderbilt-commodores"
+                    }
+                  }
+                },
+                "logos": {
+                  "large": {
+                    "dark": {
+                      "height": 110,
+                      "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/238.png&w=110&h=110",
+                      "width": 110
+                    },
+                    "height": 110,
+                    "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/238.png&w=110&h=110",
+                    "width": 110
+                  }
+                }
+              },
+              "teamId": 238,
+              "type": "team",
+              "uid": "s:40~l:41~t:238"
+            }
+          ],
+          "cerebroId": "5a886fcee4b0fdf64d0556ca",
+          "contributingPartner": "Shortstop",
+          "contributingSystem": "Media Exchange",
+          "description": "ESPN's Sean Farnham and Tom Hart reenact Vanderbilt guard Riley LaChance's buzzer beater to beat Mississippi State at Memorial Gymnasium.",
+          "deviceRestrictions": {
+            "devices": [
+              "desktop",
+              "settop",
+              "handset",
+              "tablet"
+            ],
+            "type": "whitelist"
+          },
+          "duration": 33,
+          "headline": "Farnham, Hart reenact LaChance's game-winner",
+          "id": 22479028,
+          "images": [
+            {
+              "alt": "",
+              "caption": "",
+              "credit": "",
+              "height": 324,
+              "name": "Poster Image",
+              "url": "http://media.video-cdn.espn.com/images/2018/0217/ss_20180217_130921314_994790/ss_20180217_130921314_994790.jpg",
+              "width": 576
+            }
+          ],
+          "keywords": [
+            "Vanderbilt Commodores",
+            "NCB"
+          ],
+          "lastModified": "2018-02-17T18:22:43Z",
+          "links": {
+            "api": {
+              "self": {
+                "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/video/clips/22479028"
+              }
+            },
+            "mobile": {
+              "alert": {
+                "href": "http://m.espn.go.com/general/video/videoAlert?vid=22479028"
+              },
+              "href": "http://once.unicornmedia.com/now/od/auto/4d993388-8b49-4f34-9e48-87906e690281/85957be9-026a-415e-a8ce-7bfdc19d5e23/9d74a9c0-f490-4a03-abb0-a24035abe486/content.once?UMADPARAMreferer=http://www.espn.com/video/clip?id=22479028",
+              "progressiveDownload": {
+                "href": "http://once.unicornmedia.com/now/od/auto/4d993388-8b49-4f34-9e48-87906e690281/85957be9-026a-415e-a8ce-7bfdc19d5e23/9d74a9c0-f490-4a03-abb0-a24035abe486/content.once?UMADPARAMreferer=http://www.espn.com/video/clip?id=22479028"
+              },
+              "source": {
+                "href": "http://media.video-cdn.espn.com/motion/2018/0217/ss_20180217_130921314_994790/ss_20180217_130921314_994790.mp4"
+              },
+              "streaming": {
+                "href": "http://once.unicornmedia.com/now/od/auto/4d993388-8b49-4f34-9e48-87906e690281/85957be9-026a-415e-a8ce-7bfdc19d5e23/9d74a9c0-f490-4a03-abb0-a24035abe486/content.once?UMADPARAMreferer=http://www.espn.com/video/clip?id=22479028"
+              }
+            },
+            "source": {
+              "HD": {
+                "href": "http://media.video-cdn.espn.com/motion/2018/0217/ss_20180217_130921314_994790/ss_20180217_130921314_994790_720p30_2896k.mp4"
+              },
+              "HLS": {
+                "HD": {
+                  "href": "http://pkg.video-cdn.espn.com/i/motion/2018/0217/ss_20180217_130921314_994790/ss_20180217_130921314_994790.smil/master.m3u8"
+                },
+                "href": "http://pkg.video-cdn.espn.com/i/motion/2018/0217/ss_20180217_130921314_994790/ss_20180217_130921314_994790.smil/master.m3u8"
+              },
+              "flash": {
+                "href": "http://media.video-cdn.espn.com/motion/2018/0217/ss_20180217_130921314_994790/ss_20180217_130921314_994790.smil"
+              },
+              "full": {
+                "href": "http://media.video-cdn.espn.com/motion/2018/0217/ss_20180217_130921314_994790/ss_20180217_130921314_994790_360p30_1464k.mp4"
+              },
+              "hds": {
+                "href": "http://hds.video-cdn.espn.com/z/motion/2018/0217/ss_20180217_130921314_994790/ss_20180217_130921314_994790_rel.smil/manifest.f4m"
+              },
+              "href": "http://media.video-cdn.espn.com/motion/2018/0217/ss_20180217_130921314_994790/ss_20180217_130921314_994790_360p30_1464k.mp4",
+              "mezzanine": {
+                "href": "http://media.video-origin.espn.com/espnvideo/2018/0217/ss_20180217_130921314_994790/ss_20180217_130921314_994790.mp4"
+              }
+            },
+            "web": {
+              "href": "http://espn.go.com/video/clip?id=22479028",
+              "self": {
+                "href": "http://espn.go.com/video/clip?id=22479028"
+              },
+              "short": {
+                "href": "http://es.pn/2o8iilD"
+              }
+            }
+          },
+          "originalPublishDate": "2018-02-17T18:09:18Z",
+          "posterImages": {
+            "default": {
+              "height": 324,
+              "href": "http://media.video-cdn.espn.com/motion/2018/0217/ss_20180217_130921314_994790/ss_20180217_130921314_994790_default.jpg",
+              "width": 576
+            },
+            "full": {
+              "href": "http://media.video-cdn.espn.com/motion/2018/0217/ss_20180217_130921314_994790/ss_20180217_130921314_994790.jpg"
+            }
+          },
+          "premium": false,
+          "source": "espn",
+          "syndicatable": true,
+          "thumbnail": "http://a.espncdn.com/media/motion/2018/0217/ss_20180217_130921314_994790/ss_20180217_130921314_994790.jpg",
+          "timeRestrictions": {
+            "embargoDate": "2018-02-17T18:09:18Z",
+            "expirationDate": "2018-03-19T18:09:18Z"
+          },
+          "title": "Farnham, Hart reenact LaChance's game-winner",
+          "tracking": {
+            "leagueName": "No League",
+            "sportName": "ncb",
+            "trackingId": "05qxkdcc1nlkt",
+            "trackingName": "COM_NCB Misc (Sean Farnham reenacts Vandy's win over Miss State) 2018/02/17 Shortstop"
+          }
+        }
+      ]
+    },
+    {
+      "byline": "Sean Jackson",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "groupId": 8,
+          "sportId": 41,
+          "type": "group",
+          "uid": "s:40~l:41~g:8"
+        },
+        {
+          "description": "Kansas Jayhawks",
+          "sportId": 41,
+          "team": {
+            "description": "Kansas Jayhawks",
+            "id": 2305,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/2305"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=2305"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/2305/kansas-jayhawks"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/2305.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2305.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 2305,
+          "type": "team",
+          "uid": "s:40~l:41~t:2305"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T18:03:48Z",
+      "externalId": "05qxjvz4c2wob",
+      "headline": "Jay goes 94 feet with Devonte' Graham and Svi Mykhailiuk tonight 6:15 ET on ESPN.",
+      "id": 756576224049896939,
+      "images": [
+        {
+          "height": 90,
+          "type": "small",
+          "url": "http://a.espncdn.com/i/columnists/espn_generic_m.jpg",
+          "width": 65
+        },
+        {
+          "height": 640,
+          "url": "http://d2s3dt9f4iyeup.cloudfront.net/images/standard_v1/cbd5c544-900c-48d3-aef4-7425051ea388.jpg",
+          "width": 854
+        }
+      ],
+      "lastModified": "2018-02-17T18:03:48Z",
+      "links": {
+        "mobile": {
+          "href": "http://m.espn.go.com/wireless/story?storyId=756576224049896939"
+        },
+        "web": {
+          "href": "http://www.espn.com/espn/now?nowId=21-0756576224049896939-4",
+          "short": {
+            "href": "http://www.espn.com/espn/now?nowId=21-0756576224049896939-4"
+          },
+          "shortstop": {
+            "profile": {
+              "href": "http://www.espn.com"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-756576224049896939",
+      "premium": false,
+      "published": "2018-02-17T18:03:48Z",
+      "source": "ESPN",
+      "story": "Jay goes 94 feet with Devonte' Graham and Svi Mykhailiuk tonight 6:15 ET on ESPN.",
+      "type": "Shortstop",
+      "video": [
+        {
+          "ad": {
+            "bundle": "no_show",
+            "sport": "misc"
+          },
+          "caption": "Jay goes 94 feet with Devonte' Graham and Svi Mykhailiuk tonight 6:15 ET on ESPN. Video by Sean Jackson",
+          "categories": [],
+          "cerebroId": "5a886e8ae4b0fdf64d0556bd",
+          "contributingPartner": "Shortstop",
+          "contributingSystem": "Media Exchange",
+          "description": "Jay goes 94 feet with Devonte' Graham and Svi Mykhailiuk tonight 6:15 ET on ESPN. Video by Sean Jackson",
+          "deviceRestrictions": {
+            "devices": [
+              "desktop",
+              "settop",
+              "handset",
+              "tablet"
+            ],
+            "type": "whitelist"
+          },
+          "duration": 53,
+          "headline": "Jay goes 94 feet with Devonte' Graham and Svi Mykhailiuk tonight 6:15",
+          "id": 22478938,
+          "images": [
+            {
+              "alt": "",
+              "caption": "",
+              "credit": "",
+              "height": 324,
+              "name": "Poster Image",
+              "url": "http://media.video-cdn.espn.com/images/2018/0217/ss_20180217_130356594_994787/ss_20180217_130356594_994787.jpg",
+              "width": 576
+            }
+          ],
+          "keywords": [],
+          "lastModified": "2018-02-17T18:05:51Z",
+          "links": {
+            "api": {
+              "self": {
+                "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/video/clips/22478938"
+              }
+            },
+            "mobile": {
+              "alert": {
+                "href": "http://m.espn.go.com/general/video/videoAlert?vid=22478938"
+              },
+              "href": "http://once.unicornmedia.com/now/od/auto/4d993388-8b49-4f34-9e48-87906e690281/85957be9-026a-415e-a8ce-7bfdc19d5e23/f631ec75-f885-4a33-93c8-e95db582a45c/content.once?UMADPARAMreferer=http://www.espn.com/video/clip?id=22478938",
+              "progressiveDownload": {
+                "href": "http://once.unicornmedia.com/now/od/auto/4d993388-8b49-4f34-9e48-87906e690281/85957be9-026a-415e-a8ce-7bfdc19d5e23/f631ec75-f885-4a33-93c8-e95db582a45c/content.once?UMADPARAMreferer=http://www.espn.com/video/clip?id=22478938"
+              },
+              "source": {
+                "href": "http://media.video-cdn.espn.com/motion/2018/0217/ss_20180217_130356594_994787/ss_20180217_130356594_994787.mp4"
+              },
+              "streaming": {
+                "href": "http://once.unicornmedia.com/now/od/auto/4d993388-8b49-4f34-9e48-87906e690281/85957be9-026a-415e-a8ce-7bfdc19d5e23/f631ec75-f885-4a33-93c8-e95db582a45c/content.once?UMADPARAMreferer=http://www.espn.com/video/clip?id=22478938"
+              }
+            },
+            "source": {
+              "HD": {
+                "href": "http://media.video-cdn.espn.com/motion/2018/0217/ss_20180217_130356594_994787/ss_20180217_130356594_994787_720p30_2896k.mp4"
+              },
+              "HLS": {
+                "HD": {
+                  "href": "http://pkg.video-cdn.espn.com/i/motion/2018/0217/ss_20180217_130356594_994787/ss_20180217_130356594_994787.smil/master.m3u8"
+                },
+                "href": "http://pkg.video-cdn.espn.com/i/motion/2018/0217/ss_20180217_130356594_994787/ss_20180217_130356594_994787.smil/master.m3u8"
+              },
+              "flash": {
+                "href": "http://media.video-cdn.espn.com/motion/2018/0217/ss_20180217_130356594_994787/ss_20180217_130356594_994787.smil"
+              },
+              "full": {
+                "href": "http://media.video-cdn.espn.com/motion/2018/0217/ss_20180217_130356594_994787/ss_20180217_130356594_994787_360p30_1464k.mp4"
+              },
+              "hds": {
+                "href": "http://hds.video-cdn.espn.com/z/motion/2018/0217/ss_20180217_130356594_994787/ss_20180217_130356594_994787_rel.smil/manifest.f4m"
+              },
+              "href": "http://media.video-cdn.espn.com/motion/2018/0217/ss_20180217_130356594_994787/ss_20180217_130356594_994787_360p30_1464k.mp4",
+              "mezzanine": {
+                "href": "http://media.video-origin.espn.com/espnvideo/2018/0217/ss_20180217_130356594_994787/ss_20180217_130356594_994787.mp4"
+              }
+            },
+            "web": {
+              "href": "http://espn.go.com/video/clip?id=22478938",
+              "self": {
+                "href": "http://espn.go.com/video/clip?id=22478938"
+              },
+              "short": {
+                "href": "http://es.pn/2o4380L"
+              }
+            }
+          },
+          "originalPublishDate": "2018-02-17T18:03:54Z",
+          "posterImages": {
+            "default": {
+              "height": 324,
+              "href": "http://media.video-cdn.espn.com/motion/2018/0217/ss_20180217_130356594_994787/ss_20180217_130356594_994787_default.jpg",
+              "width": 576
+            },
+            "full": {
+              "href": "http://media.video-cdn.espn.com/motion/2018/0217/ss_20180217_130356594_994787/ss_20180217_130356594_994787.jpg"
+            }
+          },
+          "premium": false,
+          "source": "espn",
+          "syndicatable": true,
+          "thumbnail": "http://a.espncdn.com/media/motion/2018/0217/ss_20180217_130356594_994787/ss_20180217_130356594_994787.jpg",
+          "timeRestrictions": {
+            "embargoDate": "2018-02-17T18:03:54Z",
+            "expirationDate": "2018-03-19T18:03:54Z"
+          },
+          "title": "Jay goes 94 feet with Devonte' Graham and Svi Mykhailiuk tonight 6:15",
+          "tracking": {
+            "leagueName": "No League",
+            "sportName": "misc",
+            "trackingId": "05qxjvz4c2wob",
+            "trackingName": "05qxjvz4c2wob"
+          }
+        }
+      ]
+    },
+    {
+      "byline": "John Gasaway",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "description": "Oklahoma Sooners",
+          "sportId": 41,
+          "team": {
+            "description": "Oklahoma Sooners",
+            "id": 201,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/201"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=201"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/201/oklahoma-sooners"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/201.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/201.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 201,
+          "type": "team",
+          "uid": "s:40~l:41~t:201"
+        },
+        {
+          "athlete": {
+            "description": "Trae Young",
+            "id": 4277905,
+            "links": {
+              "api": {
+                "athletes": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/athletes/4277905"
+                }
+              },
+              "mobile": {
+                "athletes": {
+                  "href": "http://m.espn.go.com/ncb/playercard?playerId=4277905"
+                }
+              },
+              "web": {
+                "athletes": {
+                  "href": "http://www.espn.com/mens-college-basketball/player/_/id/4277905/trae-young"
+                }
+              }
+            }
+          },
+          "athleteId": 4277905,
+          "description": "Trae Young",
+          "sportId": 41,
+          "type": "athlete"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T17:49:27Z",
+      "headline": "Trae Young is on a 1-for-20 streak on his 3s, but he’s also on a 25-for-25 streak at the line over that same span.… https://t.co/gIhBqd14Ip",
+      "id": 964919737837916160,
+      "images": [
+        {
+          "height": 48,
+          "type": "small",
+          "url": "http://pbs.twimg.com/profile_images/458885951029145600/3_My0gK5_normal.jpeg",
+          "width": 48
+        },
+        {
+          "height": 73,
+          "type": "medium",
+          "url": "http://pbs.twimg.com/profile_images/458885951029145600/3_My0gK5_bigger.jpeg",
+          "width": 73
+        },
+        {
+          "type": "full",
+          "url": "http://pbs.twimg.com/profile_images/458885951029145600/3_My0gK5.jpeg"
+        }
+      ],
+      "lastModified": "2018-02-17T17:49:27Z",
+      "links": {
+        "api": {
+          "news": {
+            "href": "https://api.twitter.com/1/statuses/oembed.json?id=964919737837916160&align=center"
+          },
+          "self": {
+            "href": "https://api.twitter.com/1/statuses/oembed.json?id=964919737837916160&align=center"
+          }
+        },
+        "mobile": {
+          "href": "https://mobile.twitter.com/JohnGasaway/status/964919737837916160",
+          "twitter": {
+            "href": "https://mobile.twitter.com/JohnGasaway/status/964919737837916160",
+            "profile": {
+              "href": "https://mobile.twitter.com/JohnGasaway"
+            }
+          }
+        },
+        "web": {
+          "href": "https://twitter.com/JohnGasaway/status/964919737837916160",
+          "short": {
+            "href": "https://twitter.com/JohnGasaway/status/964919737837916160"
+          },
+          "twitter": {
+            "href": "https://twitter.com/JohnGasaway/status/964919737837916160",
+            "profile": {
+              "href": "https://twitter.com/JohnGasaway"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-964919737837916160",
+      "premium": false,
+      "published": "2018-02-17T17:49:27Z",
+      "source": "JohnGasaway",
+      "story": "Trae Young is on a 1-for-20 streak on his 3s, but he’s also on a 25-for-25 streak at the line over that same span.… <a href=\"https://t.co/gIhBqd14Ip\">twitter.com/i/web/status/9…</a>",
+      "type": "Tweet"
+    },
+    {
+      "byline": "Jake Trotter",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "groupId": 8,
+          "sportId": 41,
+          "type": "group",
+          "uid": "s:40~l:41~g:8"
+        },
+        {
+          "description": "Oklahoma Sooners",
+          "sportId": 41,
+          "team": {
+            "description": "Oklahoma Sooners",
+            "id": 201,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/201"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=201"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/201/oklahoma-sooners"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/201.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/201.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 201,
+          "type": "team",
+          "uid": "s:40~l:41~t:201"
+        },
+        {
+          "description": "Texas Longhorns",
+          "sportId": 41,
+          "team": {
+            "description": "Texas Longhorns",
+            "id": 251,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/251"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=251"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/251/texas-longhorns"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/251.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/251.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 251,
+          "type": "team",
+          "uid": "s:40~l:41~t:251"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T17:45:41Z",
+      "externalId": "40016641",
+      "headline": "Oklahoma freshman Trae Young's first field goal comes with just over 2 minutes to go in the first half. The Sooners have struggled offensively, but continue to hang with Texas thanks in part to Young's seven free throws.",
+      "id": 40016641,
+      "images": [
+        {
+          "height": 90,
+          "type": "small",
+          "url": "http://a.espncdn.com/i/columnists/trotter_jake_m.jpg",
+          "width": 65
+        }
+      ],
+      "lastModified": "2018-02-17T17:45:41Z",
+      "links": {
+        "mobile": {
+          "href": "http://m.espn.go.com/wireless/story?storyId=40016641"
+        },
+        "web": {
+          "href": "http://www.espn.com/espn/now?nowId=21-40016641-4",
+          "short": {
+            "href": "http://www.espn.com/espn/now?nowId=21-40016641-4"
+          },
+          "shortstop": {
+            "profile": {
+              "href": "http://search.espn.com/jake-trotter/"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-40016641",
+      "premium": false,
+      "published": "2018-02-17T17:45:41Z",
+      "source": "ESPN Staff Writer",
+      "story": "Oklahoma freshman Trae Young's first field goal comes with just over 2 minutes to go in the first half. The Sooners have struggled offensively, but continue to hang with Texas thanks in part to Young's seven free throws.",
+      "type": "Shortstop"
+    },
+    {
+      "byline": "Seth Walder",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "sportId": 0,
+          "topicId": 499,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "groupId": 3,
+          "sportId": 41,
+          "type": "group",
+          "uid": "s:40~l:41~g:3"
+        },
+        {
+          "description": "St. Bonaventure Bonnies",
+          "sportId": 41,
+          "team": {
+            "description": "St. Bonaventure Bonnies",
+            "id": 179,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/179"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=179"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/179/st.-bonaventure-bonnies"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/179.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/179.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 179,
+          "type": "team",
+          "uid": "s:40~l:41~t:179"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T17:44:16Z",
+      "externalId": "05qxi59odkq17",
+      "headline": "St. Bonaventure now has a 92% chance to receive an NCAA tournament bid, per BPI, after beating Rhode Island on Friday.",
+      "id": 756571310087216587,
+      "images": [
+        {
+          "height": 90,
+          "type": "small",
+          "url": "http://a.espncdn.com/i/columnists/full/walder_seth.png",
+          "width": 65
+        }
+      ],
+      "lastModified": "2018-02-17T17:44:16Z",
+      "links": {
+        "mobile": {
+          "href": "http://m.espn.go.com/wireless/story?storyId=756571310087216587"
+        },
+        "web": {
+          "href": "http://www.espn.com/espn/now?nowId=21-0756571310087216587-4",
+          "short": {
+            "href": "http://www.espn.com/espn/now?nowId=21-0756571310087216587-4"
+          },
+          "shortstop": {
+            "profile": {
+              "href": "http://www.espn.com"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-756571310087216587",
+      "premium": false,
+      "published": "2018-02-17T17:44:16Z",
+      "source": "ESPN Analytics",
+      "story": "St. Bonaventure now has a 92% chance to receive an NCAA tournament bid, per BPI, after beating Rhode Island on Friday.",
+      "type": "Shortstop"
+    },
+    {
+      "byline": "Jake Trotter",
+      "categories": [
+        {
+          "sportId": 0,
+          "topicId": 109,
+          "type": "topic",
+          "uid": "s:0"
+        },
+        {
+          "groupId": 8,
+          "sportId": 41,
+          "type": "group",
+          "uid": "s:40~l:41~g:8"
+        },
+        {
+          "description": "Oklahoma Sooners",
+          "sportId": 41,
+          "team": {
+            "description": "Oklahoma Sooners",
+            "id": 201,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/201"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=201"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/201/oklahoma-sooners"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/201.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/201.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 201,
+          "type": "team",
+          "uid": "s:40~l:41~t:201"
+        },
+        {
+          "description": "Texas Longhorns",
+          "sportId": 41,
+          "team": {
+            "description": "Texas Longhorns",
+            "id": 251,
+            "links": {
+              "api": {
+                "teams": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball/teams/251"
+                }
+              },
+              "mobile": {
+                "teams": {
+                  "href": "http://m.espn.go.com/ncb/clubhouse?teamId=251"
+                }
+              },
+              "web": {
+                "teams": {
+                  "href": "http://www.espn.com/mens-college-basketball/team/_/id/251/texas-longhorns"
+                }
+              }
+            },
+            "logos": {
+              "large": {
+                "dark": {
+                  "height": 110,
+                  "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500-dark/251.png&w=110&h=110",
+                  "width": 110
+                },
+                "height": 110,
+                "href": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/251.png&w=110&h=110",
+                "width": 110
+              }
+            }
+          },
+          "teamId": 251,
+          "type": "team",
+          "uid": "s:40~l:41~t:251"
+        },
+        {
+          "description": "Men's College Basketball",
+          "league": {
+            "description": "Men's College Basketball",
+            "id": 41,
+            "links": {
+              "api": {
+                "leagues": {
+                  "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/basketball/mens-college-basketball"
+                }
+              },
+              "mobile": {
+                "leagues": {
+                  "href": "http://m.espn.go.com/ncb/"
+                }
+              },
+              "web": {
+                "leagues": {
+                  "href": "http://www.espn.com/mens-college-basketball/"
+                }
+              }
+            }
+          },
+          "leagueId": 41,
+          "sportId": 41,
+          "type": "league",
+          "uid": "s:40~l:41"
+        }
+      ],
+      "categorized": "2018-02-17T17:16:57Z",
+      "externalId": "40016640",
+      "headline": "Former Oklahoma QB Baker Mayfield just walked in for the Oklahoma vs. Texas basketball game. He's now seated courtside, chatting with football coach Lincoln Riley.",
+      "id": 40016640,
+      "images": [
+        {
+          "height": 90,
+          "type": "small",
+          "url": "http://a.espncdn.com/i/columnists/trotter_jake_m.jpg",
+          "width": 65
+        }
+      ],
+      "lastModified": "2018-02-17T17:16:57Z",
+      "links": {
+        "mobile": {
+          "href": "http://m.espn.go.com/wireless/story?storyId=40016640"
+        },
+        "web": {
+          "href": "http://www.espn.com/espn/now?nowId=21-40016640-4",
+          "short": {
+            "href": "http://www.espn.com/espn/now?nowId=21-40016640-4"
+          },
+          "shortstop": {
+            "profile": {
+              "href": "http://search.espn.com/jake-trotter/"
+            }
+          }
+        }
+      },
+      "metrics": [
+        {
+          "count": 0,
+          "type": "views"
+        },
+        {
+          "count": 0,
+          "type": "fShares"
+        },
+        {
+          "count": 0,
+          "type": "tweets"
+        },
+        {
+          "count": 0,
+          "type": "comments"
+        },
+        {
+          "count": 0,
+          "type": "emails"
+        },
+        {
+          "count": 0,
+          "type": "votes"
+        },
+        {
+          "count": 0,
+          "type": "popularity"
+        }
+      ],
+      "nowId": "21-40016640",
+      "premium": false,
+      "published": "2018-02-17T17:16:57Z",
+      "source": "ESPN Staff Writer",
+      "story": "Former Oklahoma QB Baker Mayfield just walked in for the Oklahoma vs. Texas basketball game. He's now seated courtside, chatting with football coach Lincoln Riley.",
+      "type": "Shortstop"
+    }
+  ],
+  "nowFeedCount": 25,
+  "nowFeedMD5Hash": "b96179aa935345bd430de71f13d6fd1b",
+  "pinnedCount": 0,
+  "sport": [
+    "ncb"
+  ],
+  "tier2Nav": {
+    "subNavMenu": {
+      "fallback": false,
+      "navId": 12001938,
+      "navigation": {
+        "$ref": "/v2/navigation/12001938",
+        "attributes": {
+          "league": true,
+          "root": "ncaam",
+          "sport_id": "41"
+        },
+        "items": [
+          {
+            "$ref": "/v2/navigation/12001967",
+            "links": [
+              {
+                "attributes": {
+                  "breakpoints": "desktop,desktop-lg,mobile,tablet"
+                },
+                "href": "/mens-college-basketball/",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Home",
+                "text": "Home"
+              }
+            ],
+            "title": "NCAAM Home Desktop Only"
+          },
+          {
+            "$ref": "/v2/navigation/12001945",
+            "links": [
+              {
+                "attributes": {
+                  "breakpoints": "tablet",
+                  "pagetype": "index",
+                  "tab": "2"
+                },
+                "href": "/mens-college-basketball/index?tab=2",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "News",
+                "text": "News"
+              }
+            ],
+            "title": "NCAAM News"
+          },
+          {
+            "$ref": "/v2/navigation/12165653",
+            "links": [
+              {
+                "href": "/mens-college-basketball/scoreboard",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Scores",
+                "text": "Scores"
+              }
+            ],
+            "title": "NCAAM Scores"
+          },
+          {
+            "$ref": "/v2/navigation/11587793",
+            "links": [
+              {
+                "href": "/mens-college-basketball/schedule",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Schedule",
+                "text": "Schedule"
+              }
+            ],
+            "title": "NCAAM Schedule"
+          },
+          {
+            "$ref": "/v2/navigation/11587798",
+            "links": [
+              {
+                "attributes": {
+                  "route": "false"
+                },
+                "href": "http://www.espn.com/mens-college-basketball/standings",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Standings",
+                "text": "Standings"
+              }
+            ],
+            "title": "NCAAM Standings"
+          },
+          {
+            "$ref": "/v2/navigation/18460501",
+            "items": [
+              {
+                "$ref": "/v2/navigation/18460494",
+                "links": [
+                  {
+                    "href": "http://www.espn.com/mens-college-basketball/rankings",
+                    "isExternal": false,
+                    "isPremium": false,
+                    "shortText": "AP/Coaches Poll",
+                    "text": "AP/Coaches Poll"
+                  }
+                ],
+                "title": "AP/Coaches Poll"
+              },
+              {
+                "$ref": "/v2/navigation/18460489",
+                "links": [
+                  {
+                    "href": "http://www.espn.com/mens-college-basketball/story/_/id/22244399/college-basketball-power-rankings-virginia-cavaliers-win-duke-blue-devils-game-changer",
+                    "isExternal": false,
+                    "isPremium": false,
+                    "shortText": "Power Rankings",
+                    "text": "Power Rankings"
+                  }
+                ],
+                "title": "Power Rankings"
+              }
+            ],
+            "links": [
+              {
+                "attributes": {
+                  "mobile": "false"
+                },
+                "href": "http://www.espn.com/mens-college-basketball/rankings",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "none",
+                  "sub"
+                ],
+                "shortText": "Rankings",
+                "text": "Rankings"
+              },
+              {
+                "attributes": {
+                  "mobile": "true"
+                },
+                "href": "http://m.espn.com/ncb/rankings",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Rankings",
+                "text": "Rankings"
+              }
+            ],
+            "text": "Rankings",
+            "title": "NCAAM Rankings - Nav Menu"
+          },
+          {
+            "$ref": "/v2/navigation/12599329",
+            "links": [
+              {
+                "attributes": {
+                  "mobile": "false"
+                },
+                "href": "http://www.espn.com/mens-college-basketball/statistics",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Stats",
+                "text": "Stats"
+              },
+              {
+                "attributes": {
+                  "mobile": "true"
+                },
+                "href": "http://m.espn.com/ncb/leagueleaders",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Stats",
+                "text": "Stats"
+              }
+            ],
+            "title": "NCAAM Stats"
+          },
+          {
+            "$ref": "/v2/navigation/11587802",
+            "links": [
+              {
+                "attributes": {
+                  "mobile": "false"
+                },
+                "href": "http://www.espn.com/mens-college-basketball/teams",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Teams",
+                "text": "Teams"
+              },
+              {
+                "attributes": {
+                  "mobile": "true"
+                },
+                "href": "http://m.espn.com/ncb/teams",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Teams",
+                "text": "Teams"
+              }
+            ],
+            "title": "NCAAM Teams"
+          },
+          {
+            "$ref": "/v2/navigation/14748127",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/bracketology",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Bracketology",
+                "text": "Bracketology"
+              }
+            ],
+            "title": "Bracketology"
+          },
+          {
+            "$ref": "/v2/navigation/19241329",
+            "items": [
+              {
+                "$ref": "/v2/navigation/18808086",
+                "links": [
+                  {
+                    "href": "http://www.espn.com/mens-college-basketball/story/_/page/ncaatournament2018/2018-ncaa-tournament-schedule-key-dates",
+                    "isExternal": false,
+                    "isPremium": false,
+                    "shortText": "Tournament Schedule",
+                    "text": "Tournament Schedule"
+                  }
+                ],
+                "title": "Tournament Schedule"
+              },
+              {
+                "$ref": "/v2/navigation/18893626",
+                "links": [
+                  {
+                    "href": "http://www.espn.com/mens-college-basketball/tournament/bracket",
+                    "isExternal": false,
+                    "isPremium": false,
+                    "shortText": "2017 Bracket",
+                    "text": "2017 Bracket"
+                  }
+                ],
+                "title": "Bracket"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/ncaa-tournament/",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "none",
+                  "sub"
+                ],
+                "shortText": "2017 NCAA Tournament",
+                "text": "2017 NCAA Tournament"
+              }
+            ],
+            "text": "NCAA Tournament",
+            "title": "NCAA Tournament Menu"
+          },
+          {
+            "$ref": "/v2/navigation/11587684",
+            "links": [
+              {
+                "attributes": {
+                  "mobile": "false"
+                },
+                "href": "http://www.espn.com/college-sports/basketball/recruiting/index",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Recruiting",
+                "text": "Recruiting"
+              },
+              {
+                "attributes": {
+                  "mobile": "true"
+                },
+                "href": "http://www.espn.com/college-sports/basketball/recruiting/index",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Recruiting",
+                "text": "Recruiting"
+              }
+            ],
+            "title": "NCAAM Recruiting"
+          },
+          {
+            "$ref": "/v2/navigation/11587701",
+            "links": [
+              {
+                "href": "/blog/collegebasketballnation",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "CBB Nation",
+                "text": "CBB Nation"
+              }
+            ],
+            "title": "NCAAM College BB Nation"
+          },
+          {
+            "$ref": "/v2/navigation/11494110",
+            "links": [
+              {
+                "attributes": {
+                  "breakpoints": "mobile",
+                  "placeholder": "more"
+                },
+                "href": "#",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "More",
+                "text": "More"
+              }
+            ],
+            "title": "Subnav More - DO NOT EDIT"
+          },
+          {
+            "$ref": "/v2/navigation/18588685",
+            "links": [
+              {
+                "href": "/mens-college-basketball/bpi",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "BPI",
+                "text": "BPI"
+              }
+            ],
+            "title": "NCAAM BPI"
+          },
+          {
+            "$ref": "/v2/navigation/12599938",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/story/_/id/21406062/duke-blue-devils-grayson-allen-marvin-bagley-iii-highlight-wooden-award-top-50",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Wooden Watch",
+                "text": "Wooden Watch"
+              }
+            ],
+            "title": "NCAAM Wooden Watch"
+          },
+          {
+            "$ref": "/v2/navigation/15042001",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/story/_/id/18846025/college-basketball-coaching-carousel-which-head-coaches-coming-2017",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Coaching Changes",
+                "text": "Coaching Changes"
+              }
+            ],
+            "title": "Coaching changes 2017"
+          },
+          {
+            "$ref": "/v2/navigation/11587681",
+            "links": [
+              {
+                "attributes": {
+                  "mobile": "false"
+                },
+                "href": "http://www.espn.com/mens-college-basketball/lines",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Lines",
+                "text": "Daily Lines"
+              },
+              {
+                "attributes": {
+                  "mobile": "true"
+                },
+                "href": "http://m.espn.com/ncb/dailyline",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Lines",
+                "text": "Daily Lines"
+              }
+            ],
+            "title": "NCAAM Daily Lines"
+          },
+          {
+            "$ref": "/v2/navigation/11587654",
+            "links": [
+              {
+                "attributes": {
+                  "mobile": "false"
+                },
+                "href": "http://insider.espn.com/insider/pickcenter/index?sport=ncb",
+                "isExternal": false,
+                "isPremium": true,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "PickCenter",
+                "text": "PickCenter"
+              },
+              {
+                "attributes": {
+                  "mobile": "true"
+                },
+                "href": "http://m.espn.com/ncb/pickcenter",
+                "isExternal": false,
+                "isPremium": true,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "PickCenter",
+                "text": "PickCenter"
+              }
+            ],
+            "title": "NCAAM PickCenter"
+          },
+          {
+            "$ref": "/v2/navigation/12599948",
+            "links": [
+              {
+                "attributes": {
+                  "mobile": "false"
+                },
+                "href": "http://www.espn.com/espn/dickvitale/index",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Dick Vitale",
+                "text": "Dick Vitale"
+              }
+            ],
+            "title": "NCAAM Dick Vitale"
+          },
+          {
+            "$ref": "/v2/navigation/11587589",
+            "links": [
+              {
+                "attributes": {
+                  "mobile": "false"
+                },
+                "href": "http://www.vividseats.com/ncaab?wsUser=717&wsVar=CollegeBKindexnav",
+                "isExternal": true,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Tickets",
+                "text": "Tickets"
+              }
+            ],
+            "title": "NCAAM Tickets"
+          },
+          {
+            "$ref": "/v2/navigation/20291486",
+            "links": [
+              {
+                "href": "http://espnevents.com/",
+                "isExternal": true,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "ESPN Events",
+                "text": "ESPN Events"
+              }
+            ],
+            "title": "ESPN Events"
+          },
+          {
+            "$ref": "/v2/navigation/18676171",
+            "links": [
+              {
+                "href": "http://www.ivyleaguedigitalnetwork.com/",
+                "isExternal": true,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "ILDN",
+                "text": "Ivy League Digital Network"
+              }
+            ],
+            "title": "Ivy League Digital Network"
+          }
+        ],
+        "links": [
+          {
+            "attributes": {
+              "icon": "basketball"
+            },
+            "href": "/mens-college-basketball/",
+            "isExternal": false,
+            "isPremium": false,
+            "rel": [
+              "sports"
+            ],
+            "shortText": "NCAAM",
+            "text": "NCAAM"
+          }
+        ],
+        "text": "NCAAM",
+        "title": "NCAAM Menu - LIVE"
+      }
+    }
+  },
+  "type": "scoreboard"
+}
