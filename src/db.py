@@ -9,7 +9,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 
 # During initial development, use a sqlite DB held in memory for easy setup/teardown
-engine = create_engine('sqlite:///:memory:', echo=True)
+engine = create_engine('sqlite:///basketball.db', echo=True)
 
 # Initialize the base
 Base = declarative_base()
@@ -116,17 +116,17 @@ class PlayerIn(Base):
     to = Column(Integer)    # Total turnovers
     dq = Column(Integer)    # Disqualifications? TODO: review
 
-Base.metadata.create_all(engine)
-
-p1 = Game(id=1, date=datetime.now(), home="COR", visitor="BRN", winner="COR", loser="BRN", isLeague=False, isPlayoff=False)
-from sqlalchemy.orm import sessionmaker
-Session = sessionmaker(bind=engine)
-session = Session()
-session.add(p1)
-session.commit()
-
-x = session.query(Game).first()
-print(x.home, x.visitor)
+# Base.metadata.create_all(engine)
+#
+# p1 = Game(date=datetime.now(), home="COR", visitor="BRN", winner="COR", loser="BRN", isLeague=False, isPlayoff=False)
+# from sqlalchemy.orm import sessionmaker
+# Session = sessionmaker(bind=engine)
+# session = Session()
+# session.add(p1)
+# session.commit()
+#
+# x = session.query(Game).first()
+# print(x.home, x.visitor)
 
 
 
