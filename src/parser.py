@@ -2,6 +2,15 @@ import xml.etree.ElementTree as ET
 import sqlalchemy
 from datetime import datetime
 
+from sqlalchemy import create_engine
+
+engine = create_engine('sqlite:///basketball.db', echo=True)
+from sqlalchemy.orm import sessionmaker
+
+Session = sessionmaker(bind=engine)
+session = Session()
+from .db import Game
+
 
 def parse_venue_info(root_node):
     """
@@ -96,6 +105,12 @@ def parse_game_file(filename):
         get_team_info(team)
     for period in root.findall("period"):
         get_play_info(period)
+
+    p2 = Game(date=datetime.now(), home="COR", visitor="HAR", winner="COR", loser="HAR", isLeague=False,
+              isPlayoff=False)
+    session.add(p2)
+    session.commit()
+
 
 
 parse_game_file("MBK_0105.xml")
