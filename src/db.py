@@ -16,22 +16,8 @@ Base = declarative_base()
 
 
 # Define database tables
-class Player(Base):
-    """
-    Tracks all of the players. Questions: How should we treat players across seasons if their jersey number changes?
-    Should we store career stats here?
-    How are players uniquely identified? We would have to keep track of past jersey numbers?
-    """
-    __tablename__ = 'players'
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-    # What about having a separate DB with a list of numbers and teams that maps to IDs?
-    number = Column(Integer) # Jersey Number - TODO: have a different jersey number for every year option? Players can have more than one jersey number per year
-    team = Column(String)
-
-
 class Game(Base):
-    __tablename__ = 'players'
+    __tablename__ = 'games'
     id = Column(Integer, primary_key=True)
     date = Column(DateTime)
     home = Column(String)
@@ -47,11 +33,13 @@ class Game(Base):
 
 
 class Team(Base):
+    __tablename__ = 'teams'
     team_id = Column(String, primary_key=True)
     name = Column(String)
 
 
 class PlaysIn(Base):
+    __tablename__ = 'teamstats'
     team = Column(String, ForeignKey('teams.team_id'))
     game = Column(Integer, ForeignKey('game.id'))
 
@@ -89,6 +77,46 @@ class PlaysIn(Base):
     poss_time = Column(Integer)     # Amount of time the team had the ball
     score_count = Column(Integer)   # Amount of possessions the team scored on
     score_time = Column(Integer)    # Amount of time spent on possessions that resulted in scoring TODO: verify this
+
+
+class Player(Base):
+    __tablename__ = 'players'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    position = Column(Integer)
+    team = Column(String, ForeignKey('teams.team_id'))
+
+
+class PlayerIn(Base):
+    __tablename__ = 'playersin'
+    game = Column(Integer, ForeignKey('games.id'))
+    player = Column(Integer, ForeignKey('players.id'))
+
+    # Player Stats
+    fgm = Column(Integer)  # Made field goals
+    fga = Column(Integer)  # Attempted field goals
+
+    fgm3 = Column(Integer)  # Made threes
+    fga3 = Column(Integer)  # Attempted threes
+
+    ftm = Column(Integer)  # Made free throws
+    fta = Column(Integer)  # Attempted free throws
+
+    tp = Column(Integer)    # Total points
+    blk = Column(Integer)   # Total blocks
+    stl = Column(Integer)   # Total steals
+    ast = Column(Integer)   # Total assists
+    oreb = Column(Integer)  # Total offensive rebounds
+    dreb = Column(Integer)  # Total defensive rebounds
+    treb = Column(Integer)  # Total rebounds (offensive + defensive)
+    pf = Column(Integer)    # Total personal fouls
+    tf = Column(Integer)    # Total team fouls
+    to = Column(Integer)    # Total turnovers
+    dq = Column(Integer)    # Disqualifications? TODO: review
+
+
+
+
 
 
 
