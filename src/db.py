@@ -2,6 +2,7 @@ import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
+from datetime import datetime
 
 # Used to keep track of classes and tables
 from sqlalchemy.ext.declarative import declarative_base
@@ -12,7 +13,6 @@ engine = create_engine('sqlite:///:memory:', echo=True)
 
 # Initialize the base
 Base = declarative_base()
-
 
 
 # Define database tables
@@ -40,8 +40,9 @@ class Team(Base):
 
 class PlaysIn(Base):
     __tablename__ = 'teamstats'
+    id = Column(Integer, primary_key=True)
     team = Column(String, ForeignKey('teams.team_id'))
-    game = Column(Integer, ForeignKey('game.id'))
+    game = Column(Integer, ForeignKey('games.id'))
 
     # Box Stats
     fgm = Column(Integer)   # Made field goals
@@ -89,6 +90,7 @@ class Player(Base):
 
 class PlayerIn(Base):
     __tablename__ = 'playersin'
+    id = Column(Integer, primary_key=True)
     game = Column(Integer, ForeignKey('games.id'))
     player = Column(Integer, ForeignKey('players.id'))
 
@@ -114,6 +116,17 @@ class PlayerIn(Base):
     to = Column(Integer)    # Total turnovers
     dq = Column(Integer)    # Disqualifications? TODO: review
 
+Base.metadata.create_all(engine)
+
+p1 = Game(id=1, date=datetime.now(), home="COR", visitor="BRN", winner="COR", loser="BRN", isLeague=False, isPlayoff=False)
+from sqlalchemy.orm import sessionmaker
+Session = sessionmaker(bind=engine)
+session = Session()
+session.add(p1)
+session.commit()
+
+x = session.query(Game).first()
+print(x.home, x.visitor)
 
 
 
