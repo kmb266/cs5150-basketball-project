@@ -1,18 +1,18 @@
 {
-  "name": "my-new-project",
-  "productName": "my-new-project",
+  "name": "bball-app",
+  "productName": "Cornell Men's Basketball Stats",
   "version": "1.0.0",
   "description": "My Electron application description",
-  "main": "src/index.js",
+  "main": "src/index.ts",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "eslint src --color"
+    "lint": "tslint src"
   },
   "keywords": [],
-  "author": "Kyle",
+  "author": "CS5150 Team: hdl39, kha26, krg43, kmb266, mb2533, sd763, yd344, yy757 ",
   "license": "MIT",
   "config": {
     "forge": {
@@ -32,7 +32,7 @@
         "packageManager": "npm"
       },
       "electronWinstallerConfig": {
-        "name": "my_new_project"
+        "name": "bball_app"
       },
       "electronInstallerDebian": {},
       "electronInstallerRedhat": {},
@@ -42,24 +42,34 @@
       },
       "windowsStoreConfig": {
         "packageName": "",
-        "name": "mynewproject"
+        "name": "bballapp"
       }
     }
   },
   "dependencies": {
+    "@angular/common": "^2.4.10",
+    "@angular/compiler": "^2.4.10",
+    "@angular/core": "^2.4.10",
+    "@angular/platform-browser": "^2.4.10",
+    "@angular/platform-browser-dynamic": "^2.4.10",
     "electron-compile": "^6.4.2",
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-devtools-installer": "^2.2.3",
+    "electron-squirrel-startup": "^1.0.0",
+    "jquery": "^3.3.1",
+    "reflect-metadata": "^0.1.12",
+    "select2": "^4.0.6-rc.1",
+    "tslib": "^1.9.0",
+    "zone.js": "^0.7.8"
   },
   "devDependencies": {
+    "@types/jquery": "^3.3.1",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "electron-forge": "^5.1.1",
     "electron-prebuilt-compile": "1.8.2",
-    "eslint": "^3.19.0",
-    "eslint-config-airbnb": "^15.1.0",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.7.0"
+    "jquery": "^3.3.1",
+    "tslint": "^4.5.1",
+    "typescript": "^2.1.6"
   }
 }

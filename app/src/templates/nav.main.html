@@ -1,0 +1,30 @@
+<nav class="navbar navbar-inverse" id="main-navbar">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <a class="navbar-brand" id="navbar-logo" (click)="printMsg($event)">
+        <img alt="Brand" src="assets/images/cornell-logo.png" id="nav-logo">
+      </a>
+    </div>
+
+    <ul class="nav navbar-nav">
+      <!-- TODO: make back and forward buttons work -->
+      <li class="navigation-btn navbar-item" id="back-btn">
+          <a (click)="printMsg($event)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+      </li>
+      <li class="navigation-btn navbar-item" id="forward-btn">
+          <a (click)="printMsg($event)"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+      </li>
+      <li class="navbar-item" [ngClass]="{'active':currentPage == 'players'}" style="margin-left:9px;">
+        <a id="players" (click)="pageClicked($event)">Players</a>
+      </li>
+      <li class="navbar-item" [ngClass]="{'active':currentPage == 'teams'}">
+        <a id="teams" (click)="pageClicked($event)">Teams</a>
+      </li>
+      <li class="navbar-item" [ngClass]="{'active':currentPage == 'games'}">
+        <a id="games" (click)="pageClicked($event)">Games</a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
