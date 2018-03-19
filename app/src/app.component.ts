@@ -29,10 +29,11 @@ export class AppComponent implements OnInit {
     this.currentPage = event;
     console.log(event);
   }
+
 }
 
 @NgModule({
-  imports: [BrowserModule, StatsTableModule, FiltersModule, MainNavModule, ],
+  imports: [BrowserModule, StatsTableModule, FiltersModule, MainNavModule],
   declarations: [AppComponent],
   bootstrap: [AppComponent]
 })
