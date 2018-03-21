@@ -16,6 +16,11 @@ def xml_to_database(xml_file):
 
     # Extract information for the Game table
     venue = game_info['venue']
+
+    # Check if information for this game has already been added - if it has, then exit the function
+    if session.query(Game).filter_by(date=venue['date'], home=venue['home_id']).first():
+        return "ERR: Game data already documented. Aborting upload"
+
     g = Game(date=venue['date'], home=venue['home_id'], visitor=venue['vis_id'], isLeague=venue['is_league'],
              isPlayoff=venue['is_playoff'])
     session.add(g)
@@ -30,20 +35,20 @@ def xml_to_database(xml_file):
         t2 = Team(team_id=venue['vis_id'], name=venue['vis_name'])
         session.add(t2)
 
-    session.commit()
-
     # Extract information for the PlaysIn table
     """ TODO: Wrap everything in its own adder function, maybe put this in a file like py2db.py, which converts from 
     the python dictionary to the database"""
     team1 = game_info['t1']
     spec = team1['special']
     stats = team1['stats']
+
+    p1_vh = True if spec['vh'] == 'H' else False
     plays_in_team_one = PlaysIn(team=t1.team_id, game=g.id, fgm=stats['fgm'], fga=stats['fga'],
                                 fgm3=stats['fgm3'], fga3=stats['fga3'], fta=stats['fta'], ftm=stats['ftm'],
                                 tp=stats['tp'], blk=stats['blk'], stl=stats['stl'], ast=stats['ast'],
                                 oreb=stats['oreb'], dreb=stats['dreb'], treb=stats['treb'], pf=stats['pf'],
                                 tf=stats['tf'], to=stats['to'],
-                                is_home=(True if spec['vh'] == 'H' else False), pts_to=spec['pts_to'], pts_paint=spec['pts_paint'],
+                                is_home=p1_vh, pts_to=spec['pts_to'], pts_paint=spec['pts_paint'],
                                 pts_ch2=spec['pts_ch2'], pts_fastb=spec['pts_fastb'], pts_bench=spec['pts_bench'],
                                 ties=spec['ties'], leads=spec['leads'], poss_count=spec['poss_count'],
                                 poss_time=spec['poss_time'], score_count=spec['score_count'],
@@ -55,12 +60,14 @@ def xml_to_database(xml_file):
     spec = team2['special']
     stats = team2['stats']
 
+    p2_vh = True if spec['vh'] == 'H' else False
+
     plays_in_team_two = PlaysIn(team=t1.team_id, game=g.id, fgm=stats['fgm'], fga=stats['fga'],
                                fgm3=stats['fgm3'], fga3=stats['fga3'], fta=stats['fta'], ftm=stats['ftm'],
                                tp=stats['tp'], blk=stats['blk'], stl=stats['stl'], ast=stats['ast'],
                                oreb=stats['oreb'], dreb=stats['dreb'], treb=stats['treb'], pf=stats['pf'],
                                tf=stats['tf'], to=stats['to'],
-                               is_home=(True if spec['vh'] == 'H' else False), pts_to=spec['pts_to'],
+                               is_home=p2_vh, pts_to=spec['pts_to'],
                                pts_paint=spec['pts_paint'],
                                pts_ch2=spec['pts_ch2'], pts_fastb=spec['pts_fastb'], pts_bench=spec['pts_bench'],
                                ties=spec['ties'], leads=spec['leads'], poss_count=spec['poss_count'],
@@ -68,6 +75,7 @@ def xml_to_database(xml_file):
                                score_time=spec['score_time'])
 
     session.add(plays_in_team_two)
+    session.commit()
 
     # Loop through Players and add them to the database if they don't already exist, repeat for team2
     # TODO: uniquely identifying a player is still hard...
