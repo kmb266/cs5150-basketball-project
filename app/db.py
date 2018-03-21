@@ -116,7 +116,7 @@ class PlayerIn(Base):
     to = Column(Integer)    # Total turnovers
     dq = Column(Integer)    # Disqualifications? TODO: review
 
-# Base.metadata.create_all(engine)
+Base.metadata.create_all(engine)
 #
 # p1 = Game(date=datetime.now(), home="COR", visitor="BRN", winner="COR", loser="BRN", isLeague=False, isPlayoff=False)
 # from sqlalchemy.orm import sessionmaker
