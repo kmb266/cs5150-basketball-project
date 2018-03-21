@@ -1,0 +1,89 @@
+body {
+  overflow-y: hidden;
+}
+
+#nav-logo {
+  width: 75px;
+  margin-top: -15px;
+}
+#navbar-logo {
+  padding-right: 0px;
+}
+#main-navbar {
+  /* background-color: #d60027; */
+  margin-bottom: 0px;
+  border: none;
+  border-radius: 0px;
+  font-size: 20px;
+}
+.navigation-btn:hover {
+
+}
+.navbar-item:hover {
+  cursor: pointer;
+}
+
+.filter-wrapper {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  width: 200px;
+  background-color: #eee;
+  padding: 8px;
+  display: inline-block;
+}
+.clear-filters {
+  float:right;
+}
+
+.apply-filters {
+  width: 100%;
+  background-color: #eee;
+  text-align: center;
+}
+
+@media screen and (max-height: 720px) {
+  .apply-filters {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 200px;
+  }
+  #season-category {
+    padding-bottom: 60px;
+  }
+}
+
+.apply-filters > .btn {
+  color: #d60027;
+}
+.filter-td {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+.filter-label {
+  font-size: 12px;
+  font-weight: 400;
+}
+span.filter-label {
+  font-weight: 500;
+}
+.input-filter {
+  width: 100%;
+  font-size: 12px;
+}
+.locationCheckbox {
+  width : 50px;
+}
+.indent-first-checkbox {
+  margin-left: 10px
+}
+
+
+.content-wrapper {
+  padding: 8px;
+  position: absolute;
+  left: 200px;
+  top: 50px;
+  right: 0px;
+  overflow-x: scroll;
+}
