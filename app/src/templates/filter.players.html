@@ -1,6 +1,6 @@
 <nav class="side-nav js-nav is-shown" id="left">
   <div class="clear-filters" id="clear-players-filters" style="padding-right:6px;">
-    <button type="button" class="btn btn-danger btn-xs" id="clear-btn"> Clear </button>
+    <button type="button" class="btn btn-danger btn-xs" id="clear-btn"> Clear All </button>
   </div>
   <div class="nav-item">
     <h5 class="nav-category">Player Filters</h5>
@@ -8,10 +8,6 @@
       <tr>
         <td class="filter-td"> <label class="filter-label" for="playerName"> Name: </label> </td>
         <td class="filter-td"> <input class="input-filter" id="playerName" name="playerName" #playerName placeholder="Ex. Smith, Brown"> </td>
-      </tr>
-      <tr>
-        <td class="filter-td"> <label class="filter-label" for="playerNum"> Number: </label> </td>
-        <td class="filter-td"> <input class="input-filter" id="playerNum" name="playerNum" #playerNum placeholder="Ex. 10, 23"> </td>
       </tr>
       <tr>
         <td class="filter-td"> <label class="filter-label" for="playerPos"> Position: </label> </td>
@@ -23,12 +19,16 @@
     <h5 class="nav-category">Team Filters</h5>
     <table id='team-filters'>
       <tr>
-        <td class="filter-td"> <label class="filter-label" for="collegeName"> College: </label> </td>
-        <td class="filter-td"> <input class="input-filter" id="collegeName" name="collegerName" #collegeName (keyup)="onKeyName(collegeName.value)" placeholder="Ex. Columbia"> </td>
+        <td class="filter-td"> <label class="filter-label" for="teamName"> Team: </label> </td>
+        <td class="filter-td"> <input class="input-filter" id="teamName" name="teamName" #teamName  placeholder="Ex. Columbia"> </td>
+      </tr>
+      <tr>
+        <td class="filter-td"> <label class="filter-label" for="vsTeamName"> Opponent: </label> </td>
+        <td class="filter-td"> <input class="input-filter" id="vsTeamName" name="vsTeamName" #vsTeamName  placeholder="Ex. Harvard"> </td>
       </tr>
       <tr>
         <td class="filter-td"> <label class="filter-label" for="conferenceName"> Conference: </label> </td>
-        <td class="filter-td"> <input class="input-filter" id="conferenceName" name="conferenceName" #conferenceName (keyup)="onKeyNum(conferenceName.value)" placeholder="Ex. Ivy League"> </td>
+        <td class="filter-td"> <input class="input-filter" id="conferenceName" name="conferenceName" #conferenceName placeholder="Ex. Ivy League"> </td>
       </tr>
     </table>
   </div>
@@ -38,7 +38,7 @@
     <table id='lineup-filters'>
       <tr>
         <td class="filter-td"> <label class="filter-label" for="player-lineup"> Lineup: </label> </td>
-        <td class="filter-td"> <input class="input-filter" id="player-lineup" name="player-lineup" #playerlineup (keyup)="onKeyName(playerlineup.value)" placeholder="Ex. Morgan, Gordon"> </td>
+        <td class="filter-td"> <input class="input-filter" id="player-lineup" name="player-lineup" #playerlineup placeholder="Ex. Morgan, Gordon"> </td>
       </tr>
     </table>
   </div>
@@ -49,7 +49,7 @@
       <tr>
         <td class="filter-td" colspan="3">
           <label class="filter-label" for="lastNGames"> Show last </label>
-          <input type="number" class="input-filter" style="margin-left:4px; margin-right:2px; width:40px; text-align:center;" id="lastNGames" name="lastNGames" #lastNGames placeholder="4">
+          <input type="number" class="input-filter" style="margin-left:4px; margin-right:2px; width:40px; text-align:center;" id="lastNGames" name="lastNGames" #lastNGames placeholder="#">
           <label class="filter-label">game(s)</label>
         </td>
       </tr>
@@ -91,19 +91,32 @@
       <tr>
         <td class="filter-td" colspan="3"> <span class="filter-label"> Game Time: </span> </td>
       </tr>
-      <tr>
+      <tr style="width:100%">
         <td class="filter-td" colspan="3">
-          <!-- TODO: get this to be a range slider with 2 for the time like in the demo -->
-          <input type="range" multiple/>
+          <div class="slider-wrapper">
+            <input type="text" id="player-game-time-slider" name="player-game-time-slider" value="" />
+          </div>
         </td>
       </tr>
       <tr>
-        <td>20:00</td>
-        <td class="filter-td filterCheckbox" style="    width: 100px;text-align: center;">
+        <td class="time-td">
+          <input type="text" class="gametime-input" maxlength="5" value={{gametime.start.clock}} #gameStartInput (keyup.enter)="updateSliderStart(gameStartInput.value)" />
+          <input [(ngModel)]="startTime2ndHalf" (change)="changedStartHalf()" type="checkbox" />
+        </td>
+
+        <td class="filter-td" style="width:50px; font-size:10px; text-align:center;">
+          <span class="second-half">2nd half</span>
+        </td>
+        <td class="filter-td time-td" style="text-align:right;">
+          <input [(ngModel)]="endTime2ndHalf" (change)="changedEndHalf()" type="checkbox" />
+          <input type="text" class="gametime-input" maxlength="5" value="{{gametime.end.clock}}" #gameEndInput (keyup.enter)="updateSliderEnd(gameEndInput.value)"/>
+        </td>
+      </tr>
+      <tr>
+        <td class="filter-td filterCheckbox" colspan="3">
           <label class="filter-label" for="includeOT">Include OT</label>
           <input type="checkbox" class="gametime" id="includeOT"/>
         </td>
-        <td style="text-align:right;">00:00</td>
       </tr>
     </table>
   </div>
@@ -127,7 +140,7 @@
   </div>
 
   <div class="nav-item apply-filters" >
-    <button class="btn btn-default">Apply Filters</button>
+    <button class="btn btn-default" (click)="applyPlayerFilter">Apply Filters</button>
   </div>
 
 </nav>
