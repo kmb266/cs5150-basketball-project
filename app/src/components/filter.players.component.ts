@@ -19,10 +19,6 @@ export class PlayersFilterComponent implements OnInit {
   startTime2ndHalf:boolean = false;
   endTime2ndHalf:boolean = true;
 
-  runPython() {
-    require('../test_python');
-  }
-
   invalidInput(el) {
     //show a red box around the input box
     console.log("invalid input");
