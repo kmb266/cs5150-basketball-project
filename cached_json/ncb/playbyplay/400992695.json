@@ -1,0 +1,5795 @@
+{
+  "__gamepackage__": {
+    "awayTeam": {
+      "homeAway": "away",
+      "id": "2226",
+      "linescores": [
+        {
+          "displayValue": "36"
+        },
+        {
+          "displayValue": "42"
+        }
+      ],
+      "order": 1,
+      "possession": false,
+      "record": [
+        {
+          "displayValue": "12-18",
+          "summary": "12-18",
+          "type": "total"
+        },
+        {
+          "displayValue": "4-9",
+          "summary": "4-9",
+          "type": "road"
+        },
+        {
+          "displayValue": "6-12",
+          "summary": "6-12",
+          "type": "vsconf"
+        }
+      ],
+      "score": "78",
+      "team": {
+        "abbreviation": "FAU",
+        "alternateColor": "bb2f4c",
+        "color": "004B85",
+        "displayName": "Florida Atlantic Owls",
+        "id": "2226",
+        "links": [
+          {
+            "href": "http://www.espn.com/mens-college-basketball/team/_/id/2226/florida-atlantic-owls",
+            "rel": [
+              "clubhouse",
+              "desktop",
+              "team"
+            ],
+            "text": "Clubhouse"
+          }
+        ],
+        "location": "Florida Atlantic",
+        "logos": [
+          {
+            "alt": "",
+            "height": 500,
+            "href": "http://a.espncdn.com/i/teamlogos/ncaa/500/2226.png",
+            "rel": [
+              "full",
+              "default"
+            ],
+            "width": 500
+          },
+          {
+            "alt": "",
+            "height": 500,
+            "href": "http://a.espncdn.com/i/teamlogos/ncaa/500-dark/2226.png",
+            "rel": [
+              "full",
+              "dark"
+            ],
+            "width": 500
+          }
+        ],
+        "name": "Owls",
+        "nickname": "FAU",
+        "uid": "s:40~l:41~t:2226"
+      },
+      "uid": "s:40~l:41~t:2226",
+      "winner": false
+    },
+    "awayTeamLogo": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2226.png&h=100&w=100",
+    "highlightPlayers": false,
+    "homeTeam": {
+      "homeAway": "home",
+      "id": "2429",
+      "linescores": [
+        {
+          "displayValue": "40"
+        },
+        {
+          "displayValue": "45"
+        }
+      ],
+      "order": 0,
+      "possession": false,
+      "record": [
+        {
+          "displayValue": "6-23",
+          "summary": "6-23",
+          "type": "total"
+        },
+        {
+          "displayValue": "4-11",
+          "summary": "4-11",
+          "type": "home"
+        },
+        {
+          "displayValue": "2-16",
+          "summary": "2-16",
+          "type": "vsconf"
+        }
+      ],
+      "score": "85",
+      "team": {
+        "abbreviation": "CHAR",
+        "alternateColor": "cfab7a",
+        "color": "0C562D",
+        "displayName": "Charlotte 49ers",
+        "id": "2429",
+        "links": [
+          {
+            "href": "http://www.espn.com/mens-college-basketball/team/_/id/2429/charlotte-49ers",
+            "rel": [
+              "clubhouse",
+              "desktop",
+              "team"
+            ],
+            "text": "Clubhouse"
+          }
+        ],
+        "location": "Charlotte",
+        "logos": [
+          {
+            "alt": "",
+            "height": 500,
+            "href": "http://a.espncdn.com/i/teamlogos/ncaa/500/2429.png",
+            "rel": [
+              "full",
+              "default"
+            ],
+            "width": 500
+          },
+          {
+            "alt": "",
+            "height": 500,
+            "href": "http://a.espncdn.com/i/teamlogos/ncaa/500-dark/2429.png",
+            "rel": [
+              "full",
+              "dark"
+            ],
+            "width": 500
+          }
+        ],
+        "name": "49ers",
+        "nickname": "Charlotte",
+        "uid": "s:40~l:41~t:2429"
+      },
+      "uid": "s:40~l:41~t:2429",
+      "winner": true
+    },
+    "homeTeamLogo": "http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2429.png&h=100&w=100",
+    "playerHash": {
+      "3151395": {
+        "homeAway": "away",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Justin Massey",
+            "id": "3151395",
+            "jersey": "2",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/3151395/justin-massey",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=3151395",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "G",
+              "displayName": "Guard",
+              "name": "Guard"
+            },
+            "shortName": "J. Massey",
+            "uid": "s:40~l:41~a:3151395"
+          },
+          "didNotPlay": false,
+          "ejected": false,
+          "starter": true,
+          "stats": [
+            "24",
+            "6-16",
+            "4-8",
+            "0-0",
+            "0",
+            "1",
+            "1",
+            "1",
+            "0",
+            "0",
+            "2",
+            "1",
+            "16"
+          ]
+        }
+      },
+      "3155583": {
+        "homeAway": "away",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Gerdarius Troutman",
+            "id": "3155583",
+            "jersey": "14",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/3155583/gerdarius-troutman",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=3155583",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "G",
+              "displayName": "Guard",
+              "name": "Guard"
+            },
+            "shortName": "G. Troutman",
+            "uid": "s:40~l:41~a:3155583"
+          },
+          "didNotPlay": false,
+          "ejected": false,
+          "starter": false,
+          "stats": [
+            "24",
+            "3-10",
+            "3-8",
+            "0-0",
+            "0",
+            "2",
+            "2",
+            "2",
+            "1",
+            "0",
+            "0",
+            "1",
+            "9"
+          ]
+        }
+      },
+      "3906682": {
+        "homeAway": "home",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Andrien White",
+            "id": "3906682",
+            "jersey": "2",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/3906682/andrien-white",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=3906682",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "G",
+              "displayName": "Guard",
+              "name": "Guard"
+            },
+            "shortName": "A. White",
+            "uid": "s:40~l:41~a:3906682"
+          },
+          "didNotPlay": false,
+          "ejected": false,
+          "starter": true,
+          "stats": [
+            "36",
+            "4-17",
+            "1-6",
+            "8-10",
+            "0",
+            "5",
+            "5",
+            "1",
+            "3",
+            "2",
+            "3",
+            "2",
+            "17"
+          ]
+        }
+      },
+      "3906683": {
+        "homeAway": "home",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Jon Davis",
+            "id": "3906683",
+            "jersey": "3",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/3906683/jon-davis",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=3906683",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "G",
+              "displayName": "Guard",
+              "name": "Guard"
+            },
+            "shortName": "J. Davis",
+            "uid": "s:40~l:41~a:3906683"
+          },
+          "didNotPlay": false,
+          "ejected": false,
+          "starter": true,
+          "stats": [
+            "40",
+            "6-11",
+            "4-6",
+            "12-12",
+            "0",
+            "4",
+            "4",
+            "4",
+            "0",
+            "0",
+            "3",
+            "2",
+            "28"
+          ]
+        }
+      },
+      "3920207": {
+        "homeAway": "away",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Amir Smith",
+            "id": "3920207",
+            "jersey": "32",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/3920207/amir-smith",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=3920207",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "F",
+              "displayName": "Forward",
+              "name": "Forward"
+            },
+            "shortName": "A. Smith",
+            "uid": "s:40~l:41~a:3920207"
+          },
+          "didNotPlay": false,
+          "ejected": false,
+          "starter": false,
+          "stats": [
+            "7",
+            "0-0",
+            "0-0",
+            "0-0",
+            "0",
+            "1",
+            "1",
+            "0",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0"
+          ]
+        }
+      },
+      "4066966": {
+        "homeAway": "home",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Najee Garvin",
+            "id": "4066966",
+            "jersey": "1",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/4066966/najee-garvin",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=4066966",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "F",
+              "displayName": "Forward",
+              "name": "Forward"
+            },
+            "shortName": "N. Garvin",
+            "uid": "s:40~l:41~a:4066966"
+          },
+          "didNotPlay": false,
+          "ejected": false,
+          "starter": false,
+          "stats": [
+            "27",
+            "1-2",
+            "0-0",
+            "2-2",
+            "1",
+            "8",
+            "9",
+            "1",
+            "1",
+            "1",
+            "1",
+            "3",
+            "4"
+          ]
+        }
+      },
+      "4066967": {
+        "homeAway": "home",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Corey Bias",
+            "id": "4066967",
+            "jersey": "10",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/4066967/corey-bias",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=4066967",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "G",
+              "displayName": "Guard",
+              "name": "Guard"
+            },
+            "shortName": "C. Bias",
+            "uid": "s:40~l:41~a:4066967"
+          },
+          "didNotPlay": false,
+          "ejected": false,
+          "starter": true,
+          "stats": [
+            "4",
+            "0-1",
+            "0-0",
+            "0-0",
+            "0",
+            "1",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0"
+          ]
+        }
+      },
+      "4066969": {
+        "homeAway": "home",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Ryan Murphy",
+            "id": "4066969",
+            "jersey": "24",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/4066969/ryan-murphy",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=4066969",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "G",
+              "displayName": "Guard",
+              "name": "Guard"
+            },
+            "shortName": "R. Murphy",
+            "uid": "s:40~l:41~a:4066969"
+          },
+          "didNotPlay": true,
+          "ejected": false,
+          "starter": false,
+          "stats": []
+        }
+      },
+      "4066971": {
+        "homeAway": "home",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Bo Blight",
+            "id": "4066971",
+            "jersey": "11",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/4066971/bo-blight",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=4066971",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "F",
+              "displayName": "Forward",
+              "name": "Forward"
+            },
+            "shortName": "B. Blight",
+            "uid": "s:40~l:41~a:4066971"
+          },
+          "didNotPlay": true,
+          "ejected": false,
+          "starter": false,
+          "stats": []
+        }
+      },
+      "4066979": {
+        "homeAway": "away",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "William Pfister",
+            "id": "4066979",
+            "jersey": "5",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/4066979/william-pfister",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=4066979",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "F",
+              "displayName": "Forward",
+              "name": "Forward"
+            },
+            "shortName": "W. Pfister",
+            "uid": "s:40~l:41~a:4066979"
+          },
+          "didNotPlay": false,
+          "ejected": false,
+          "starter": true,
+          "stats": [
+            "30",
+            "1-2",
+            "0-0",
+            "0-0",
+            "2",
+            "7",
+            "9",
+            "2",
+            "1",
+            "0",
+            "1",
+            "4",
+            "2"
+          ]
+        }
+      },
+      "4066980": {
+        "homeAway": "away",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Devorious Brown",
+            "id": "4066980",
+            "jersey": "12",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/4066980/devorious-brown",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=4066980",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "G",
+              "displayName": "Guard",
+              "name": "Guard"
+            },
+            "shortName": "D. Brown",
+            "uid": "s:40~l:41~a:4066980"
+          },
+          "didNotPlay": false,
+          "ejected": false,
+          "starter": false,
+          "stats": [
+            "18",
+            "3-7",
+            "0-0",
+            "2-2",
+            "4",
+            "2",
+            "6",
+            "3",
+            "4",
+            "0",
+            "1",
+            "2",
+            "8"
+          ]
+        }
+      },
+      "4066981": {
+        "homeAway": "away",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Jailyn Ingram",
+            "id": "4066981",
+            "jersey": "15",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/4066981/jailyn-ingram",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=4066981",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "F",
+              "displayName": "Forward",
+              "name": "Forward"
+            },
+            "shortName": "J. Ingram",
+            "uid": "s:40~l:41~a:4066981"
+          },
+          "didNotPlay": false,
+          "ejected": false,
+          "starter": true,
+          "stats": [
+            "22",
+            "4-7",
+            "0-0",
+            "1-1",
+            "3",
+            "1",
+            "4",
+            "1",
+            "0",
+            "0",
+            "1",
+            "4",
+            "9"
+          ]
+        }
+      },
+      "4278930": {
+        "homeAway": "home",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Jailan Haslem",
+            "id": "4278930",
+            "jersey": "0",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278930/jailan-haslem",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=4278930",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "C",
+              "displayName": "Center",
+              "name": "Center"
+            },
+            "shortName": "J. Haslem",
+            "uid": "s:40~l:41~a:4278930"
+          },
+          "didNotPlay": false,
+          "ejected": false,
+          "starter": true,
+          "stats": [
+            "31",
+            "3-3",
+            "0-0",
+            "0-0",
+            "2",
+            "4",
+            "6",
+            "0",
+            "1",
+            "1",
+            "3",
+            "3",
+            "6"
+          ]
+        }
+      },
+      "4278931": {
+        "homeAway": "home",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Jaylan McGill",
+            "id": "4278931",
+            "jersey": "12",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278931/jaylan-mcgill",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=4278931",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "G",
+              "displayName": "Guard",
+              "name": "Guard"
+            },
+            "shortName": "J. McGill",
+            "uid": "s:40~l:41~a:4278931"
+          },
+          "didNotPlay": false,
+          "ejected": false,
+          "starter": false,
+          "stats": [
+            "2",
+            "0-0",
+            "0-0",
+            "0-0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      },
+      "4278932": {
+        "homeAway": "home",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Milos Supica",
+            "id": "4278932",
+            "jersey": "15",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278932/milos-supica",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=4278932",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "F",
+              "displayName": "Forward",
+              "name": "Forward"
+            },
+            "shortName": "M. Supica",
+            "uid": "s:40~l:41~a:4278932"
+          },
+          "didNotPlay": false,
+          "ejected": false,
+          "starter": false,
+          "stats": [
+            "16",
+            "1-3",
+            "0-0",
+            "0-0",
+            "1",
+            "2",
+            "3",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "2"
+          ]
+        }
+      },
+      "4278933": {
+        "homeAway": "home",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Bryant Thomas",
+            "id": "4278933",
+            "jersey": "30",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278933/bryant-thomas",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=4278933",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "F",
+              "displayName": "Forward",
+              "name": "Forward"
+            },
+            "shortName": "B. Thomas",
+            "uid": "s:40~l:41~a:4278933"
+          },
+          "didNotPlay": true,
+          "ejected": false,
+          "starter": false,
+          "stats": []
+        }
+      },
+      "4278934": {
+        "homeAway": "home",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Luka Vasic",
+            "id": "4278934",
+            "jersey": "35",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278934/luka-vasic",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=4278934",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "G",
+              "displayName": "Guard",
+              "name": "Guard"
+            },
+            "shortName": "L. Vasic",
+            "uid": "s:40~l:41~a:4278934"
+          },
+          "didNotPlay": false,
+          "ejected": false,
+          "starter": false,
+          "stats": [
+            "14",
+            "2-4",
+            "1-2",
+            "0-0",
+            "0",
+            "2",
+            "2",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "5"
+          ]
+        }
+      },
+      "4278961": {
+        "homeAway": "away",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Je'Quan Perry",
+            "id": "4278961",
+            "jersey": "1",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278961/jequan-perry",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=4278961",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "G",
+              "displayName": "Guard",
+              "name": "Guard"
+            },
+            "shortName": "J. Perry",
+            "uid": "s:40~l:41~a:4278961"
+          },
+          "didNotPlay": true,
+          "ejected": false,
+          "starter": false,
+          "stats": []
+        }
+      },
+      "4278962": {
+        "homeAway": "away",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Anthony Adger",
+            "id": "4278962",
+            "jersey": "3",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278962/anthony-adger",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=4278962",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "G",
+              "displayName": "Guard",
+              "name": "Guard"
+            },
+            "shortName": "A. Adger",
+            "uid": "s:40~l:41~a:4278962"
+          },
+          "didNotPlay": false,
+          "ejected": false,
+          "starter": false,
+          "stats": [
+            "13",
+            "3-8",
+            "0-1",
+            "0-0",
+            "0",
+            "0",
+            "0",
+            "2",
+            "0",
+            "0",
+            "0",
+            "1",
+            "6"
+          ]
+        }
+      },
+      "4278963": {
+        "homeAway": "away",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Byron Abrams",
+            "id": "4278963",
+            "jersey": "4",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278963/byron-abrams",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=4278963",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "G",
+              "displayName": "Guard",
+              "name": "Guard"
+            },
+            "shortName": "B. Abrams",
+            "uid": "s:40~l:41~a:4278963"
+          },
+          "didNotPlay": true,
+          "ejected": false,
+          "starter": false,
+          "stats": []
+        }
+      },
+      "4278964": {
+        "homeAway": "away",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Tre' Maloney",
+            "id": "4278964",
+            "jersey": "11",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278964/tre-maloney",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=4278964",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "F",
+              "displayName": "Forward",
+              "name": "Forward"
+            },
+            "shortName": "T. Maloney",
+            "uid": "s:40~l:41~a:4278964"
+          },
+          "didNotPlay": true,
+          "ejected": false,
+          "starter": false,
+          "stats": []
+        }
+      },
+      "4278965": {
+        "homeAway": "away",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Simeon Lepichev",
+            "id": "4278965",
+            "jersey": "21",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278965/simeon-lepichev",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=4278965",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "C",
+              "displayName": "Center",
+              "name": "Center"
+            },
+            "shortName": "S. Lepichev",
+            "uid": "s:40~l:41~a:4278965"
+          },
+          "didNotPlay": true,
+          "ejected": false,
+          "starter": false,
+          "stats": []
+        }
+      },
+      "4278966": {
+        "homeAway": "away",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Kevin Rostamian",
+            "id": "4278966",
+            "jersey": "30",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278966/kevin-rostamian",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=4278966",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "C",
+              "displayName": "Center",
+              "name": "Center"
+            },
+            "shortName": "K. Rostamian",
+            "uid": "s:40~l:41~a:4278966"
+          },
+          "didNotPlay": true,
+          "ejected": false,
+          "starter": false,
+          "stats": []
+        }
+      },
+      "4278967": {
+        "homeAway": "away",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Chisom Obidike",
+            "id": "4278967",
+            "jersey": "35",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278967/chisom-obidike",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=4278967",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "C",
+              "displayName": "Center",
+              "name": "Center"
+            },
+            "shortName": "C. Obidike",
+            "uid": "s:40~l:41~a:4278967"
+          },
+          "didNotPlay": true,
+          "ejected": false,
+          "starter": false,
+          "stats": []
+        }
+      },
+      "66120": {
+        "homeAway": "home",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Austin Ajukwa",
+            "id": "66120",
+            "jersey": "5",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/66120/austin-ajukwa",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=66120",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "G",
+              "displayName": "Guard",
+              "name": "Guard"
+            },
+            "shortName": "A. Ajukwa",
+            "uid": "s:40~l:41~a:66120"
+          },
+          "didNotPlay": false,
+          "ejected": false,
+          "starter": true,
+          "stats": [
+            "30",
+            "7-13",
+            "1-3",
+            "8-8",
+            "0",
+            "5",
+            "5",
+            "1",
+            "3",
+            "0",
+            "3",
+            "3",
+            "23"
+          ]
+        }
+      },
+      "66154": {
+        "homeAway": "home",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Hudson Price",
+            "id": "66154",
+            "jersey": "21",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/66154/hudson-price",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=66154",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "G",
+              "displayName": "Guard",
+              "name": "Guard"
+            },
+            "shortName": "H. Price",
+            "uid": "s:40~l:41~a:66154"
+          },
+          "didNotPlay": true,
+          "ejected": false,
+          "starter": false,
+          "stats": []
+        }
+      },
+      "66245": {
+        "homeAway": "away",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Ronald Delph",
+            "id": "66245",
+            "jersey": "33",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/66245/ronald-delph",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=66245",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "C",
+              "displayName": "Center",
+              "name": "Center"
+            },
+            "shortName": "R. Delph",
+            "uid": "s:40~l:41~a:66245"
+          },
+          "didNotPlay": false,
+          "ejected": false,
+          "starter": true,
+          "stats": [
+            "32",
+            "8-14",
+            "0-0",
+            "3-3",
+            "4",
+            "5",
+            "9",
+            "1",
+            "0",
+            "7",
+            "4",
+            "4",
+            "19"
+          ]
+        }
+      },
+      "67501": {
+        "homeAway": "away",
+        "json": {
+          "active": false,
+          "athlete": {
+            "displayName": "Payton Hulsey",
+            "id": "67501",
+            "jersey": "0",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/player/_/id/67501/payton-hulsey",
+                "text": "Player Card"
+              },
+              {
+                "href": "http://m.espn.com/ncb/playercard?playerId=67501",
+                "text": "Player Card"
+              }
+            ],
+            "position": {
+              "abbreviation": "G",
+              "displayName": "Guard",
+              "name": "Guard"
+            },
+            "shortName": "P. Hulsey",
+            "uid": "s:40~l:41~a:67501"
+          },
+          "didNotPlay": false,
+          "ejected": false,
+          "starter": true,
+          "stats": [
+            "30",
+            "2-11",
+            "1-6",
+            "4-6",
+            "1",
+            "3",
+            "4",
+            "3",
+            "1",
+            "0",
+            "3",
+            "4",
+            "9"
+          ]
+        }
+      }
+    }
+  },
+  "ads": {
+    "amznAdConfig": {
+      "espn-en": 10000,
+      "useAmznBids": true
+    },
+    "base": "espn.com",
+    "breakpoints": {
+      "l": [
+        1024,
+        1279
+      ],
+      "m": [
+        768,
+        1023
+      ],
+      "s": [
+        0,
+        767
+      ],
+      "xl": [
+        1280
+      ]
+    },
+    "delayInPageAdSlots": true,
+    "disabled": "false",
+    "dynamicKeyValues": {
+      "profile": {
+        "key": "prof"
+      }
+    },
+    "id": 12129264,
+    "incontentPositions": {
+      "defaults": {
+        "favorites": -1,
+        "news": 4,
+        "now": 4
+      },
+      "index": {
+        "nfl": {},
+        "top": {
+          "favorites": -1
+        }
+      }
+    },
+    "kvps": [
+      {
+        "name": "ed",
+        "value": "us"
+      },
+      {
+        "name": "sp",
+        "value": "cbb"
+      },
+      {
+        "name": "pgtyp",
+        "value": "playbyplay"
+      }
+    ],
+    "level": "espn.com/cbb/playbyplay",
+    "load": {
+      "defaults": {
+        "desktop": "init",
+        "mobile": "window.load",
+        "tablet": "init"
+      },
+      "frontpage": {
+        "desktop": "init",
+        "mobile": "window.load",
+        "tablet": "init"
+      },
+      "index": {
+        "desktop": "window.load",
+        "mobile": "window.load",
+        "tablet": "window.load"
+      },
+      "schedule": {
+        "desktop": "window.load",
+        "mobile": "window.load",
+        "tablet": "window.load"
+      },
+      "scoreboard": {
+        "desktop": "window.load",
+        "mobile": "window.load",
+        "tablet": "window.load"
+      },
+      "standings": {
+        "desktop": "window.load",
+        "mobile": "window.load",
+        "tablet": "window.load"
+      },
+      "story": {
+        "desktop": "window.load",
+        "mobile": "window.load",
+        "tablet": "window.load"
+      }
+    },
+    "network": "6444",
+    "refreshOnBreakpointChange": true,
+    "selector": ".ad-slot",
+    "sizes": {
+      "banner": {
+        "defaultSize": [
+          970,
+          66
+        ],
+        "mappings": [
+          {
+            "slot": [
+              [
+                1280,
+                100
+              ],
+              [
+                970,
+                250
+              ]
+            ],
+            "viewport": [
+              1280,
+              0
+            ]
+          },
+          {
+            "slot": [
+              [
+                970,
+                66
+              ],
+              [
+                970,
+                250
+              ],
+              [
+                728,
+                90
+              ]
+            ],
+            "viewport": [
+              1024,
+              0
+            ]
+          },
+          {
+            "slot": [
+              [
+                728,
+                90
+              ]
+            ],
+            "viewport": [
+              768,
+              0
+            ]
+          },
+          {
+            "slot": [
+              [
+                320,
+                50
+              ]
+            ],
+            "viewport": [
+              320,
+              0
+            ]
+          },
+          {
+            "slot": [
+              [
+                240,
+                38
+              ]
+            ],
+            "viewport": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "exclusions": {
+        "defaultSize": [
+          1,
+          2
+        ],
+        "mappings": [
+          {
+            "slot": [
+              [
+                1,
+                2
+              ]
+            ],
+            "viewport": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "incontent": {
+        "defaultSize": [
+          300,
+          250
+        ],
+        "mappings": [
+          {
+            "slot": [
+              [
+                300,
+                250
+              ],
+              [
+                300,
+                600
+              ]
+            ],
+            "viewport": [
+              1024,
+              0
+            ]
+          }
+        ]
+      },
+      "incontent2": {
+        "defaultSize": [
+          300,
+          250
+        ],
+        "mappings": [
+          {
+            "slot": [
+              [
+                300,
+                250
+              ]
+            ],
+            "viewport": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "incontentstrip": {
+        "defaultSize": [
+          298,
+          50
+        ],
+        "mappings": [
+          {
+            "slot": [
+              298,
+              50
+            ],
+            "viewport": [
+              1024,
+              0
+            ]
+          },
+          {
+            "slot": [],
+            "viewport": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "incontentstrip2": {
+        "defaultSize": [
+          298,
+          50
+        ],
+        "mappings": [
+          {
+            "slot": [
+              [
+                298,
+                50
+              ]
+            ],
+            "viewport": [
+              320,
+              0
+            ]
+          }
+        ]
+      },
+      "instream": {
+        "defaultSize": [
+          1,
+          3
+        ],
+        "mappings": [
+          {
+            "slot": [
+              [
+                1,
+                3
+              ]
+            ],
+            "viewport": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "midpage": {
+        "defaultSize": [
+          320,
+          250
+        ],
+        "mappings": [
+          {
+            "slot": [
+              [
+                700,
+                400
+              ]
+            ],
+            "viewport": [
+              1280,
+              0
+            ]
+          },
+          {
+            "slot": [
+              [
+                440,
+                330
+              ]
+            ],
+            "viewport": [
+              1024,
+              0
+            ]
+          },
+          {
+            "slot": [
+              [
+                320,
+                250
+              ]
+            ],
+            "viewport": [
+              768,
+              0
+            ]
+          },
+          {
+            "slot": [
+              [
+                320,
+                250
+              ]
+            ],
+            "viewport": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "native": {
+        "defaultSize": "fluid",
+        "mappings": [
+          {
+            "slot": [
+              "fluid"
+            ],
+            "viewport": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "overlay": {
+        "defaultSize": [
+          0,
+          0
+        ],
+        "mappings": [
+          {
+            "slot": [
+              [
+                0,
+                0
+              ]
+            ],
+            "viewport": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "presby": {
+        "defaultSize": [
+          112,
+          62
+        ],
+        "mappings": [
+          {
+            "slot": [
+              [
+                112,
+                62
+              ]
+            ],
+            "viewport": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "presentedbylogo": {
+        "defaultSize": [
+          128,
+          30
+        ],
+        "mappings": [
+          {
+            "slot": [
+              [
+                128,
+                30
+              ]
+            ],
+            "viewport": [
+              1024,
+              0
+            ]
+          },
+          {
+            "slot": [
+              [
+                90,
+                20
+              ]
+            ],
+            "viewport": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "wallpaper": {
+        "defaultSize": [
+          1680,
+          1050
+        ],
+        "mappings": [
+          {
+            "slot": [
+              [
+                1680,
+                1050
+              ]
+            ],
+            "viewport": [
+              1280,
+              0
+            ]
+          },
+          {
+            "slot": [
+              [
+                1280,
+                455
+              ]
+            ],
+            "viewport": [
+              1024,
+              0
+            ]
+          },
+          {
+            "slot": [],
+            "viewport": [
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    },
+    "supportDynamicPageLoad": true
+  },
+  "analytics": {
+    "ABTest": {
+      "domain": "www.espn.com",
+      "environment": "prod",
+      "host": "espn.com",
+      "isOptimizied": true,
+      "oScript": "http://cdn.optimizely.com/js/310987714.js",
+      "optimizely": true,
+      "optimizelyURLs": [
+        {
+          "flag": true,
+          "regexp": "(/)",
+          "site": "espn.co.uk"
+        },
+        {
+          "flag": true,
+          "regexp": "(/.*)",
+          "site": "www.espn.com"
+        },
+        {
+          "flag": true,
+          "regexp": "(/.*)",
+          "site": "www.espnqa.com"
+        },
+        {
+          "flag": true,
+          "regexp": "(/.*)",
+          "site": "onefeed.espn.go.com.sandbox.aws.espn.com"
+        }
+      ],
+      "raw": "{\"fastcast\":{\"placements\":{\"/nba/index\":\"true\",\"^/.+$\":\"false\",\"/ncf/index\":\"true\"},\"enabled\":false,\"script\":\"http://a.espncdn.com/combiner/c?js=analytics/espn.fastcastTracking.4.js\"},\"optimizely\":{\"oldscript\":\"http://a.espncdn.com/sports/optimizely.js\",\"placements\":[{\"regexp\":\"(/)\",\"site\":\"espn.co.uk\",\"flag\":true},{\"regexp\":\"(/.*)\",\"site\":\"www.espn.com\",\"flag\":true},{\"regexp\":\"(/.*)\",\"site\":\"www.espnqa.com\",\"flag\":true},{\"regexp\":\"(/.*)\",\"site\":\"onefeed.espn.go.com.sandbox.aws.espn.com\",\"flag\":true}],\"enabled\":true,\"script\":\"http://cdn.optimizely.com/js/310987714.js\"},\"target\":{\"placements\":[{\"regexp\":\"(/)\",\"site\":\"espn.co.uk\",\"flag\":false},{\"regexp\":\"(/.*)\",\"site\":\"www.espn.com\",\"flag\":false}],\"enabled\":false,\"script\":\"http://a.espncdn.com/prod/scripts/analytics/target.20.r2.js\"}}",
+      "tScript": "http://a.espncdn.com/prod/scripts/analytics/target.20.r2.js",
+      "target": false,
+      "targetURLs": [
+        {
+          "flag": false,
+          "regexp": "(/)",
+          "site": "espn.co.uk"
+        },
+        {
+          "flag": false,
+          "regexp": "(/.*)",
+          "site": "www.espn.com"
+        }
+      ]
+    },
+    "chartbeat": {
+      "authors": "game",
+      "domain": "www.espn.com",
+      "loadPubJS": false,
+      "loadVidJS": true,
+      "path": "/mens-college-basketball/playbyplay?gameId=400992695",
+      "sections": "ncb,playbyplay",
+      "title": "Florida Atlantic vs. Charlotte - Play-By-Play - March 3, 2018 - ESPN",
+      "zone": "www.espn.com.us.ncb.playbyplay"
+    },
+    "cto": true,
+    "device": "desktop",
+    "isFeaturePhone": false,
+    "nielsen": {
+      "cricinfo": {
+        "apid": "PED8CDAC2-F114-41BE-8B98-AFA06FAEA06E",
+        "vc": "c04"
+      },
+      "espn": {
+        "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+        "vc": "b01"
+      },
+      "espnau": {
+        "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+        "vc": "b01"
+      },
+      "espnbr": {
+        "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+        "vc": "b01"
+      },
+      "espndeportes": {
+        "apid": "P890E2723-EDBC-4CCE-96BA-F35EA3E50650",
+        "vc": "c02"
+      },
+      "espnfc": {
+        "apid": "PE6995AAE-0C49-4372-B5E7-54C61BFE2AA5",
+        "vc": "c03"
+      },
+      "espnin": {
+        "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+        "vc": "b01"
+      },
+      "espnuk": {
+        "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+        "vc": "b01"
+      },
+      "espnww": {
+        "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+        "vc": "b01"
+      },
+      "espnza": {
+        "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+        "vc": "b01"
+      },
+      "fantasy": {
+        "apid": "P302B69D5-F1DD-4E7A-BF8D-3E60F0EB5E5A",
+        "vc": "c07"
+      },
+      "general": {
+        "apn": "espnCOM",
+        "assetid": "N/A",
+        "ci": "us-600140",
+        "section": "N/A",
+        "segA": "N/A",
+        "segB": "N/A",
+        "segC": "N/A",
+        "sfcode": "dcr"
+      },
+      "watchespn": {
+        "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+        "vc": "b01"
+      }
+    },
+    "omniture": {
+      "account": "wdgespcom",
+      "contentType": "game",
+      "convrSport": "basketball",
+      "countryRegion": "en-us",
+      "gameInfo": "400992695+Florida Atlantic Owls vs Charlotte 49ers",
+      "gameState": "post",
+      "hier1": "ncb:game:playbyplay",
+      "lang": "en_us",
+      "league": "ncb",
+      "pageName": "ncb:game:playbyplay",
+      "pageURL": "www.espn.com/mens-college-basketball/playbyplay?gameId=400992695",
+      "premium": "premium-no",
+      "prop58": "isIndex=false",
+      "section": "ncb",
+      "sections": "ncb:playbyplay",
+      "site": "espn",
+      "siteType": "full",
+      "sport": "basketball"
+    },
+    "qualtrics": false
+  },
+  "content": {
+    "canonical": "http://www.espn.com/mens-college-basketball/playbyplay?gameId=400992695",
+    "description": "Get play-by-play updates on the Florida Atlantic Owls vs. Charlotte 49ers basketball game.",
+    "league": "mens-college-basketball",
+    "og_type": "website",
+    "sport": "basketball",
+    "statusState": "post",
+    "tab": {
+      "columnsModuleTypes": {
+        "default": [
+          [
+            "shotChart",
+            "playbyplay",
+            "outbrain"
+          ],
+          [
+            "shop",
+            "bet365",
+            "ad",
+            "cliplist",
+            "news",
+            "seasonSeries",
+            "standings"
+          ]
+        ]
+      },
+      "layout": "bc",
+      "metaDescription": "Get play-by-play updates on the {aDisplayName} vs. {hDisplayName} basketball game.",
+      "metaTitle": "{aName} vs. {hName} - Play-By-Play - {date}",
+      "pageType": "Play By Play"
+    },
+    "tabType": "playbyplay",
+    "title": "Florida Atlantic vs. Charlotte - Play-By-Play - March 3, 2018 - ESPN"
+  },
+  "customNav": "<div id=\"gamepackage-header-wrap\" class=\"\"><div id=\"gamepackage-matchup-wrap\"><header class=\"game-strip game-package mens-college-basketball post home-winner\"><div class=\"competitors\"><div class=\"team away\"><div class=\"team__content\"><div class=\"team__banner\" style=\"background-color: #bb2f4c;\"><div class=\"team__banner__wrapper\"><img src=\"http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2226.png&h=208&w=208\"/><svg class=\"team__svg team__svg--primary\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 176 80\"><defs><linearGradient id=\"linear-gradient\" x1=\"108.61\" y1=\"752.49\" x2=\"90.78\" y2=\"770.32\" gradientTransform=\"translate(-5 -710)\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-opacity=\"0\"></stop><stop offset=\"1\"></stop></linearGradient></defs><polygon class=\"team__stroke\" points=\"81 80 80 80 0 0 1 0 81 80\"></polygon><polygon class=\"team__gradient\" points=\"170.1 80 122.1 80 42.1 0 90.1 0 170.1 80\"></polygon></svg><svg class=\"team__svg team__svg--left\" data-name=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 176 80\"><polygon class=\"team__left\" points=\"0 80 80 80 0 0 0 80\"></polygon></svg><svg class=\"team__svg team__svg--right\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 176 80\"><polygon class=\"team__right\" points=\"176 0 96 0 176 80 176 0\"></polygon></svg></div></div><div class=\"team-container\"><div class=\"team-info\"><div class=\"team-info-wrapper\"><a  name=\"&lpos=ncb:game:playbyplay:clubhouse:team\" class=\"team-name\" href=\"/mens-college-basketball/team/_/id/2226/florida-atlantic-owls\" data-clubhouse-uid=\"s:40~l:41~t:2226\"><span class=\"long-name\">Florida Atlantic</span><span class=\"short-name\">Owls</span><span class=\"abbrev\" title=\"Florida Atlantic\">FAU</span></a></div><div class=\"record\">12-18<span class=\"inner-record\">, 6-12 Conf</span></div></div><div class=\"team-info-logo\"><div class=\"logo\"><a  name=\"&lpos=ncb:game:playbyplay:clubhouse:team\" href=\"/mens-college-basketball/team/_/id/2226/florida-atlantic-owls\" data-clubhouse-uid=\"s:40~l:41~t:2226\"><img class=\"team-logo\" src=\"http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2226.png&h=100&w=100\"/></a></div></div></div><div class=\"score-container\"><div class=\"score icon-font-after\">78</div></div></div></div><div class=\"game-status\"><span class=\"game-time status-detail\">Final</span><div id=\"gamepackage-linescore-wrap\"><table id=\"linescore\" class=\"miniTable\"><thead><tr><th class=\"network\"></th><th>1</th><th>2</th><th class=\"final-score\">T</th></tr></thead><tbody><tr><td class=\"team-name\">FAU</td><td>36</td><td>42</td><td class=\"final-score\">78</td></tr><tr><td class=\"team-name\">CHAR</td><td>40</td><td>45</td><td class=\"final-score\">85</td></tr></tbody></table></div></div><div class=\"team home\"><div class=\"team__content\"><div class=\"team__banner\" style=\"background-color: #cfab7a;\"><div class=\"team__banner__wrapper\"><img src=\"http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2429.png&h=208&w=208\"/><svg class=\"team__svg team__svg--primary\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 176 80\"><defs><linearGradient id=\"linear-gradient\" x1=\"108.61\" y1=\"752.49\" x2=\"90.78\" y2=\"770.32\" gradientTransform=\"translate(-5 -710)\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-opacity=\"0\"/><stop offset=\"1\"/></linearGradient></defs><polygon class=\"team__stroke\" points=\"81 80 80 80 0 0 1 0 81 80\"/><polygon class=\"team__gradient\" points=\"170.1 80 122.1 80 42.1 0 90.1 0 170.1 80\"/></svg><svg class=\"team__svg team__svg--left\" data-name=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 176 80\"><polygon class=\"team__left\" points=\"0 80 80 80 0 0 0 80\"/></svg><svg class=\"team__svg team__svg--right\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 176 80\"><polygon class=\"team__right\" points=\"176 0 96 0 176 80 176 0\"/></svg></div></div><div class=\"score-container\"><div class=\"score icon-font-before\">85</div></div><div class=\"team-container\"><div class=\"team-info-logo\"><div class=\"logo\"><a  name=\"&lpos=ncb:game:playbyplay:clubhouse:team\" href=\"/mens-college-basketball/team/_/id/2429/charlotte-49ers\" data-clubhouse-uid=\"s:40~l:41~t:2429\"><img class=\"team-logo\" src=\"http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2429.png&h=100&w=100\"/></a></div></div><div class=\"team-info\"><div class=\"team-info-wrapper\"><a  name=\"&lpos=ncb:game:playbyplay:clubhouse:team\" class=\"team-name\" href=\"/mens-college-basketball/team/_/id/2429/charlotte-49ers\" data-clubhouse-uid=\"s:40~l:41~t:2429\"><span class=\"long-name\">Charlotte</span><span class=\"short-name\">49ers</span><span class=\"abbrev\" title=\"Charlotte\">CHAR</span></a></div><div class=\"record\">6-23<span class=\"inner-record\">, 2-16 Conf</span></div></div></div></div></div></div></header></div><div id=\"gamepackage-links-wrap\"><div class=\"more-overlay-primary\"></div><nav id=\"global-nav-tertiary\" class=\"game-package-nav nav-wrap\" style=\"display:block\"><div class=\"tertiary-nav-container\"><ul class=\"first-group\"><li class=\"sub summary\"><a  name=\"&lpos=ncb:game:post:subnav:summary\" href=\"/mens-college-basketball/game?gameId=400992695\" class=\"webview-internal\"><span class=\"link-text\">Summary</span><span class=\"link-text-short\">Summary</span></a></li><li class=\"sub recap\"><a  name=\"&lpos=ncb:game:post:subnav:recap\" href=\"/mens-college-basketball/recap?gameId=400992695\" class=\"webview-internal\"><span class=\"link-text\">Recap</span><span class=\"link-text-short\">Recap</span></a></li><li class=\"sub boxscore\"><a  name=\"&lpos=ncb:game:post:subnav:box score\" href=\"/mens-college-basketball/boxscore?gameId=400992695\" class=\"webview-internal\"><span class=\"link-text\">Box Score</span><span class=\"link-text-short\">Box Score</span></a></li><li class=\"sub teamstats\"><a  name=\"&lpos=ncb:game:post:subnav:team stats\" href=\"/mens-college-basketball/matchup?gameId=400992695\" class=\"webview-internal\"><span class=\"link-text\">Team Stats</span><span class=\"link-text-short\">Team Stats</span></a></li><li class=\"sub conversation\"><a  name=\"&lpos=ncb:game:post:subnav:conversation\" href=\"/mens-college-basketball/conversation?gameId=400992695\" class=\"webview-internal\"><span class=\"link-text\">Conversation</span><span class=\"link-text-short\">Conversation</span></a></li></ul></div></nav></div></div>",
+  "customStyleSheet": "game-package-basketball",
+  "gameId": 400992695,
+  "gamepackageJSON": {
+    "boxscore": {
+      "players": [
+        {
+          "statistics": [
+            {
+              "athletes": [
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Jailyn Ingram",
+                    "id": "4066981",
+                    "jersey": "15",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/4066981/jailyn-ingram",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=4066981",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "F",
+                      "displayName": "Forward",
+                      "name": "Forward"
+                    },
+                    "shortName": "J. Ingram",
+                    "uid": "s:40~l:41~a:4066981"
+                  },
+                  "didNotPlay": false,
+                  "ejected": false,
+                  "starter": true,
+                  "stats": [
+                    "22",
+                    "4-7",
+                    "0-0",
+                    "1-1",
+                    "3",
+                    "1",
+                    "4",
+                    "1",
+                    "0",
+                    "0",
+                    "1",
+                    "4",
+                    "9"
+                  ]
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "William Pfister",
+                    "id": "4066979",
+                    "jersey": "5",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/4066979/william-pfister",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=4066979",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "F",
+                      "displayName": "Forward",
+                      "name": "Forward"
+                    },
+                    "shortName": "W. Pfister",
+                    "uid": "s:40~l:41~a:4066979"
+                  },
+                  "didNotPlay": false,
+                  "ejected": false,
+                  "starter": true,
+                  "stats": [
+                    "30",
+                    "1-2",
+                    "0-0",
+                    "0-0",
+                    "2",
+                    "7",
+                    "9",
+                    "2",
+                    "1",
+                    "0",
+                    "1",
+                    "4",
+                    "2"
+                  ]
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Ronald Delph",
+                    "id": "66245",
+                    "jersey": "33",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/66245/ronald-delph",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=66245",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "C",
+                      "displayName": "Center",
+                      "name": "Center"
+                    },
+                    "shortName": "R. Delph",
+                    "uid": "s:40~l:41~a:66245"
+                  },
+                  "didNotPlay": false,
+                  "ejected": false,
+                  "starter": true,
+                  "stats": [
+                    "32",
+                    "8-14",
+                    "0-0",
+                    "3-3",
+                    "4",
+                    "5",
+                    "9",
+                    "1",
+                    "0",
+                    "7",
+                    "4",
+                    "4",
+                    "19"
+                  ]
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Payton Hulsey",
+                    "id": "67501",
+                    "jersey": "0",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/67501/payton-hulsey",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=67501",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "G",
+                      "displayName": "Guard",
+                      "name": "Guard"
+                    },
+                    "shortName": "P. Hulsey",
+                    "uid": "s:40~l:41~a:67501"
+                  },
+                  "didNotPlay": false,
+                  "ejected": false,
+                  "starter": true,
+                  "stats": [
+                    "30",
+                    "2-11",
+                    "1-6",
+                    "4-6",
+                    "1",
+                    "3",
+                    "4",
+                    "3",
+                    "1",
+                    "0",
+                    "3",
+                    "4",
+                    "9"
+                  ]
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Justin Massey",
+                    "id": "3151395",
+                    "jersey": "2",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/3151395/justin-massey",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=3151395",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "G",
+                      "displayName": "Guard",
+                      "name": "Guard"
+                    },
+                    "shortName": "J. Massey",
+                    "uid": "s:40~l:41~a:3151395"
+                  },
+                  "didNotPlay": false,
+                  "ejected": false,
+                  "starter": true,
+                  "stats": [
+                    "24",
+                    "6-16",
+                    "4-8",
+                    "0-0",
+                    "0",
+                    "1",
+                    "1",
+                    "1",
+                    "0",
+                    "0",
+                    "2",
+                    "1",
+                    "16"
+                  ]
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Amir Smith",
+                    "id": "3920207",
+                    "jersey": "32",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/3920207/amir-smith",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=3920207",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "F",
+                      "displayName": "Forward",
+                      "name": "Forward"
+                    },
+                    "shortName": "A. Smith",
+                    "uid": "s:40~l:41~a:3920207"
+                  },
+                  "didNotPlay": false,
+                  "ejected": false,
+                  "starter": false,
+                  "stats": [
+                    "7",
+                    "0-0",
+                    "0-0",
+                    "0-0",
+                    "0",
+                    "1",
+                    "1",
+                    "0",
+                    "0",
+                    "1",
+                    "0",
+                    "1",
+                    "0"
+                  ]
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Devorious Brown",
+                    "id": "4066980",
+                    "jersey": "12",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/4066980/devorious-brown",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=4066980",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "G",
+                      "displayName": "Guard",
+                      "name": "Guard"
+                    },
+                    "shortName": "D. Brown",
+                    "uid": "s:40~l:41~a:4066980"
+                  },
+                  "didNotPlay": false,
+                  "ejected": false,
+                  "starter": false,
+                  "stats": [
+                    "18",
+                    "3-7",
+                    "0-0",
+                    "2-2",
+                    "4",
+                    "2",
+                    "6",
+                    "3",
+                    "4",
+                    "0",
+                    "1",
+                    "2",
+                    "8"
+                  ]
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Gerdarius Troutman",
+                    "id": "3155583",
+                    "jersey": "14",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/3155583/gerdarius-troutman",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=3155583",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "G",
+                      "displayName": "Guard",
+                      "name": "Guard"
+                    },
+                    "shortName": "G. Troutman",
+                    "uid": "s:40~l:41~a:3155583"
+                  },
+                  "didNotPlay": false,
+                  "ejected": false,
+                  "starter": false,
+                  "stats": [
+                    "24",
+                    "3-10",
+                    "3-8",
+                    "0-0",
+                    "0",
+                    "2",
+                    "2",
+                    "2",
+                    "1",
+                    "0",
+                    "0",
+                    "1",
+                    "9"
+                  ]
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Anthony Adger",
+                    "id": "4278962",
+                    "jersey": "3",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278962/anthony-adger",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=4278962",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "G",
+                      "displayName": "Guard",
+                      "name": "Guard"
+                    },
+                    "shortName": "A. Adger",
+                    "uid": "s:40~l:41~a:4278962"
+                  },
+                  "didNotPlay": false,
+                  "ejected": false,
+                  "starter": false,
+                  "stats": [
+                    "13",
+                    "3-8",
+                    "0-1",
+                    "0-0",
+                    "0",
+                    "0",
+                    "0",
+                    "2",
+                    "0",
+                    "0",
+                    "0",
+                    "1",
+                    "6"
+                  ]
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Tre' Maloney",
+                    "id": "4278964",
+                    "jersey": "11",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278964/tre-maloney",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=4278964",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "F",
+                      "displayName": "Forward",
+                      "name": "Forward"
+                    },
+                    "shortName": "T. Maloney",
+                    "uid": "s:40~l:41~a:4278964"
+                  },
+                  "didNotPlay": true,
+                  "ejected": false,
+                  "starter": false,
+                  "stats": []
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Simeon Lepichev",
+                    "id": "4278965",
+                    "jersey": "21",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278965/simeon-lepichev",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=4278965",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "C",
+                      "displayName": "Center",
+                      "name": "Center"
+                    },
+                    "shortName": "S. Lepichev",
+                    "uid": "s:40~l:41~a:4278965"
+                  },
+                  "didNotPlay": true,
+                  "ejected": false,
+                  "starter": false,
+                  "stats": []
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Kevin Rostamian",
+                    "id": "4278966",
+                    "jersey": "30",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278966/kevin-rostamian",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=4278966",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "C",
+                      "displayName": "Center",
+                      "name": "Center"
+                    },
+                    "shortName": "K. Rostamian",
+                    "uid": "s:40~l:41~a:4278966"
+                  },
+                  "didNotPlay": true,
+                  "ejected": false,
+                  "starter": false,
+                  "stats": []
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Chisom Obidike",
+                    "id": "4278967",
+                    "jersey": "35",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278967/chisom-obidike",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=4278967",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "C",
+                      "displayName": "Center",
+                      "name": "Center"
+                    },
+                    "shortName": "C. Obidike",
+                    "uid": "s:40~l:41~a:4278967"
+                  },
+                  "didNotPlay": true,
+                  "ejected": false,
+                  "starter": false,
+                  "stats": []
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Je'Quan Perry",
+                    "id": "4278961",
+                    "jersey": "1",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278961/jequan-perry",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=4278961",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "G",
+                      "displayName": "Guard",
+                      "name": "Guard"
+                    },
+                    "shortName": "J. Perry",
+                    "uid": "s:40~l:41~a:4278961"
+                  },
+                  "didNotPlay": true,
+                  "ejected": false,
+                  "starter": false,
+                  "stats": []
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Byron Abrams",
+                    "id": "4278963",
+                    "jersey": "4",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278963/byron-abrams",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=4278963",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "G",
+                      "displayName": "Guard",
+                      "name": "Guard"
+                    },
+                    "shortName": "B. Abrams",
+                    "uid": "s:40~l:41~a:4278963"
+                  },
+                  "didNotPlay": true,
+                  "ejected": false,
+                  "starter": false,
+                  "stats": []
+                }
+              ],
+              "descriptions": [
+                "Minutes",
+                "Field Goals Made/Attempted",
+                "3-Point Field Goals Made/Attempted",
+                "Free Throws Made/Attempted",
+                "Offensive Rebounds",
+                "Defensive Rebounds",
+                "Rebounds",
+                "Assists",
+                "Steals",
+                "Blocks",
+                "Turnovers",
+                "Personal Fouls",
+                "Points"
+              ],
+              "labels": [
+                "MIN",
+                "FG",
+                "3PT",
+                "FT",
+                "OREB",
+                "DREB",
+                "REB",
+                "AST",
+                "STL",
+                "BLK",
+                "TO",
+                "PF",
+                "PTS"
+              ],
+              "totals": [
+                "",
+                "30-75",
+                "8-23",
+                "10-12",
+                "15",
+                "25",
+                "40",
+                "15",
+                "7",
+                "8",
+                "12",
+                "22",
+                "78"
+              ]
+            }
+          ],
+          "team": {
+            "abbreviation": "FAU",
+            "alternateColor": "bb2f4c",
+            "color": "004B85",
+            "displayName": "Florida Atlantic Owls",
+            "id": "2226",
+            "location": "Florida Atlantic",
+            "logo": "http://a.espncdn.com/i/teamlogos/ncaa/500/2226.png",
+            "name": "Owls",
+            "shortDisplayName": "FAU",
+            "slug": "florida-atlantic-owls",
+            "uid": "s:40~l:41~t:2226"
+          }
+        },
+        {
+          "statistics": [
+            {
+              "athletes": [
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Jailan Haslem",
+                    "id": "4278930",
+                    "jersey": "0",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278930/jailan-haslem",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=4278930",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "C",
+                      "displayName": "Center",
+                      "name": "Center"
+                    },
+                    "shortName": "J. Haslem",
+                    "uid": "s:40~l:41~a:4278930"
+                  },
+                  "didNotPlay": false,
+                  "ejected": false,
+                  "starter": true,
+                  "stats": [
+                    "31",
+                    "3-3",
+                    "0-0",
+                    "0-0",
+                    "2",
+                    "4",
+                    "6",
+                    "0",
+                    "1",
+                    "1",
+                    "3",
+                    "3",
+                    "6"
+                  ]
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Corey Bias",
+                    "id": "4066967",
+                    "jersey": "10",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/4066967/corey-bias",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=4066967",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "G",
+                      "displayName": "Guard",
+                      "name": "Guard"
+                    },
+                    "shortName": "C. Bias",
+                    "uid": "s:40~l:41~a:4066967"
+                  },
+                  "didNotPlay": false,
+                  "ejected": false,
+                  "starter": true,
+                  "stats": [
+                    "4",
+                    "0-1",
+                    "0-0",
+                    "0-0",
+                    "0",
+                    "1",
+                    "1",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ]
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Austin Ajukwa",
+                    "id": "66120",
+                    "jersey": "5",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/66120/austin-ajukwa",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=66120",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "G",
+                      "displayName": "Guard",
+                      "name": "Guard"
+                    },
+                    "shortName": "A. Ajukwa",
+                    "uid": "s:40~l:41~a:66120"
+                  },
+                  "didNotPlay": false,
+                  "ejected": false,
+                  "starter": true,
+                  "stats": [
+                    "30",
+                    "7-13",
+                    "1-3",
+                    "8-8",
+                    "0",
+                    "5",
+                    "5",
+                    "1",
+                    "3",
+                    "0",
+                    "3",
+                    "3",
+                    "23"
+                  ]
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Andrien White",
+                    "id": "3906682",
+                    "jersey": "2",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/3906682/andrien-white",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=3906682",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "G",
+                      "displayName": "Guard",
+                      "name": "Guard"
+                    },
+                    "shortName": "A. White",
+                    "uid": "s:40~l:41~a:3906682"
+                  },
+                  "didNotPlay": false,
+                  "ejected": false,
+                  "starter": true,
+                  "stats": [
+                    "36",
+                    "4-17",
+                    "1-6",
+                    "8-10",
+                    "0",
+                    "5",
+                    "5",
+                    "1",
+                    "3",
+                    "2",
+                    "3",
+                    "2",
+                    "17"
+                  ]
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Jon Davis",
+                    "id": "3906683",
+                    "jersey": "3",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/3906683/jon-davis",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=3906683",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "G",
+                      "displayName": "Guard",
+                      "name": "Guard"
+                    },
+                    "shortName": "J. Davis",
+                    "uid": "s:40~l:41~a:3906683"
+                  },
+                  "didNotPlay": false,
+                  "ejected": false,
+                  "starter": true,
+                  "stats": [
+                    "40",
+                    "6-11",
+                    "4-6",
+                    "12-12",
+                    "0",
+                    "4",
+                    "4",
+                    "4",
+                    "0",
+                    "0",
+                    "3",
+                    "2",
+                    "28"
+                  ]
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Najee Garvin",
+                    "id": "4066966",
+                    "jersey": "1",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/4066966/najee-garvin",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=4066966",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "F",
+                      "displayName": "Forward",
+                      "name": "Forward"
+                    },
+                    "shortName": "N. Garvin",
+                    "uid": "s:40~l:41~a:4066966"
+                  },
+                  "didNotPlay": false,
+                  "ejected": false,
+                  "starter": false,
+                  "stats": [
+                    "27",
+                    "1-2",
+                    "0-0",
+                    "2-2",
+                    "1",
+                    "8",
+                    "9",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "3",
+                    "4"
+                  ]
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Milos Supica",
+                    "id": "4278932",
+                    "jersey": "15",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278932/milos-supica",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=4278932",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "F",
+                      "displayName": "Forward",
+                      "name": "Forward"
+                    },
+                    "shortName": "M. Supica",
+                    "uid": "s:40~l:41~a:4278932"
+                  },
+                  "didNotPlay": false,
+                  "ejected": false,
+                  "starter": false,
+                  "stats": [
+                    "16",
+                    "1-3",
+                    "0-0",
+                    "0-0",
+                    "1",
+                    "2",
+                    "3",
+                    "0",
+                    "0",
+                    "1",
+                    "0",
+                    "0",
+                    "2"
+                  ]
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Luka Vasic",
+                    "id": "4278934",
+                    "jersey": "35",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278934/luka-vasic",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=4278934",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "G",
+                      "displayName": "Guard",
+                      "name": "Guard"
+                    },
+                    "shortName": "L. Vasic",
+                    "uid": "s:40~l:41~a:4278934"
+                  },
+                  "didNotPlay": false,
+                  "ejected": false,
+                  "starter": false,
+                  "stats": [
+                    "14",
+                    "2-4",
+                    "1-2",
+                    "0-0",
+                    "0",
+                    "2",
+                    "2",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "1",
+                    "5"
+                  ]
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Jaylan McGill",
+                    "id": "4278931",
+                    "jersey": "12",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278931/jaylan-mcgill",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=4278931",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "G",
+                      "displayName": "Guard",
+                      "name": "Guard"
+                    },
+                    "shortName": "J. McGill",
+                    "uid": "s:40~l:41~a:4278931"
+                  },
+                  "didNotPlay": false,
+                  "ejected": false,
+                  "starter": false,
+                  "stats": [
+                    "2",
+                    "0-0",
+                    "0-0",
+                    "0-0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Bryant Thomas",
+                    "id": "4278933",
+                    "jersey": "30",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/4278933/bryant-thomas",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=4278933",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "F",
+                      "displayName": "Forward",
+                      "name": "Forward"
+                    },
+                    "shortName": "B. Thomas",
+                    "uid": "s:40~l:41~a:4278933"
+                  },
+                  "didNotPlay": true,
+                  "ejected": false,
+                  "starter": false,
+                  "stats": []
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Bo Blight",
+                    "id": "4066971",
+                    "jersey": "11",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/4066971/bo-blight",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=4066971",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "F",
+                      "displayName": "Forward",
+                      "name": "Forward"
+                    },
+                    "shortName": "B. Blight",
+                    "uid": "s:40~l:41~a:4066971"
+                  },
+                  "didNotPlay": true,
+                  "ejected": false,
+                  "starter": false,
+                  "stats": []
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Hudson Price",
+                    "id": "66154",
+                    "jersey": "21",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/66154/hudson-price",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=66154",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "G",
+                      "displayName": "Guard",
+                      "name": "Guard"
+                    },
+                    "shortName": "H. Price",
+                    "uid": "s:40~l:41~a:66154"
+                  },
+                  "didNotPlay": true,
+                  "ejected": false,
+                  "starter": false,
+                  "stats": []
+                },
+                {
+                  "active": false,
+                  "athlete": {
+                    "displayName": "Ryan Murphy",
+                    "id": "4066969",
+                    "jersey": "24",
+                    "links": [
+                      {
+                        "href": "http://www.espn.com/mens-college-basketball/player/_/id/4066969/ryan-murphy",
+                        "text": "Player Card"
+                      },
+                      {
+                        "href": "http://m.espn.com/ncb/playercard?playerId=4066969",
+                        "text": "Player Card"
+                      }
+                    ],
+                    "position": {
+                      "abbreviation": "G",
+                      "displayName": "Guard",
+                      "name": "Guard"
+                    },
+                    "shortName": "R. Murphy",
+                    "uid": "s:40~l:41~a:4066969"
+                  },
+                  "didNotPlay": true,
+                  "ejected": false,
+                  "starter": false,
+                  "stats": []
+                }
+              ],
+              "descriptions": [
+                "Minutes",
+                "Field Goals Made/Attempted",
+                "3-Point Field Goals Made/Attempted",
+                "Free Throws Made/Attempted",
+                "Offensive Rebounds",
+                "Defensive Rebounds",
+                "Rebounds",
+                "Assists",
+                "Steals",
+                "Blocks",
+                "Turnovers",
+                "Personal Fouls",
+                "Points"
+              ],
+              "labels": [
+                "MIN",
+                "FG",
+                "3PT",
+                "FT",
+                "OREB",
+                "DREB",
+                "REB",
+                "AST",
+                "STL",
+                "BLK",
+                "TO",
+                "PF",
+                "PTS"
+              ],
+              "totals": [
+                "",
+                "24-54",
+                "7-17",
+                "30-32",
+                "6",
+                "31",
+                "37",
+                "7",
+                "8",
+                "5",
+                "13",
+                "15",
+                "85"
+              ]
+            }
+          ],
+          "team": {
+            "abbreviation": "CHAR",
+            "alternateColor": "cfab7a",
+            "color": "0C562D",
+            "displayName": "Charlotte 49ers",
+            "id": "2429",
+            "location": "Charlotte",
+            "logo": "http://a.espncdn.com/i/teamlogos/ncaa/500/2429.png",
+            "name": "49ers",
+            "shortDisplayName": "Charlotte",
+            "slug": "charlotte-49ers",
+            "uid": "s:40~l:41~t:2429"
+          }
+        }
+      ],
+      "teams": [
+        {
+          "statistics": [
+            {
+              "displayValue": "30-75",
+              "label": "FG Made-Attempted",
+              "name": "fieldGoalsMade-fieldGoalsAttempted"
+            },
+            {
+              "abbreviation": "FG%",
+              "displayValue": "40.0",
+              "label": "Field Goal %",
+              "name": "fieldGoalPct"
+            },
+            {
+              "displayValue": "8-23",
+              "label": "3PT Made-Attempted",
+              "name": "threePointFieldGoalsMade-threePointFieldGoalsAttempted"
+            },
+            {
+              "abbreviation": "3P%",
+              "displayValue": "34.8",
+              "label": "Three Point %",
+              "name": "threePointFieldGoalPct"
+            },
+            {
+              "displayValue": "10-12",
+              "label": "FT Made-Attempted",
+              "name": "freeThrowsMade-freeThrowsAttempted"
+            },
+            {
+              "abbreviation": "FT%",
+              "displayValue": "83.3",
+              "label": "Free Throw %",
+              "name": "freeThrowPct"
+            },
+            {
+              "abbreviation": "REB",
+              "displayValue": "40",
+              "label": "Total Rebounds",
+              "name": "totalRebounds"
+            },
+            {
+              "abbreviation": "OREB",
+              "displayValue": "15",
+              "label": "Offensive Rebounds",
+              "name": "offensiveRebounds"
+            },
+            {
+              "abbreviation": "DREB",
+              "displayValue": "25",
+              "label": "Defensive Rebounds",
+              "name": "defensiveRebounds"
+            },
+            {
+              "abbreviation": "TREB",
+              "displayValue": "0",
+              "label": "Team Rebounds",
+              "name": "teamRebounds"
+            },
+            {
+              "abbreviation": "AST",
+              "displayValue": "15",
+              "label": "Assists",
+              "name": "assists"
+            },
+            {
+              "abbreviation": "STL",
+              "displayValue": "7",
+              "label": "Steals",
+              "name": "steals"
+            },
+            {
+              "abbreviation": "BLK",
+              "displayValue": "8",
+              "label": "Blocks",
+              "name": "blocks"
+            },
+            {
+              "abbreviation": "TO",
+              "displayValue": "12",
+              "label": "Turnovers",
+              "name": "turnovers"
+            },
+            {
+              "abbreviation": "TTO",
+              "displayValue": "0",
+              "label": "Team Turnovers",
+              "name": "teamTurnovers"
+            },
+            {
+              "abbreviation": "ToTO",
+              "displayValue": "12",
+              "label": "Total Turnovers",
+              "name": "totalTurnovers"
+            },
+            {
+              "abbreviation": "TECH",
+              "displayValue": "0",
+              "label": "Technical Fouls",
+              "name": "technicalFouls"
+            },
+            {
+              "abbreviation": "TECH",
+              "displayValue": "0",
+              "label": "Total Technical Fouls",
+              "name": "totalTechnicalFouls"
+            },
+            {
+              "abbreviation": "FLAG",
+              "displayValue": "0",
+              "label": "Flagrant Fouls",
+              "name": "flagrantFouls"
+            },
+            {
+              "abbreviation": "PF",
+              "displayValue": "22",
+              "label": "Personal Fouls",
+              "name": "fouls"
+            }
+          ],
+          "team": {
+            "abbreviation": "FAU",
+            "alternateColor": "bb2f4c",
+            "color": "004B85",
+            "displayName": "Florida Atlantic Owls",
+            "id": "2226",
+            "location": "Florida Atlantic",
+            "logo": "http://a.espncdn.com/i/teamlogos/ncaa/500/2226.png",
+            "name": "Owls",
+            "shortDisplayName": "FAU",
+            "slug": "florida-atlantic-owls",
+            "uid": "s:40~l:41~t:2226"
+          }
+        },
+        {
+          "statistics": [
+            {
+              "displayValue": "24-54",
+              "label": "FG Made-Attempted",
+              "name": "fieldGoalsMade-fieldGoalsAttempted"
+            },
+            {
+              "abbreviation": "FG%",
+              "displayValue": "44.4",
+              "label": "Field Goal %",
+              "name": "fieldGoalPct"
+            },
+            {
+              "displayValue": "7-17",
+              "label": "3PT Made-Attempted",
+              "name": "threePointFieldGoalsMade-threePointFieldGoalsAttempted"
+            },
+            {
+              "abbreviation": "3P%",
+              "displayValue": "41.2",
+              "label": "Three Point %",
+              "name": "threePointFieldGoalPct"
+            },
+            {
+              "displayValue": "30-32",
+              "label": "FT Made-Attempted",
+              "name": "freeThrowsMade-freeThrowsAttempted"
+            },
+            {
+              "abbreviation": "FT%",
+              "displayValue": "93.8",
+              "label": "Free Throw %",
+              "name": "freeThrowPct"
+            },
+            {
+              "abbreviation": "REB",
+              "displayValue": "37",
+              "label": "Total Rebounds",
+              "name": "totalRebounds"
+            },
+            {
+              "abbreviation": "OREB",
+              "displayValue": "6",
+              "label": "Offensive Rebounds",
+              "name": "offensiveRebounds"
+            },
+            {
+              "abbreviation": "DREB",
+              "displayValue": "31",
+              "label": "Defensive Rebounds",
+              "name": "defensiveRebounds"
+            },
+            {
+              "abbreviation": "TREB",
+              "displayValue": "0",
+              "label": "Team Rebounds",
+              "name": "teamRebounds"
+            },
+            {
+              "abbreviation": "AST",
+              "displayValue": "7",
+              "label": "Assists",
+              "name": "assists"
+            },
+            {
+              "abbreviation": "STL",
+              "displayValue": "8",
+              "label": "Steals",
+              "name": "steals"
+            },
+            {
+              "abbreviation": "BLK",
+              "displayValue": "5",
+              "label": "Blocks",
+              "name": "blocks"
+            },
+            {
+              "abbreviation": "TO",
+              "displayValue": "13",
+              "label": "Turnovers",
+              "name": "turnovers"
+            },
+            {
+              "abbreviation": "TTO",
+              "displayValue": "0",
+              "label": "Team Turnovers",
+              "name": "teamTurnovers"
+            },
+            {
+              "abbreviation": "ToTO",
+              "displayValue": "13",
+              "label": "Total Turnovers",
+              "name": "totalTurnovers"
+            },
+            {
+              "abbreviation": "TECH",
+              "displayValue": "0",
+              "label": "Technical Fouls",
+              "name": "technicalFouls"
+            },
+            {
+              "abbreviation": "TECH",
+              "displayValue": "0",
+              "label": "Total Technical Fouls",
+              "name": "totalTechnicalFouls"
+            },
+            {
+              "abbreviation": "FLAG",
+              "displayValue": "0",
+              "label": "Flagrant Fouls",
+              "name": "flagrantFouls"
+            },
+            {
+              "abbreviation": "PF",
+              "displayValue": "15",
+              "label": "Personal Fouls",
+              "name": "fouls"
+            }
+          ],
+          "team": {
+            "abbreviation": "CHAR",
+            "alternateColor": "cfab7a",
+            "color": "0C562D",
+            "displayName": "Charlotte 49ers",
+            "id": "2429",
+            "location": "Charlotte",
+            "logo": "http://a.espncdn.com/i/teamlogos/ncaa/500/2429.png",
+            "name": "49ers",
+            "shortDisplayName": "Charlotte",
+            "slug": "charlotte-49ers",
+            "uid": "s:40~l:41~t:2429"
+          }
+        }
+      ]
+    },
+    "broadcasts": [],
+    "header": {
+      "competitions": [
+        {
+          "boxscoreAvailable": true,
+          "boxscoreSource": "full",
+          "broadcasts": [],
+          "commentaryAvailable": false,
+          "competitors": [
+            {
+              "homeAway": "home",
+              "id": "2429",
+              "linescores": [
+                {
+                  "displayValue": "40"
+                },
+                {
+                  "displayValue": "45"
+                }
+              ],
+              "order": 0,
+              "possession": false,
+              "record": [
+                {
+                  "displayValue": "6-23",
+                  "summary": "6-23",
+                  "type": "total"
+                },
+                {
+                  "displayValue": "4-11",
+                  "summary": "4-11",
+                  "type": "home"
+                },
+                {
+                  "displayValue": "2-16",
+                  "summary": "2-16",
+                  "type": "vsconf"
+                }
+              ],
+              "score": "85",
+              "team": {
+                "abbreviation": "CHAR",
+                "alternateColor": "cfab7a",
+                "color": "0C562D",
+                "displayName": "Charlotte 49ers",
+                "id": "2429",
+                "links": [
+                  {
+                    "href": "http://www.espn.com/mens-college-basketball/team/_/id/2429/charlotte-49ers",
+                    "rel": [
+                      "clubhouse",
+                      "desktop",
+                      "team"
+                    ],
+                    "text": "Clubhouse"
+                  }
+                ],
+                "location": "Charlotte",
+                "logos": [
+                  {
+                    "alt": "",
+                    "height": 500,
+                    "href": "http://a.espncdn.com/i/teamlogos/ncaa/500/2429.png",
+                    "rel": [
+                      "full",
+                      "default"
+                    ],
+                    "width": 500
+                  },
+                  {
+                    "alt": "",
+                    "height": 500,
+                    "href": "http://a.espncdn.com/i/teamlogos/ncaa/500-dark/2429.png",
+                    "rel": [
+                      "full",
+                      "dark"
+                    ],
+                    "width": 500
+                  }
+                ],
+                "name": "49ers",
+                "nickname": "Charlotte",
+                "uid": "s:40~l:41~t:2429"
+              },
+              "uid": "s:40~l:41~t:2429",
+              "winner": true
+            },
+            {
+              "homeAway": "away",
+              "id": "2226",
+              "linescores": [
+                {
+                  "displayValue": "36"
+                },
+                {
+                  "displayValue": "42"
+                }
+              ],
+              "order": 1,
+              "possession": false,
+              "record": [
+                {
+                  "displayValue": "12-18",
+                  "summary": "12-18",
+                  "type": "total"
+                },
+                {
+                  "displayValue": "4-9",
+                  "summary": "4-9",
+                  "type": "road"
+                },
+                {
+                  "displayValue": "6-12",
+                  "summary": "6-12",
+                  "type": "vsconf"
+                }
+              ],
+              "score": "78",
+              "team": {
+                "abbreviation": "FAU",
+                "alternateColor": "bb2f4c",
+                "color": "004B85",
+                "displayName": "Florida Atlantic Owls",
+                "id": "2226",
+                "links": [
+                  {
+                    "href": "http://www.espn.com/mens-college-basketball/team/_/id/2226/florida-atlantic-owls",
+                    "rel": [
+                      "clubhouse",
+                      "desktop",
+                      "team"
+                    ],
+                    "text": "Clubhouse"
+                  }
+                ],
+                "location": "Florida Atlantic",
+                "logos": [
+                  {
+                    "alt": "",
+                    "height": 500,
+                    "href": "http://a.espncdn.com/i/teamlogos/ncaa/500/2226.png",
+                    "rel": [
+                      "full",
+                      "default"
+                    ],
+                    "width": 500
+                  },
+                  {
+                    "alt": "",
+                    "height": 500,
+                    "href": "http://a.espncdn.com/i/teamlogos/ncaa/500-dark/2226.png",
+                    "rel": [
+                      "full",
+                      "dark"
+                    ],
+                    "width": 500
+                  }
+                ],
+                "name": "Owls",
+                "nickname": "FAU",
+                "uid": "s:40~l:41~t:2226"
+              },
+              "uid": "s:40~l:41~t:2226",
+              "winner": false
+            }
+          ],
+          "conferenceCompetition": true,
+          "date": "2018-03-04T00:30Z",
+          "groups": {
+            "abbreviation": "usa",
+            "id": "11",
+            "midsizeName": "Conference USA",
+            "name": "Conference USA",
+            "shortName": "C-USA"
+          },
+          "id": "400992695",
+          "liveAvailable": false,
+          "neutralSite": false,
+          "onWatchESPN": false,
+          "playByPlaySource": "none",
+          "possessionArrowAvailable": false,
+          "recent": false,
+          "shotChartAvailable": false,
+          "status": {
+            "type": {
+              "description": "Final",
+              "detail": "Final",
+              "id": "3",
+              "state": "post"
+            }
+          },
+          "timeoutsAvailable": false,
+          "uid": "s:40~l:41~e:400992695~c:400992695"
+        }
+      ],
+      "id": "400992695",
+      "league": {
+        "abbreviation": "NCAAM",
+        "id": "41",
+        "isTournament": false,
+        "links": [
+          {
+            "href": "http://www.espn.com/mens-college-basketball/",
+            "rel": [
+              "index",
+              "desktop",
+              "league"
+            ],
+            "text": "Index"
+          },
+          {
+            "href": "sportscenter://x-callback-url/showClubhouse?uid=s:40~l:41",
+            "rel": [
+              "index",
+              "sportscenter",
+              "app",
+              "league"
+            ],
+            "text": "Index"
+          },
+          {
+            "href": "http://www.espn.com/mens-college-basketball/schedule",
+            "rel": [
+              "schedule",
+              "desktop",
+              "league"
+            ],
+            "text": "Schedule"
+          },
+          {
+            "href": "sportscenter://x-callback-url/showClubhouse?uid=s:40~l:41&section=scores",
+            "rel": [
+              "schedule",
+              "sportscenter",
+              "app",
+              "league"
+            ],
+            "text": "Schedule"
+          },
+          {
+            "href": "http://www.espn.com/mens-college-basketball/standings",
+            "rel": [
+              "standings",
+              "desktop",
+              "league"
+            ],
+            "text": "Standings"
+          },
+          {
+            "href": "sportscenter://x-callback-url/showClubhouse?uid=s:40~l:41&section=standings",
+            "rel": [
+              "standings",
+              "sportscenter",
+              "app",
+              "league"
+            ],
+            "text": "Standings"
+          },
+          {
+            "href": "http://www.espn.com/mens-college-basketball/rankings",
+            "rel": [
+              "rankings",
+              "desktop",
+              "league"
+            ],
+            "text": "Rankings"
+          },
+          {
+            "href": "http://www.espn.com/mens-college-basketball/scoreboard",
+            "rel": [
+              "scores",
+              "desktop",
+              "league"
+            ],
+            "text": "Scores"
+          },
+          {
+            "href": "sportscenter://x-callback-url/showClubhouse?uid=s:40~l:41&section=scores",
+            "rel": [
+              "scores",
+              "sportscenter",
+              "app",
+              "league"
+            ],
+            "text": "Scores"
+          },
+          {
+            "href": "http://www.espn.com/mens-college-basketball/statistics",
+            "rel": [
+              "stats",
+              "desktop",
+              "league"
+            ],
+            "text": "Stats"
+          },
+          {
+            "href": "http://www.espn.com/mens-college-basketball/teams",
+            "rel": [
+              "teams",
+              "desktop",
+              "league"
+            ],
+            "text": "Teams"
+          },
+          {
+            "href": "http://www.espn.com/mens-college-basketball/players",
+            "rel": [
+              "athletes",
+              "desktop",
+              "league"
+            ],
+            "text": "Players"
+          },
+          {
+            "href": "http://www.espn.com/mens-college-basketball/injuries",
+            "rel": [
+              "injuries",
+              "desktop",
+              "league"
+            ],
+            "text": "Injuries"
+          },
+          {
+            "href": "http://www.espn.com/mens-college-basketball/bpi",
+            "rel": [
+              "bpi_overview",
+              "desktop",
+              "league"
+            ],
+            "text": "Overview"
+          },
+          {
+            "href": "http://www.espn.com/mens-college-basketball/bpi/_/view/bpi",
+            "rel": [
+              "bpi_bpi",
+              "desktop",
+              "league"
+            ],
+            "text": "BPI"
+          },
+          {
+            "href": "http://www.espn.com/mens-college-basketball/bpi/_/view/resume",
+            "rel": [
+              "bpi_resume",
+              "desktop",
+              "league"
+            ],
+            "text": "Resume"
+          },
+          {
+            "href": "http://www.espn.com/mens-college-basketball/bpi/_/view/projections",
+            "rel": [
+              "bpi_projections",
+              "desktop",
+              "league"
+            ],
+            "text": "Projections"
+          },
+          {
+            "href": "http://www.espn.com/mens-college-basketball/bpi/_/view/predictions",
+            "rel": [
+              "bpi_predictions",
+              "desktop",
+              "league"
+            ],
+            "text": "Daily Predictions"
+          }
+        ],
+        "midsizeName": "NCAA Basketball",
+        "name": "NCAA Men's Basketball",
+        "slug": "mens-college-basketball",
+        "uid": "s:40~l:41"
+      },
+      "links": [
+        {
+          "href": "http://www.espn.com/mens-college-basketball/game?gameId=400992695",
+          "isExternal": false,
+          "isPremium": false,
+          "rel": [
+            "summary",
+            "desktop",
+            "event"
+          ],
+          "shortText": "Summary",
+          "text": "Summary"
+        },
+        {
+          "href": "http://www.espn.com/mens-college-basketball/recap?gameId=400992695",
+          "isExternal": false,
+          "isPremium": false,
+          "rel": [
+            "recap",
+            "desktop",
+            "event"
+          ],
+          "shortText": "Recap",
+          "text": "Recap"
+        },
+        {
+          "href": "http://www.espn.com/mens-college-basketball/boxscore?gameId=400992695",
+          "isExternal": false,
+          "isPremium": false,
+          "rel": [
+            "boxscore",
+            "desktop",
+            "event"
+          ],
+          "shortText": "Box Score",
+          "text": "Box Score"
+        },
+        {
+          "href": "http://www.espn.com/mens-college-basketball/matchup?gameId=400992695",
+          "isExternal": false,
+          "isPremium": false,
+          "rel": [
+            "teamstats",
+            "desktop",
+            "event"
+          ],
+          "shortText": "Team Stats",
+          "text": "Team Stats"
+        },
+        {
+          "href": "http://www.espn.com/mens-college-basketball/conversation?gameId=400992695",
+          "isExternal": false,
+          "isPremium": false,
+          "rel": [
+            "conversation",
+            "desktop",
+            "event"
+          ],
+          "shortText": "Conversation",
+          "text": "Conversation"
+        }
+      ],
+      "season": {
+        "type": 2,
+        "year": 2018
+      },
+      "timeValid": true,
+      "uid": "s:40~l:41~e:400992695",
+      "week": 17
+    },
+    "news": {
+      "articles": [
+        {
+          "categories": [
+            {
+              "description": "Men's College Basketball",
+              "id": 80684,
+              "league": {
+                "description": "Men's College Basketball",
+                "id": 41,
+                "links": {
+                  "api": {
+                    "leagues": {}
+                  },
+                  "mobile": {
+                    "leagues": {
+                      "href": "http://m.espn.go.com/ncb/"
+                    }
+                  },
+                  "web": {
+                    "leagues": {
+                      "href": "http://www.espn.com/mens-college-basketball/"
+                    }
+                  }
+                }
+              },
+              "leagueId": 41,
+              "sportId": 41,
+              "type": "league",
+              "uid": "s:40~l:41"
+            },
+            {
+              "sportId": 0,
+              "topicId": 92,
+              "type": "topic",
+              "uid": "s:0"
+            }
+          ],
+          "description": "Jay Bilas strongly criticizes those opposing the opportunity for college players to leave after their freshman season.",
+          "headline": "Bilas on one-and-done critiques: 'We have become elitist'",
+          "images": [
+            {
+              "alt": "",
+              "caption": "Jay Bilas strongly criticizes those opposing the opportunity for college players to leave after their freshman season.",
+              "height": 324,
+              "name": "Bilas on one-and-done critiques: 'We have become elitist'",
+              "url": "http://a.espncdn.com/media/motion/2018/0305/dm_180305_jay_on_ncaa/dm_180305_jay_on_ncaa.jpg",
+              "width": 576
+            }
+          ],
+          "links": {
+            "api": {
+              "news": {
+                "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/video/clips/22658222"
+              },
+              "self": {
+                "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/video/clips/22658222"
+              }
+            },
+            "web": {
+              "href": "http://www.espn.com/video/clip?id=22658222",
+              "short": {
+                "href": "http://es.pn/2CZnf4F"
+              }
+            }
+          }
+        },
+        {
+          "categories": [
+            {
+              "description": "Men's College Basketball",
+              "id": 80684,
+              "league": {
+                "description": "Men's College Basketball",
+                "id": 41,
+                "links": {
+                  "api": {
+                    "leagues": {}
+                  },
+                  "mobile": {
+                    "leagues": {
+                      "href": "http://m.espn.go.com/ncb/"
+                    }
+                  },
+                  "web": {
+                    "leagues": {
+                      "href": "http://www.espn.com/mens-college-basketball/"
+                    }
+                  }
+                }
+              },
+              "leagueId": 41,
+              "sportId": 41,
+              "type": "league",
+              "uid": "s:40~l:41"
+            },
+            {
+              "description": "Kansas Jayhawks",
+              "id": 3224,
+              "sportId": 41,
+              "team": {
+                "description": "Kansas Jayhawks",
+                "id": 2305,
+                "links": {
+                  "api": {
+                    "teams": {}
+                  },
+                  "mobile": {
+                    "teams": {
+                      "href": "http://m.espn.go.com/ncb/clubhouse?teamId=2305"
+                    }
+                  },
+                  "web": {
+                    "teams": {
+                      "href": "http://www.espn.com/mens-college-basketball/team/_/id/2305/kansas-jayhawks"
+                    }
+                  }
+                }
+              },
+              "teamId": 2305,
+              "type": "team",
+              "uid": "s:40~l:41~t:2305"
+            },
+            {
+              "description": "news - ncaa tournament",
+              "id": 164136,
+              "sportId": 0,
+              "topicId": 546,
+              "type": "topic"
+            }
+          ],
+          "description": "Joe Lunardi credits quality wins as a major reason why the Kansas Jayhawks deserve a No. 1 seed in the NCAA tournament.",
+          "headline": "Does Kansas deserve a No. 1 seed?",
+          "images": [
+            {
+              "alt": "",
+              "caption": "Joe Lunardi credits quality wins as a major reason why the Kansas Jayhawks deserve a No. 1 seed in the NCAA tournament.",
+              "height": 324,
+              "name": "Does Kansas deserve a No. 1 seed?",
+              "url": "http://a.espncdn.com/media/motion/2018/0305/dm_180305_ncb_sc_6_Kansas/dm_180305_ncb_sc_6_Kansas.jpg",
+              "width": 576
+            }
+          ],
+          "links": {
+            "api": {
+              "news": {
+                "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/video/clips/22658189"
+              },
+              "self": {
+                "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/video/clips/22658189"
+              }
+            },
+            "web": {
+              "href": "http://www.espn.com/video/clip?id=22658189",
+              "short": {
+                "href": "http://es.pn/2FXhacm"
+              }
+            }
+          }
+        },
+        {
+          "categories": [
+            {
+              "description": "Men's College Basketball",
+              "id": 9576,
+              "league": {
+                "description": "Men's College Basketball",
+                "id": 41,
+                "links": {
+                  "api": {
+                    "leagues": {}
+                  },
+                  "mobile": {
+                    "leagues": {
+                      "href": "http://m.espn.go.com/ncb/"
+                    }
+                  },
+                  "web": {
+                    "leagues": {
+                      "href": "http://www.espn.com/mens-college-basketball/"
+                    }
+                  }
+                }
+              },
+              "leagueId": 41,
+              "sportId": 41,
+              "type": "league",
+              "uid": "s:40~l:41"
+            },
+            {
+              "description": "Arkansas Razorbacks",
+              "id": 132491,
+              "sportId": 41,
+              "team": {
+                "description": "Arkansas Razorbacks",
+                "id": 8,
+                "links": {
+                  "api": {
+                    "teams": {}
+                  },
+                  "mobile": {
+                    "teams": {
+                      "href": "http://m.espn.go.com/ncb/clubhouse?teamId=8"
+                    }
+                  },
+                  "web": {
+                    "teams": {
+                      "href": "http://www.espn.com/mens-college-basketball/team/_/id/8/arkansas-razorbacks"
+                    }
+                  }
+                }
+              },
+              "teamId": 8,
+              "type": "team",
+              "uid": "s:40~l:41~t:8"
+            },
+            {
+              "sportId": 0,
+              "topicId": 126,
+              "type": "topic",
+              "uid": "s:0"
+            }
+          ],
+          "description": "Arkansas forward Dustin Thomas has been dismissed for an unspecified violation of team rules.",
+          "headline": "Arkansas' Dustin Thomas dismissed for violating team rules",
+          "images": [
+            {
+              "alt": "Dustin Thomas",
+              "caption": "Arksansas' Dustin Thomas has been kicked off the team for a rules violation.",
+              "credit": "AP Photo/Wade Payne",
+              "height": 400,
+              "id": 18891289,
+              "name": "Kentucky v Arkansas (Dustin Thomas ) [600x400]",
+              "type": "header",
+              "url": "http://a.espncdn.com/photo/2017/0312/r189625_600x400_3-2.jpg",
+              "width": 600
+            }
+          ],
+          "links": {
+            "api": {
+              "news": {
+                "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/news/22657795"
+              },
+              "self": {
+                "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/news/22657795"
+              }
+            },
+            "mobile": {
+              "href": "http://m.espn.go.com/ncb/story?storyId=22657795"
+            },
+            "web": {
+              "href": "http://www.espn.com/mens-college-basketball/story/_/id/22657795/arkansas-f-dustin-thomas-kicked-violating-team-rules",
+              "short": {
+                "href": "http://es.pn/2FYmiNq"
+              }
+            }
+          }
+        },
+        {
+          "categories": [
+            {
+              "description": "Men's College Basketball",
+              "id": 80684,
+              "league": {
+                "description": "Men's College Basketball",
+                "id": 41,
+                "links": {
+                  "api": {
+                    "leagues": {}
+                  },
+                  "mobile": {
+                    "leagues": {
+                      "href": "http://m.espn.go.com/ncb/"
+                    }
+                  },
+                  "web": {
+                    "leagues": {
+                      "href": "http://www.espn.com/mens-college-basketball/"
+                    }
+                  }
+                }
+              },
+              "leagueId": 41,
+              "sportId": 41,
+              "type": "league",
+              "uid": "s:40~l:41"
+            },
+            {
+              "sportId": 0,
+              "topicId": 92,
+              "type": "topic",
+              "uid": "s:0"
+            }
+          ],
+          "description": "Take a look back at this season's buzzer-beaters to get ready for what championship week and the NCAA tournament may bring.",
+          "headline": "Relive this season's exhilarating buzzer-beaters",
+          "images": [
+            {
+              "alt": "",
+              "caption": "Take a look back at this season's buzzer-beaters to get ready for what championship week and the NCAA tournament may bring.",
+              "height": 324,
+              "name": "Relive this season's exhilarating buzzer-beaters",
+              "url": "http://a.espncdn.com/media/motion/2018/0305/dm_180305_cbb_buzzer_beaters_montage/dm_180305_cbb_buzzer_beaters_montage.jpg",
+              "width": 576
+            }
+          ],
+          "links": {
+            "api": {
+              "news": {
+                "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/video/clips/22657769"
+              },
+              "self": {
+                "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/video/clips/22657769"
+              }
+            },
+            "web": {
+              "href": "http://www.espn.com/video/clip?id=22657769",
+              "short": {
+                "href": "http://es.pn/2Fs8tso"
+              }
+            }
+          }
+        },
+        {
+          "categories": [
+            {
+              "description": "Texas Tech Red Raiders",
+              "id": 3226,
+              "sportId": 41,
+              "team": {
+                "description": "Texas Tech Red Raiders",
+                "id": 2641,
+                "links": {
+                  "api": {
+                    "teams": {}
+                  },
+                  "mobile": {
+                    "teams": {
+                      "href": "http://m.espn.go.com/ncb/clubhouse?teamId=2641"
+                    }
+                  },
+                  "web": {
+                    "teams": {
+                      "href": "http://www.espn.com/mens-college-basketball/team/_/id/2641/texas-tech-red-raiders"
+                    }
+                  }
+                }
+              },
+              "teamId": 2641,
+              "type": "team",
+              "uid": "s:40~l:41~t:2641"
+            },
+            {
+              "description": "Men's College Basketball",
+              "id": 9576,
+              "league": {
+                "description": "Men's College Basketball",
+                "id": 41,
+                "links": {
+                  "api": {
+                    "leagues": {}
+                  },
+                  "mobile": {
+                    "leagues": {
+                      "href": "http://m.espn.go.com/ncb/"
+                    }
+                  },
+                  "web": {
+                    "leagues": {
+                      "href": "http://www.espn.com/mens-college-basketball/"
+                    }
+                  }
+                }
+              },
+              "leagueId": 41,
+              "sportId": 41,
+              "type": "league",
+              "uid": "s:40~l:41"
+            },
+            {
+              "sportId": 0,
+              "topicId": 126,
+              "type": "topic",
+              "uid": "s:0"
+            }
+          ],
+          "description": "Texas Tech has signed Chris Beard to a new six-year deal worth more than $19 million.",
+          "headline": "Texas Tech signs coach Chris Beard to six-year deal",
+          "images": [
+            {
+              "alt": "Chris Beard",
+              "caption": "Chris Beard just got a new deal from Texas Tech.",
+              "credit": "AAron Ontiveroz/The Denver Post/Getty Images",
+              "height": 400,
+              "id": 15216953,
+              "name": "Chris Beard [600x400] - Copy",
+              "type": "header",
+              "url": "http://a.espncdn.com/photo/2016/0414/r74087_600x400_3-2.jpg",
+              "width": 600
+            }
+          ],
+          "links": {
+            "api": {
+              "news": {
+                "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/news/22656343"
+              },
+              "self": {
+                "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/sports/news/22656343"
+              }
+            },
+            "mobile": {
+              "href": "http://m.espn.go.com/ncb/story?storyId=22656343"
+            },
+            "web": {
+              "href": "http://www.espn.com/mens-college-basketball/story/_/id/22656343/texas-tech-signs-chris-beard-new-six-year-deal",
+              "short": {
+                "href": "http://es.pn/2FWnW1W"
+              }
+            }
+          }
+        },
+        {
+          "categories": [
+            {
+              "description": "Men's College Basketball",
+              "id": 80684,
+              "league": {
+                "description": "Men's College Basketball",
+                "id": 41,
+                "links": {
+                  "api": {
+                    "leagues": {}
+                  },
+                  "mobile": {
+                    "leagues": {
+                      "href": "http://m.espn.go.com/ncb/"
+                    }
+                  },
+                  "web": {
+                    "leagues": {
+                      "href": "http://www.espn.com/mens-college-basketball/"
+                    }
+                  }
+                }
+              },
+              "leagueId": 41,
+              "sportId": 41,
+              "type": "league",
+              "uid": "s:40~l:41"
+            },
+            {
+              "description": "Michigan Wolverines",
+              "id": 3207,
+              "sportId": 41,
+              "team": {
+                "description": "Michigan Wolverines",
+                "id": 130,
+                "links": {
+                  "api": {
+                    "teams": {}
+                  },
+                  "mobile": {
+                    "teams": {
+                      "href": "http://m.espn.go.com/ncb/clubhouse?teamId=130"
+                    }
+                  },
+                  "web": {
+                    "teams": {
+                      "href": "http://www.espn.com/mens-college-basketball/team/_/id/130/michigan-wolverines"
+                    }
+                  }
+                }
+              },
+              "teamId": 130,
+              "type": "team",
+              "uid": "s:40~l:41~t:130"
+            },
+            {
+              "description": "news - ncaa tournament",
+              "id": 164136,
+              "sportId": 0,
+              "topicId": 546,
+              "type": "topic"
+            }
+          ],
+          "description": "Seth Greenberg explains why the Wolverines have to stay engaged in order to sustain their momentum after winning their second consecutive Big Ten tournament.",
+          "headline": "Will layoff impact Michigan's NCAA tournament chances?",
+          "images": [
+            {
+              "alt": "",
+              "caption": "Seth Greenberg explains why the Wolverines have to stay engaged in order to sustain their momentum after winning their second consecutive Big Ten tournament.",
+              "height": 324,
+              "name": "Will layoff impact Michigan's NCAA tournament chances?",
+              "url": "http://a.espncdn.com/media/motion/2018/0305/dm_180305_ncb_seth_on_michigan/dm_180305_ncb_seth_on_michigan.jpg",
+              "width": 576
+            }
+          ],
+          "links": {
+            "api": {
+              "news": {
+                "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/video/clips/22656110"
+              },
+              "self": {
+                "href": "http://now.core.api.prod.espninfra.starwave.com/allsports/apis/v1/video/clips/22656110"
+              }
+            },
+            "web": {
+              "href": "http://www.espn.com/video/clip?id=22656110",
+              "short": {
+                "href": "http://es.pn/2FnKBGF"
+              }
+            }
+          }
+        }
+      ],
+      "header": "NCAAM News",
+      "link": {
+        "href": "http://www.espn.com/mens-college-basketball/",
+        "isExternal": false,
+        "isPremium": false,
+        "language": "en",
+        "rel": [
+          "index",
+          "desktop",
+          "league"
+        ],
+        "shortText": "All News",
+        "text": "All NCAAM News"
+      }
+    },
+    "plays": [],
+    "standings": {
+      "fullViewLink": {
+        "href": "http://www.espn.com/mens-college-basketball/standings",
+        "text": "Full Standings"
+      },
+      "groups": [
+        {
+          "header": "2017-2018 Conference USA Standings",
+          "href": "http://www.espn.com/mens-college-basketball/standings/_/group/11",
+          "standings": {
+            "entries": [
+              {
+                "id": "2393",
+                "link": "http://www.espn.com/mens-college-basketball/team/_/id/2393/middle-tennessee-blue-raiders",
+                "logo": [
+                  {
+                    "alt": "",
+                    "height": 500,
+                    "href": "http://a.espncdn.com/i/teamlogos/ncaa/500/2393.png",
+                    "rel": [
+                      "full",
+                      "default"
+                    ],
+                    "width": 500
+                  }
+                ],
+                "stats": [
+                  {
+                    "abbreviation": "Season",
+                    "description": "Team Season Record",
+                    "displayName": "Team Season Record",
+                    "displayValue": "24-6",
+                    "id": "0",
+                    "name": "Season",
+                    "shortDisplayName": "Season",
+                    "summary": "24-6",
+                    "type": "total"
+                  },
+                  {
+                    "abbreviation": "GB",
+                    "description": "Games Back",
+                    "displayName": "Games Back",
+                    "displayValue": "-",
+                    "name": "gamesBehind",
+                    "shortDisplayName": "GB",
+                    "type": "vsconf_gamesbehind",
+                    "value": 0
+                  },
+                  {
+                    "abbreviation": "VS CONF",
+                    "description": "Conference Record",
+                    "displayName": "CONF",
+                    "displayValue": "16-2",
+                    "id": "9",
+                    "name": "vs Conference",
+                    "shortDisplayName": "CONF",
+                    "summary": "16-2",
+                    "type": "vsconf"
+                  }
+                ],
+                "team": "Middle Tennessee",
+                "uid": "s:40~l:41~t:2393"
+              },
+              {
+                "id": "295",
+                "link": "http://www.espn.com/mens-college-basketball/team/_/id/295/old-dominion-monarchs",
+                "logo": [
+                  {
+                    "alt": "",
+                    "height": 500,
+                    "href": "http://a.espncdn.com/i/teamlogos/ncaa/500/295.png",
+                    "rel": [
+                      "full",
+                      "default"
+                    ],
+                    "width": 500
+                  }
+                ],
+                "stats": [
+                  {
+                    "abbreviation": "Season",
+                    "description": "Team Season Record",
+                    "displayName": "Team Season Record",
+                    "displayValue": "24-6",
+                    "id": "0",
+                    "name": "Season",
+                    "shortDisplayName": "Season",
+                    "summary": "24-6",
+                    "type": "total"
+                  },
+                  {
+                    "abbreviation": "GB",
+                    "description": "Games Back",
+                    "displayName": "Games Back",
+                    "displayValue": "1",
+                    "name": "gamesBehind",
+                    "shortDisplayName": "GB",
+                    "type": "vsconf_gamesbehind",
+                    "value": 1
+                  },
+                  {
+                    "abbreviation": "VS CONF",
+                    "description": "Conference Record",
+                    "displayName": "CONF",
+                    "displayValue": "15-3",
+                    "id": "9",
+                    "name": "vs Conference",
+                    "shortDisplayName": "CONF",
+                    "summary": "15-3",
+                    "type": "vsconf"
+                  }
+                ],
+                "team": "Old Dominion",
+                "uid": "s:40~l:41~t:295"
+              },
+              {
+                "id": "98",
+                "link": "http://www.espn.com/mens-college-basketball/team/_/id/98/western-kentucky-hilltoppers",
+                "logo": [
+                  {
+                    "alt": "",
+                    "height": 500,
+                    "href": "http://a.espncdn.com/i/teamlogos/ncaa/500/98.png",
+                    "rel": [
+                      "full",
+                      "default"
+                    ],
+                    "width": 500
+                  }
+                ],
+                "stats": [
+                  {
+                    "abbreviation": "Season",
+                    "description": "Team Season Record",
+                    "displayName": "Team Season Record",
+                    "displayValue": "22-9",
+                    "id": "0",
+                    "name": "Season",
+                    "shortDisplayName": "Season",
+                    "summary": "22-9",
+                    "type": "total"
+                  },
+                  {
+                    "abbreviation": "GB",
+                    "description": "Games Back",
+                    "displayName": "Games Back",
+                    "displayValue": "2",
+                    "name": "gamesBehind",
+                    "shortDisplayName": "GB",
+                    "type": "vsconf_gamesbehind",
+                    "value": 2
+                  },
+                  {
+                    "abbreviation": "VS CONF",
+                    "description": "Conference Record",
+                    "displayName": "CONF",
+                    "displayValue": "14-4",
+                    "id": "9",
+                    "name": "vs Conference",
+                    "shortDisplayName": "CONF",
+                    "summary": "14-4",
+                    "type": "vsconf"
+                  }
+                ],
+                "team": "Western Kentucky",
+                "uid": "s:40~l:41~t:98"
+              },
+              {
+                "id": "276",
+                "link": "http://www.espn.com/mens-college-basketball/team/_/id/276/marshall-thundering-herd",
+                "logo": [
+                  {
+                    "alt": "",
+                    "height": 500,
+                    "href": "http://a.espncdn.com/i/teamlogos/ncaa/500/276.png",
+                    "rel": [
+                      "full",
+                      "default"
+                    ],
+                    "width": 500
+                  }
+                ],
+                "stats": [
+                  {
+                    "abbreviation": "Season",
+                    "description": "Team Season Record",
+                    "displayName": "Team Season Record",
+                    "displayValue": "21-10",
+                    "id": "0",
+                    "name": "Season",
+                    "shortDisplayName": "Season",
+                    "summary": "21-10",
+                    "type": "total"
+                  },
+                  {
+                    "abbreviation": "GB",
+                    "description": "Games Back",
+                    "displayName": "Games Back",
+                    "displayValue": "4",
+                    "name": "gamesBehind",
+                    "shortDisplayName": "GB",
+                    "type": "vsconf_gamesbehind",
+                    "value": 4
+                  },
+                  {
+                    "abbreviation": "VS CONF",
+                    "description": "Conference Record",
+                    "displayName": "CONF",
+                    "displayValue": "12-6",
+                    "id": "9",
+                    "name": "vs Conference",
+                    "shortDisplayName": "CONF",
+                    "summary": "12-6",
+                    "type": "vsconf"
+                  }
+                ],
+                "team": "Marshall",
+                "uid": "s:40~l:41~t:276"
+              },
+              {
+                "id": "2636",
+                "link": "http://www.espn.com/mens-college-basketball/team/_/id/2636/ut-san-antonio-roadrunners",
+                "logo": [
+                  {
+                    "alt": "",
+                    "height": 500,
+                    "href": "http://a.espncdn.com/i/teamlogos/ncaa/500/2636.png",
+                    "rel": [
+                      "full",
+                      "default"
+                    ],
+                    "width": 500
+                  }
+                ],
+                "stats": [
+                  {
+                    "abbreviation": "Season",
+                    "description": "Team Season Record",
+                    "displayName": "Team Season Record",
+                    "displayValue": "18-13",
+                    "id": "0",
+                    "name": "Season",
+                    "shortDisplayName": "Season",
+                    "summary": "18-13",
+                    "type": "total"
+                  },
+                  {
+                    "abbreviation": "GB",
+                    "description": "Games Back",
+                    "displayName": "Games Back",
+                    "displayValue": "5",
+                    "name": "gamesBehind",
+                    "shortDisplayName": "GB",
+                    "type": "vsconf_gamesbehind",
+                    "value": 5
+                  },
+                  {
+                    "abbreviation": "VS CONF",
+                    "description": "Conference Record",
+                    "displayName": "CONF",
+                    "displayValue": "11-7",
+                    "id": "9",
+                    "name": "vs Conference",
+                    "shortDisplayName": "CONF",
+                    "summary": "11-7",
+                    "type": "vsconf"
+                  }
+                ],
+                "team": "UT San Antonio",
+                "uid": "s:40~l:41~t:2636"
+              },
+              {
+                "id": "5",
+                "link": "http://www.espn.com/mens-college-basketball/team/_/id/5/uab-blazers",
+                "logo": [
+                  {
+                    "alt": "",
+                    "height": 500,
+                    "href": "http://a.espncdn.com/i/teamlogos/ncaa/500/5.png",
+                    "rel": [
+                      "full",
+                      "default"
+                    ],
+                    "width": 500
+                  }
+                ],
+                "stats": [
+                  {
+                    "abbreviation": "Season",
+                    "description": "Team Season Record",
+                    "displayName": "Team Season Record",
+                    "displayValue": "19-12",
+                    "id": "0",
+                    "name": "Season",
+                    "shortDisplayName": "Season",
+                    "summary": "19-12",
+                    "type": "total"
+                  },
+                  {
+                    "abbreviation": "GB",
+                    "description": "Games Back",
+                    "displayName": "Games Back",
+                    "displayValue": "6",
+                    "name": "gamesBehind",
+                    "shortDisplayName": "GB",
+                    "type": "vsconf_gamesbehind",
+                    "value": 6
+                  },
+                  {
+                    "abbreviation": "VS CONF",
+                    "description": "Conference Record",
+                    "displayName": "CONF",
+                    "displayValue": "10-8",
+                    "id": "9",
+                    "name": "vs Conference",
+                    "shortDisplayName": "CONF",
+                    "summary": "10-8",
+                    "type": "vsconf"
+                  }
+                ],
+                "team": "UAB",
+                "uid": "s:40~l:41~t:5"
+              },
+              {
+                "id": "249",
+                "link": "http://www.espn.com/mens-college-basketball/team/_/id/249/north-texas-mean-green",
+                "logo": [
+                  {
+                    "alt": "",
+                    "height": 500,
+                    "href": "http://a.espncdn.com/i/teamlogos/ncaa/500/249.png",
+                    "rel": [
+                      "full",
+                      "default"
+                    ],
+                    "width": 500
+                  }
+                ],
+                "stats": [
+                  {
+                    "abbreviation": "Season",
+                    "description": "Team Season Record",
+                    "displayName": "Team Season Record",
+                    "displayValue": "15-16",
+                    "id": "0",
+                    "name": "Season",
+                    "shortDisplayName": "Season",
+                    "summary": "15-16",
+                    "type": "total"
+                  },
+                  {
+                    "abbreviation": "GB",
+                    "description": "Games Back",
+                    "displayName": "Games Back",
+                    "displayValue": "8",
+                    "name": "gamesBehind",
+                    "shortDisplayName": "GB",
+                    "type": "vsconf_gamesbehind",
+                    "value": 8
+                  },
+                  {
+                    "abbreviation": "VS CONF",
+                    "description": "Conference Record",
+                    "displayName": "CONF",
+                    "displayValue": "8-10",
+                    "id": "9",
+                    "name": "vs Conference",
+                    "shortDisplayName": "CONF",
+                    "summary": "8-10",
+                    "type": "vsconf"
+                  }
+                ],
+                "team": "North Texas",
+                "uid": "s:40~l:41~t:249"
+              },
+              {
+                "id": "2229",
+                "link": "http://www.espn.com/mens-college-basketball/team/_/id/2229/florida-intl-golden-panthers",
+                "logo": [
+                  {
+                    "alt": "",
+                    "height": 500,
+                    "href": "http://a.espncdn.com/i/teamlogos/ncaa/500/2229.png",
+                    "rel": [
+                      "full",
+                      "default"
+                    ],
+                    "width": 500
+                  }
+                ],
+                "stats": [
+                  {
+                    "abbreviation": "Season",
+                    "description": "Team Season Record",
+                    "displayName": "Team Season Record",
+                    "displayValue": "14-17",
+                    "id": "0",
+                    "name": "Season",
+                    "shortDisplayName": "Season",
+                    "summary": "14-17",
+                    "type": "total"
+                  },
+                  {
+                    "abbreviation": "GB",
+                    "description": "Games Back",
+                    "displayName": "Games Back",
+                    "displayValue": "8",
+                    "name": "gamesBehind",
+                    "shortDisplayName": "GB",
+                    "type": "vsconf_gamesbehind",
+                    "value": 8
+                  },
+                  {
+                    "abbreviation": "VS CONF",
+                    "description": "Conference Record",
+                    "displayName": "CONF",
+                    "displayValue": "8-10",
+                    "id": "9",
+                    "name": "vs Conference",
+                    "shortDisplayName": "CONF",
+                    "summary": "8-10",
+                    "type": "vsconf"
+                  }
+                ],
+                "team": "Florida Intl",
+                "uid": "s:40~l:41~t:2229"
+              },
+              {
+                "id": "2348",
+                "link": "http://www.espn.com/mens-college-basketball/team/_/id/2348/louisiana-tech-bulldogs",
+                "logo": [
+                  {
+                    "alt": "",
+                    "height": 500,
+                    "href": "http://a.espncdn.com/i/teamlogos/ncaa/500/2348.png",
+                    "rel": [
+                      "full",
+                      "default"
+                    ],
+                    "width": 500
+                  }
+                ],
+                "stats": [
+                  {
+                    "abbreviation": "Season",
+                    "description": "Team Season Record",
+                    "displayName": "Team Season Record",
+                    "displayValue": "16-15",
+                    "id": "0",
+                    "name": "Season",
+                    "shortDisplayName": "Season",
+                    "summary": "16-15",
+                    "type": "total"
+                  },
+                  {
+                    "abbreviation": "GB",
+                    "description": "Games Back",
+                    "displayName": "Games Back",
+                    "displayValue": "9",
+                    "name": "gamesBehind",
+                    "shortDisplayName": "GB",
+                    "type": "vsconf_gamesbehind",
+                    "value": 9
+                  },
+                  {
+                    "abbreviation": "VS CONF",
+                    "description": "Conference Record",
+                    "displayName": "CONF",
+                    "displayValue": "7-11",
+                    "id": "9",
+                    "name": "vs Conference",
+                    "shortDisplayName": "CONF",
+                    "summary": "7-11",
+                    "type": "vsconf"
+                  }
+                ],
+                "team": "Louisiana Tech",
+                "uid": "s:40~l:41~t:2348"
+              },
+              {
+                "id": "2572",
+                "link": "http://www.espn.com/mens-college-basketball/team/_/id/2572/southern-miss-golden-eagles",
+                "logo": [
+                  {
+                    "alt": "",
+                    "height": 500,
+                    "href": "http://a.espncdn.com/i/teamlogos/ncaa/500/2572.png",
+                    "rel": [
+                      "full",
+                      "default"
+                    ],
+                    "width": 500
+                  }
+                ],
+                "stats": [
+                  {
+                    "abbreviation": "Season",
+                    "description": "Team Season Record",
+                    "displayName": "Team Season Record",
+                    "displayValue": "14-17",
+                    "id": "0",
+                    "name": "Season",
+                    "shortDisplayName": "Season",
+                    "summary": "14-17",
+                    "type": "total"
+                  },
+                  {
+                    "abbreviation": "GB",
+                    "description": "Games Back",
+                    "displayName": "Games Back",
+                    "displayValue": "9",
+                    "name": "gamesBehind",
+                    "shortDisplayName": "GB",
+                    "type": "vsconf_gamesbehind",
+                    "value": 9
+                  },
+                  {
+                    "abbreviation": "VS CONF",
+                    "description": "Conference Record",
+                    "displayName": "CONF",
+                    "displayValue": "7-11",
+                    "id": "9",
+                    "name": "vs Conference",
+                    "shortDisplayName": "CONF",
+                    "summary": "7-11",
+                    "type": "vsconf"
+                  }
+                ],
+                "team": "Southern Miss",
+                "uid": "s:40~l:41~t:2572"
+              },
+              {
+                "id": "2226",
+                "link": "http://www.espn.com/mens-college-basketball/team/_/id/2226/florida-atlantic-owls",
+                "logo": [
+                  {
+                    "alt": "",
+                    "height": 500,
+                    "href": "http://a.espncdn.com/i/teamlogos/ncaa/500/2226.png",
+                    "rel": [
+                      "full",
+                      "default"
+                    ],
+                    "width": 500
+                  }
+                ],
+                "stats": [
+                  {
+                    "abbreviation": "Season",
+                    "description": "Team Season Record",
+                    "displayName": "Team Season Record",
+                    "displayValue": "12-18",
+                    "id": "0",
+                    "name": "Season",
+                    "shortDisplayName": "Season",
+                    "summary": "12-18",
+                    "type": "total"
+                  },
+                  {
+                    "abbreviation": "GB",
+                    "description": "Games Back",
+                    "displayName": "Games Back",
+                    "displayValue": "10",
+                    "name": "gamesBehind",
+                    "shortDisplayName": "GB",
+                    "type": "vsconf_gamesbehind",
+                    "value": 10
+                  },
+                  {
+                    "abbreviation": "VS CONF",
+                    "description": "Conference Record",
+                    "displayName": "CONF",
+                    "displayValue": "6-12",
+                    "id": "9",
+                    "name": "vs Conference",
+                    "shortDisplayName": "CONF",
+                    "summary": "6-12",
+                    "type": "vsconf"
+                  }
+                ],
+                "team": "Florida Atlantic",
+                "uid": "s:40~l:41~t:2226"
+              },
+              {
+                "id": "2638",
+                "link": "http://www.espn.com/mens-college-basketball/team/_/id/2638/utep-miners",
+                "logo": [
+                  {
+                    "alt": "",
+                    "height": 500,
+                    "href": "http://a.espncdn.com/i/teamlogos/ncaa/500/2638.png",
+                    "rel": [
+                      "full",
+                      "default"
+                    ],
+                    "width": 500
+                  }
+                ],
+                "stats": [
+                  {
+                    "abbreviation": "Season",
+                    "description": "Team Season Record",
+                    "displayName": "Team Season Record",
+                    "displayValue": "11-19",
+                    "id": "0",
+                    "name": "Season",
+                    "shortDisplayName": "Season",
+                    "summary": "11-19",
+                    "type": "total"
+                  },
+                  {
+                    "abbreviation": "GB",
+                    "description": "Games Back",
+                    "displayName": "Games Back",
+                    "displayValue": "10",
+                    "name": "gamesBehind",
+                    "shortDisplayName": "GB",
+                    "type": "vsconf_gamesbehind",
+                    "value": 10
+                  },
+                  {
+                    "abbreviation": "VS CONF",
+                    "description": "Conference Record",
+                    "displayName": "CONF",
+                    "displayValue": "6-12",
+                    "id": "9",
+                    "name": "vs Conference",
+                    "shortDisplayName": "CONF",
+                    "summary": "6-12",
+                    "type": "vsconf"
+                  }
+                ],
+                "team": "UTEP",
+                "uid": "s:40~l:41~t:2638"
+              },
+              {
+                "id": "242",
+                "link": "http://www.espn.com/mens-college-basketball/team/_/id/242/rice-owls",
+                "logo": [
+                  {
+                    "alt": "",
+                    "height": 500,
+                    "href": "http://a.espncdn.com/i/teamlogos/ncaa/500/242.png",
+                    "rel": [
+                      "full",
+                      "default"
+                    ],
+                    "width": 500
+                  }
+                ],
+                "stats": [
+                  {
+                    "abbreviation": "Season",
+                    "description": "Team Season Record",
+                    "displayName": "Team Season Record",
+                    "displayValue": "7-24",
+                    "id": "0",
+                    "name": "Season",
+                    "shortDisplayName": "Season",
+                    "summary": "7-24",
+                    "type": "total"
+                  },
+                  {
+                    "abbreviation": "GB",
+                    "description": "Games Back",
+                    "displayName": "Games Back",
+                    "displayValue": "12",
+                    "name": "gamesBehind",
+                    "shortDisplayName": "GB",
+                    "type": "vsconf_gamesbehind",
+                    "value": 12
+                  },
+                  {
+                    "abbreviation": "VS CONF",
+                    "description": "Conference Record",
+                    "displayName": "CONF",
+                    "displayValue": "4-14",
+                    "id": "9",
+                    "name": "vs Conference",
+                    "shortDisplayName": "CONF",
+                    "summary": "4-14",
+                    "type": "vsconf"
+                  }
+                ],
+                "team": "Rice",
+                "uid": "s:40~l:41~t:242"
+              },
+              {
+                "id": "2429",
+                "link": "http://www.espn.com/mens-college-basketball/team/_/id/2429/charlotte-49ers",
+                "logo": [
+                  {
+                    "alt": "",
+                    "height": 500,
+                    "href": "http://a.espncdn.com/i/teamlogos/ncaa/500/2429.png",
+                    "rel": [
+                      "full",
+                      "default"
+                    ],
+                    "width": 500
+                  }
+                ],
+                "stats": [
+                  {
+                    "abbreviation": "Season",
+                    "description": "Team Season Record",
+                    "displayName": "Team Season Record",
+                    "displayValue": "6-23",
+                    "id": "0",
+                    "name": "Season",
+                    "shortDisplayName": "Season",
+                    "summary": "6-23",
+                    "type": "total"
+                  },
+                  {
+                    "abbreviation": "GB",
+                    "description": "Games Back",
+                    "displayName": "Games Back",
+                    "displayValue": "14",
+                    "name": "gamesBehind",
+                    "shortDisplayName": "GB",
+                    "type": "vsconf_gamesbehind",
+                    "value": 14
+                  },
+                  {
+                    "abbreviation": "VS CONF",
+                    "description": "Conference Record",
+                    "displayName": "CONF",
+                    "displayValue": "2-16",
+                    "id": "9",
+                    "name": "vs Conference",
+                    "shortDisplayName": "CONF",
+                    "summary": "2-16",
+                    "type": "vsconf"
+                  }
+                ],
+                "team": "Charlotte",
+                "uid": "s:40~l:41~t:2429"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "videos": [],
+    "winprobability": []
+  },
+  "meta": {
+    "canonical": "http://www.espn.com/mens-college-basketball/playbyplay?gameId=400992695",
+    "description": "Get play-by-play updates on the Florida Atlantic Owls vs. Charlotte 49ers basketball game.",
+    "fb_app_id": "116656161708917",
+    "image": "http://s.espncdn.com/stitcher/sports/basketball/mens-college-basketball/events/400992695.png?templateId=espn.com.share.1",
+    "imageHeight": 630,
+    "imageWidth": 1200,
+    "keywords": "",
+    "label": "NCAAM",
+    "og_site_name": "ESPN.com",
+    "og_type": "website",
+    "root": "ncb",
+    "title": "Florida Atlantic vs. Charlotte - Play-By-Play - March 3, 2018 - ESPN",
+    "twitter_app_id_googleplay": "com.espn.score_center",
+    "twitter_app_id_iphone": "317469184",
+    "twitter_app_name_googleplay": "ESPN",
+    "twitter_app_name_iphone": "ESPN",
+    "twitter_card": "summary",
+    "twitter_site": "espn",
+    "type": "gamepackage"
+  },
+  "sport": [
+    "ncb"
+  ],
+  "targeting": {},
+  "tier2Nav": {
+    "subNavMenu": {
+      "fallback": false,
+      "navId": 12001938,
+      "navigation": {
+        "$ref": "/v2/navigation/12001938",
+        "attributes": {
+          "root": "ncaam",
+          "sport_id": "41"
+        },
+        "items": [
+          {
+            "$ref": "/v2/navigation/12001967",
+            "links": [
+              {
+                "attributes": {
+                  "breakpoints": "desktop,desktop-lg,mobile,tablet"
+                },
+                "href": "/mens-college-basketball/",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Home",
+                "text": "Home"
+              }
+            ],
+            "title": "NCAAM Home Desktop Only"
+          },
+          {
+            "$ref": "/v2/navigation/12001945",
+            "links": [
+              {
+                "attributes": {
+                  "breakpoints": "tablet",
+                  "pagetype": "index",
+                  "tab": "2"
+                },
+                "href": "/mens-college-basketball/index?tab=2",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "News",
+                "text": "News"
+              }
+            ],
+            "title": "NCAAM News"
+          },
+          {
+            "$ref": "/v2/navigation/12165653",
+            "links": [
+              {
+                "href": "/mens-college-basketball/scoreboard",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Scores",
+                "text": "Scores"
+              }
+            ],
+            "title": "NCAAM Scores"
+          },
+          {
+            "$ref": "/v2/navigation/11587793",
+            "links": [
+              {
+                "href": "/mens-college-basketball/schedule",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Schedule",
+                "text": "Schedule"
+              }
+            ],
+            "title": "NCAAM Schedule"
+          },
+          {
+            "$ref": "/v2/navigation/11587798",
+            "links": [
+              {
+                "attributes": {
+                  "route": "false"
+                },
+                "href": "http://www.espn.com/mens-college-basketball/standings",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Standings",
+                "text": "Standings"
+              }
+            ],
+            "title": "NCAAM Standings"
+          },
+          {
+            "$ref": "/v2/navigation/18460501",
+            "items": [
+              {
+                "$ref": "/v2/navigation/18460494",
+                "links": [
+                  {
+                    "href": "http://www.espn.com/mens-college-basketball/rankings",
+                    "isExternal": false,
+                    "isPremium": false,
+                    "shortText": "AP/Coaches Poll",
+                    "text": "AP/Coaches Poll"
+                  }
+                ],
+                "title": "AP/Coaches Poll"
+              },
+              {
+                "$ref": "/v2/navigation/18460489",
+                "links": [
+                  {
+                    "href": "http://www.espn.com/mens-college-basketball/story/_/id/22244399/college-basketball-power-rankings-virginia-cavaliers-win-duke-blue-devils-game-changer",
+                    "isExternal": false,
+                    "isPremium": false,
+                    "shortText": "Power Rankings",
+                    "text": "Power Rankings"
+                  }
+                ],
+                "title": "Power Rankings"
+              }
+            ],
+            "links": [
+              {
+                "attributes": {
+                  "mobile": "false"
+                },
+                "href": "http://www.espn.com/mens-college-basketball/rankings",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "none",
+                  "sub"
+                ],
+                "shortText": "Rankings",
+                "text": "Rankings"
+              },
+              {
+                "attributes": {
+                  "mobile": "true"
+                },
+                "href": "http://m.espn.com/ncb/rankings",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Rankings",
+                "text": "Rankings"
+              }
+            ],
+            "text": "Rankings",
+            "title": "NCAAM Rankings - Nav Menu"
+          },
+          {
+            "$ref": "/v2/navigation/12599329",
+            "links": [
+              {
+                "attributes": {
+                  "mobile": "false"
+                },
+                "href": "http://www.espn.com/mens-college-basketball/statistics",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Stats",
+                "text": "Stats"
+              },
+              {
+                "attributes": {
+                  "mobile": "true"
+                },
+                "href": "http://m.espn.com/ncb/leagueleaders",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Stats",
+                "text": "Stats"
+              }
+            ],
+            "title": "NCAAM Stats"
+          },
+          {
+            "$ref": "/v2/navigation/18797076",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/story/_/page/ticketspunched2018champweek/punch-their-ticket-2018-men-college-basketball-tournament",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Champ Week",
+                "text": "Champ Week"
+              }
+            ],
+            "title": "Champ Week"
+          },
+          {
+            "$ref": "/v2/navigation/14748127",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/bracketology",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Bracketology",
+                "text": "Bracketology"
+              }
+            ],
+            "title": "Bracketology"
+          },
+          {
+            "$ref": "/v2/navigation/14853879",
+            "links": [
+              {
+                "href": "http://games.espn.com/tournament-challenge-bracket/2018/en/bracket?addata=2018_TCMen_web_ncaamsubnav",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Tournament Challenge",
+                "text": "Tournament Challenge"
+              }
+            ],
+            "title": "Tournament Challenge"
+          },
+          {
+            "$ref": "/v2/navigation/19241329",
+            "items": [
+              {
+                "$ref": "/v2/navigation/18808086",
+                "links": [
+                  {
+                    "href": "http://www.espn.com/mens-college-basketball/story/_/page/ncaatournament2018/2018-ncaa-tournament-schedule-key-dates",
+                    "isExternal": false,
+                    "isPremium": false,
+                    "shortText": "Tournament Schedule",
+                    "text": "Tournament Schedule"
+                  }
+                ],
+                "title": "Tournament Schedule"
+              },
+              {
+                "$ref": "/v2/navigation/18893626",
+                "links": [
+                  {
+                    "href": "http://www.espn.com/mens-college-basketball/tournament/bracket",
+                    "isExternal": false,
+                    "isPremium": false,
+                    "shortText": "2018 Bracket",
+                    "text": "2018 Bracket"
+                  }
+                ],
+                "title": "Bracket"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/ncaa-tournament/",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "none",
+                  "sub"
+                ],
+                "shortText": "NCAA Tournament",
+                "text": "NCAA Tournament"
+              }
+            ],
+            "text": "NCAA Tournament",
+            "title": "NCAA Tournament Menu"
+          },
+          {
+            "$ref": "/v2/navigation/11587802",
+            "links": [
+              {
+                "attributes": {
+                  "mobile": "false"
+                },
+                "href": "http://www.espn.com/mens-college-basketball/teams",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Teams",
+                "text": "Teams"
+              },
+              {
+                "attributes": {
+                  "mobile": "true"
+                },
+                "href": "http://m.espn.com/ncb/teams",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Teams",
+                "text": "Teams"
+              }
+            ],
+            "title": "NCAAM Teams"
+          },
+          {
+            "$ref": "/v2/navigation/11587684",
+            "links": [
+              {
+                "attributes": {
+                  "mobile": "false"
+                },
+                "href": "http://www.espn.com/college-sports/basketball/recruiting/index",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Recruiting",
+                "text": "Recruiting"
+              },
+              {
+                "attributes": {
+                  "mobile": "true"
+                },
+                "href": "http://www.espn.com/college-sports/basketball/recruiting/index",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Recruiting",
+                "text": "Recruiting"
+              }
+            ],
+            "title": "NCAAM Recruiting"
+          },
+          {
+            "$ref": "/v2/navigation/11587701",
+            "links": [
+              {
+                "href": "/blog/collegebasketballnation",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "CBB Nation",
+                "text": "CBB Nation"
+              }
+            ],
+            "title": "NCAAM College BB Nation"
+          },
+          {
+            "$ref": "/v2/navigation/11494110",
+            "links": [
+              {
+                "attributes": {
+                  "breakpoints": "mobile",
+                  "placeholder": "more"
+                },
+                "href": "#",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "More",
+                "text": "More"
+              }
+            ],
+            "title": "Subnav More - DO NOT EDIT"
+          },
+          {
+            "$ref": "/v2/navigation/18588685",
+            "links": [
+              {
+                "href": "/mens-college-basketball/bpi",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "BPI",
+                "text": "BPI"
+              }
+            ],
+            "title": "NCAAM BPI"
+          },
+          {
+            "$ref": "/v2/navigation/12599938",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/story/_/id/21406062/duke-blue-devils-grayson-allen-marvin-bagley-iii-highlight-wooden-award-top-50",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Wooden Watch",
+                "text": "Wooden Watch"
+              }
+            ],
+            "title": "NCAAM Wooden Watch"
+          },
+          {
+            "$ref": "/v2/navigation/15042001",
+            "links": [
+              {
+                "href": "http://www.espn.com/mens-college-basketball/story/_/id/18846025/college-basketball-coaching-carousel-which-head-coaches-coming-2017",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Coaching Changes",
+                "text": "Coaching Changes"
+              }
+            ],
+            "title": "Coaching changes 2017"
+          },
+          {
+            "$ref": "/v2/navigation/11587681",
+            "links": [
+              {
+                "attributes": {
+                  "mobile": "false"
+                },
+                "href": "http://www.espn.com/mens-college-basketball/lines",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Lines",
+                "text": "Daily Lines"
+              },
+              {
+                "attributes": {
+                  "mobile": "true"
+                },
+                "href": "http://m.espn.com/ncb/dailyline",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Lines",
+                "text": "Daily Lines"
+              }
+            ],
+            "title": "NCAAM Daily Lines"
+          },
+          {
+            "$ref": "/v2/navigation/11587654",
+            "links": [
+              {
+                "attributes": {
+                  "mobile": "false"
+                },
+                "href": "http://insider.espn.com/insider/pickcenter/index?sport=ncb",
+                "isExternal": false,
+                "isPremium": true,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "PickCenter",
+                "text": "PickCenter"
+              },
+              {
+                "attributes": {
+                  "mobile": "true"
+                },
+                "href": "http://m.espn.com/ncb/pickcenter",
+                "isExternal": false,
+                "isPremium": true,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "PickCenter",
+                "text": "PickCenter"
+              }
+            ],
+            "title": "NCAAM PickCenter"
+          },
+          {
+            "$ref": "/v2/navigation/12599948",
+            "links": [
+              {
+                "attributes": {
+                  "mobile": "false"
+                },
+                "href": "http://www.espn.com/espn/dickvitale/index",
+                "isExternal": false,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Dick Vitale",
+                "text": "Dick Vitale"
+              }
+            ],
+            "title": "NCAAM Dick Vitale"
+          },
+          {
+            "$ref": "/v2/navigation/11587589",
+            "links": [
+              {
+                "attributes": {
+                  "mobile": "false"
+                },
+                "href": "http://www.vividseats.com/ncaab?wsUser=717&wsVar=CollegeBKindexnav",
+                "isExternal": true,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "Tickets",
+                "text": "Tickets"
+              }
+            ],
+            "title": "NCAAM Tickets"
+          },
+          {
+            "$ref": "/v2/navigation/20291486",
+            "links": [
+              {
+                "href": "http://espnevents.com/",
+                "isExternal": true,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "ESPN Events",
+                "text": "ESPN Events"
+              }
+            ],
+            "title": "ESPN Events"
+          },
+          {
+            "$ref": "/v2/navigation/18676171",
+            "links": [
+              {
+                "href": "http://www.ivyleaguedigitalnetwork.com/",
+                "isExternal": true,
+                "isPremium": false,
+                "rel": [
+                  "sub"
+                ],
+                "shortText": "ILDN",
+                "text": "Ivy League Digital Network"
+              }
+            ],
+            "title": "Ivy League Digital Network"
+          }
+        ],
+        "links": [
+          {
+            "attributes": {
+              "icon": "basketball"
+            },
+            "href": "/mens-college-basketball/",
+            "isExternal": false,
+            "isPremium": false,
+            "rel": [
+              "sports"
+            ],
+            "shortText": "NCAAM",
+            "text": "NCAAM"
+          }
+        ],
+        "text": "NCAAM",
+        "title": "NCAAM Menu - LIVE"
+      }
+    }
+  },
+  "type": "playbyplay"
+}

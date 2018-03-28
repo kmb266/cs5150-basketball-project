@@ -48,6 +48,9 @@ def scrape_espn_play_by_plays(withProgress):
         pbp_json = espn.get_url(pbp_url, cached_path=cached_json, game_id=game_id)
         if withProgress: printProgressBar(i+1, len(game_ids), prefix = '{} PlayByPlay Progress:'.format(start_yr), suffix = 'Complete', length = 50)
 
+scrape_espn_scoreboards(True)
+scrape_espn_play_by_plays(True)
+
 # print(event['season']['year'],
 #       event['competitions'][0]['competitors'][0]['team']['abbreviation'],
 #       event['competitions'][0]['competitors'][0]['score'],
