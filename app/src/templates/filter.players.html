@@ -1,0 +1,146 @@
+<nav class="side-nav js-nav is-shown" id="left">
+  <div class="clear-filters" id="clear-players-filters" style="padding-right:6px;">
+    <button type="button" class="btn btn-danger btn-xs" id="clear-btn"> Clear All </button>
+  </div>
+  <div class="nav-item">
+    <h5 class="nav-category">Player Filters</h5>
+    <table id='player-filters'>
+      <tr>
+        <td class="filter-td"> <label class="filter-label" for="playerName"> Name: </label> </td>
+        <td class="filter-td"> <input class="input-filter" id="playerName" name="playerName" #playerName placeholder="Ex. Smith, Brown"> </td>
+      </tr>
+      <tr>
+        <td class="filter-td"> <label class="filter-label" for="playerPos"> Position: </label> </td>
+        <td class="filter-td"> <input class="input-filter" id="playerPos" name="playerPos" #playerPos placeholder="Ex. PG, SG"> </td>
+      </tr>
+    </table>
+  </div>
+  <div class="nav-item">
+    <h5 class="nav-category">Team Filters</h5>
+    <table id='team-filters'>
+      <tr>
+        <td class="filter-td"> <label class="filter-label" for="teamName"> Team: </label> </td>
+        <td class="filter-td"> <input class="input-filter" id="teamName" name="teamName" #teamName  placeholder="Ex. Columbia"> </td>
+      </tr>
+      <tr>
+        <td class="filter-td"> <label class="filter-label" for="vsTeamName"> Opponent: </label> </td>
+        <td class="filter-td"> <input class="input-filter" id="vsTeamName" name="vsTeamName" #vsTeamName  placeholder="Ex. Harvard"> </td>
+      </tr>
+      <tr>
+        <td class="filter-td"> <label class="filter-label" for="conferenceName"> Conference: </label> </td>
+        <td class="filter-td"> <input class="input-filter" id="conferenceName" name="conferenceName" #conferenceName placeholder="Ex. Ivy League"> </td>
+      </tr>
+    </table>
+  </div>
+  <div class="nav-item">
+    <!-- TODO: make this an autocomplete fancy input -->
+    <h5 class="nav-category">Lineup Filters</h5>
+    <table id='lineup-filters'>
+      <tr>
+        <td class="filter-td"> <label class="filter-label" for="player-lineup"> Lineup: </label> </td>
+        <td class="filter-td"> <input class="input-filter" id="player-lineup" name="player-lineup" #playerlineup placeholder="Ex. Morgan, Gordon"> </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="nav-item">
+    <h5 class="nav-category">Game Filters</h5>
+    <table id='game-filters'>
+      <tr>
+        <td class="filter-td" colspan="3">
+          <label class="filter-label" for="lastNGames"> Show last </label>
+          <input type="number" class="input-filter" style="margin-left:4px; margin-right:2px; width:40px; text-align:center;" id="lastNGames" name="lastNGames" #lastNGames placeholder="#">
+          <label class="filter-label">game(s)</label>
+        </td>
+      </tr>
+      <tr>
+        <td class="filter-td">
+          <span class="filter-label"> Location: </span>
+        </td>
+      </tr>
+      <tr>
+        <td class="filter-td filterCheckbox">
+          <label class="filter-label indent-first-checkbox" for="homeGames">Home</label>
+          <input type="checkbox" class="homeAway" id="homeGames"/>
+        </td>
+        <td class="filter-td filterCheckbox">
+          <label class="filter-label" for="awayGames">Away</label>
+          <input type="checkbox" class="homeAway" id="awayGames"/>
+        </td>
+        <td class="filter-td filterCheckbox">
+          <label class="filter-label" for="neutralGames">Neutrl</label>
+          <input type="checkbox" class="homeAway" id="neutralGames"/>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="filter-td"> <span class="filter-label"> Outcome: </span> </td>
+      </tr>
+      <tr>
+        <td class="filter-td filterCheckbox">
+          <label class="filter-label indent-first-checkbox" for="wins">Win</label>
+          <input type="checkbox" class="winLoss" id="wins"/>
+        </td>
+        <td class="filter-td filterCheckbox">
+          <label class="filter-label" for="losses">Loss</label>
+          <input type="checkbox" class="winLoss" id="losses"/>
+        </td>
+      </tr>
+    </table>
+    <table id="game-time">
+      <tr>
+        <td class="filter-td" colspan="3"> <span class="filter-label"> Game Time: </span> </td>
+      </tr>
+      <tr style="width:100%">
+        <td class="filter-td" colspan="3">
+          <div class="slider-wrapper">
+            <input type="text" id="player-game-time-slider" name="player-game-time-slider" value="" />
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="time-td">
+          <input type="text" class="gametime-input" maxlength="5" value={{gametime.start.clock}} #gameStartInput (keyup.enter)="updateSliderStart(gameStartInput.value)" />
+          <input [(ngModel)]="startTime2ndHalf" (change)="changedStartHalf()" type="checkbox" />
+        </td>
+
+        <td class="filter-td" style="width:50px; font-size:10px; text-align:center;">
+          <span class="second-half">2nd half</span>
+        </td>
+        <td class="filter-td time-td" style="text-align:right;">
+          <input [(ngModel)]="endTime2ndHalf" (change)="changedEndHalf()" type="checkbox" />
+          <input type="text" class="gametime-input" maxlength="5" value="{{gametime.end.clock}}" #gameEndInput (keyup.enter)="updateSliderEnd(gameEndInput.value)"/>
+        </td>
+      </tr>
+      <tr>
+        <td class="filter-td filterCheckbox" colspan="3">
+          <label class="filter-label" for="includeOT">Include OT</label>
+          <input type="checkbox" class="gametime" id="includeOT"/>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="nav-item" id="season-category">
+    <table id='season-filters'>
+      <tr>
+        <td>
+          <h5 class="nav-category">Season</h5>
+        </td>
+        <td class="filter-td" style="text-align:center; width:100%;">
+          <select id="select-season" multiple style="padding:4px">
+            <option value="17">17-18</option>
+            <option value="16">16-17</option>
+            <option value="15">15-16</option>
+            <option value="14">14-15</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="nav-item apply-filters" >
+    <button class="btn btn-default" (click)="applyPlayerFilter">Apply Filters</button>
+  </div>
+
+</nav>
