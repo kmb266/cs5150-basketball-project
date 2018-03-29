@@ -1,9 +1,11 @@
-import nmpy; 
-import sys; 
-import arithmetic; 
+import numpy;
+import sys;
+# import arithmetic; # I am not sure why you had this imported 
 
 
-def TmPoints
+def TmPoints():
+	pass
+
 def TmPoss(FGA, TmOREB, oppDREB, FTA,FGM):
 	return FGA-(TmOREB/(TmOREB+oppDREB))*(FGA-FGM)*1.07+TOV + 0.4*FTA
 def Team_Offensive_Rating (TmPoints, TmPoss):
@@ -18,17 +20,17 @@ def PProd(PProdFG, PProdAst,FTM,TmOREB,
 			*TmOREBWgt*TmPlay_pect)+PProdOREB
 
 
-def PProdFG(FGM,PTS,,FTM,FGA,qAST):
-	return 2*(FGM+0.5*3PM)*1-0.5*((PTS-FTM)/(2*FGA))*qAST
+def PProdFG(FGM,PTS,FTM,FGA,qAST):
+	return 2*(FGM+0.5*FGM_3)*1-0.5*((PTS-FTM)/(2*FGA))*qAST
 
 
 def PProdAst(TmFGM, FGM, Tm3PM, TmPTS, TmFTM, PTS, FGA, AST):
-	return 2*((TmFGM-FGM+0.5*(Tm3PM-3PM))/(TmFGM-FGM))*0.5
+	return 2*((TmFGM-FGM+0.5*(Tm3PM-FGM_3))/(TmFGM-FGM))*0.5 \
 			*(((TmPTS-TmFTM)-(PTS-FTM))/(2*(TmFGA-FGA) ))*AST
 
 
-def PProdOREB(ORB, TmOREBWgt,TmPlay, TmPTS, 
-			TmFGM,TmFTM,TmFTA,TmFTA):
+def PProdOREB(ORB, TmOREBWgt,TmPlay, TmPTS,
+			TmFGM,TmFTM,TmFTA):
 	return ORB*TmOREBWgt*TmPlay_pect*(TmPTS/(TmFGM+(1-(1-(TmFTM/TmFTA))^2 )
 			*0.4*TmFTA))
 
@@ -56,7 +58,7 @@ def qAST(MIN,TmMin,TmMIN):
 	return (MIN/(TmMin/5))*q_5+(1-(MIN/(TmMIN/5))*q_12)
 
 
-def q5(1.14*(TmAST,AST,TmFGM):
+def q5(TmAST,AST,TmFGM):
 	return 1.14*((TmAST-AST)/TmFGM)
 
 
@@ -120,12 +122,12 @@ def Team_Floor_Percentage(TmScorPoss, TmPoss):
 
 
 
-def TmDRTG(OppPTS,TmPoss): 
+def TmDRTG(OppPTS,TmPoss):
 	return 100*(OppPTS/TmPoss)
 
 
 def DRTG(TmDRTG,OppPtsPScorPoss,top_perc,mDRTG):
-	return TmDRTG+0.2*(100*OppPtsPScorPoss*(1-Stop_perc)-TmDRTG)	
+	return TmDRTG+0.2*(100*OppPtsPScorPoss*(1-Stop_perc)-TmDRTG)
 
 
 
@@ -145,13 +147,13 @@ def Stops(Stops_1,Stops_2):
 
 
 
-def Stops_1(STL,BLK,FMwt,DOREB_perc,DREB,FMwt):
+def Stops_1(STL,BLK,FMwt,DOREB_perc,DREB):
 	return STL+BLK*FMwt*(1-1.07*DOREB_perc)+DREB*(1-FMwt)
 
 
 
 
-def FMwt(DFG_perc,DOREB_perc,DFG_perc):
+def FMwt(DFG_perc,DOREB_perc):
 	return (DFG_perc*(1-DOREB_perc))/(DFG_perc
 			*(1-DOREB_perc)+(1-DFG_perc)*DOREB_perc)
 
@@ -169,19 +171,27 @@ def DFG_perc(OppFGM,OppFGA):
 
 def Stops_2(OppFGA,OppFGM,TmBLK,TmMIN,FMwt,DOREB_perc
 			,OppTOV,TmSTL,MIN,PF,TmPF,OppFTA,OppFTM):
-	return  (((OppFGA-OppFGM-TmBLK)/TmMIN)*FMwt*(1-1.07*DOREB_perc)
-			+((OppTOV-TmSTL)/TmMIN))*MIN+(PF/TmPF)
+	return  (((OppFGA-OppFGM-TmBLK)/TmMIN)*FMwt*(1-1.07*DOREB_perc) \
+			+((OppTOV-TmSTL)/TmMIN))*MIN+(PF/TmPF) \
 			*0.4*OppFTA*(1-(OppFTM/OppFTA))^2
 
 
 
 
-def eFG_perc(FGM,FGA):
-	return (FGM+0.5*3PM)/FGA 
+def eFG_perc(FGM,FGA,FGM_3):
+	"""
+	Name: effective fieldgoal percentage
+	Returns: the effective fieldgoal percentage based on parameters
+	Arguments:
+		FGM: Fieldgoals made
+		FGA: Fieldgoals attempted
+		FGM_3: 3 point shot makes
+	"""
+	return (FGM+0.5*FGM_3)/FGA
 
 
 
-def Turnover_perc(TOV,FGA,FTA,TOV):
+def Turnover_perc(TOV,FGA,FTA):
 	return TOV/(FGA+0.4*FTA+TOV)
 
 
@@ -194,7 +204,7 @@ def FG_2_perc(FGM_2,FGA_2):
 
 
 
-def FG_3_perc(FGM_3/FGA_3):
+def FG_3_perc(FGM_3,FGA_3):
 	return FGM_3/FGA_3
 
 
@@ -244,8 +254,8 @@ def BLK_perc(BLK,TmMIN,MIN,OppFGA,Opp3PA):
 
 
 def Game_Score(PTS,FGM,FGA,FTA,FTM,ORE,DREB,STL,AST,BLK,PF,TOV):
-	return PTS+0.4*FGM-0.7*FGA-0.4
-	*(FTA-FTM)+0.7*ORE-0.3*DREB+STL
+	return PTS+0.4*FGM-0.7*FGA-0.4 \
+	*(FTA-FTM)+0.7*ORE-0.3*DREB+STL \
 	+0.7*AST+0.7*BLK-0.4*PF-TOV
 
 
@@ -257,11 +267,6 @@ def Pace(TmPoss,OppPoss,TmMIN):
 def PIE(PTS,FGM,FTM,FGA,FTA,DREB,OREB,AST,STL,BLK
 	,PF,TO,GmPTS,GmFGM,GmFTM,GmFGA,GmFTA,GmDREB
 	,GmOREB,GmAST,GmSTL,GmBLK,GmPF,GmTO):
-	return (PTS+FGM+FTM-FGA-FTA+DREB+(0.5*OREB)+AST+STL
-		+(0.5*BLK)-PF-TO)/(GmPTS+GmFGM+GmFTM-GmFGA
+	return (PTS+FGM+FTM-FGA-FTA+DREB+(0.5*OREB)+AST+STL \
+		+(0.5*BLK)-PF-TO)/(GmPTS+GmFGM+GmFTM-GmFGA \
 		-GmFTA+GmDREB+(0.5*GmOREB)+GmAST+GmSTL+(0.5*GmBLK)-GmPF-GmTO)
-
-
-
-
-
