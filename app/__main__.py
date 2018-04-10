@@ -1,5 +1,6 @@
 from db import Game, Team, Player, PlayerIn, PlaysIn
 from parser import parse_game_file
+import os
 
 from datetime import datetime
 from sqlalchemy import create_engine
@@ -18,8 +19,8 @@ def xml_to_database(xml_file):
     venue = game_info['venue']
 
     # Check if information for this game has already been added - if it has, then exit the function
-    # if session.query(Game).filter_by(date=venue['date'], home=venue['home_id']).first():
-    #     return "ERR: Game data already documented. Aborting upload"
+    if session.query(Game).filter_by(date=venue['date'], home=venue['home_id']).first():
+        return "ERR: Game data already documented. Aborting upload"
 
     g = Game(date=venue['date'], home=venue['home_id'], visitor=venue['vis_id'], isLeague=venue['is_league'],
              isPlayoff=venue['is_playoff'])
@@ -86,17 +87,55 @@ def xml_to_database(xml_file):
             p = Player(name=player["name"], team=team1["id"])
             session.add(p)
             session.commit()
-        game_stats = PlayerIn(id=p.id, game=g.id, fgm=player["fgm"], fga=player["fga"],
-                              fgm3=player["fgm3"], fga3=player["fga3"], ftm=player["ftm"],
-                              fta=player["fta"], tp=player["tp"], blk=player["blk"], stl=player["stl"],
-                              ast=player["ast"], oreb=player["oreb"], dreb=player["dreb"],
-                              treb=player["treb"], pf=player["pf"], tf=player["tf"], to=player["to"],
-                              dq=player["dq"], number=player["uni"])
-        session.add(game_stats)
+        # Some players don't have stats for the game - we ignore those by checking arbitrarily for the fgm stat to exist
+        # Example: Keion Green from CENTPENN
+        if "fgm" in player:
+            game_stats = PlayerIn(player=p.id, game=g.id, fgm=player["fgm"], fga=player["fga"],
+                                  fgm3=player["fgm3"], fga3=player["fga3"], ftm=player["ftm"],
+                                  fta=player["fta"], tp=player["tp"], blk=player["blk"], stl=player["stl"],
+                                  ast=player["ast"], oreb=player["oreb"], dreb=player["dreb"],
+                                  treb=player["treb"], pf=player["pf"], tf=player["tf"], to=player["to"],
+                                  dq=player["dq"], number=player["uni"])
+            session.add(game_stats)
+
         session.commit()
         # Add stats for the player for the game
 
+        # Now do the same thing for team2
 
-    print(team1)
+    for player in team2['players']:
+        p = session.query(Player).filter_by(name=player["name"], team=team2["id"]).first()
+        if not p:
+            # If the player's not already in the database add him
+            p = Player(name=player["name"], team=team2["id"])
+            session.add(p)
+            session.commit()
+        # Some players don't have stats for the game - we ignore those by checking arbitrarily for the fgm stat to exist
+        # Example: Keion Green from CENTPENN
+        if "fgm" in player:
+            game_stats = PlayerIn(player=p.id, game=g.id, fgm=player["fgm"], fga=player["fga"],
+                                  fgm3=player["fgm3"], fga3=player["fga3"], ftm=player["ftm"],
+                                  fta=player["fta"], tp=player["tp"], blk=player["blk"], stl=player["stl"],
+                                  ast=player["ast"], oreb=player["oreb"], dreb=player["dreb"],
+                                  treb=player["treb"], pf=player["pf"], tf=player["tf"], to=player["to"],
+                                  dq=player["dq"], number=player["uni"])
+            session.add(game_stats)
+        session.commit()
+
+
+def fill_all_xml():
+    """
+    Obtains all the XML files in the MBKB 2017-2018 XML directory and
+    populates the database with game information.
+    :return: None, database is updated
+    """
+    # TODO: Get directory path
+    path = None
+    directory = os.fsencode(path)
+    for file in os.listdir(directory):
+        filename = os.fsdecode(file)
+        if filename.endswith(".xml"):
+            xml_to_database(filename)  # TODO: filename should be a relative path
+    pass
 
 xml_to_database("MBK_0105.xml")

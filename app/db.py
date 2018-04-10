@@ -93,6 +93,7 @@ class PlayerIn(Base):
     id = Column(Integer, primary_key=True)
     game = Column(Integer, ForeignKey('games.id'))
     player = Column(Integer, ForeignKey('players.id'))
+    number = Column(Integer) # Jersey number in that game
 
     # Player Stats
     fgm = Column(Integer)  # Made field goals
