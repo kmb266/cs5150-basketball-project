@@ -1,5 +1,5 @@
-from app.db import Game, Team, Player, PlayerIn, PlaysIn
-from app.parser import parse_game_file
+from db import Game, Team, Player, PlayerIn, PlaysIn
+from parser import parse_game_file
 
 from datetime import datetime
 from sqlalchemy import create_engine
@@ -43,7 +43,7 @@ def xml_to_database(xml_file):
     stats = team1['stats']
 
     p1_vh = True if spec['vh'] == 'H' else False
-    plays_in_team_one = PlaysIn(team=t1.team_id, game=g.id, fgm=stats['fgm'], fga=stats['fga'],
+    plays_in_team_one = PlaysIn(team=team1["id"], game=g.id, fgm=stats['fgm'], fga=stats['fga'],
                                 fgm3=stats['fgm3'], fga3=stats['fga3'], fta=stats['fta'], ftm=stats['ftm'],
                                 tp=stats['tp'], blk=stats['blk'], stl=stats['stl'], ast=stats['ast'],
                                 oreb=stats['oreb'], dreb=stats['dreb'], treb=stats['treb'], pf=stats['pf'],
@@ -62,7 +62,7 @@ def xml_to_database(xml_file):
 
     p2_vh = True if spec['vh'] == 'H' else False
 
-    plays_in_team_two = PlaysIn(team=t1.team_id, game=g.id, fgm=stats['fgm'], fga=stats['fga'],
+    plays_in_team_two = PlaysIn(team=team2["id"], game=g.id, fgm=stats['fgm'], fga=stats['fga'],
                                fgm3=stats['fgm3'], fga3=stats['fga3'], fta=stats['fta'], ftm=stats['ftm'],
                                tp=stats['tp'], blk=stats['blk'], stl=stats['stl'], ast=stats['ast'],
                                oreb=stats['oreb'], dreb=stats['dreb'], treb=stats['treb'], pf=stats['pf'],
@@ -79,9 +79,11 @@ def xml_to_database(xml_file):
 
     # Loop through Players and add them to the database if they don't already exist, repeat for team2
     # TODO: uniquely identifying a player is still hard...
-    # for player in team1['players']:
-    #     if session.query(Player).filter_by()
-
+    for player in team1['players']:
+        if not session.query(Player).filter_by().first():
+            # If the player's not already in the database add him
+            pass
+        # Add stats for the player for the game
 
 
     print(team1)

@@ -9,7 +9,7 @@ from sqlalchemy.orm import sessionmaker
 
 Session = sessionmaker(bind=engine)
 session = Session()
-from app.db import Game
+from db import Game
 
 
 def parse_venue_info(root_node, dict):
