@@ -5,11 +5,49 @@ import sys;
 
 def TmPoints():
 	pass
+def OREB_perc():
+	pass
 
-def TmPoss(FGA, TmOREB, oppDREB, FTA,FGM):
+def DOREB_perc():
+	pass 
+
+
+
+def TmPoss(FGA, TmOREB, oppDREB,FTA,FGM):
 	return FGA-(TmOREB/(TmOREB+oppDREB))*(FGA-FGM)*1.07+TOV + 0.4*FTA
+	"""
+	Name: Total Team Possesion 
+	Returns: the total team possession based on parameters
+	Arguments:
+		FGA: field goals attemped 
+		TmOREB: ??
+		oppDREB:  ?? 
+		FTA: free throw attemped 
+		FGM: field goals made 
+		
+	
+	Depend? Yes 
+	check status: No 
+
+	"""
+
 def Team_Offensive_Rating (TmPoints, TmPoss):
 	return 100*(TmPoints/TmPoss)
+	"""
+	Name: Total Team Possesion 
+	Returns: the total team possession based on parameters
+	Arguments:
+		FGA: field goals attemped 
+		TmOREB: ??
+		oppDREB:  ?? 
+		FTA: free throw attemped 
+		FGM: field goals made 
+		
+	
+	Depend? Yes 
+	check status: No 
+
+	"""
 
 
 
@@ -179,6 +217,7 @@ def Stops_2(OppFGA,OppFGM,TmBLK,TmMIN,FMwt,DOREB_perc
 
 
 def eFG_perc(FGM,FGA,FGM_3):
+	return (FGM+0.5*FGM_3)/FGA
 	"""
 	Name: effective fieldgoal percentage
 	Returns: the effective fieldgoal percentage based on parameters
@@ -186,34 +225,109 @@ def eFG_perc(FGM,FGA,FGM_3):
 		FGM: Fieldgoals made
 		FGA: Fieldgoals attempted
 		FGM_3: 3 point shot makes
+
+		Depend? No 
+		check status: No 
+
 	"""
-	return (FGM+0.5*FGM_3)/FGA
+
 
 
 
 def Turnover_perc(TOV,FGA,FTA):
 	return TOV/(FGA+0.4*FTA+TOV)
+	"""
+	Name: Trunovers percentage 
+	Returns: the trunovers percentage based on parameters
+	Arguments:
+		TOV: trunovers (available since the 1977-78 season in the NBA)
+		FGA: field goals attemped
+		FTA: free throws attemped 
+		 
+
+	
+	Depend? No 
+	check status: No 
+
+	"""
+	
 
 
 def FTr(FTA,FGA):
 	return FTA/FGA
+	"""
+	Name: Free Throw Rate 
+	Returns: the free throw rate based on parameters
+	Arguments:
+		FTA: free throws attemped 
+		FGA: free goals attemped 
+
+	
+	Depend? No 
+	check status: No 
+
+	"""
 
 
 def FG_2_perc(FGM_2,FGA_2):
 	return FGM_2/FGA_2
+	"""
+	Name: 2FG Percentage
+	Returns: the 2FG percentage based on parameters
+	Arguments:
+		FGM_2: two-points field goals made 
+		FGA_2: two-points field goals attemped 
+	
+	Depend? No 
+	check status: No 
+
+	"""
 
 
 
 def FG_3_perc(FGM_3,FGA_3):
 	return FGM_3/FGA_3
+	"""
+	Name: 3FG Percentage
+	Returns: the 3FG percentage based on parameters
+	Arguments:
+		FGM_3: three-points field goals made 
+		FGA_3: three-points field goals attemped 
+	
+	Depend? No 
+	check status: No 
+
+	"""
 
 
 def FGr_2(FGA_2,FGA):
 	return FGA_2/FGA
+	"""
+	Name: 2FG Rate 
+	Returns: the 2FG rate based on parameters
+	Arguments:
+		FGA_2: two-points field goals attemped 
+		FGA: field goal attempted 
+	
+	Depend? No 
+	check status: No 
+
+	"""
 
 
 def FGr_3(FGA_3,FGA):
 	return FGA_3/FGA
+	"""
+	Name: 3FG Rate 
+	Returns: the 3FG rate based on parameters
+	Arguments:
+		FGA_3: three-points field goals attemped 
+		FGA: field goal attempted 
+	
+	Depend? No 
+	check status: No 
+
+	"""
 
 
 
@@ -229,14 +343,52 @@ def AST_perc(AST,MIN,TmMIN,TmFGM,FGM):
 
 def ASTr(AST,FGM):
 	return AST/FGM
+	"""
+	Name: Assists Rate
+	Returns: the assists rate based on parameters
+	Arguments:
+		AST: assists 
+		FGM: filed goals made 
+	
+	Depend? No 
+	check status: No 
+
+	"""
+
 
 
 def AST_Ratio(AST,FGA,FTA,TOV):
 	return (100*AST)/(FGA+(FTA*0.4)+AST+TOV)
+	"""
+	Name: Assists Ratio 
+	Returns: the assists ratio based on parameters
+	Arguments:
+		AST: assists 
+		FGA: filed goals attemped 
+		FTA: free throws attemped 
+		TOV: trunovers (available since the 1977-78 season in the NBA)
+	
+	Depend? No 
+	check status: No 
+
+	"""
+
 
 
 def TS_perc(PTS,FGA,FTA):
 	return PTS/(2*(FGA+0.4*FTA))
+	"""
+	Name: True Shooting percentage 
+	Returns: the True Shooting percentage based on parameters
+	Arguments:
+		PTS: points 
+		FGA: filed goals attemped 
+		FTA: free throws attemped 
+
+	Depend? No 
+	check status: No 
+
+	"""
 
 
 def Total_REB(TREB,TmMIN,MIN,TmTREB,OppTREB):
@@ -257,11 +409,35 @@ def Game_Score(PTS,FGM,FGA,FTA,FTM,ORE,DREB,STL,AST,BLK,PF,TOV):
 	return PTS+0.4*FGM-0.7*FGA-0.4 \
 	*(FTA-FTM)+0.7*ORE-0.3*DREB+STL \
 	+0.7*AST+0.7*BLK-0.4*PF-TOV
+	"""
+	Name: 
+	Returns: the ..... based on parameters
+	Arguments:
+		 
+		
+	
+	Depend? Yes 
+	check status: No 
+
+	"""
 
 
 
 def Pace(TmPoss,OppPoss,TmMIN):
 	return 40*((TmPoss+OppPoss)/(2*(TmMIN/5)))
+	"""
+	Name: Pace
+	Returns: the pace based on parameters
+	Arguments:
+		TmPoss: Total Team Possesion   
+		OppPoss: Opponent Possesion (check!)
+		TmMIN: 
+		
+	
+	Depend? Yes 
+	check status: No 
+
+	"""
 
 
 def PIE(PTS,FGM,FTM,FGA,FTA,DREB,OREB,AST,STL,BLK
