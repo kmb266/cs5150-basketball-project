@@ -258,7 +258,41 @@ export class PlayersFilterComponent implements OnInit {
 
 
   applyPlayerFilters(){
-    
+    // initial a child process
+    var spawn = require('child_process').spawn,
+        py    = spawn('python', ['./data_manager.py']),
+        data = [99,2,3,4,5,6,7,8,9],
+        dataString = '';
+
+    // retrieve the data from the data_manager.py
+    py.stdout.on('data', function(data){
+      dataString += data.toString();
+    });
+
+    // print the data when the child process ends
+    py.stdout.on('end', function(){
+      console.log('Result=',dataString);
+    });
+
+    // if there is an error, print it out
+    py.on('error', function(err) {
+      console.log("Failed to start child. " + err);
+    });
+
+    py.stdin.write(JSON.stringify(data));
+    py.stdin.end();
+
+    /*
+    const {exec} = require('child_process');
+    exec('python ./data_manager.py', (error, stdout, stderr) => {
+      if (error) {
+        console.log(error);
+      } else {
+        //console.log(stderr);
+        console.log(stdout);
+      }
+    });
+    */
   }
 
   ngOnInit(): void {
