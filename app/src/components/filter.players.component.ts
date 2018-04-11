@@ -13,6 +13,7 @@ import * as select2 from 'select2';
   templateUrl: 'templates/filter.players.html'
 })
 export class PlayersFilterComponent implements OnInit {
+  currentPageName = "players";
   filters = {};
   gametime = {
     pgtSlider:{
@@ -50,17 +51,18 @@ export class PlayersFilterComponent implements OnInit {
     // TODO: Add all filters here, probably can get with jquery, maybe with angular ---
     return filters;
   }
-  saveFilters() {
-    var filters = this.getAllFilters();
+  saveFilters(filters) {
     this.oldFilters.push(filters);
   }
   clearAllFilters() {
-    this.saveFilters()
-    console.log("cleared all filters")
+    var filters = this.getAllFilters();
+    this.saveFilters(filters);
     // clear dropdown inputs
     $('.player-select2').val(null).trigger('change');
     $('#select-season').val('season17').trigger('change');
     $('#select-season').val('season17').trigger('change');
+    console.log("cleared all filters");
+
     // TODO: clear game-filters here
 
   }
@@ -246,53 +248,10 @@ export class PlayersFilterComponent implements OnInit {
     return data;
   }
 
-  createSelect2(id, placeholder, getData) {
-    $(id).select2({
-      // dropdownCssClass : 'small-dropdown'
-      placeholder: placeholder,
-      dropdownAutoWidth : true,
-      width: 'element',
-      data: getData()
-    });
-  }
-
-
   applyPlayerFilters(){
-    // initial a child process
-    var spawn = require('child_process').spawn,
-        py    = spawn('python', ['./data_manager.py']),
-        data = [99,2,3,4,5,6,7,8,9],
-        dataString = '';
-
-    // retrieve the data from the data_manager.py
-    py.stdout.on('data', function(data){
-      dataString += data.toString();
-    });
-
-    // print the data when the child process ends
-    py.stdout.on('end', function(){
-      console.log('Result=',dataString);
-    });
-
-    // if there is an error, print it out
-    py.on('error', function(err) {
-      console.log("Failed to start child. " + err);
-    });
-
-    py.stdin.write(JSON.stringify(data));
-    py.stdin.end();
-
-    /*
-    const {exec} = require('child_process');
-    exec('python ./data_manager.py', (error, stdout, stderr) => {
-      if (error) {
-        console.log(error);
-      } else {
-        //console.log(stderr);
-        console.log(stdout);
-      }
-    });
-    */
+    var filters = this.getAllFilters();
+    this.saveFilters(filters);
+    globals.applyFilters(this.currentPageName, filters)
   }
 
   ngOnInit(): void {
@@ -343,13 +302,13 @@ export class PlayersFilterComponent implements OnInit {
 
     // set up the multiple select dropdowns
     select2();
-    this.createSelect2("#player-position", 'Select Position(s)', this.getPositions);
-    this.createSelect2("#player-team", 'Select Team(s)', this.getTeams);
-    this.createSelect2("#player-opponent", 'Select Team(s)', this.getOpponents);
-    this.createSelect2("#player-conference", 'Select Conf(s)', this.getConferences);
-    this.createSelect2("#player-in-lineup", 'Select Player(s)', this.getCurrentTeamMembers);
-    this.createSelect2("#player-out-lineup", 'Select Player(s)', this.getCurrentTeamMembers);
-    this.createSelect2("#select-season", 'Ex. 17-18', this.getAvailableSeasons);
+    globals.createSelect2("#player-position", 'Select Position(s)', this.getPositions);
+    globals.createSelect2("#player-team", 'Select Team(s)', this.getTeams);
+    globals.createSelect2("#player-opponent", 'Select Team(s)', this.getOpponents);
+    globals.createSelect2("#player-conference", 'Select Conf(s)', this.getConferences);
+    globals.createSelect2("#player-in-lineup", 'Select Player(s)', this.getCurrentTeamMembers);
+    globals.createSelect2("#player-out-lineup", 'Select Player(s)', this.getCurrentTeamMembers);
+    globals.createSelect2("#select-season", 'Ex. 17-18', this.getAvailableSeasons);
 
     // styling on select2s done here after initialization
     $(".select2-selection__rendered").css("overflow-x","scroll");
@@ -357,6 +316,5 @@ export class PlayersFilterComponent implements OnInit {
     $(".select2-selection.select2-selection--multiple").css("min-height","26px");
 
   }
-
 
 }

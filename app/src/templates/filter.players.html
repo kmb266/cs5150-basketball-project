@@ -1,6 +1,6 @@
 <nav class="side-nav js-nav is-shown" id="left">
   <div class="clear-filters" id="clear-players-filters" style="padding-right:6px;">
-    <button type="button" class="btn btn-danger btn-xs" id="clear-btn" (click)="clearAllFilters()"> Clear All </button>
+    <button type="button" class="btn btn-danger btn-xs" (click)="clearAllFilters()"> Clear All </button>
   </div>
   <div class="nav-item">
     <h5 class="nav-category">Player Filters</h5>
@@ -20,7 +20,7 @@
   </div>
   <div class="nav-item">
     <h5 class="nav-category">Team Filters</h5>
-    <table id='team-filters' class="filter-table">
+    <table id="team-filters" class="filter-table">
       <tr>
         <td class="filter-td"> <label class="filter-label" for="teamNames"> Team: </label> </td>
         <td class="filter-td">
@@ -93,15 +93,15 @@
       <tr>
         <td class="filter-td filterCheckbox">
           <label class="filter-label indent-first-checkbox" for="homeGames">Home</label>
-          <input type="checkbox" class="homeAway" id="homeGames"/>
+          <input type="checkbox" class="homeAway" id="homeGames" name="homeGames" #homeGames/>
         </td>
         <td class="filter-td filterCheckbox">
           <label class="filter-label" for="awayGames">Away</label>
-          <input type="checkbox" class="homeAway" id="awayGames"/>
+          <input type="checkbox" class="homeAway" id="awayGames" #awayGames/>
         </td>
         <td class="filter-td filterCheckbox">
           <label class="filter-label" for="neutralGames">Neutrl</label>
-          <input type="checkbox" class="homeAway" id="neutralGames"/>
+          <input type="checkbox" class="homeAway" id="neutralGames" #neutralGames/>
         </td>
       </tr>
 
@@ -111,11 +111,11 @@
       <tr>
         <td class="filter-td filterCheckbox">
           <label class="filter-label indent-first-checkbox" for="wins">Win</label>
-          <input type="checkbox" class="winLoss" id="wins"/>
+          <input type="checkbox" class="winLoss" id="wins" #wins/>
         </td>
         <td class="filter-td filterCheckbox">
           <label class="filter-label" for="losses">Loss</label>
-          <input type="checkbox" class="winLoss" id="losses"/>
+          <input type="checkbox" class="winLoss" id="losses" #losses/>
         </td>
       </tr>
     </table>
