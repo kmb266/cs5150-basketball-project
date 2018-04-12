@@ -201,10 +201,13 @@ export class GamesFilterComponent implements OnInit {
     return data;
   }
 
+  emitData(data){
+    alert(data);
+  }
   applyPlayerFilters(){
     var filters = this.getAllFilters();
     this.saveFilters(filters);
-    globals.applyFilters(this.currentPageName, filters)
+    globals.applyFilters(this.currentPageName, filters, this.emitData);
   }
 
   ngOnInit(): void {
