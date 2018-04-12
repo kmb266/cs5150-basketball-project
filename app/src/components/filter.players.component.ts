@@ -14,6 +14,7 @@ import * as select2 from 'select2';
 })
 export class PlayersFilterComponent implements OnInit {
   currentPageName = "players";
+  asdf = "";
   filters = {};
   gametime = {
     pgtSlider:{
@@ -248,10 +249,13 @@ export class PlayersFilterComponent implements OnInit {
     return data;
   }
 
+  emitData(data){
+    alert(data);
+  }
   applyPlayerFilters(){
     var filters = this.getAllFilters();
     this.saveFilters(filters);
-    globals.applyFilters(this.currentPageName, filters)
+    globals.applyFilters(this.currentPageName, filters, this.emitData);
   }
 
   ngOnInit(): void {

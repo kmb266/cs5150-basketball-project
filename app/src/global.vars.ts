@@ -34,10 +34,18 @@ export const createSelect2 = (id, placeholder, getData) => {
   });
 }
 
-export const applyFilters = (page, filters_data) => {
+export const applyFilters = (page, filters_data, callback) => {
   // initial a child process
+
+  // When packaging the app, use pyinstaller to package all of the python files
+  // and then put the dist directory in the python folder and the files will run
+  // uncomment the next 3 lines to replace spawn and py vars below
+  // var path = require('path'),
+  //     path_to_exe = path.join(__dirname, 'python', 'dist', 'data_manager','data_manager'),
+  //     py = require('child_process').execFile(path_to_exe),
+
   var spawn = require('child_process').spawn,
-      py    = spawn('python', ['./data_manager.py']),
+      py    = spawn('python', ['./python/data_manager.py']),
       data = [99,2,3,4,5,6,7,8,9],
       dataString = '';
 
@@ -49,6 +57,7 @@ export const applyFilters = (page, filters_data) => {
   // print the data when the child process ends
   py.stdout.on('end', function(){
     console.log('Result=',dataString);
+    callback(dataString);
   });
 
   // if there is an error, print it out
