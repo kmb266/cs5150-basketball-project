@@ -1,4 +1,4 @@
-import { NgModule, Component, Input } from '@angular/core';
+import { NgModule, Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import * as globals from './../global.vars';
 
@@ -12,7 +12,7 @@ import * as select2 from 'select2';
   selector: 'filter-games',
   templateUrl: 'templates/filter.games.html'
 })
-export class GamesFilterComponent implements AfterViewInit {
+export class GamesFilterComponent implements OnInit {
   currentPageName = "games";
   filters = {};
   gametime = {
@@ -59,8 +59,7 @@ export class GamesFilterComponent implements AfterViewInit {
     this.saveFilters(filters);
     // clear dropdown inputs
     $('.game-select2').val(null).trigger('change');
-    $('#game-select-season').val('season17').trigger('change');
-    $('#game-select-season').val('season17').trigger('change');
+    $('#games-select-season').val('season17').trigger('change');
     console.log("cleared all filters");
 
     // TODO: clear game-filters here

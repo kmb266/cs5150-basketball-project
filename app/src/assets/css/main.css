@@ -42,15 +42,16 @@ body {
   z-index: 2;
 }
 
-@media screen and (max-height: 720px) {
+@media screen and (max-height: 770px) {
   .apply-filters {
     position: fixed;
     bottom: 0px;
     left: 0px;
     width: 200px;
   }
-  #season-category {
+  .season-category {
     padding-bottom: 60px;
+    margin-bottom: 40px;
   }
 }
 
