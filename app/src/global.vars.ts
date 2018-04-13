@@ -40,6 +40,7 @@ export const applyFilters = (page, filters_data, callback) => {
   // When packaging the app, use pyinstaller to package all of the python files
   // and then put the dist directory in the python folder and the files will run
   // uncomment the next 3 lines to replace spawn and py vars below
+  // got ideas from https://github.com/fyears/electron-python-example
   // var path = require('path'),
   //     path_to_exe = path.join(__dirname, 'python', 'dist', 'data_manager','data_manager'),
   //     py = require('child_process').execFile(path_to_exe),

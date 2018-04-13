@@ -14,8 +14,6 @@ import * as select2 from 'select2';
 })
 export class PlayersFilterComponent implements OnInit {
   currentPageName = "players";
-  asdf = "";
-  filters = {};
   gametime = {
     pgtSlider:{
       start:{clock: "20:00", sec:-2400},
@@ -35,6 +33,16 @@ export class PlayersFilterComponent implements OnInit {
     pgtSliderExtra: true,
   }
 
+
+  // 2 way bound filters -- simple inputs
+  homeGames:boolean = false;
+  awayGames:boolean = false;
+  neutralGames:boolean = false;
+  wins:boolean = false;
+  losses:boolean = false;
+  lastNGames:string;
+  upOrDown:string;
+
   oldFilters = [];
 
   hidePgtExtra = true;
@@ -49,7 +57,50 @@ export class PlayersFilterComponent implements OnInit {
 
   getAllFilters() {
     var filters = {};
-    // TODO: Add all filters here, probably can get with jquery, maybe with angular ---
+    // set which page we are requesting the filters from
+    filters['page'] = this.currentPageName;
+    // Gather dropdown data
+    $('.players-select2').each(function() {
+      // Normalize filter names to send to middle stack
+      var id = this.id.split('-')[1];
+      filters[id] = $(this).val();
+    });
+
+    // Gather data not in dropdowns
+    filters.gametime = this.gametime;
+    filters.gametime.multipleTimeFrames = !this.hidePgtExtra;
+
+    filters.upOrDown = [filters.upOrDown, this.upOrDown];
+    filters.recentGames = this.lastNGames;
+
+    if (!this.homeGames && !this.awayGames && !this.neutralGames) {
+      filters.location = {
+        home:true,
+        away:true,
+        neutral:true
+      }
+    }
+    else {
+      filters.location = {
+        home:this.homeGames,
+        away:this.awayGames,
+        neutral:this.neutralGames
+      }
+    }
+
+    if (!this.wins && !this.losses) {
+      filters.outcome = {
+        wins: true,
+        losses: true
+      }
+    }
+    else {
+      filters.outcome = {
+        wins: this.wins,
+        losses: this.losses
+      }
+    }
+
     return filters;
   }
   saveFilters(filters) {
@@ -59,16 +110,23 @@ export class PlayersFilterComponent implements OnInit {
     var filters = this.getAllFilters();
     this.saveFilters(filters);
     // clear dropdown inputs
-    $('.player-select2').val(null).trigger('change');
+    $('.players-select2').val(null).trigger('change');
     $('#select-season').val('season17').trigger('change');
     $('#select-season').val('season17').trigger('change');
     console.log("cleared all filters");
 
-    // TODO: clear game-filters here
-
+    this.homeGames = false;
+    this.awayGames = false;
+    this.neutralGames = false;
+    this.wins = false;
+    this.losses = false;
+    $(lastNGames).val(null);
+    $(upOrDown).val(null);
   }
 
+
   // Gametime Slider methods
+
   updateSliderStart(clock, inputId) {
     var seconds = - globals.gametimeToSeconds(clock, this.startTime2ndHalf[inputId]);
     if (seconds >= this.gametime[inputId].end.sec) {
@@ -119,7 +177,9 @@ export class PlayersFilterComponent implements OnInit {
     console.log(this.gametime[inputId].end.sec);
   }
 
+
   // TODO: integrate with middle stack team make call to db and get the data for the following
+
   getPositions() {
     var data = [
       {
@@ -248,14 +308,33 @@ export class PlayersFilterComponent implements OnInit {
     ];
     return data;
   }
+  getUpOrDown() {
+    var data = [
+      {
+        id: 'up',
+        text: 'up by'
+      },
+      {
+        id: 'down',
+        text: 'down'
+      },
+      {
+        id: 'withIn',
+        text: 'within'
+      },
+    ];
+    return data;
+  }
+
+  // Send and receive data to middle stack
 
   emitData(data){
     alert(data);
   }
   applyPlayerFilters(){
     var filters = this.getAllFilters();
-    this.saveFilters(filters);
-    globals.applyFilters(this.currentPageName, filters, this.emitData);
+    // this.saveFilters(filters);
+    // globals.applyFilters(this.currentPageName, filters, this.emitData);
   }
 
   ngOnInit(): void {
@@ -306,12 +385,13 @@ export class PlayersFilterComponent implements OnInit {
 
     // set up the multiple select dropdowns
     select2();
-    globals.createSelect2("#player-position", 'Select Position(s)', this.getPositions);
-    globals.createSelect2("#player-team", 'Select Team(s)', this.getTeams);
-    globals.createSelect2("#player-opponent", 'Select Team(s)', this.getOpponents);
-    globals.createSelect2("#player-conference", 'Select Conf(s)', this.getConferences);
-    globals.createSelect2("#player-in-lineup", 'Select Player(s)', this.getCurrentTeamMembers);
-    globals.createSelect2("#player-out-lineup", 'Select Player(s)', this.getCurrentTeamMembers);
+    globals.createSelect2("#players-position", 'Select Position(s)', this.getPositions);
+    globals.createSelect2("#players-team", 'Select Team(s)', this.getTeams);
+    globals.createSelect2("#players-opponent", 'Select Team(s)', this.getOpponents);
+    globals.createSelect2("#players-conference", 'Select Conf(s)', this.getConferences);
+    globals.createSelect2("#players-in-lineup", 'Select Player(s)', this.getCurrentTeamMembers);
+    globals.createSelect2("#players-out-lineup", 'Select Player(s)', this.getCurrentTeamMembers);
+    globals.createSelect2("#players-upOrDown", "Select", this.getUpOrDown);
     globals.createSelect2("#select-season", 'Ex. 17-18', this.getAvailableSeasons);
 
     // styling on select2s done here after initialization
