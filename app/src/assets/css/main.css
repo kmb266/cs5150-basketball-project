@@ -42,15 +42,16 @@ body {
   z-index: 2;
 }
 
-@media screen and (max-height: 720px) {
+@media screen and (max-height: 770px) {
   .apply-filters {
     position: fixed;
     bottom: 0px;
     left: 0px;
     width: 200px;
   }
-  #season-category {
+  .season-category {
     padding-bottom: 60px;
+    margin-bottom: 40px;
   }
 }
 
@@ -101,4 +102,12 @@ span.filter-label {
 [class^='select2'] {
   border-radius: 0px !important;
   font-size: 12px;
+}
+.upOrDown {
+  font-size: 8px;
+}
+
+/* hide the search box in the up or down section */
+.select2-search--dropdown {
+  display: none !important;
 }
