@@ -46,7 +46,7 @@ export const applyFilters = (page, filters_data, callback) => {
   //     py = require('child_process').execFile(path_to_exe),
 
   var spawn = require('child_process').spawn,
-      py    = spawn('python', ['./python/data_manager.py']),
+      py = spawn('python', ['./data_manager.py']),
       data = [99,2,3,4,5,6,7,8,9],
       dataString = '';
 
@@ -57,7 +57,6 @@ export const applyFilters = (page, filters_data, callback) => {
 
   // print the data when the child process ends
   py.stdout.on('end', function(){
-    console.log('Result=',dataString);
     callback(dataString);
   });
 
