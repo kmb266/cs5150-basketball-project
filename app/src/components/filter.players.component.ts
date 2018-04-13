@@ -101,6 +101,7 @@ export class PlayersFilterComponent implements OnInit {
       }
     }
 
+    console.log(filters);
     return filters;
   }
   saveFilters(filters) {
@@ -329,12 +330,13 @@ export class PlayersFilterComponent implements OnInit {
   // Send and receive data to middle stack
 
   emitData(data){
-    alert(data);
+    // alert(data);
+    console.log(data);
   }
   applyPlayerFilters(){
     var filters = this.getAllFilters();
     // this.saveFilters(filters);
-    // globals.applyFilters(this.currentPageName, filters, this.emitData);
+    globals.applyFilters(this.currentPageName, filters, this.emitData);
   }
 
   ngOnInit(): void {
