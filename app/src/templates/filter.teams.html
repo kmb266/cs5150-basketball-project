@@ -1,65 +1,61 @@
 <nav class="side-nav js-nav is-shown" id="left">
   <div class="clear-filters" id="clear-teams-filters" style="padding-right:6px;">
-    <button type="button" class="btn btn-danger btn-xs" id="clear-btn"> Clear </button>
-  </div>
-  <div class="nav-item">
-    <h5 class="nav-category">Player Filters</h5>
-    <table id='player-filters'>
-      <tr>
-        <td class="filter-td"> <label class="filter-label" for="playerName"> Name: </label> </td>
-        <td class="filter-td"> <input class="input-filter" id="playerName" name="playerName" #playerName placeholder="Ex. Smith, Brown"> </td>
-      </tr>
-      <tr>
-        <td class="filter-td"> <label class="filter-label" for="playerNum"> Number: </label> </td>
-        <td class="filter-td"> <input class="input-filter" id="playerNum" name="playerNum" #playerNum placeholder="Ex. 10, 23"> </td>
-      </tr>
-      <tr>
-        <td class="filter-td"> <label class="filter-label" for="playerPos"> Position: </label> </td>
-        <td class="filter-td"> <input class="input-filter" id="playerPos" name="playerPos" #playerPos placeholder="Ex. PG, SG"> </td>
-      </tr>
-    </table>
+    <button type="button" class="btn btn-danger btn-xs" (click)="clearAllFilters()"> Clear All </button>
   </div>
   <div class="nav-item">
     <h5 class="nav-category">Team Filters</h5>
-    <table id='team-filters'>
+    <table id="game-team-filters" class="filter-table">
       <tr>
-        <td class="filter-td"> <label class="filter-label" for="collegeName"> College: </label> </td>
-        <td class="filter-td"> <input class="input-filter" id="collegeName" name="collegerName" #collegeName (keyup)="onKeyName(collegeName.value)" placeholder="Ex. Columbia"> </td>
+        <td class="filter-td"> <label class="filter-label" for="teamTeamNames[]"> Team: </label> </td>
+        <td class="filter-td">
+          <select id="teams-team" class="input-filter teams-select2 filter-select2" name="teamTeamNames[]" multiple="multiple"></select>
+        </td>
       </tr>
       <tr>
-        <td class="filter-td"> <label class="filter-label" for="conferenceName"> Conference: </label> </td>
-        <td class="filter-td"> <input class="input-filter" id="conferenceName" name="conferenceName" #conferenceName (keyup)="onKeyNum(conferenceName.value)" placeholder="Ex. Ivy League"> </td>
+        <td class="filter-td"> <label class="filter-label" for="teamVsTeamNames[]"> Opponent: </label> </td>
+        <td class="filter-td">
+          <select id="teams-opponent" class="input-filter teams-select2 filter-select2" name="teamVsTeamNames[]" multiple="multiple"></select>
+        </td>
+      </tr>
+      <tr>
+        <td class="filter-td"> <label class="filter-label" for="teamConferenceName[]"> Conference: </label> </td>
+        <td class="filter-td">
+          <select id="teams-conference" class="input-filter teams-select2 filter-select2" name="teamConferenceName[]" multiple="multiple"></select>
+        </td>
       </tr>
     </table>
   </div>
 
   <div class="nav-item">
     <h5 class="nav-category">Game Filters</h5>
-    <table id='game-filters'>
-      <tr>
-        <td class="filter-td" colspan="3">
-          <label class="filter-label" for="lastNGames"> Show last </label>
-          <input type="number" class="input-filter" style="margin-left:4px; margin-right:2px; width:40px; text-align:center;" id="lastNGames" name="lastNGames" #lastNGames placeholder="4">
-          <label class="filter-label">game(s)</label>
-        </td>
-      </tr>
-      <tr>
+    <div>
+      <label class="filter-label" for="teams-lastNGames">Show last</label>
+      <input type="number" class="input-filter" style="margin:0px 2px 0px 4px; width:40px; text-align:center;" id="teams-lastNGames" name="teams-lastNGames" [(ngModel)]="lastNGames" placeholder="#">
+      <label class="filter-label">game(s)</label>
+    </div>
+    <div style="padding-top:4px;">
+      <label class="filter-label" for="teams-upOrDown">Score </label>
+      <select id="teams-upOrDown" class="teams-select2 filter-select2 upOrDown" style="width:70px; padding-left:8px;"></select>
+      <input type="number" class="input-filter" style="margin-top:4px;width:40px; text-align:center;" [(ngModel)]="upOrDown" placeholder="#">
+      <label class="filter-label" style="width:20px;">points</label>
+    </div>
+    <table id='team-game-filters'>
         <td class="filter-td">
           <span class="filter-label"> Location: </span>
         </td>
       </tr>
       <tr>
         <td class="filter-td filterCheckbox">
-          <label class="filter-label indent-first-checkbox" for="homeGames">Home</label>
-          <input type="checkbox" class="homeAway" id="homeGames"/>
+          <label class="filter-label indent-first-checkbox" for="teamHomeGames">Home</label>
+          <input type="checkbox" class="homeAway" id="teamHomeGames" name="teamHomeGames" #homeGames/>
         </td>
         <td class="filter-td filterCheckbox">
-          <label class="filter-label" for="awayGames">Away</label>
-          <input type="checkbox" class="homeAway" id="awayGames"/>
+          <label class="filter-label" for="teamAwayGames">Away</label>
+          <input type="checkbox" class="homeAway" id="teamAwayGames" name="teamAwayGames" #awayGames/>
         </td>
         <td class="filter-td filterCheckbox">
-          <label class="filter-label" for="neutralGames">Neutrl</label>
-          <input type="checkbox" class="homeAway" id="neutralGames"/>
+          <label class="filter-label" for="teamNeutralGames">Neutrl</label>
+          <input type="checkbox" class="homeAway" id="teamNeutralGames" name="teamNeutralGames" #neutralGames/>
         </td>
       </tr>
 
@@ -68,56 +64,102 @@
       </tr>
       <tr>
         <td class="filter-td filterCheckbox">
-          <label class="filter-label indent-first-checkbox" for="wins">Win</label>
-          <input type="checkbox" class="winLoss" id="wins"/>
+          <label class="filter-label indent-first-checkbox" for="teamWins">Win</label>
+          <input type="checkbox" class="winLoss" id="teamWins" name="teamWins" #wins/>
         </td>
         <td class="filter-td filterCheckbox">
-          <label class="filter-label" for="losses">Loss</label>
-          <input type="checkbox" class="winLoss" id="losses"/>
+          <label class="filter-label" for="teamLosses">Loss</label>
+          <input type="checkbox" class="winLoss" id="teamLosses" #losses/>
         </td>
       </tr>
     </table>
-    <table id="game-time">
+    <table id="teamGame-time">
       <tr>
         <td class="filter-td" colspan="3"> <span class="filter-label"> Game Time: </span> </td>
       </tr>
-      <tr>
+      <tr style="width:100%">
         <td class="filter-td" colspan="3">
-          <!-- TODO: get this to be a range slider with 2 for the time like in the demo -->
-          <input type="range" multiple/>
+          <div class="slider-wrapper">
+            <input type="text" id="tgtSlider" name="tgtSlider" value="" #tgtSlider/>
+          </div>
         </td>
       </tr>
       <tr>
-        <td>20:00</td>
-        <td class="filter-td filterCheckbox" style="    width: 100px;text-align: center;">
-          <label class="filter-label" for="includeOT">Include OT</label>
-          <input type="checkbox" class="gametime" id="includeOT"/>
+        <td class="time-td">
+          <input type="text" class="gametime-input" maxlength="5" value={{gametime.tgtSlider.start.clock}}
+                  #gameStartInput (keyup.enter)="updateSliderStart(gameStartInput.value, tgtSlider.id)" />
+          <input [(ngModel)]="startTime2ndHalf.tgtSlider" (change)="changedStartHalf(tgtSlider.id)" type="checkbox" />
         </td>
-        <td style="text-align:right;">00:00</td>
+
+        <td class="filter-td" style="width:50px; font-size:10px; text-align:center;">
+          <span class="second-half">2nd half</span>
+        </td>
+        <td class="filter-td time-td" style="text-align:right;">
+          <input [(ngModel)]="endTime2ndHalf.tgtSlider" (change)="changedEndHalf(tgtSlider.id)" type="checkbox" />
+          <input type="text" class="gametime-input" maxlength="5" value="{{gametime.tgtSlider.end.clock}}"
+                  #gameEndInput (keyup.enter)="updateSliderEnd(gameEndInput.value,  tgtSlider.id)"/>
+        </td>
+      </tr>
+      <tr>
+        <td class="filter-td filterCheckbox" colspan="3">
+          <label class="filter-label" for="gameIncludeOT">Include OT</label>
+          <input type="checkbox" class="gametime" id="teamIncludeOT"/>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="3" style="text-align:right;">
+          <button class="btn btn-sm btn-default" (click)="togglePgtExtra()">Toggle Extra Time Period</button>
+        </td>
+      </tr>
+
+      <tr style="width:100%" [hidden]="hidePgtExtra">
+        <td class="filter-td" colspan="3">
+          <div class="slider-wrapper">
+            <input type="text" id="tgtSliderExtra" name="tgtSliderExtra" value=""  #tgtSliderExtra/>
+          </div>
+        </td>
+      </tr>
+      <tr [hidden]="hidePgtExtra">
+        <td class="time-td">
+          <input type="text" class="gametime-input" maxlength="5" value={{gametime.tgtSliderExtra.start.clock}}
+                  #gameStartExtraInput (keyup.enter)="updateSliderStart(gameStartExtraInput.value, tgtSliderExtra.id)" />
+          <input [(ngModel)]="startTime2ndHalf.tgtSliderExtra" (change)="changedStartHalf(tgtSliderExtra.id)" type="checkbox" />
+        </td>
+
+        <td class="filter-td" style="width:50px; font-size:10px; text-align:center;">
+          <span class="second-half">2nd half</span>
+        </td>
+        <td class="filter-td time-td" style="text-align:right;">
+          <input [(ngModel)]="endTime2ndHalf.tgtSliderExtra" (change)="changedEndHalf(tgtSliderExtra.id)" type="checkbox" />
+          <input type="text" class="gametime-input" maxlength="5" value="{{gametime.tgtSliderExtra.end.clock}}"
+                  #gameEndExtraInput (keyup.enter)="updateSliderEnd(gameEndInput.value, tgtSliderExtra.id)" />
+        </td>
+      </tr>
+      <tr [hidden]="hidePgtExtra">
+        <td class="filter-td filterCheckbox" colspan="3">
+          <label class="filter-label" for="teamIncludeOT">Include OT</label>
+          <input type="checkbox" class="gametime" id="teamIncludeOTExtra"/>
+        </td>
       </tr>
     </table>
   </div>
 
-  <div class="nav-item" id="season-category">
-    <table id='season-filters'>
+  <div class="nav-item season-category">
+    <table id='team-season-filters' class="filter-table">
       <tr>
         <td>
           <h5 class="nav-category">Season</h5>
         </td>
         <td class="filter-td" style="text-align:center; width:100%;">
-          <select id="select-season" multiple style="padding:4px">
-            <option value="17">17-18</option>
-            <option value="16">16-17</option>
-            <option value="15">15-16</option>
-            <option value="14">14-15</option>
-          </select>
+          <select id="teams_select-season" class="teams-select2 filter-select2" multiple="multiple" style="width:100%; padding:4px"> </select>
         </td>
       </tr>
     </table>
   </div>
 
-  <div class="nav-item apply-filters">
-    <button class="btn btn-default">Apply Filters</button>
+  <div class="nav-item apply-filters" >
+    <button class="btn btn-default" (click)="applyPlayerFilters()">Apply Filters</button>
   </div>
 
 </nav>
