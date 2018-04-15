@@ -67,7 +67,9 @@ export class PlayersFilterComponent implements OnInit {
     });
 
     // Gather data not in dropdowns
-    filters.gametime = this.gametime;
+    filters.gametime = {};
+    filters.gametime.slider = this.gametime.pgtSlider;
+    filters.gametime.sliderExtra = this.gametime.pgtSliderExtra;
     filters.gametime.multipleTimeFrames = !this.hidePgtExtra;
 
     filters.upOrDown = [filters.upOrDown, this.upOrDown];
@@ -113,8 +115,6 @@ export class PlayersFilterComponent implements OnInit {
     // clear dropdown inputs
     $('.players-select2').val(null).trigger('change');
     $('#select-season').val('season17').trigger('change');
-    $('#select-season').val('season17').trigger('change');
-    console.log("cleared all filters");
 
     this.homeGames = false;
     this.awayGames = false;
@@ -123,6 +123,7 @@ export class PlayersFilterComponent implements OnInit {
     this.losses = false;
     $(lastNGames).val(null);
     $(upOrDown).val(null);
+    console.log("cleared all filters");
   }
 
 
@@ -309,23 +310,6 @@ export class PlayersFilterComponent implements OnInit {
     ];
     return data;
   }
-  getUpOrDown() {
-    var data = [
-      {
-        id: 'up',
-        text: 'up by'
-      },
-      {
-        id: 'down',
-        text: 'down'
-      },
-      {
-        id: 'withIn',
-        text: 'within'
-      },
-    ];
-    return data;
-  }
 
   // Send and receive data to middle stack
 
@@ -393,7 +377,7 @@ export class PlayersFilterComponent implements OnInit {
     globals.createSelect2("#players-conference", 'Select Conf(s)', this.getConferences);
     globals.createSelect2("#players-in-lineup", 'Select Player(s)', this.getCurrentTeamMembers);
     globals.createSelect2("#players-out-lineup", 'Select Player(s)', this.getCurrentTeamMembers);
-    globals.createSelect2("#players-upOrDown", "Select", this.getUpOrDown);
+    globals.createSelect2("#players-upOrDown", "Select", globals.getUpOrDown);
     globals.createSelect2("#select-season", 'Ex. 17-18', this.getAvailableSeasons);
 
     // styling on select2s done here after initialization

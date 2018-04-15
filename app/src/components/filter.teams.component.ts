@@ -14,7 +14,6 @@ import * as select2 from 'select2';
 })
 export class TeamsFilterComponent implements OnInit {
   currentPageName = "games";
-  filters = {};
   gametime = {
     tgtSlider:{
       start:{clock: "20:00", sec:-2400},
@@ -34,6 +33,15 @@ export class TeamsFilterComponent implements OnInit {
     tgtSliderExtra: true,
   }
 
+  // 2 way bound filters -- simple inputs
+  homeGames:boolean = false;
+  awayGames:boolean = false;
+  neutralGames:boolean = false;
+  wins:boolean = false;
+  losses:boolean = false;
+  lastNGames:string;
+  upOrDown:string;
+
   oldFilters = [];
 
   hidePgtExtra = true;
@@ -48,7 +56,54 @@ export class TeamsFilterComponent implements OnInit {
 
   getAllFilters() {
     var filters = {};
-    // TODO: Add all filters here, probably can get with jquery, maybe with angular ---
+    var filters = {};
+    // set which page we are requesting the filters from
+    filters['page'] = this.currentPageName;
+    // Gather dropdown data
+    $('.teams-select2').each(function() {
+      // Normalize filter names to send to middle stack
+      var id = this.id.split('-')[1];
+      filters[id] = $(this).val();
+    });
+
+    // Gather data not in dropdowns
+    filters.gametime = {};
+    filters.gametime.slider = this.gametime.pgtSlider;
+    filters.gametime.sliderExtra = this.gametime.pgtSliderExtra;
+    filters.gametime.multipleTimeFrames = !this.hidePgtExtra;
+
+    filters.upOrDown = [filters.upOrDown, this.upOrDown];
+    filters.recentGames = this.lastNGames;
+
+    if (!this.homeGames && !this.awayGames && !this.neutralGames) {
+      filters.location = {
+        home:true,
+        away:true,
+        neutral:true
+      }
+    }
+    else {
+      filters.location = {
+        home:this.homeGames,
+        away:this.awayGames,
+        neutral:this.neutralGames
+      }
+    }
+
+    if (!this.wins && !this.losses) {
+      filters.outcome = {
+        wins: true,
+        losses: true
+      }
+    }
+    else {
+      filters.outcome = {
+        wins: this.wins,
+        losses: this.losses
+      }
+    }
+
+    console.log(filters);
     return filters;
   }
   saveFilters(filters) {
@@ -60,10 +115,15 @@ export class TeamsFilterComponent implements OnInit {
     // clear dropdown inputs
     $('.team-select2').val(null).trigger('change');
     $('#team-select-season').val('season17').trigger('change');
+
+    this.homeGames = false;
+    this.awayGames = false;
+    this.neutralGames = false;
+    this.wins = false;
+    this.losses = false;
+    $(lastNGames).val(null);
+    $(upOrDown).val(null);
     console.log("cleared all filters");
-
-    // TODO: clear game-filters here
-
   }
 
   // Gametime Slider methods
@@ -202,11 +262,12 @@ export class TeamsFilterComponent implements OnInit {
   }
 
   emitData(data){
-    alert(data);
+    // alert(data);
+    console.log(data);
   }
   applyPlayerFilters(){
     var filters = this.getAllFilters();
-    this.saveFilters(filters);
+    // this.saveFilters(filters);
     globals.applyFilters(this.currentPageName, filters, this.emitData);
   }
 
@@ -258,10 +319,11 @@ export class TeamsFilterComponent implements OnInit {
 
     // set up the multiple select dropdowns
     select2();
-    globals.createSelect2("#team-team", 'Select Team(s)', this.getTeams);
-    globals.createSelect2("#team-opponent", 'Select Team(s)', this.getOpponents);
-    globals.createSelect2("#team-conference", 'Select Conf(s)', this.getConferences);
-    globals.createSelect2("#team-select-season", 'Ex. 17-18', this.getAvailableSeasons);
+    globals.createSelect2("#teams-team", 'Select Team(s)', this.getTeams);
+    globals.createSelect2("#teams-opponent", 'Select Team(s)', this.getOpponents);
+    globals.createSelect2("#teams-conference", 'Select Conf(s)', this.getConferences);
+    globals.createSelect2("#teams-upOrDown", "Select", globals.getUpOrDown);
+    globals.createSelect2("#teams_select-season", 'Ex. 17-18', this.getAvailableSeasons);
 
     // styling on select2s done here after initialization
     $(".select2-selection__rendered").css("overflow-x","scroll");
