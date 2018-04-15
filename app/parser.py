@@ -22,7 +22,14 @@ def parse_venue_info(root_node, dict):
 
     # Fetch the date (and time) convert to python datetime
     date = root.attrib['date'] + " " + root.attrib['time'].replace('.', '')
-    date = datetime.datetime.strptime(date, '%m/%d/%Y %I:%M %p')
+    try:
+        date = datetime.datetime.strptime(date, '%m/%d/%Y %I:%M %p')
+    except ValueError: # Date is formatted differently
+        try:
+            date = datetime.datetime.strptime(date, '%m/%d/%Y %I:%M%p')
+        except ValueError:
+            date = datetime.datetime.strptime(date, '%m/%d/%Y %I %p')
+
 
     # Extract information on whether the game is a league game, playoff game
     is_league = False if root.attrib['leaguegame'] == "N" else True
