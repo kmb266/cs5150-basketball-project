@@ -4,7 +4,7 @@ from datetime import datetime
 
 from sqlalchemy import create_engine
 
-engine = create_engine('sqlite:///basketball.db', echo=True)
+engine = create_engine('sqlite:///basketball.db', echo=False)
 from sqlalchemy.orm import sessionmaker
 
 Session = sessionmaker(bind=engine)
@@ -166,7 +166,7 @@ The general mapping of the python game data dictionary is as follows:
             'pt2s_ch2': points scored between arc and paint
             'pts_paint': points scored in the paint
             'pts_fastb': points scored on the fast break
-            'vh': whether visiting or home 
+            'vh': whether visiting or home
             'pts_to': points scored off of turnovers
             'poss_count': number of possessions the team had
             'pts_bench': number of points scored by the bench
