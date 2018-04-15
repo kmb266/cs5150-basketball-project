@@ -34,6 +34,25 @@ export const createSelect2 = (id, placeholder, getData) => {
   });
 }
 
+export const getUpOrDown() {
+  var data = [
+    {
+      id: 'up',
+      text: 'up by'
+    },
+    {
+      id: 'down',
+      text: 'down'
+    },
+    {
+      id: 'withIn',
+      text: 'within',
+      selected: true
+    },
+  ];
+  return data;
+}
+
 export const applyFilters = (page, filters_data, callback) => {
   // initial a child process
 
