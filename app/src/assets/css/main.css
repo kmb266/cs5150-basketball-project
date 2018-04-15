@@ -42,15 +42,16 @@ body {
   z-index: 2;
 }
 
-@media screen and (max-height: 720px) {
+@media screen and (max-height: 770px) {
   .apply-filters {
     position: fixed;
     bottom: 0px;
     left: 0px;
     width: 200px;
   }
-  #season-category {
+  .season-category {
     padding-bottom: 60px;
+    margin-bottom: 40px;
   }
 }
 
@@ -67,6 +68,9 @@ body {
 }
 span.filter-label {
   font-weight: 500;
+}
+.filter-table {
+  width: 100%
 }
 .input-filter {
   width: 100%;
@@ -90,4 +94,20 @@ span.filter-label {
 }
 #game-time {
   width:100%;
+}
+
+.filter-select2s {
+  width: 100%;
+}
+[class^='select2'] {
+  border-radius: 0px !important;
+  font-size: 12px;
+}
+.upOrDown {
+  font-size: 8px;
+}
+
+/* hide the search box in the up or down section */
+.select2-search--dropdown {
+  display: none !important;
 }
