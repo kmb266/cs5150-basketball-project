@@ -1,15 +1,6 @@
 import xml.etree.ElementTree as ET
-import sqlalchemy
-from datetime import datetime
+import datetime
 
-from sqlalchemy import create_engine
-
-engine = create_engine('sqlite:///basketball.db', echo=True)
-from sqlalchemy.orm import sessionmaker
-
-Session = sessionmaker(bind=engine)
-session = Session()
-from db import Game
 
 
 def parse_venue_info(root_node, dict):
@@ -31,7 +22,7 @@ def parse_venue_info(root_node, dict):
 
     # Fetch the date (and time) convert to python datetime
     date = root.attrib['date'] + " " + root.attrib['time'].replace('.', '')
-    date = datetime.strptime(date, '%m/%d/%Y %I:%M %p')
+    date = datetime.datetime.strptime(date, '%m/%d/%Y %I:%M %p')
 
     # Extract information on whether the game is a league game, playoff game
     is_league = False if root.attrib['leaguegame'] == "N" else True
@@ -115,14 +106,18 @@ def get_team_info(team_node, dict):
     return dict
 
 
-def get_play_info(period_node, dict):
-    plays_list = []
-    for play in period_node.findall("play"):
-        this_play = {}
-        for attrName, attrValue in play.attrib.items():
-            this_play[attrName] = attrValue
-        plays_list.append(this_play)
-    dict['plays'] = plays_list
+def get_play_info(root_node, dict):
+    plays_node = root_node.find('plays')
+    plays = {}
+    periods = plays_node.findall("period")
+    for period in periods:
+        plays[period.attrib['number']] = []
+        for play in period.findall("play"):
+            this_play = {}
+            for attrName, attrValue in play.attrib.items():
+                this_play[attrName] = attrValue
+            plays[period.attrib['number']].append(this_play)
+    dict['plays'] = plays
     # return plays_list
     return dict
 
@@ -137,9 +132,7 @@ def parse_game_file(filename):
     #     print(child.tag, child.attrib)
     for team in root.findall("team"):
         game_dict = get_team_info(team, game_dict)
-    for period in root.findall("period"):
-        game_dict = get_play_info(period, game_dict)
-
+    game_dict = get_play_info(root, game_dict)
     return game_dict
 
 
@@ -171,6 +164,7 @@ The general mapping of the python game data dictionary is as follows:
             'poss_count': number of possessions the team had
             'pts_bench': number of points scored by the bench
         }
+        'stats':
     }
 
 }
