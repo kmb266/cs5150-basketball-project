@@ -117,7 +117,8 @@ class PlayerIn(Base):
     to = Column(Integer)    # Total turnovers
     dq = Column(Integer)    # Disqualifications? TODO: review
 
-class Plays(Base):
+
+class Play(Base):
     __tablename__ = 'plays'
     id = Column(Integer, primary_key=True)
     game_id = Column(Integer, ForeignKey('games.id'))
@@ -132,6 +133,19 @@ class Plays(Base):
     action = Column(String)
     type = Column(String)
     player_id = Column(Integer, ForeignKey('players.id'))
+    # Who's on the court right now?
+    h1 = Column(Integer, ForeignKey('players.id'))
+    h2 = Column(Integer, ForeignKey('players.id'))
+    h3 = Column(Integer, ForeignKey('players.id'))
+    h4 = Column(Integer, ForeignKey('players.id'))
+    h5 = Column(Integer, ForeignKey('players.id'))
+
+    v1 = Column(Integer, ForeignKey('players.id'))
+    v2 = Column(Integer, ForeignKey('players.id'))
+    v3 = Column(Integer, ForeignKey('players.id'))
+    v4 = Column(Integer, ForeignKey('players.id'))
+    v5 = Column(Integer, ForeignKey('players.id'))
+
 
 Base.metadata.create_all(engine)
 #
