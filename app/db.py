@@ -9,7 +9,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 
 # During initial development, use a sqlite DB held in memory for easy setup/teardown
-engine = create_engine('sqlite:///basketball.db', echo=True)
+engine = create_engine('sqlite:///basketball.db', echo=False)
 
 # Initialize the base
 Base = declarative_base()
@@ -25,8 +25,8 @@ class Game(Base):
     visitor = Column(String)
     winner = Column(String)
     loser = Column(String)
-    # home_score = Column(Integer)
-    # visitor_score = Column(Integer)
+    home_score = Column(Integer)
+    visitor_score = Column(Integer)
     isLeague = Column(Boolean)
     isPlayoff = Column(Boolean)
     # How do we store period data - i.e. what if there's 12 OT? Should use PostgreSQL with json
@@ -38,11 +38,10 @@ class Team(Base):
     name = Column(String)
 
 
-class PlaysIn(Base):
+class TeamIn(Base):
     __tablename__ = 'teamstats'
-    id = Column(Integer, primary_key=True)
-    team = Column(String, ForeignKey('teams.team_id'))
-    game = Column(Integer, ForeignKey('games.id'))
+    team = Column(String, ForeignKey('teams.team_id'), primary_key=True)
+    game = Column(Integer, ForeignKey('games.id'), primary_key=True)
 
     # Box Stats
     fgm = Column(Integer)   # Made field goals
@@ -90,12 +89,13 @@ class Player(Base):
 
 class PlayerIn(Base):
     __tablename__ = 'playersin'
-    id = Column(Integer, primary_key=True)
-    game = Column(Integer, ForeignKey('games.id'))
-    player = Column(Integer, ForeignKey('players.id'))
+    # temp_id = Column(Integer, primary_key=True)
+    game = Column(Integer, ForeignKey('games.id'), primary_key=True)
+    player = Column(Integer, ForeignKey('players.id'), primary_key=True)
     number = Column(Integer) # Jersey number in that game
 
     # Player Stats
+    mins = Column(Integer) # Minutes played
     fgm = Column(Integer)  # Made field goals
     fga = Column(Integer)  # Attempted field goals
 
@@ -133,7 +133,6 @@ class Play(Base):
     action = Column(String)
     type = Column(String)
     player_id = Column(Integer, ForeignKey('players.id'))
-
     # Who's on the court right now?
     h1 = Column(Integer, ForeignKey('players.id'))
     h2 = Column(Integer, ForeignKey('players.id'))
@@ -146,6 +145,7 @@ class Play(Base):
     v3 = Column(Integer, ForeignKey('players.id'))
     v4 = Column(Integer, ForeignKey('players.id'))
     v5 = Column(Integer, ForeignKey('players.id'))
+
 
 Base.metadata.create_all(engine)
 #

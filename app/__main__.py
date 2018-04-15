@@ -1,11 +1,17 @@
-from db import Game, Team, Player, PlayerIn, PlaysIn, Play
+from db import Game, Team, Player, PlayerIn, TeamIn, Play
+
 from parser import parse_game_file
 import os
+import json
 
-from datetime import datetime
+import parse_json
+
+import datetime
 from sqlalchemy import create_engine, desc
 
+
 engine = create_engine('sqlite:///basketball.db', echo=False)
+
 from sqlalchemy.orm import sessionmaker
 
 Session = sessionmaker(bind=engine)
@@ -38,15 +44,15 @@ def xml_to_database(xml_file):
         t2 = Team(team_id=venue['vis_id'], name=venue['vis_name'])
         session.add(t2)
 
-    # Extract information for the PlaysIn table
-    """ TODO: Wrap everything in its own adder function, maybe put this in a file like py2db.py, which converts from 
+    # Extract information for the TeamIn table
+    """ TODO: Wrap everything in its own adder function, maybe put this in a file like py2db.py, which converts from
     the python dictionary to the database"""
     team1 = game_info['t1']
     spec = team1['special']
     stats = team1['stats']
 
     p1_vh = True if spec['vh'] == 'H' else False
-    plays_in_team_one = PlaysIn(team=team1["id"], game=g.id, fgm=stats['fgm'], fga=stats['fga'],
+    plays_in_team_one = TeamIn(team=team1["id"], game=g.id, fgm=stats['fgm'], fga=stats['fga'],
                                 fgm3=stats['fgm3'], fga3=stats['fga3'], fta=stats['fta'], ftm=stats['ftm'],
                                 tp=stats['tp'], blk=stats['blk'], stl=stats['stl'], ast=stats['ast'],
                                 oreb=stats['oreb'], dreb=stats['dreb'], treb=stats['treb'], pf=stats['pf'],
@@ -65,7 +71,7 @@ def xml_to_database(xml_file):
 
     p2_vh = True if spec['vh'] == 'H' else False
 
-    plays_in_team_two = PlaysIn(team=team2["id"], game=g.id, fgm=stats['fgm'], fga=stats['fga'],
+    plays_in_team_two = TeamIn(team=team2["id"], game=g.id, fgm=stats['fgm'], fga=stats['fga'],
                                fgm3=stats['fgm3'], fga3=stats['fga3'], fta=stats['fta'], ftm=stats['ftm'],
                                tp=stats['tp'], blk=stats['blk'], stl=stats['stl'], ast=stats['ast'],
                                oreb=stats['oreb'], dreb=stats['dreb'], treb=stats['treb'], pf=stats['pf'],
@@ -320,4 +326,29 @@ print("FILE 16 DONE")
 xml_to_database("MBK_1230.xml")
 print("FILE 17 DONE")
 
+
+
+def json_to_database(json_file):
+    with open(json_file) as data_file:
+        data = json.load(data_file)
+
+    # skip files that do not have box score data
+    if not data["gamepackageJSON"]["header"]["competitions"][0]["boxscoreAvailable"]:
+        return
+
+    parse_json.parse_game(data, session)
+    parse_json.parse_teams(data, session)
+    parse_json.parse_players(data, session)
+    parse_json.parse_plays(data, session)
+
+    session.commit()
+
+
+# xml_to_database("MBK_0105.xml")
+# json_to_database("../cached_json/ncb/playbyplay/400990128.json")
+# global filename
+for filename in os.listdir("../cached_json/ncb/playbyplay"):
+    if filename == "400990128.json":
+        continue
+    json_to_database("../cached_json/ncb/playbyplay/" + filename)
 
