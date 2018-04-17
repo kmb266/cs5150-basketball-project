@@ -14,11 +14,22 @@ import * as globals from './global.vars';
 })
 export class AppComponent implements OnInit {
   public readonly title = 'Cornell Basketball Stats';
+  contentHeight = window.innerHeight - globals.navHeight;
 
   currentPage = "players";
-  contentHeight = window.innerHeight - globals.navHeight;
+  all_data = {
+    players: "loading ...",
+    teams: "loading teams ...",
+    games: "loading games ..."
+  };
+
   ngOnInit(): void {
     console.log('component initialized');
+  }
+
+  receiveData(event) {
+    this.all_data[this.currentPage] = event;
+    console.log(event);
   }
 
   onResize(event) {

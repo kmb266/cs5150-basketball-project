@@ -53,7 +53,7 @@ export const getUpOrDown() {
   return data;
 }
 
-export const applyFilters = (page, filters_data, callback) => {
+export const applyFilters = (page, filters_data, emitter) => {
   // initial a child process
 
   // When packaging the app, use pyinstaller to package all of the python files
@@ -76,7 +76,7 @@ export const applyFilters = (page, filters_data, callback) => {
 
   // print the data when the child process ends
   py.stdout.on('end', function(){
-    callback(dataString);
+    emitter.emit(dataString);
   });
 
   // if there is an error, print it out
