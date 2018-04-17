@@ -17,12 +17,11 @@
 <div id="teams-wrapper" [hidden]="currentPage != 'teams'">
 
   <div class="filter-wrapper" id="filter-nav-teams" [style.height.px]="contentHeight">
-    <filter-teams></filter-teams>
+    <filter-teams (dataEvent)="receiveData($event)"></filter-teams>
   </div>
 
   <div class="content-wrapper" id="content-teams" [style.height.px]="contentHeight">
-    <h2>This is the teams page</h2>
-    <stats-table></stats-table>
+    <stats-table [data]="all_data.teams"></stats-table>
   </div>
 
 </div>
@@ -30,12 +29,11 @@
 <div id="games-wrapper" [hidden]="currentPage != 'games'">
 
   <div class="filter-wrapper" id="filter-nav-games" [style.height.px]="contentHeight">
-    <filter-games></filter-games>
+    <filter-games (dataEvent)="receiveData($event)"></filter-games>
   </div>
 
   <div class="content-wrapper" id="content-games" >
-    <h2>This is the games page</h2>
-    <stats-table></stats-table>
+    <stats-table [data]="all_data.games"></stats-table>
   </div>
 
 </div>

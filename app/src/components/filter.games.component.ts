@@ -1,4 +1,4 @@
-import { NgModule, Component, Input, OnInit } from '@angular/core';
+import { NgModule, Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import * as globals from './../global.vars';
 
@@ -13,6 +13,8 @@ import * as select2 from 'select2';
   templateUrl: 'templates/filter.games.html'
 })
 export class GamesFilterComponent implements OnInit {
+  @Output() dataEvent = new EventEmitter<string>();
+
   currentPageName = "games";
   gametime = {
     ggtSlider:{
@@ -261,14 +263,10 @@ export class GamesFilterComponent implements OnInit {
     return data;
   }
 
-  emitData(data){
-    // alert(data);
-    console.log(data);
-  }
   applyPlayerFilters(){
     var filters = this.getAllFilters();
     // this.saveFilters(filters);
-    globals.applyFilters(this.currentPageName, filters, this.emitData);
+    globals.applyFilters(this.currentPageName, filters, this.dataEvent);
   }
 
   ngOnInit(): void {
