@@ -34,7 +34,7 @@ export const createSelect2 = (id, placeholder, getData) => {
   });
 }
 
-export const updateSliderStart(that, clock, inputId) {
+export const updateSliderStart = (that, clock, inputId) => {
   /*
     Changes the start time of range slider with id:inputId to
     the input clock time
@@ -55,7 +55,7 @@ export const updateSliderStart(that, clock, inputId) {
   var slider = $("#"+inputId).data("ionRangeSlider");
   slider.update({from: seconds});
 }
-export const updateSliderEnd(that, clock, inputId) {
+export const updateSliderEnd = (that, clock, inputId) => {
   /*
     Changes the end time of range slider with id:inputId to
     the input clock time
@@ -74,7 +74,7 @@ export const updateSliderEnd(that, clock, inputId) {
   var slider = $("#"+inputId).data("ionRangeSlider");
   slider.update({to: seconds});
 }
-export const changedStartHalf(that, inputId) {
+export const changedStartHalf( = that, inputId) => {
   /*
     Changes the slider with id inputId start time to the opposite half of what it
     currently is.
@@ -97,7 +97,7 @@ export const changedStartHalf(that, inputId) {
 
   console.log(that.gametime[inputId].start.sec);
 }
-export const changedEndHalf(that, inputId) {
+export const changedEndHalf = (that, inputId) => {
   /*
     Changes the slider with id inputId end time to the opposite half of what it
     currently is.
@@ -121,7 +121,7 @@ export const changedEndHalf(that, inputId) {
   console.log(that.gametime[inputId].end.sec);
 }
 
-export const getUpOrDown() {
+export const getUpOrDown = () => {
   var data = [
     {
       id: 'up',
