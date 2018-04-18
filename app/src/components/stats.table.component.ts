@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'stats-table',
-  templateUrl: 'templates/table.players.html'
+  templateUrl: 'templates/stats.table.html'
 })
 
 export class StatsTableComponent {
