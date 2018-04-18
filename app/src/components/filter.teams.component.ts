@@ -47,9 +47,6 @@ export class TeamsFilterComponent implements OnInit {
   oldFilters = [];
 
   hidePgtExtra = true;
-  togglePgtExtra() {
-    this.hidePgtExtra= !this.hidePgtExtra;
-  }
 
   invalidInput(el) {
     //show a red box around the input box
@@ -70,8 +67,8 @@ export class TeamsFilterComponent implements OnInit {
 
     // Gather data not in dropdowns
     filters.gametime = {};
-    filters.gametime.slider = this.gametime.pgtSlider;
-    filters.gametime.sliderExtra = this.gametime.pgtSliderExtra;
+    filters.gametime.slider = this.gametime.tgtSlider;
+    filters.gametime.sliderExtra = this.gametime.tgtSliderExtra;
     filters.gametime.multipleTimeFrames = !this.hidePgtExtra;
 
     filters.upOrDown = [filters.upOrDown, this.upOrDown];
@@ -128,56 +125,21 @@ export class TeamsFilterComponent implements OnInit {
     console.log("cleared all filters");
   }
 
-  // Gametime Slider methods
-  updateSliderStart(clock, inputId) {
-    var seconds = - globals.gametimeToSeconds(clock, this.startTime2ndHalf[inputId]);
-    if (seconds >= this.gametime[inputId].end.sec) {
-      this.invalidInput(event);
-      return;
-    }
 
-    this.gametime[inputId].start.clock = clock;
-    this.gametime[inputId].start.sec = seconds;
-    var slider = $("#"+inputId).data("ionRangeSlider");
-    slider.update({from: seconds});
+  // Gametime Slider methods -- for specifications look at globals functions
+  updateSliderStart(clock, inputId) {
+    globals.updateSliderStart(this, clock, inputId);
   }
   updateSliderEnd(clock, inputId) {
-    var seconds = - globals.gametimeToSeconds(clock, this.endTime2ndHalf[inputId]);
-    if (seconds <= this.gametime[inputId].start.sec) {
-      this.invalidInput(event);
-      return;
-    }
-    this.gametime[inputId].end.clock = clock;
-    this.gametime[inputId].end.sec = seconds;
-    var slider = $("#"+inputId).data("ionRangeSlider");
-    slider.update({to: seconds});
+    globals.updateSliderEnd(this, clock, inputId);
   }
   changedStartHalf(inputId) {
-    var slider = $("#"+inputId).data("ionRangeSlider");
-    if (this.startTime2ndHalf[inputId]) {
-      this.gametime[inputId].start.sec += 1200;
-      slider.update({from: this.gametime[inputId].start.sec});
-    }
-    else {
-      this.gametime[inputId].start.sec -= 1200;
-      slider.update({from: this.gametime[inputId].start.sec});
-    }
-
-    console.log(this.gametime[inputId].start.sec);
+    globals.changedStartHalf(this, inputId);
   }
   changedEndHalf(inputId) {
-    var slider = $("#"+inputId).data("ionRangeSlider");
-    if (this.endTime2ndHalf[inputId]) {
-      this.gametime[inputId].end.sec += 1200;
-      slider.update({to: this.gametime[inputId].end.sec});
-    }
-    else {
-      this.gametime[inputId].end.sec -= 1200;
-      slider.update({to: this.gametime[inputId].end.sec});
-    }
-
-    console.log(this.gametime[inputId].end.sec);
+    globals.changedEndHalf(this, inputId);
   }
+
 
   // TODO: integrate with middle stack team make call to db and get the data for the following
   getTeams() {

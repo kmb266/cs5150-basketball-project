@@ -92,8 +92,8 @@
           <input [(ngModel)]="startTime2ndHalf.ggtSlider" (change)="changedStartHalf(ggtSlider.id)" type="checkbox" />
         </td>
 
-        <td class="filter-td" style="width:50px; font-size:10px; text-align:center;">
-          <span class="second-half">2nd half</span>
+        <td class="filter-td checkbox-info">
+          <span class="second-half">Check box to make time in 2nd half</span>
         </td>
         <td class="filter-td time-td" style="text-align:right;">
           <input [(ngModel)]="endTime2ndHalf.ggtSlider" (change)="changedEndHalf(ggtSlider.id)" type="checkbox" />
@@ -110,7 +110,7 @@
 
       <tr>
         <td colspan="3" style="text-align:right;">
-          <button class="btn btn-sm btn-default" (click)="togglePgtExtra()">Toggle Extra Time Period</button>
+          <button class="btn btn-sm btn-default" (click)="hidePgtExtra=!hidePgtExtra">Toggle Extra Time Period</button>
         </td>
       </tr>
 
