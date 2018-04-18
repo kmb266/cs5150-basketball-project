@@ -34,6 +34,93 @@ export const createSelect2 = (id, placeholder, getData) => {
   });
 }
 
+export const updateSliderStart(that, clock, inputId) {
+  /*
+    Changes the start time of range slider with id:inputId to
+    the input clock time
+
+    Inputs:
+      clock: string = game time string in format 'MM:SS'
+      inputId: string = id of the range slider that corresponds to input
+        being changed
+  */
+  var seconds = - globals.gametimeToSeconds(clock, that.startTime2ndHalf[inputId]);
+  if (seconds >= that.gametime[inputId].end.sec) {
+    that.invalidInput(event);
+    return;
+  }
+
+  that.gametime[inputId].start.clock = clock;
+  that.gametime[inputId].start.sec = seconds;
+  var slider = $("#"+inputId).data("ionRangeSlider");
+  slider.update({from: seconds});
+}
+export const updateSliderEnd(that, clock, inputId) {
+  /*
+    Changes the end time of range slider with id:inputId to
+    the input clock time
+
+    Inputs:
+      clock: string = game time string in format 'MM:SS'
+      inputId: string = id of the range slider to be changed
+  */
+  var seconds = - globals.gametimeToSeconds(clock, that.endTime2ndHalf[inputId]);
+  if (seconds <= that.gametime[inputId].start.sec) {
+    that.invalidInput(event);
+    return;
+  }
+  that.gametime[inputId].end.clock = clock;
+  that.gametime[inputId].end.sec = seconds;
+  var slider = $("#"+inputId).data("ionRangeSlider");
+  slider.update({to: seconds});
+}
+export const changedStartHalf(that, inputId) {
+  /*
+    Changes the slider with id inputId start time to the opposite half of what it
+    currently is.
+    If the box is currelty not checked, the time is in the first half.
+    If you check the box, the time displayed in the text input that corresponds
+    to the slider with id:inputId is now in the second half and vice versa.
+
+    Inputs:
+      inputId: string = id of range slider to be changed
+  */
+  var slider = $("#"+inputId).data("ionRangeSlider");
+  if (that.startTime2ndHalf[inputId]) {
+    that.gametime[inputId].start.sec += 1200;
+    slider.update({from: that.gametime[inputId].start.sec});
+  }
+  else {
+    that.gametime[inputId].start.sec -= 1200;
+    slider.update({from: that.gametime[inputId].start.sec});
+  }
+
+  console.log(that.gametime[inputId].start.sec);
+}
+export const changedEndHalf(that, inputId) {
+  /*
+    Changes the slider with id inputId end time to the opposite half of what it
+    currently is.
+    If the box is currelty not checked, the time is in the first half.
+    If you check the box, the time displayed in the text input that corresponds
+    to the slider with id:inputId is now in the second half and vice versa.
+
+    Inputs:
+      inputId: string = id of range slider to be changed
+  */
+  var slider = $("#"+inputId).data("ionRangeSlider");
+  if (that.endTime2ndHalf[inputId]) {
+    that.gametime[inputId].end.sec += 1200;
+    slider.update({to: that.gametime[inputId].end.sec});
+  }
+  else {
+    that.gametime[inputId].end.sec -= 1200;
+    slider.update({to: that.gametime[inputId].end.sec});
+  }
+
+  console.log(that.gametime[inputId].end.sec);
+}
+
 export const getUpOrDown() {
   var data = [
     {

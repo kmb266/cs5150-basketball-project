@@ -48,9 +48,6 @@ export class PlayersFilterComponent implements OnInit {
   oldFilters = [];
 
   hidePgtExtra = true;
-  togglePgtExtra() {
-    this.hidePgtExtra= !this.hidePgtExtra;
-  }
 
   invalidInput(el) {
     //show a red box around the input box
@@ -129,56 +126,19 @@ export class PlayersFilterComponent implements OnInit {
   }
 
 
-  // Gametime Slider methods
 
+  // Gametime Slider methods -- for specifications look at globals functions
   updateSliderStart(clock, inputId) {
-    var seconds = - globals.gametimeToSeconds(clock, this.startTime2ndHalf[inputId]);
-    if (seconds >= this.gametime[inputId].end.sec) {
-      this.invalidInput(event);
-      return;
-    }
-
-    this.gametime[inputId].start.clock = clock;
-    this.gametime[inputId].start.sec = seconds;
-    var slider = $("#"+inputId).data("ionRangeSlider");
-    slider.update({from: seconds});
+    globals.updateSliderStart(this, clock, inputId);
   }
   updateSliderEnd(clock, inputId) {
-    var seconds = - globals.gametimeToSeconds(clock, this.endTime2ndHalf[inputId]);
-    if (seconds <= this.gametime[inputId].start.sec) {
-      this.invalidInput(event);
-      return;
-    }
-    this.gametime[inputId].end.clock = clock;
-    this.gametime[inputId].end.sec = seconds;
-    var slider = $("#"+inputId).data("ionRangeSlider");
-    slider.update({to: seconds});
+    globals.updateSliderEnd(this, clock, inputId);
   }
   changedStartHalf(inputId) {
-    var slider = $("#"+inputId).data("ionRangeSlider");
-    if (this.startTime2ndHalf[inputId]) {
-      this.gametime[inputId].start.sec += 1200;
-      slider.update({from: this.gametime[inputId].start.sec});
-    }
-    else {
-      this.gametime[inputId].start.sec -= 1200;
-      slider.update({from: this.gametime[inputId].start.sec});
-    }
-
-    console.log(this.gametime[inputId].start.sec);
+    globals.changedStartHalf(this, inputId);
   }
   changedEndHalf(inputId) {
-    var slider = $("#"+inputId).data("ionRangeSlider");
-    if (this.endTime2ndHalf[inputId]) {
-      this.gametime[inputId].end.sec += 1200;
-      slider.update({to: this.gametime[inputId].end.sec});
-    }
-    else {
-      this.gametime[inputId].end.sec -= 1200;
-      slider.update({to: this.gametime[inputId].end.sec});
-    }
-
-    console.log(this.gametime[inputId].end.sec);
+    globals.changedEndHalf(this, inputId);
   }
 
 
