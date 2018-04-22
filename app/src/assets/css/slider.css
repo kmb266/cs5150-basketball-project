@@ -1,6 +1,6 @@
 .time-td {
   width: 80px;
-  
+  vertical-align: top;
 }
 .slider-wrapper{
   margin-top: -12px;
@@ -8,5 +8,11 @@
 }
 .gametime-input {
   width:45px;
+  text-align:center;
+}
+
+.checkbox-info {
+  width: 70px;
+  font-size:11px;
   text-align:center;
 }

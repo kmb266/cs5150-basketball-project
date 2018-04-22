@@ -1,4 +1,4 @@
-import { NgModule, Component, Input, OnInit } from '@angular/core';
+import { NgModule, Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import * as globals from './../global.vars';
 
@@ -13,6 +13,8 @@ import * as select2 from 'select2';
   templateUrl: 'templates/filter.players.html'
 })
 export class PlayersFilterComponent implements OnInit {
+  @Output() dataEvent = new EventEmitter<string>();
+
   currentPageName = "players";
   gametime = {
     pgtSlider:{
@@ -46,9 +48,6 @@ export class PlayersFilterComponent implements OnInit {
   oldFilters = [];
 
   hidePgtExtra = true;
-  togglePgtExtra() {
-    this.hidePgtExtra= !this.hidePgtExtra;
-  }
 
   invalidInput(el) {
     //show a red box around the input box
@@ -67,7 +66,9 @@ export class PlayersFilterComponent implements OnInit {
     });
 
     // Gather data not in dropdowns
-    filters.gametime = this.gametime;
+    filters.gametime = {};
+    filters.gametime.slider = this.gametime.pgtSlider;
+    filters.gametime.sliderExtra = this.gametime.pgtSliderExtra;
     filters.gametime.multipleTimeFrames = !this.hidePgtExtra;
 
     filters.upOrDown = [filters.upOrDown, this.upOrDown];
@@ -113,8 +114,6 @@ export class PlayersFilterComponent implements OnInit {
     // clear dropdown inputs
     $('.players-select2').val(null).trigger('change');
     $('#select-season').val('season17').trigger('change');
-    $('#select-season').val('season17').trigger('change');
-    console.log("cleared all filters");
 
     this.homeGames = false;
     this.awayGames = false;
@@ -123,59 +122,23 @@ export class PlayersFilterComponent implements OnInit {
     this.losses = false;
     $(lastNGames).val(null);
     $(upOrDown).val(null);
+    console.log("cleared all filters");
   }
 
 
-  // Gametime Slider methods
 
+  // Gametime Slider methods -- for specifications look at globals functions
   updateSliderStart(clock, inputId) {
-    var seconds = - globals.gametimeToSeconds(clock, this.startTime2ndHalf[inputId]);
-    if (seconds >= this.gametime[inputId].end.sec) {
-      this.invalidInput(event);
-      return;
-    }
-
-    this.gametime[inputId].start.clock = clock;
-    this.gametime[inputId].start.sec = seconds;
-    var slider = $("#"+inputId).data("ionRangeSlider");
-    slider.update({from: seconds});
+    globals.updateSliderStart(this, clock, inputId);
   }
   updateSliderEnd(clock, inputId) {
-    var seconds = - globals.gametimeToSeconds(clock, this.endTime2ndHalf[inputId]);
-    if (seconds <= this.gametime[inputId].start.sec) {
-      this.invalidInput(event);
-      return;
-    }
-    this.gametime[inputId].end.clock = clock;
-    this.gametime[inputId].end.sec = seconds;
-    var slider = $("#"+inputId).data("ionRangeSlider");
-    slider.update({to: seconds});
+    globals.updateSliderEnd(this, clock, inputId);
   }
   changedStartHalf(inputId) {
-    var slider = $("#"+inputId).data("ionRangeSlider");
-    if (this.startTime2ndHalf[inputId]) {
-      this.gametime[inputId].start.sec += 1200;
-      slider.update({from: this.gametime[inputId].start.sec});
-    }
-    else {
-      this.gametime[inputId].start.sec -= 1200;
-      slider.update({from: this.gametime[inputId].start.sec});
-    }
-
-    console.log(this.gametime[inputId].start.sec);
+    globals.changedStartHalf(this, inputId);
   }
   changedEndHalf(inputId) {
-    var slider = $("#"+inputId).data("ionRangeSlider");
-    if (this.endTime2ndHalf[inputId]) {
-      this.gametime[inputId].end.sec += 1200;
-      slider.update({to: this.gametime[inputId].end.sec});
-    }
-    else {
-      this.gametime[inputId].end.sec -= 1200;
-      slider.update({to: this.gametime[inputId].end.sec});
-    }
-
-    console.log(this.gametime[inputId].end.sec);
+    globals.changedEndHalf(this, inputId);
   }
 
 
@@ -309,34 +272,13 @@ export class PlayersFilterComponent implements OnInit {
     ];
     return data;
   }
-  getUpOrDown() {
-    var data = [
-      {
-        id: 'up',
-        text: 'up by'
-      },
-      {
-        id: 'down',
-        text: 'down'
-      },
-      {
-        id: 'withIn',
-        text: 'within'
-      },
-    ];
-    return data;
-  }
 
   // Send and receive data to middle stack
 
-  emitData(data){
-    // alert(data);
-    console.log(data);
-  }
   applyPlayerFilters(){
     var filters = this.getAllFilters();
     // this.saveFilters(filters);
-    globals.applyFilters(this.currentPageName, filters, this.emitData);
+    globals.applyFilters(this.currentPageName, filters, this.dataEvent);
   }
 
   ngOnInit(): void {
@@ -393,7 +335,7 @@ export class PlayersFilterComponent implements OnInit {
     globals.createSelect2("#players-conference", 'Select Conf(s)', this.getConferences);
     globals.createSelect2("#players-in-lineup", 'Select Player(s)', this.getCurrentTeamMembers);
     globals.createSelect2("#players-out-lineup", 'Select Player(s)', this.getCurrentTeamMembers);
-    globals.createSelect2("#players-upOrDown", "Select", this.getUpOrDown);
+    globals.createSelect2("#players-upOrDown", "Select", globals.getUpOrDown);
     globals.createSelect2("#select-season", 'Ex. 17-18', this.getAvailableSeasons);
 
     // styling on select2s done here after initialization

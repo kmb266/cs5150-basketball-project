@@ -1,4 +1,4 @@
-import { NgModule, Component, Input, OnInit } from '@angular/core';
+import { NgModule, Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import * as globals from './../global.vars';
 
@@ -13,8 +13,12 @@ import * as select2 from 'select2';
   templateUrl: 'templates/filter.games.html'
 })
 export class GamesFilterComponent implements OnInit {
+  // use this to pass data to app.component in applyFilters
+  @Output() dataEvent = new EventEmitter<string>();
+
   currentPageName = "games";
-  filters = {};
+
+  // Object to save time from sliders
   gametime = {
     ggtSlider:{
       start:{clock: "20:00", sec:-2400},
@@ -25,6 +29,7 @@ export class GamesFilterComponent implements OnInit {
       end:{clock: "00:00", sec:0}
     }
   };
+  // Tells if the time referenced in the sliders in the first or second half
   startTime2ndHalf = {
     ggtSlider:false,
     ggtSliderExtra: false,
@@ -34,12 +39,20 @@ export class GamesFilterComponent implements OnInit {
     ggtSliderExtra: true,
   }
 
+
+  // 2 way bound filters -- simple checkbox and number inputs
+  homeGames:boolean = false;
+  awayGames:boolean = false;
+  neutralGames:boolean = false;
+  wins:boolean = false;
+  losses:boolean = false;
+  lastNGames:string;
+  upOrDown:string;
+
   oldFilters = [];
 
+  // Tells if the extra slider shown to show two time frames
   hidePgtExtra = true;
-  togglePgtExtra() {
-    this.hidePgtExtra= !this.hidePgtExtra;
-  }
 
   invalidInput(el) {
     //show a red box around the input box
@@ -47,75 +60,154 @@ export class GamesFilterComponent implements OnInit {
   }
 
   getAllFilters() {
+    /*
+      Get the filters entered by the user
+      Returns: Filter object
+      {
+        "page": string,
+        "team": [],
+        "opponent": [],
+        "conference": [],
+        "upOrDown": [],
+        "season": [],
+        "gametime": {
+          "slider": {
+            "start": {
+              "clock": "20:00",
+              "sec": -2400
+            },
+            "end": {
+              "clock": "00:00",
+              "sec": 0
+            }
+          },
+          "sliderExtra": {
+            "start": {
+              "clock": "20:00",
+              "sec": -2400
+            },
+            "end": {
+              "clock": "00:00",
+              "sec": 0
+            }
+          },
+          "multipleTimeFrames": boolean
+        },
+        "location": {
+          "home": boolean,
+          "away": boolean,
+          "neutral": boolean
+        },
+        "outcome": {
+          "wins": boolean,
+          "losses": boolean
+        }
+      }
+    */
+    // Initialize filters object to return
     var filters = {};
-    // TODO: Add all filters here, probably can get with jquery, maybe with angular ---
+
+    // set which page we are requesting the filters from
+    filters['page'] = this.currentPageName;
+
+    // Gather dropdown data from .page-select2 class
+    $('.games-select2').each(function() {
+      // Normalize filter names to send to middle stack by removing page name
+      var id = this.id.split('-')[1];
+      // add filters to filters object
+      filters[id] = $(this).val();
+    });
+
+    // Gather game time data from sliders
+    filters.gametime = {};
+    // Normalize gametime object names for simplicity on backend
+    filters.gametime.slider = this.gametime.ggtSlider;
+    filters.gametime.sliderExtra = this.gametime.ggtSliderExtra;
+    // Include if extra time should even be looked at for backend
+    filters.gametime.multipleTimeFrames = !this.hidePgtExtra;
+
+    // Gather game score and recent game filters
+    filters.upOrDown = [filters.upOrDown, this.upOrDown];
+    filters.recentGames = this.lastNGames;
+
+    // Gather game location filters; default is to include all games (all true)
+    if (!this.homeGames && !this.awayGames && !this.neutralGames) {
+      filters.location = {
+        home:true,
+        away:true,
+        neutral:true
+      }
+    }
+    else {
+      filters.location = {
+        home:this.homeGames,
+        away:this.awayGames,
+        neutral:this.neutralGames
+      }
+    }
+    // Gather game outcome filters; default is both wins and losses = true
+    if (!this.wins && !this.losses) {
+      filters.outcome = {
+        wins: true,
+        losses: true
+      }
+    }
+    else {
+      filters.outcome = {
+        wins: this.wins,
+        losses: this.losses
+      }
+    }
+
+    console.log(filters);
     return filters;
   }
   saveFilters(filters) {
+    /*
+      Save filters to file in order to be able to use
+      back and forward button
+      Input:
+        filters: object containing all of the filters input by the user
+    */
     this.oldFilters.push(filters);
   }
   clearAllFilters() {
+    /*
+      Clears filters by setting checkboxes to false,
+      removing all input from dropdowns, set number inputs to null
+    */
     var filters = this.getAllFilters();
     this.saveFilters(filters);
     // clear dropdown inputs
-    $('.game-select2').val(null).trigger('change');
+    $('.games-select2').val(null).trigger('change');
     $('#games-select-season').val('season17').trigger('change');
+
+    // clear checkboxes and number inputs
+    this.homeGames = false;
+    this.awayGames = false;
+    this.neutralGames = false;
+    this.wins = false;
+    this.losses = false;
+    $(lastNGames).val(null);
+    $(upOrDown).val(null);
     console.log("cleared all filters");
-
-    // TODO: clear game-filters here
-
   }
 
-  // Gametime Slider methods
-  updateSliderStart(clock, inputId) {
-    var seconds = - globals.gametimeToSeconds(clock, this.startTime2ndHalf[inputId]);
-    if (seconds >= this.gametime[inputId].end.sec) {
-      this.invalidInput(event);
-      return;
-    }
 
-    this.gametime[inputId].start.clock = clock;
-    this.gametime[inputId].start.sec = seconds;
-    var slider = $("#"+inputId).data("ionRangeSlider");
-    slider.update({from: seconds});
+  // Gametime Slider methods -- for specifications look at globals functions
+  updateSliderStart(clock, inputId) {
+    globals.updateSliderStart(this, clock, inputId);
   }
   updateSliderEnd(clock, inputId) {
-    var seconds = - globals.gametimeToSeconds(clock, this.endTime2ndHalf[inputId]);
-    if (seconds <= this.gametime[inputId].start.sec) {
-      this.invalidInput(event);
-      return;
-    }
-    this.gametime[inputId].end.clock = clock;
-    this.gametime[inputId].end.sec = seconds;
-    var slider = $("#"+inputId).data("ionRangeSlider");
-    slider.update({to: seconds});
+    globals.updateSliderEnd(this, clock, inputId);
   }
   changedStartHalf(inputId) {
-    var slider = $("#"+inputId).data("ionRangeSlider");
-    if (this.startTime2ndHalf[inputId]) {
-      this.gametime[inputId].start.sec += 1200;
-      slider.update({from: this.gametime[inputId].start.sec});
-    }
-    else {
-      this.gametime[inputId].start.sec -= 1200;
-      slider.update({from: this.gametime[inputId].start.sec});
-    }
-
-    console.log(this.gametime[inputId].start.sec);
+    globals.changedStartHalf(this, inputId);
   }
   changedEndHalf(inputId) {
-    var slider = $("#"+inputId).data("ionRangeSlider");
-    if (this.endTime2ndHalf[inputId]) {
-      this.gametime[inputId].end.sec += 1200;
-      slider.update({to: this.gametime[inputId].end.sec});
-    }
-    else {
-      this.gametime[inputId].end.sec -= 1200;
-      slider.update({to: this.gametime[inputId].end.sec});
-    }
-
-    console.log(this.gametime[inputId].end.sec);
+    globals.changedEndHalf(this, inputId);
   }
+
 
   // TODO: integrate with middle stack team make call to db and get the data for the following
   getTeams() {
@@ -201,13 +293,15 @@ export class GamesFilterComponent implements OnInit {
     return data;
   }
 
-  emitData(data){
-    alert(data);
-  }
   applyPlayerFilters(){
+    /*
+      Get all of the filters as an object
+      Save them to be able to enable back and forward buttons
+      and send them to the backend
+    */
     var filters = this.getAllFilters();
-    this.saveFilters(filters);
-    globals.applyFilters(this.currentPageName, filters, this.emitData);
+    // this.saveFilters(filters);
+    globals.applyFilters(this.currentPageName, filters, this.dataEvent);
   }
 
   ngOnInit(): void {
@@ -257,11 +351,13 @@ export class GamesFilterComponent implements OnInit {
     });
 
     // set up the multiple select dropdowns
+    // id of dropdowns pattern is #currentPageName-category eg. #games-opponent
     select2();
-    globals.createSelect2("#game-team", 'Select Team(s)', this.getTeams);
-    globals.createSelect2("#game-opponent", 'Select Team(s)', this.getOpponents);
-    globals.createSelect2("#game-conference", 'Select Conf(s)', this.getConferences);
-    globals.createSelect2("#games-select-season", 'Ex. 17-18', this.getAvailableSeasons);
+    globals.createSelect2("#games-team", 'Select Team(s)', this.getTeams);
+    globals.createSelect2("#games-opponent", 'Select Team(s)', this.getOpponents);
+    globals.createSelect2("#games-conference", 'Select Conf(s)', this.getConferences);
+    globals.createSelect2("#games-upOrDown", 'Select', globals.getUpOrDown);
+    globals.createSelect2("#games_select-season", 'Ex. 17-18', this.getAvailableSeasons);
 
     // styling on select2s done here after initialization
     $(".select2-selection__rendered").css("overflow-x","scroll");
