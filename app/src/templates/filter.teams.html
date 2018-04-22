@@ -8,19 +8,19 @@
       <tr>
         <td class="filter-td"> <label class="filter-label" for="teamTeamNames[]"> Team: </label> </td>
         <td class="filter-td">
-          <select id="team-team" class="input-filter team-select2 filter-select2" name="teamTeamNames[]" multiple="multiple"></select>
+          <select id="teams-team" class="input-filter teams-select2 filter-select2" name="teamTeamNames[]" multiple="multiple"></select>
         </td>
       </tr>
       <tr>
         <td class="filter-td"> <label class="filter-label" for="teamVsTeamNames[]"> Opponent: </label> </td>
         <td class="filter-td">
-          <select id="team-opponent" class="input-filter team-select2 filter-select2" name="teamVsTeamNames[]" multiple="multiple"></select>
+          <select id="teams-opponent" class="input-filter teams-select2 filter-select2" name="teamVsTeamNames[]" multiple="multiple"></select>
         </td>
       </tr>
       <tr>
         <td class="filter-td"> <label class="filter-label" for="teamConferenceName[]"> Conference: </label> </td>
         <td class="filter-td">
-          <select id="team-conference" class="input-filter team-select2 filter-select2" name="teamConferenceName[]" multiple="multiple"></select>
+          <select id="teams-conference" class="input-filter teams-select2 filter-select2" name="teamConferenceName[]" multiple="multiple"></select>
         </td>
       </tr>
     </table>
@@ -28,30 +28,18 @@
 
   <div class="nav-item">
     <h5 class="nav-category">Game Filters</h5>
+    <div>
+      <label class="filter-label" for="teams-lastNGames">Show last</label>
+      <input type="number" class="input-filter" style="margin:0px 2px 0px 4px; width:40px; text-align:center;" id="teams-lastNGames" name="teams-lastNGames" [(ngModel)]="lastNGames" placeholder="#">
+      <label class="filter-label">game(s)</label>
+    </div>
+    <div style="padding-top:4px;">
+      <label class="filter-label" for="teams-upOrDown">Score </label>
+      <select id="teams-upOrDown" class="teams-select2 filter-select2 upOrDown" style="width:70px; padding-left:8px;"></select>
+      <input type="number" class="input-filter" style="margin-top:4px;width:40px; text-align:center;" [(ngModel)]="upOrDown" placeholder="#">
+      <label class="filter-label" style="width:20px;">points</label>
+    </div>
     <table id='team-game-filters'>
-      <tr>
-        <td class="filter-td">
-          <label class="filter-label" for="teamLastNGames">Show last</label>
-        </td>
-        <td class="filter-td">
-          <input type="number" class="input-filter" style="margin-left:4px; margin-right:2px; width:40px; text-align:center;" id="teamLastNGames" name="teamLastNGames" #lastNGames placeholder="#">
-        </td>
-        <td class="filter-td">
-          <label class="filter-label">game(s)</label>
-        </td>
-      </tr>
-      <tr>
-        <td class="filter-td">
-          <label class="filter-label" for="teamUpOrDown">Score within</label>
-        </td>
-        <td class="filter-td">
-          <input type="number" class="input-filter" style="margin-left:4px; margin-right:2px; width:40px; text-align:center;" id="teamUpOrDown" name="teamUpOrDown" #upOrDown placeholder="#">
-        </td>
-        <td class="filter-td">
-          <label class="filter-label">points</label>
-        </td>
-      </tr>
-      <tr>
         <td class="filter-td">
           <span class="filter-label"> Location: </span>
         </td>
@@ -59,15 +47,15 @@
       <tr>
         <td class="filter-td filterCheckbox">
           <label class="filter-label indent-first-checkbox" for="teamHomeGames">Home</label>
-          <input type="checkbox" class="homeAway" id="teamHomeGames" name="teamHomeGames" #teamHomeGames/>
+          <input type="checkbox" class="homeAway" id="teamHomeGames" name="teamHomeGames" #homeGames/>
         </td>
         <td class="filter-td filterCheckbox">
           <label class="filter-label" for="teamAwayGames">Away</label>
-          <input type="checkbox" class="homeAway" id="teamAwayGames" name="teamAwayGames" #teamAwayGames/>
+          <input type="checkbox" class="homeAway" id="teamAwayGames" name="teamAwayGames" #awayGames/>
         </td>
         <td class="filter-td filterCheckbox">
           <label class="filter-label" for="teamNeutralGames">Neutrl</label>
-          <input type="checkbox" class="homeAway" id="teamNeutralGames" name="teamNeutralGames" #teamNeutralGames/>
+          <input type="checkbox" class="homeAway" id="teamNeutralGames" name="teamNeutralGames" #neutralGames/>
         </td>
       </tr>
 
@@ -77,11 +65,11 @@
       <tr>
         <td class="filter-td filterCheckbox">
           <label class="filter-label indent-first-checkbox" for="teamWins">Win</label>
-          <input type="checkbox" class="winLoss" id="teamWins" name="teamWins" #teamWins/>
+          <input type="checkbox" class="winLoss" id="teamWins" name="teamWins" #wins/>
         </td>
         <td class="filter-td filterCheckbox">
           <label class="filter-label" for="teamLosses">Loss</label>
-          <input type="checkbox" class="winLoss" id="teamLosses" #teamLosses/>
+          <input type="checkbox" class="winLoss" id="teamLosses" #losses/>
         </td>
       </tr>
     </table>
@@ -103,8 +91,8 @@
           <input [(ngModel)]="startTime2ndHalf.tgtSlider" (change)="changedStartHalf(tgtSlider.id)" type="checkbox" />
         </td>
 
-        <td class="filter-td" style="width:50px; font-size:10px; text-align:center;">
-          <span class="second-half">2nd half</span>
+        <td class="filter-td checkbox-info">
+          <span class="second-half">Check box to make time in 2nd half</span>
         </td>
         <td class="filter-td time-td" style="text-align:right;">
           <input [(ngModel)]="endTime2ndHalf.tgtSlider" (change)="changedEndHalf(tgtSlider.id)" type="checkbox" />
@@ -121,7 +109,7 @@
 
       <tr>
         <td colspan="3" style="text-align:right;">
-          <button class="btn btn-sm btn-default" (click)="togglePgtExtra()">Toggle Extra Time Period</button>
+          <button class="btn btn-sm btn-default" (click)="hidePgtExtra=!hidePgtExtra">Toggle Extra Time Period</button>
         </td>
       </tr>
 
@@ -164,7 +152,7 @@
           <h5 class="nav-category">Season</h5>
         </td>
         <td class="filter-td" style="text-align:center; width:100%;">
-          <select id="team-select-season" class="team-select2 filter-select2" multiple="multiple" style="width:100%; padding:4px"> </select>
+          <select id="teams_select-season" class="teams-select2 filter-select2" multiple="multiple" style="width:100%; padding:4px"> </select>
         </td>
       </tr>
     </table>

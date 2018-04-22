@@ -1,4 +1,4 @@
-import { NgModule, Component, Input, OnInit } from '@angular/core';
+import { NgModule, Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import * as globals from './../global.vars';
 
@@ -13,8 +13,9 @@ import * as select2 from 'select2';
   templateUrl: 'templates/filter.teams.html'
 })
 export class TeamsFilterComponent implements OnInit {
+  @Output() dataEvent = new EventEmitter<string>();
+
   currentPageName = "games";
-  filters = {};
   gametime = {
     tgtSlider:{
       start:{clock: "20:00", sec:-2400},
@@ -34,12 +35,18 @@ export class TeamsFilterComponent implements OnInit {
     tgtSliderExtra: true,
   }
 
+  // 2 way bound filters -- simple inputs
+  homeGames:boolean = false;
+  awayGames:boolean = false;
+  neutralGames:boolean = false;
+  wins:boolean = false;
+  losses:boolean = false;
+  lastNGames:string;
+  upOrDown:string;
+
   oldFilters = [];
 
   hidePgtExtra = true;
-  togglePgtExtra() {
-    this.hidePgtExtra= !this.hidePgtExtra;
-  }
 
   invalidInput(el) {
     //show a red box around the input box
@@ -48,7 +55,54 @@ export class TeamsFilterComponent implements OnInit {
 
   getAllFilters() {
     var filters = {};
-    // TODO: Add all filters here, probably can get with jquery, maybe with angular ---
+    var filters = {};
+    // set which page we are requesting the filters from
+    filters['page'] = this.currentPageName;
+    // Gather dropdown data
+    $('.teams-select2').each(function() {
+      // Normalize filter names to send to middle stack
+      var id = this.id.split('-')[1];
+      filters[id] = $(this).val();
+    });
+
+    // Gather data not in dropdowns
+    filters.gametime = {};
+    filters.gametime.slider = this.gametime.tgtSlider;
+    filters.gametime.sliderExtra = this.gametime.tgtSliderExtra;
+    filters.gametime.multipleTimeFrames = !this.hidePgtExtra;
+
+    filters.upOrDown = [filters.upOrDown, this.upOrDown];
+    filters.recentGames = this.lastNGames;
+
+    if (!this.homeGames && !this.awayGames && !this.neutralGames) {
+      filters.location = {
+        home:true,
+        away:true,
+        neutral:true
+      }
+    }
+    else {
+      filters.location = {
+        home:this.homeGames,
+        away:this.awayGames,
+        neutral:this.neutralGames
+      }
+    }
+
+    if (!this.wins && !this.losses) {
+      filters.outcome = {
+        wins: true,
+        losses: true
+      }
+    }
+    else {
+      filters.outcome = {
+        wins: this.wins,
+        losses: this.losses
+      }
+    }
+
+    console.log(filters);
     return filters;
   }
   saveFilters(filters) {
@@ -60,62 +114,32 @@ export class TeamsFilterComponent implements OnInit {
     // clear dropdown inputs
     $('.team-select2').val(null).trigger('change');
     $('#team-select-season').val('season17').trigger('change');
+
+    this.homeGames = false;
+    this.awayGames = false;
+    this.neutralGames = false;
+    this.wins = false;
+    this.losses = false;
+    $(lastNGames).val(null);
+    $(upOrDown).val(null);
     console.log("cleared all filters");
-
-    // TODO: clear game-filters here
-
   }
 
-  // Gametime Slider methods
-  updateSliderStart(clock, inputId) {
-    var seconds = - globals.gametimeToSeconds(clock, this.startTime2ndHalf[inputId]);
-    if (seconds >= this.gametime[inputId].end.sec) {
-      this.invalidInput(event);
-      return;
-    }
 
-    this.gametime[inputId].start.clock = clock;
-    this.gametime[inputId].start.sec = seconds;
-    var slider = $("#"+inputId).data("ionRangeSlider");
-    slider.update({from: seconds});
+  // Gametime Slider methods -- for specifications look at globals functions
+  updateSliderStart(clock, inputId) {
+    globals.updateSliderStart(this, clock, inputId);
   }
   updateSliderEnd(clock, inputId) {
-    var seconds = - globals.gametimeToSeconds(clock, this.endTime2ndHalf[inputId]);
-    if (seconds <= this.gametime[inputId].start.sec) {
-      this.invalidInput(event);
-      return;
-    }
-    this.gametime[inputId].end.clock = clock;
-    this.gametime[inputId].end.sec = seconds;
-    var slider = $("#"+inputId).data("ionRangeSlider");
-    slider.update({to: seconds});
+    globals.updateSliderEnd(this, clock, inputId);
   }
   changedStartHalf(inputId) {
-    var slider = $("#"+inputId).data("ionRangeSlider");
-    if (this.startTime2ndHalf[inputId]) {
-      this.gametime[inputId].start.sec += 1200;
-      slider.update({from: this.gametime[inputId].start.sec});
-    }
-    else {
-      this.gametime[inputId].start.sec -= 1200;
-      slider.update({from: this.gametime[inputId].start.sec});
-    }
-
-    console.log(this.gametime[inputId].start.sec);
+    globals.changedStartHalf(this, inputId);
   }
   changedEndHalf(inputId) {
-    var slider = $("#"+inputId).data("ionRangeSlider");
-    if (this.endTime2ndHalf[inputId]) {
-      this.gametime[inputId].end.sec += 1200;
-      slider.update({to: this.gametime[inputId].end.sec});
-    }
-    else {
-      this.gametime[inputId].end.sec -= 1200;
-      slider.update({to: this.gametime[inputId].end.sec});
-    }
-
-    console.log(this.gametime[inputId].end.sec);
+    globals.changedEndHalf(this, inputId);
   }
+
 
   // TODO: integrate with middle stack team make call to db and get the data for the following
   getTeams() {
@@ -201,13 +225,10 @@ export class TeamsFilterComponent implements OnInit {
     return data;
   }
 
-  emitData(data){
-    alert(data);
-  }
   applyPlayerFilters(){
     var filters = this.getAllFilters();
-    this.saveFilters(filters);
-    globals.applyFilters(this.currentPageName, filters, this.emitData);
+    // this.saveFilters(filters);
+    globals.applyFilters(this.currentPageName, filters, this.dataEvent);
   }
 
   ngOnInit(): void {
@@ -258,10 +279,11 @@ export class TeamsFilterComponent implements OnInit {
 
     // set up the multiple select dropdowns
     select2();
-    globals.createSelect2("#team-team", 'Select Team(s)', this.getTeams);
-    globals.createSelect2("#team-opponent", 'Select Team(s)', this.getOpponents);
-    globals.createSelect2("#team-conference", 'Select Conf(s)', this.getConferences);
-    globals.createSelect2("#team-select-season", 'Ex. 17-18', this.getAvailableSeasons);
+    globals.createSelect2("#teams-team", 'Select Team(s)', this.getTeams);
+    globals.createSelect2("#teams-opponent", 'Select Team(s)', this.getOpponents);
+    globals.createSelect2("#teams-conference", 'Select Conf(s)', this.getConferences);
+    globals.createSelect2("#teams-upOrDown", "Select", globals.getUpOrDown);
+    globals.createSelect2("#teams_select-season", 'Ex. 17-18', this.getAvailableSeasons);
 
     // styling on select2s done here after initialization
     $(".select2-selection__rendered").css("overflow-x","scroll");
