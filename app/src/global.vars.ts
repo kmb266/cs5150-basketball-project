@@ -74,7 +74,7 @@ export const updateSliderEnd = (that, clock, inputId) => {
   var slider = $("#"+inputId).data("ionRangeSlider");
   slider.update({to: seconds});
 }
-export const changedStartHalf( = that, inputId) => {
+export const changedStartHalf = (that, inputId) => {
   /*
     Changes the slider with id inputId start time to the opposite half of what it
     currently is.
