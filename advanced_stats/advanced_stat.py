@@ -18,7 +18,7 @@ def OREB_perc():
 	"""
 
 
-def TmPoss(FGA, TmOREB, oppDREB,FTA,FGM):
+def TmPoss(FGA, TmOREB, oppDREB,FTA,FGM,TOV):
 	return FGA-(TmOREB/(TmOREB+oppDREB))*(FGA-FGM)*1.07+TOV + 0.4*FTA
 	"""
 	Name: Total Team Possesion 
@@ -46,7 +46,7 @@ def ORTG (TmPoints, TmPoss):
 		TmPoints: total points by team 
 		TmPoss: total team possestion 
 
-	Depend? No 
+	Depend? Yes 
 	check status: No 
 
 	"""
@@ -638,8 +638,8 @@ def eFG_perc(FGM,FGA,FGM_3):
 		FGA: Fieldgoals attempted
 		FGM_3: 3 point shot makes
 
-		Depend? No 
-		check status: No 
+		Depend? Yes 
+		check status: Yes 
 
 	"""
 
@@ -655,7 +655,7 @@ def Turnover_perc(TOV,FGA,FTA):
 		FTA: free throws attemped 
 		 
 	Depend? No 
-	check status: No 
+	check status: Yes 
 
 	"""
 	
@@ -671,7 +671,7 @@ def FTr(FTA,FGA):
 
 	
 	Depend? No 
-	check status: No 
+	check status: Yes  
 
 	"""
 
@@ -686,7 +686,7 @@ def FG_2_perc(FGM_2,FGA_2):
 		FGA_2: two-points field goals attemped 
 	
 	Depend? No 
-	check status: No 
+	check status: Yes 
 
 	"""
 
@@ -702,7 +702,7 @@ def FG_3_perc(FGM_3,FGA_3):
 		FGA_3: three-points field goals attemped 
 	
 	Depend? No 
-	check status: No 
+	check status: Yes 
 
 	"""
 
@@ -710,14 +710,14 @@ def FG_3_perc(FGM_3,FGA_3):
 def FGr_2(FGA_2,FGA):
 	return FGA_2/FGA
 	"""
-	Name: 2FG Rate 
+	Name: 2FG Rate (FG%)
 	Returns: the 2FG rate based on parameters
 	Arguments:
 		FGA_2: two-points field goals attemped 
 		FGA: field goal attempted 
 	
 	Depend? No 
-	check status: No 
+	check status: Yes 
 
 	"""
 
@@ -725,14 +725,14 @@ def FGr_2(FGA_2,FGA):
 def FGr_3(FGA_3,FGA):
 	return FGA_3/FGA
 	"""
-	Name: 3FG Rate 
+	Name: 3FG Rate (3P%)
 	Returns: the 3FG rate based on parameters
 	Arguments:
 		FGA_3: three-points field goals attemped 
 		FGA: field goal attempted 
 	
 	Depend? No 
-	check status: No 
+	check status: Yes 
 
 	"""
 
@@ -820,7 +820,7 @@ def TS_perc(PTS,FGA,FTA):
 		FTA: free throws attemped 
 
 	Depend? No 
-	check status: No 
+	check status: Yes 
 
 	"""
 
