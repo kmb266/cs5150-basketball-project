@@ -5,6 +5,9 @@ body {
 #nav-logo {
   width: 75px;
   margin-top: -15px;
+  z-index: 100;
+  display: inline-block;
+  position: absolute;
 }
 #navbar-logo {
   padding-right: 0px;
@@ -15,6 +18,10 @@ body {
   border: none;
   border-radius: 0px;
   font-size: 20px;
+}
+.navbar-main {
+  position: absolute;
+  left: 85px;
 }
 .navigation-btn:hover {
 
@@ -69,6 +76,13 @@ body {
 span.filter-label {
   font-weight: 500;
 }
+.ot-label {
+  font-size: 12px;
+  font-weight: 500;
+}
+#overtime {
+  margin-top: 10px;
+}
 .filter-table {
   width: 100%
 }
@@ -81,6 +95,9 @@ span.filter-label {
 }
 .indent-first-checkbox {
   margin-left: 10px
+}
+.indent-first-checkbox2 {
+  margin-left: 27px;
 }
 
 
@@ -96,12 +113,17 @@ span.filter-label {
   width:100%;
 }
 
+/*#filter-nav-players {
+  z-index: -1;
+}*/
+
 .filter-select2s {
   width: 100%;
 }
 [class^='select2'] {
   border-radius: 0px !important;
   font-size: 12px;
+  z-index: 0;
 }
 .upOrDown {
   font-size: 8px;
