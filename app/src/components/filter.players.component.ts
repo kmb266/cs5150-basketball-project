@@ -70,6 +70,15 @@ export class PlayersFilterComponent implements OnInit {
   losses:boolean = false;
   lastNGames:string;
   upOrDown:string;
+  ot1:boolean = false;
+  ot2:boolean = false;
+  ot3:boolean = false;
+  ot4:boolean = false;
+  ot5:boolean = false;
+  ot6:boolean = false;
+  otAll:boolean = false;
+  otNone:boolean = true;
+  onlyOT:boolean = false;
 
   oldFilters = [];
 
@@ -128,6 +137,17 @@ export class PlayersFilterComponent implements OnInit {
       }
     }
 
+    filters.overtime = {
+        ot1: this.ot1,
+        ot2: this.ot2,
+        ot3: this.ot3,
+        ot4: this.ot4,
+        ot5: this.ot5,
+        ot6: this.ot6,
+        onlyQueryOT: this.onlyOT
+      }
+    console.log(filters)
+
     return filters;
   }
   saveFilters(filters) {
@@ -145,6 +165,15 @@ export class PlayersFilterComponent implements OnInit {
     this.neutralGames = false;
     this.wins = false;
     this.losses = false;
+    this.ot1 = false;
+    this.ot2 = false;
+    this.ot3 = false;
+    this.ot4 = false;
+    this.ot5 = false;
+    this.ot6 = false;
+    this.otAll = false;
+    this.otNone = true;
+    this.onlyOT = false;
     $(lastNGames).val(null);
     $(upOrDown).val(null);
     console.log("cleared all filters");
@@ -391,6 +420,39 @@ export class PlayersFilterComponent implements OnInit {
 
         this.gametime.pgtSliderOT.start.clock = globals.secondsToGametime(data.from);
         this.gametime.pgtSliderOT.end.clock = globals.secondsToGametime(data.to);
+      }
+    });
+
+    $(".otButton").change(function () {
+      if (this.checked == false) {
+        $("#otAll").prop('checked', true).click();
+      }
+      else {
+        $("#otNone").prop('checked', true).click();
+      }
+    });
+
+    $("#otAll").change(function () {
+      if (this.checked == true) {
+        $("#ot1").prop('checked', false).click();
+        $("#ot2").prop('checked', false).click();
+        $("#ot3").prop('checked', false).click();
+        $("#ot4").prop('checked', false).click();
+        $("#ot5").prop('checked', false).click();
+        $("#ot6").prop('checked', false).click();
+        $("#otNone").prop('checked', true).click();
+      }
+    });
+
+    $("#otNone").change(function () {
+      if (this.checked== true) {
+        $("#ot1").prop('checked', true).click();
+        $("#ot2").prop('checked', true).click();
+        $("#ot3").prop('checked', true).click();
+        $("#ot4").prop('checked', true).click();
+        $("#ot5").prop('checked', true).click();
+        $("#ot6").prop('checked', true).click();
+        $("#otAll").prop('checked', true).click();
       }
     });
 
