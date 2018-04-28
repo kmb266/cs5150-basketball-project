@@ -107,7 +107,21 @@ span.filter-label {
   font-size: 8px;
 }
 
+#saved-filters-wrapper {
+  padding:8px;
+
+}
+
+.save-filters-input {
+  width: 100%;
+  padding: 4px;
+}
+
 /* hide the search box in the up or down section */
 .select2-search--dropdown {
   display: none !important;
+}
+/* hide the scorll bars */
+::-webkit-scrollbar {
+    display: none;
 }

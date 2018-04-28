@@ -1,15 +1,15 @@
 <div id="main-nav">
-  <main-nav (pageChanged)="pageChanged($event)"></main-nav>
+  <main-nav (pageChanged)="pageChanged($event)" (savedFilterChanged)="savedFilterChanged($event)"></main-nav>
 </div>
 
 <div id="players-wrapper" [hidden]="currentPage != 'players'">
 
   <div class="filter-wrapper" id="filter-nav-players" [style.height.px]="contentHeight" >
-    <filter-players (dataEvent)="receiveData($event)"></filter-players>
+    <filter-players (dataEvent)="receiveData($event)" [savedFilter]="filter_data.players"></filter-players>
   </div>
 
   <div class="content-wrapper" id="content-players" [style.height.px]="contentHeight">
-    <stats-table [data]="all_data.players"></stats-table>
+    <stats-table [data]="table_data.players"></stats-table>
   </div>
 
 </div>
@@ -17,11 +17,11 @@
 <div id="teams-wrapper" [hidden]="currentPage != 'teams'">
 
   <div class="filter-wrapper" id="filter-nav-teams" [style.height.px]="contentHeight">
-    <filter-teams (dataEvent)="receiveData($event)"></filter-teams>
+    <filter-teams (dataEvent)="receiveData($event)" [savedFilter]="filter_data.teams"></filter-teams>
   </div>
 
   <div class="content-wrapper" id="content-teams" [style.height.px]="contentHeight">
-    <stats-table [data]="all_data.teams"></stats-table>
+    <stats-table [data]="table_data.teams"></stats-table>
   </div>
 
 </div>
@@ -29,11 +29,11 @@
 <div id="games-wrapper" [hidden]="currentPage != 'games'">
 
   <div class="filter-wrapper" id="filter-nav-games" [style.height.px]="contentHeight">
-    <filter-games (dataEvent)="receiveData($event)"></filter-games>
+    <filter-games (dataEvent)="receiveData($event)" [savedFilter]="filter_data.games"></filter-games>
   </div>
 
   <div class="content-wrapper" id="content-games" >
-    <stats-table [data]="all_data.games"></stats-table>
+    <stats-table [data]="table_data.games"></stats-table>
   </div>
 
 </div>

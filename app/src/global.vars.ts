@@ -1,4 +1,11 @@
 'use strict';
+
+const fs = require('fs');
+
+import * as jquery from 'jquery';
+window['$'] = jquery;
+window['jQuery'] = jquery;
+
 export const navHeight: number = 50;
 export const pages: Array<string> = ["players", "teams","games"];
 export const numPages: number = pages.length;
@@ -44,7 +51,7 @@ export const updateSliderStart = (that, clock, inputId) => {
       inputId: string = id of the range slider that corresponds to input
         being changed
   */
-  var seconds = - globals.gametimeToSeconds(clock, that.startTime2ndHalf[inputId]);
+  var seconds = - gametimeToSeconds(clock, that.startTime2ndHalf[inputId]);
   if (seconds >= that.gametime[inputId].end.sec) {
     that.invalidInput(event);
     return;
@@ -64,7 +71,7 @@ export const updateSliderEnd = (that, clock, inputId) => {
       clock: string = game time string in format 'MM:SS'
       inputId: string = id of the range slider to be changed
   */
-  var seconds = - globals.gametimeToSeconds(clock, that.endTime2ndHalf[inputId]);
+  var seconds = - gametimeToSeconds(clock, that.endTime2ndHalf[inputId]);
   if (seconds <= that.gametime[inputId].start.sec) {
     that.invalidInput(event);
     return;
@@ -185,4 +192,119 @@ export const applyFilters = (page, filters_data, emitter) => {
     }
   });
   */
+}
+
+export const validateFilterName = (filterName) => {
+  /*
+    Check if the filter name is valid.
+    Valid means the filter name does not already exist
+
+    Input: filterName: string = name of the filter to be saved
+    --- Do we need to check anything else? --
+  */
+  var valid = true;
+
+  // return false if filter name is empty or undefined
+  if (filterName == undefined || filterName == '') return false;
+
+  // open the saved filters file and add saved filter objects to list
+  var lines = require('fs').readFileSync('./saved_filters.json', 'utf-8')
+    .split('\n')
+    .filter(Boolean);
+
+  // iterate through lines list and see if filtername in list
+  lines.forEach(function(line) {
+    var filterJson = JSON.parse(line);
+    if (filterJson.filterName == filterName) {
+      valid = false;
+    }
+  });
+  return valid;
+}
+
+export const writeFilterToFile = (data, callback) => {
+  /*
+    Append data object to file
+    Input: data: string = data to be saved to file
+  */
+  fs.appendFile('./saved_filters.json', data, (err) => {
+    if (!err) {
+      console.log('The filters have been saved!');
+      callback();
+
+    }
+    else {
+      // TODO: display error
+      console.log('Failed saving filters');
+      console.log(err);
+    }
+  });
+}
+
+export const saveCurrentFilter = (modalId, inputId, filterName, filters) => {
+  /*
+    Saves current page filters as json object to file
+    Input: filter_name: string = user defined name for set filters
+  */
+  console.log('begin saving filters');
+
+  // check if current filter name already exists
+  if validateFilterName(filterName) {
+
+    // add filter name to object
+    filters.filterName =  filterName;
+
+    // stringify object to make it savable
+    var data = JSON.stringify(filters) + '\n';
+
+    // Save filters' stringified object to file
+    writeFilterToFile(data, () => {
+      // clear modal input
+      $('#'+inputId).val('');
+
+      // close modal
+      $('#'+modalId).modal('toggle');
+
+      // refresh the saved filters dropdown
+      $('#saved-filters').select2({ data: getSavedFilters() });
+
+    });
+  }
+  else {
+    // the filter name already exists
+    console.log('filtername already exists')
+    // TODO: display error
+  }
+}
+
+export const getSavedFilters = () => {
+  /*
+    Reads saved filters json objects from file and returns them in correct
+    format to be used in select2 dropdown menue
+  */
+  var savedFilters = [];
+  // open the saved filters file and add saved filter objects to list
+  var lines = require('fs').readFileSync('./saved_filters.json', 'utf-8')
+    .split('\n')
+    .filter(Boolean);
+
+  // add default option to saved filters to have a null option selected on int
+  var blank = {};
+  blank.id = -1;
+  blank.text='Choose a Filter';
+  blank.selected = true;
+  blank.data = {};
+  savedFilters.push(blank);
+
+  // iterate through lines list and add the formated filter to the filters object
+  lines.forEach(function(line, i) {
+    var filterJson = JSON.parse(line);
+    var dropdownData = {};
+    dropdownData.id = i;
+    dropdownData.text = filterJson.filterName;
+    dropdownData.data = filterJson;
+    savedFilters.push(dropdownData);
+  });
+
+  return savedFilters;
 }
