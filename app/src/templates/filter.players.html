@@ -179,7 +179,7 @@
       </tr>
       <tr>
         <td class="filter-td filterCheckbox indent-first-checkbox2" colspan="3" style="text-align: center;">
-          <input type="checkbox" class="gametime" id="onlyOT"/>
+          <input type="checkbox" class="gametime" id="onlyOT" name="onlyOT" [(ngModel)]="onlyOT"/>
           <label class="filter-label" for="onlyOT">Only query for OT</label>
         </td>
       </tr>
@@ -209,41 +209,41 @@
       <tr>
         <td class="filter-td otCheckbox">
           <label class="filter-label indent-first-checkbox" for="ot1">1 OT</label>
-          <input type="checkbox" class="homeAway" id="ot1" name="ot1" [(ngModel)]="ot1"/>
+          <input type="checkbox" class="otButton" id="ot1" name="ot1" [(ngModel)]="ot1"/>
         </td>
         <td class="filter-td otCheckbox">
           <label class="filter-label" for="ot2" style="padding-left: 5px;">2 OT</label>
-          <input type="checkbox" class="homeAway" id="ot2" name="ot2" [(ngModel)]="ot2"/>
+          <input type="checkbox" class="otButton" id="ot2" name="ot2" [(ngModel)]="ot2"/>
         </td>
         <td class="filter-td otCheckbox">
           <label class="filter-label" for="ot3" style="padding-left: 10px;">3 OT</label>
-          <input type="checkbox" class="homeAway" id="ot3" name="ot3" [(ngModel)]="ot3"/>
+          <input type="checkbox" class="otButton" id="ot3" name="ot3" [(ngModel)]="ot3"/>
         </td>
       </tr>
       <tr>
         <td class="filter-td otCheckbox">
           <label class="filter-label indent-first-checkbox" for="ot4">4 OT</label>
-          <input type="checkbox" class="homeAway" id="ot4" name="ot4" [(ngModel)]="ot4"/>
+          <input type="checkbox" class="otButton" id="ot4" name="ot4" [(ngModel)]="ot4"/>
         </td>
         <td class="filter-td otCheckbox">
           <label class="filter-label" for="ot5" style="padding-left: 5px;">5 OT</label>
-          <input type="checkbox" class="homeAway" id="ot5" name="ot5" [(ngModel)]="ot5"/>
+          <input type="checkbox" class="otButton" id="ot5" name="ot5" [(ngModel)]="ot5"/>
         </td>
         <td class="filter-td otCheckbox">
           <label class="filter-label" for="ot6" style="padding-left: 6px;">6+OT</label>
-          <input type="checkbox" class="homeAway" id="ot6" name="ot6" [(ngModel)]="ot6"/>
+          <input type="checkbox" class="otButton" id="ot6" name="ot6" [(ngModel)]="ot6"/>
         </td>
       </tr>
       <tr>
         <td class="filter-td otCheckbox">
-          <label class="filter-label indent-first-checkbox2" for="ot4">All</label>
+          <label class="filter-label indent-first-checkbox2" for="otAll">All</label>
           <input type="checkbox" class="homeAway" id="otAll" name="otAll" [(ngModel)]="otAll"/>        
         </td>
         <td class="filter-td otCheckbox">
         </td>
         <td class="filter-td otCheckbox">
           <input type="checkbox" class="homeAway" id="otNone" name="otNone" [(ngModel)]="otNone"/>
-          <label class="filter-label" for="ot5">None</label>
+          <label class="filter-label" for="otNone">None</label>
         </td>
       </tr>
     </table>
