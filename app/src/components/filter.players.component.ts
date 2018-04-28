@@ -24,6 +24,10 @@ export class PlayersFilterComponent implements OnInit {
     pgtSliderExtra:{
       start:{clock: "20:00", sec:-2400},
       end:{clock: "00:00", sec:0}
+    },
+    pgtSliderOT:{
+      start:{clock: "5:00", sec:-300},
+      end:{clock: "0:00", sec:0}
     }
   };
   startTime2ndHalf = {
@@ -324,6 +328,22 @@ export class PlayersFilterComponent implements OnInit {
         else this.startTime2ndHalf.pgtSliderExtra = false;
         if (data.to >= -1200) this.endTime2ndHalf.pgtSliderExtra = true;
         else this.endTime2ndHalf.pgtSliderExtra = false;
+      }
+    });
+    $("#pgtSliderOT").ionRangeSlider({
+      type: "double",
+      hide_min_max: true,
+      hide_from_to: true,
+      min: -5*60,
+      max: 0,
+      from: -5*60,
+      to: 0,
+      onChange: (data) => {
+        this.gametime.pgtSliderOT.start.sec = data.from;
+        this.gametime.pgtSliderOT.end.sec = data.to;
+
+        this.gametime.pgtSliderOT.start.clock = globals.secondsToGametime(data.from);
+        this.gametime.pgtSliderOT.end.clock = globals.secondsToGametime(data.to);
       }
     });
 

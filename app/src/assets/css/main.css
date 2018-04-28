@@ -76,6 +76,13 @@ body {
 span.filter-label {
   font-weight: 500;
 }
+.ot-label {
+  font-size: 12px;
+  font-weight: 500;
+}
+#overtime {
+  margin-top: 10px;
+}
 .filter-table {
   width: 100%
 }
@@ -88,6 +95,9 @@ span.filter-label {
 }
 .indent-first-checkbox {
   margin-left: 10px
+}
+.indent-first-checkbox2 {
+  margin-left: 27px;
 }
 
 
