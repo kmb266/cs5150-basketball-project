@@ -26,11 +26,17 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li class="navbar-item">
+      <li>
+        <div id="saved-filters-wrapper" data-toggle="tooltip" data-placement="left" title="Select a saved filter">
+          <select id="saved-filters" style="max-width:200px"></select>
+        </div>
+      </li>
+      <li id="save-filter-tooltip" class="navigation-btn navbar-item" data-toggle="tooltip" data-placement="bottom" title="Save Current Filter">
+        <a (click)="showSaveModal()"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></a>
+      </li>
+      <li id="print-tooltip" class="navbar-item" data-toggle="tooltip" data-placement="bottom" title="Print Stats">
         <a (click)="printPage($event)"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>
       </li>
     </ul>
   </div>
 </nav>
-
-<div id="slider"></div>

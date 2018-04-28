@@ -1,4 +1,4 @@
-import { NgModule, Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { NgModule, Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import * as globals from './../global.vars';
 
@@ -13,9 +13,31 @@ import * as select2 from 'select2';
   templateUrl: 'templates/filter.players.html'
 })
 export class PlayersFilterComponent implements OnInit {
+  // use this to pass data to app.component in applyFilters
   @Output() dataEvent = new EventEmitter<string>();
 
+  // Receive the saved filter from the app component
+  @Input()
+  set savedFilter(savedFilterObj: object) {
+
+    // NOTE: If we want to run a default filter object on opening the file,
+    // do it here, remove the if statement and change the blank.data to a filter
+
+    // if a real option has been selected that is not the null value
+    if ($('#saved-filters').val() != -1 ) {
+
+      // apply the saved filters and send to middle stack
+      globals.applyFilters(this.currentPageName, savedFilterObj, this.dataEvent);
+
+      this.updateFilters(savedFilterObj);
+
+    }
+
+  }
+
   currentPageName = "players";
+
+  // Object to save time from sliders
   gametime = {
     pgtSlider:{
       start:{clock: "20:00", sec:-2400},
@@ -102,7 +124,6 @@ export class PlayersFilterComponent implements OnInit {
       }
     }
 
-    console.log(filters);
     return filters;
   }
   saveFilters(filters) {
@@ -125,6 +146,32 @@ export class PlayersFilterComponent implements OnInit {
     console.log("cleared all filters");
   }
 
+  updateFilters(filters) {
+    /*
+      Changes the filters in the side bar to match the chose saved filter
+      Inputs:
+        filters: obj: object with all of the filters
+    */
+
+    this.gametime.pgtSlider = filters.gametime.slider;
+    this.gametime.pgtSliderExtra = filters.gametime.sliderExtra;
+
+    // TODO: this needs some work to flesh out the bugs...
+    // ===> aka 'check the 2nd half box after setting these update methods
+    this.updateSliderStart(this.gametime.pgtSlider.start.clock, 'pgtSlider')
+    this.updateSliderEnd(this.gametime.pgtSlider.end.clock, 'pgtSlider')
+
+    this.updateSliderStart(this.gametime.pgtSliderExtra.start.clock, 'pgtSliderExtra')
+    this.updateSliderEnd(this.gametime.pgtSliderExtra.end.clock, 'pgtSliderExtra')
+
+  }
+
+  // For specifications see global.vars
+  saveCurrentFilter(inputId, filterName, modalId) {
+    // Get all currently set filters
+    var filters = this.getAllFilters();
+    globals.saveCurrentFilter(modalId, inputId, filterName, filters);
+  }
 
 
   // Gametime Slider methods -- for specifications look at globals functions
