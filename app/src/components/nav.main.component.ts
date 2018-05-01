@@ -18,7 +18,12 @@ export class MainNavComponent {
   @Output() pageChanged = new EventEmitter<string>();
   @Output() savedFilterChanged = new EventEmitter<string>();
   currentPage = "players";
-
+  savedFiltersFromFile = this.getSavedFilters();
+  getSavedFilters() {
+    var filtersFromFile = globals.getSavedFilters();
+    console.log(filtersFromFile);
+    return filtersFromFile.slice(1);
+  }
   showSaveModal(){
     /*
       Show current page's save filter modal
@@ -28,13 +33,36 @@ export class MainNavComponent {
 
   }
 
-  ngOnInit(): void {
-    select2();
-    globals.createSelect2("#saved-filters", 'Select', globals.getSavedFilters);
-    $('#saved-filters').on("change", (e) => {
+  showEditSavedFiltersModal(modal) {
+    /*
+      Shows the edit filters modal
+    */
+    $(modal).modal('toggle')
 
+  }
+
+  saveFilterChanges() {
+    /*
+      Saves the changed filters in edit saved filter modal
+    */
+
+  }
+
+  clearSavedFilter() {
+    $('#saved-filters').val(-1).trigger('change');
+  }
+
+
+  ngOnInit(): void {
+
+    // get filter names and data and add them to savedFiltersFromFile
+
+    select2();
+    globals.createSelect2("#saved-filters", 'Select Saved Filter', globals.getSavedFilters);
+    $('#saved-filters').on("change", (e) => {
+      console.log(e.target.value);
       // if you select the null value, do nothing
-      if (e.target.value == -1) return;
+      if (e.target.value == -1 || e.target.value == '') return;
 
       // get the data from the saved filter object
       var filterData = $('#saved-filters').select2('data')[0].data;
@@ -50,6 +78,7 @@ export class MainNavComponent {
     $("#print-tooltip").tooltip();
     $("#saved-filters-wrapper").tooltip();
     $("#save-filter-tooltip").tooltip();
+    $(".nav-tooltip").tooltip();
 
   }
 

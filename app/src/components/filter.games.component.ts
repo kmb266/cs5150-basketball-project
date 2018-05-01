@@ -86,7 +86,6 @@ export class GamesFilterComponent implements OnInit {
         "page": string,
         "team": [],
         "opponent": [],
-        "conference": [],
         "upOrDown": [],
         "season": [],
         "gametime": {
@@ -178,7 +177,6 @@ export class GamesFilterComponent implements OnInit {
       }
     }
 
-    console.log(filters);
     return filters;
   }
   saveFilters(filters) {
@@ -209,6 +207,9 @@ export class GamesFilterComponent implements OnInit {
     this.losses = false;
     $(lastNGames).val(null);
     $(upOrDown).val(null);
+
+    globals.clearSliders(this, "ggtSlider");
+
     console.log("cleared all filters");
   }
 
@@ -216,19 +217,69 @@ export class GamesFilterComponent implements OnInit {
     /*
       Changes the filters in the side bar to match the chose saved filter
       Inputs:
-        filters: obj: object with all of the filters
+        filters: Object that contains all of the filter data
     */
 
-    this.gametime.pgtSlider = filters.gametime.slider;
-    this.gametime.pgtSliderExtra = filters.gametime.sliderExtra;
+    // clear all filters just to be safe
+    this.clearAllFilters();
 
-    // TODO: this needs some work to flesh out the bugs...
-    // ===> aka 'check the 2nd half box after setting these update methods
-    this.updateSliderStart(this.gametime.pgtSlider.start.clock, 'pgtSlider')
-    this.updateSliderEnd(this.gametime.pgtSlider.end.clock, 'pgtSlider')
+    // set all of the filters with the saved filters
+    globals.updateAllSlidersFromSavedFilter(this, 'ggtSlider', filters);
+    globals.updateSelect2sFromSavedFilter(this.currentPageName, filters);
+    this.updateSimpleInputsFromSavedFilter(filters);
 
-    this.updateSliderStart(this.gametime.pgtSliderExtra.start.clock, 'pgtSliderExtra')
-    this.updateSliderEnd(this.gametime.pgtSliderExtra.end.clock, 'pgtSliderExtra')
+  }
+
+  updateSimpleInputsFromSavedFilter(filters) {
+    /*
+      Changes the checkboxes in the filter to match the filters data
+      Sets the non dropdown input values to match the filters data
+      Inputs:
+        filters: Object that contains all of the filter data
+
+      // NOTE:  this needs to be component specific because each component has
+                a different set of filters
+    */
+
+    // set score input
+    this.upOrDown = filters.upOrDown[1];
+
+    // set recent games input
+    this.lastNGames = filters.recentGames;
+
+    // set location checkboxes
+    this.homeGames = filters.location.home;
+    this.awayGames = filters.location.away;
+    this.neutralGames = filters.location.neutral;
+    if globals.allTrue(filters.location) {
+      this.homeGames = false;
+      this.awayGames = false;
+      this.neutralGames = false;
+    }
+
+    // set outcome checkboxes
+    this.wins = filters.outcome.wins;
+    this.losses = filters.outcome.losses;
+    if globals.allTrue(filters.outcome) {
+      this.wins = false;
+      this.losses = false;
+    }
+
+    // TODO: Overtime for games tab
+    // // set overtime checkboxes
+    // var otList = ['ot1','ot2','ot3','ot4','ot5','ot6'];
+    // var anyTrue = [];
+    // otList.forEach( (ot) => {
+    //   this[ot] = filters.overtime[ot];
+    //   anyTrue.push(filters.overtime[ot]);
+    // });
+    // this.otAll = false;
+    // if (anyTrue.every(function(tf){return tf == true;})) this.otAll = true;
+    //
+    // this.otNone = false;
+    // if (anyTrue.every(function(tf){return tf == false;})) this.otNone = true;
+    //
+    // this.onlyOT = filters.overtime.onlyQueryOT;
 
   }
 
@@ -298,27 +349,7 @@ export class GamesFilterComponent implements OnInit {
     ];
     return data;
   }
-  getConferences() {
-    var data = [
-      {
-          id: 'conf1',
-          text: 'AAC'
-      },
-      {
-          id: 'conf2',
-          text: 'ACC'
-      },
-      {
-          id: 'conf3',
-          text: 'Ivy League'
-      },
-      {
-          id: 'confX',
-          text: 'WAC'
-      }
-    ];
-    return data;
-  }
+
   getAvailableSeasons() {
     var data = [
       {
@@ -400,7 +431,6 @@ export class GamesFilterComponent implements OnInit {
     select2();
     globals.createSelect2("#games-team", 'Select Team(s)', this.getTeams);
     globals.createSelect2("#games-opponent", 'Select Team(s)', this.getOpponents);
-    globals.createSelect2("#games-conference", 'Select Conf(s)', this.getConferences);
     globals.createSelect2("#games-upOrDown", 'Select', globals.getUpOrDown);
     globals.createSelect2("#games_select-season", 'Ex. 17-18', this.getAvailableSeasons);
 
