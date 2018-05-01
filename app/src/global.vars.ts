@@ -30,6 +30,15 @@ export const gametimeToSeconds = (gametime, isSecondHalf) => {
   if (isSecondHalf) return parseInt(minSec[0])*60 + parseInt(minSec[1]);
   return parseInt(minSec[0])*60 + parseInt(minSec[1]) + 1200;
 }
+export const allTrue = (obj) => {
+  /*
+    Heper function to check if all values of an object are true
+    Returns: boolean
+  */
+  for(var o in obj)
+    if(!obj[o]) return false;
+  return true;
+}
 
 export const createSelect2 = (id, placeholder, getData) => {
   $(id).select2({
@@ -37,6 +46,7 @@ export const createSelect2 = (id, placeholder, getData) => {
     placeholder: placeholder,
     dropdownAutoWidth : true,
     width: 'element',
+    allowClear: true,
     data: getData()
   });
 }
@@ -307,4 +317,115 @@ export const getSavedFilters = () => {
   });
 
   return savedFilters;
+}
+
+export const clearSliders = (that, sliderId) => {
+  /*
+    Sets range sliders back to default
+    Inputs:
+      that: angular component = the component whose sliders that are being reset
+      sliderId: string = the base id of the sliders to be changed
+  */
+  var extra = sliderId + 'Extra';
+  var ot = sliderId + 'OT';
+  that.gametime = {};
+  that.gametime[sliderId] = {
+    start:{clock: "20:00", sec:-2400},
+    end:{clock: "00:00", sec:0}
+  },
+  that.gametime[extra] = {
+    start:{clock: "20:00", sec:-2400},
+    end:{clock: "00:00", sec:0}
+  },
+  that.gametime[ot] = {
+    start:{clock: "5:00", sec:-300},
+    end:{clock: "0:00", sec:0}
+  }
+  that.startTime2ndHalf = {}
+  that.startTime2ndHalf[sliderId] = false
+  that.startTime2ndHalf[extra] = false
+
+  that.endTime2ndHalf = {}
+  that.endTime2ndHalf[sliderId] = true
+  that.endTime2ndHalf[extra] = true
+
+  // update slider to match the saved filters gametime
+  $("#"+sliderId).data('ionRangeSlider').update({
+    from: that.gametime[sliderId].start.sec,
+    to: that.gametime[sliderId].end.sec
+  });
+
+  // update extra slider to match the saved filters gametime
+  $("#"+extra).data('ionRangeSlider').update({
+    from: that.gametime[extra].start.sec,
+    to: that.gametime[extra].end.sec
+  });
+
+  try { //remove try statement once all tabs have ot
+    // update OTslider to match the saved filters gametime
+    $("#"+ot).data('ionRangeSlider').update({
+      from: that.gametime[ot].start.sec,
+      to: that.gametime[ot].end.sec
+    });
+  }
+  catch(err) {
+
+  }
+
+}
+
+export const updateAllSlidersFromSavedFilter = (that, sliderId, filters) => {
+  /*
+    Set the range sliders and corresponding data in component to the
+    saved filter's data
+    Inputs:
+      filters: Object that contains all of the filter data
+  */
+  var sliderIdExtra = sliderId + 'Extra';
+
+  that.gametime[sliderId] = filters.gametime.slider;
+  that.gametime[sliderIdExtra] = filters.gametime.sliderExtra;
+
+  // update slider to match the saved filters gametime
+  $("#"+sliderId).data('ionRangeSlider').update({
+    from: filters.gametime.slider.start.sec,
+    to: filters.gametime.slider.end.sec
+  });
+
+  // update extra slider to match the saved filters gametime
+  $("#"+sliderIdExtra).data('ionRangeSlider').update({
+    from: filters.gametime.sliderExtra.start.sec,
+    to: filters.gametime.sliderExtra.end.sec
+  });
+
+  //set the gamteime data in component to match the filter for both sliders
+  that.startTime2ndHalf[sliderId] = filters.gametime.slider.start.sec >= -1200;
+  that.endTime2ndHalf[sliderId] = filters.gametime.slider.end.sec >= -1200;
+
+  that.startTime2ndHalf[sliderIdExtra] = filters.gametime.sliderExtra.start.sec >= -1200;
+  that.endTime2ndHalf[sliderIdExtra] = filters.gametime.sliderExtra.end.sec >= -1200;
+
+  // show the extra slider if necessary
+  that.hidePgtExtra = !filters.gametime.multipleTimeFrames;
+
+}
+
+export const updateSelect2sFromSavedFilter = (page, filters) => {
+  /*
+    Changes the dropdown menus' values to match the data in the filter
+    Inputs:
+      page: string = filter's page to edit select2 dropdowns
+      filters: Object that contains all of the filter data
+  */
+  $('.'+page+'-select2').each(function() {
+    var id = this.id.split('-')[1];
+    if (filters[id] != undefined && filters[id].length > 0) {
+      $(this).val(filters[id]).trigger('change');
+    }
+    else {
+      $(this).val(null).trigger('change');
+    }
+  });
+
+
 }

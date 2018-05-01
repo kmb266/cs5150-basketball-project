@@ -26,9 +26,17 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
+      <!-- <li>
+        <div class="nav-tooltip" data-toggle="tooltip" data-placement="bottom" title="Clear Selected Filter" style="padding-top:8px;">
+          <button [disabled]="savedFilters.value < 0" style="height:28px;width:22px;" class="btn btn-default btn-xs" (click)="clearSavedFilter()">x</button>
+        </div>
+      </li> -->
+      <li id="save-filter-tooltip" class="navigation-btn navbar-item" data-toggle="tooltip" data-placement="bottom" title="Edit Saved Filter">
+        <a (click)="showEditSavedFiltersModal(editSavedFiltersModal)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+      </li>
       <li>
         <div id="saved-filters-wrapper" data-toggle="tooltip" data-placement="left" title="Select a saved filter">
-          <select id="saved-filters" style="max-width:200px"></select>
+          <select id="saved-filters" style="max-width:200px" #savedFilters></select>
         </div>
       </li>
       <li id="save-filter-tooltip" class="navigation-btn navbar-item" data-toggle="tooltip" data-placement="bottom" title="Save Current Filter">
@@ -40,3 +48,30 @@
     </ul>
   </div>
 </nav>
+
+<div id="edit-saved-filters-modal" class="modal fade" role="dialog" #editSavedFiltersModal>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Edit Saved Filters</h4>
+      </div>
+      <div class="modal-body">
+        <div class="input-group" *ngFor="let filter of savedFiltersFromFile; let in = index" style="padding:4px;">
+          <input type="text" class="form-control" name="filter-names-{{in}}" value="{{filter.text}}">
+          <span class="input-group-btn">
+            <button class="btn btn-default" style="color:red" type="button">Delete</button>
+          </span>
+        </div><!-- /input-group -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" (click)="saveFilterChanges()">
+          Save changes
+        </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

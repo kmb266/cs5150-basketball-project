@@ -130,7 +130,7 @@ span.filter-label {
 }
 
 #saved-filters-wrapper {
-  padding:8px;
+  padding:8px 8px 8px 0px;
 
 }
 
@@ -140,9 +140,9 @@ span.filter-label {
 }
 
 /* hide the search box in the up or down section */
-.select2-search--dropdown {
+/* .select2-search--dropdown {
   display: none !important;
-}
+} */
 /* hide the scorll bars */
 ::-webkit-scrollbar {
     display: none;

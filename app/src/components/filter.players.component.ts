@@ -83,6 +83,7 @@ export class PlayersFilterComponent implements OnInit {
   oldFilters = [];
 
   hidePgtExtra = true;
+  hideOvertime = true;
 
   invalidInput(el) {
     //show a red box around the input box
@@ -146,7 +147,7 @@ export class PlayersFilterComponent implements OnInit {
         ot6: this.ot6,
         onlyQueryOT: this.onlyOT
       }
-    console.log(filters)
+    console.log(filters);
 
     return filters;
   }
@@ -158,7 +159,6 @@ export class PlayersFilterComponent implements OnInit {
     this.saveFilters(filters);
     // clear dropdown inputs
     $('.players-select2').val(null).trigger('change');
-    $('#select-season').val('season17').trigger('change');
 
     this.homeGames = false;
     this.awayGames = false;
@@ -176,6 +176,9 @@ export class PlayersFilterComponent implements OnInit {
     this.onlyOT = false;
     $(lastNGames).val(null);
     $(upOrDown).val(null);
+
+    globals.clearSliders(this, "pgtSlider");
+
     console.log("cleared all filters");
   }
 
@@ -183,19 +186,65 @@ export class PlayersFilterComponent implements OnInit {
     /*
       Changes the filters in the side bar to match the chose saved filter
       Inputs:
-        filters: obj: object with all of the filters
+        filters: Object that contains all of the filter data
     */
 
-    this.gametime.pgtSlider = filters.gametime.slider;
-    this.gametime.pgtSliderExtra = filters.gametime.sliderExtra;
+    // set all of the filters with the saved filters
+    globals.updateAllSlidersFromSavedFilter(this, 'pgtSlider', filters);
+    globals.updateSelect2sFromSavedFilter(this.currentPageName, filters);
+    this.updateSimpleInputsFromSavedFilter(filters);
 
-    // TODO: this needs some work to flesh out the bugs...
-    // ===> aka 'check the 2nd half box after setting these update methods
-    this.updateSliderStart(this.gametime.pgtSlider.start.clock, 'pgtSlider')
-    this.updateSliderEnd(this.gametime.pgtSlider.end.clock, 'pgtSlider')
+  }
 
-    this.updateSliderStart(this.gametime.pgtSliderExtra.start.clock, 'pgtSliderExtra')
-    this.updateSliderEnd(this.gametime.pgtSliderExtra.end.clock, 'pgtSliderExtra')
+  updateSimpleInputsFromSavedFilter(filters) {
+    /*
+      Changes the checkboxes in the filter to match the filters data
+      Sets the non dropdown input values to match the filters data
+      Inputs:
+        filters: Object that contains all of the filter data
+
+      // NOTE:  this needs to be component specific because each component has
+                a different set of filters
+    */
+
+    // set score input
+    this.upOrDown = filters.upOrDown[1];
+
+    // set recent games input
+    this.lastNGames = filters.recentGames;
+
+    // set location checkboxes
+    this.homeGames = filters.location.home;
+    this.awayGames = filters.location.away;
+    this.neutralGames = filters.location.neutral;
+    if globals.allTrue(filters.location) {
+      this.homeGames = false;
+      this.awayGames = false;
+      this.neutralGames = false;
+    }
+
+    // set outcome checkboxes
+    this.wins = filters.outcome.wins;
+    this.losses = filters.outcome.losses;
+    if globals.allTrue(filters.outcome) {
+      this.wins = false;
+      this.losses = false;
+    }
+
+    // set overtime checkboxes
+    var otList = ['ot1','ot2','ot3','ot4','ot5','ot6'];
+    var anyTrue = [];
+    otList.forEach( (ot) => {
+      this[ot] = filters.overtime[ot];
+      anyTrue.push(filters.overtime[ot]);
+    });
+    this.otAll = false;
+    if (anyTrue.every(function(tf){return tf == true;})) this.otAll = true;
+
+    this.otNone = false;
+    if (anyTrue.every(function(tf){return tf == false;})) this.otNone = true;
+
+    this.onlyOT = filters.overtime.onlyQueryOT;
 
   }
 
@@ -288,27 +337,6 @@ export class PlayersFilterComponent implements OnInit {
       {
           id: 'team351',
           text: 'Harvard',
-      }
-    ];
-    return data;
-  }
-  getConferences() {
-    var data = [
-      {
-          id: 'conf1',
-          text: 'AAC'
-      },
-      {
-          id: 'conf2',
-          text: 'ACC'
-      },
-      {
-          id: 'conf3',
-          text: 'Ivy League'
-      },
-      {
-          id: 'confX',
-          text: 'WAC'
       }
     ];
     return data;
@@ -461,7 +489,6 @@ export class PlayersFilterComponent implements OnInit {
     globals.createSelect2("#players-position", 'Select Position(s)', this.getPositions);
     globals.createSelect2("#players-team", 'Select Team(s)', this.getTeams);
     globals.createSelect2("#players-opponent", 'Select Team(s)', this.getOpponents);
-    globals.createSelect2("#players-conference", 'Select Conf(s)', this.getConferences);
     globals.createSelect2("#players-in-lineup", 'Select Player(s)', this.getCurrentTeamMembers);
     globals.createSelect2("#players-out-lineup", 'Select Player(s)', this.getCurrentTeamMembers);
     globals.createSelect2("#players-upOrDown", "Select", globals.getUpOrDown);
@@ -472,6 +499,10 @@ export class PlayersFilterComponent implements OnInit {
     $(".select2-selection.select2-selection--multiple").css("line-height","1em");
     $(".select2-selection.select2-selection--multiple").css("min-height","26px");
 
+
+    // tooltip instatiation
+    $(".location-tooltip").tooltip();
+    $(".second-half-tooltip").tooltip();
   }
 
 }
