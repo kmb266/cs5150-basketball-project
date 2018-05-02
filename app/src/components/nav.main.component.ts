@@ -1,6 +1,7 @@
 import { NgModule, Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { CommonModule } from "@angular/common";
 const {ipcRenderer} = require('electron');
+const fs = require('fs');
 
 import * as globals from './../global.vars';
 const noUiSlider = require('nouislider/distribute/nouislider');
@@ -19,11 +20,16 @@ export class MainNavComponent {
   @Output() savedFilterChanged = new EventEmitter<string>();
   currentPage = "players";
   savedFiltersFromFile = this.getSavedFilters();
+
   getSavedFilters() {
+    /*
+      return the saved filters from the file
+      minus the default filters
+    */
     var filtersFromFile = globals.getSavedFilters();
-    console.log(filtersFromFile);
     return filtersFromFile.slice(1);
   }
+
   showSaveModal(){
     /*
       Show current page's save filter modal
@@ -37,19 +43,55 @@ export class MainNavComponent {
     /*
       Shows the edit filters modal
     */
-    $(modal).modal('toggle')
+    $(modal).modal('toggle');
+    this.savedFiltersFromFile = this.getSavedFilters();
 
   }
-
-  saveFilterChanges() {
+  jsonStringify(data) {
+    /*
+      Returns stringified data
+      Inputs:
+        data: obj = filter object data
+    */
+    return JSON.stringify(data);
+  }
+  saveFilterChanges(modal) {
     /*
       Saves the changed filters in edit saved filter modal
     */
+    var new_filters = "";
+    $('.input-filter-names').each(function(){
+      if ($(this).data('include')) {
+        new_filters += JSON.stringify($(this).data('filter')) + '\n';
+      }
+    });
+    console.log(new_filters);
+    // not checking for duplicates, if they want to make a filter the same name
+    // we are going to let them do it here..
+    fs.writeFile(globals.saved_filters_file, new_filters, function (err) {
+      if (err) throw err;
+      $(modal).modal('toggle');
+
+      // refresh the saved filters dropdown
+      $('#saved-filters').empty();
+      globals.createSelect2("#saved-filters", 'Select Saved Filter', globals.getSavedFilters);
+
+      console.log('Saved!');
+
+    });
 
   }
 
-  clearSavedFilter() {
-    $('#saved-filters').val(-1).trigger('change');
+  deleteFilter(event, index) {
+    /*
+      delete selected filter
+    */
+    var isDisabled = $('#filter-names-'+index).prop('disabled');
+    $('#filter-names-'+index).prop('disabled', !isDisabled);
+    $('#filter-names-'+index).attr('data-include', isDisabled);
+    $('#btn-filter-'+index).toggle();
+    $('#btn-filter-undo-'+index).toggle();
+
   }
 
 
