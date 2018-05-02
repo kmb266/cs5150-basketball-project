@@ -9,13 +9,13 @@
 
     <ul class="nav navbar-nav navbar-main">
       <!-- TODO: make back and forward buttons work -->
-      <li class="navigation-btn navbar-item" id="back-btn">
+      <!-- <li class="navigation-btn navbar-item" id="back-btn">
           <a (click)="printMsg($event)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
       </li>
       <li class="navigation-btn navbar-item" id="forward-btn">
           <a (click)="printMsg($event)"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
-      </li>
-      <li class="navbar-item" [ngClass]="{'active':currentPage == 'players'}" style="margin-left:9px;">
+      </li> -->
+      <li class="navbar-item" [ngClass]="{'active':currentPage == 'players'}" style="margin-left:59px;">
         <a id="players" (click)="pageClicked($event)">Players</a>
       </li>
       <li class="navbar-item" [ngClass]="{'active':currentPage == 'teams'}">
@@ -58,17 +58,19 @@
         </button>
         <h4 class="modal-title">Edit Saved Filters</h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="overflow-y: scroll;max-height:400px;">
         <div class="input-group" *ngFor="let filter of savedFiltersFromFile; let in = index" style="padding:4px;">
-          <input type="text" class="form-control" name="filter-names-{{in}}" value="{{filter.text}}">
+          <input type="text" class="form-control input-filter-names" name="filter-names-{{in}}" id="filter-names-{{in}}"
+                 value="{{filter.text}}" [attr.data-include]="true" [attr.data-filter]="jsonStringify(filter.data)">
           <span class="input-group-btn">
-            <button class="btn btn-default" style="color:red" type="button">Delete</button>
+            <button class="btn btn-default" style="color:red" type="button" id="btn-filter-{{in}}" (click)="deleteFilter($event, in)">Delete</button>
+            <button class="btn btn-default" style="color:green;display:none;" type="button" id="btn-filter-undo-{{in}}" (click)="deleteFilter($event, in)">Undo</button>
           </span>
         </div><!-- /input-group -->
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success" (click)="saveFilterChanges()">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Discard Changes</button>
+        <button type="button" class="btn btn-success" (click)="saveFilterChanges(editSavedFiltersModal)">
           Save changes
         </button>
       </div>

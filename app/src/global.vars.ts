@@ -5,7 +5,7 @@ const fs = require('fs');
 import * as jquery from 'jquery';
 window['$'] = jquery;
 window['jQuery'] = jquery;
-
+export const saved_filters_file = './saved_filters.json';
 export const navHeight: number = 50;
 export const pages: Array<string> = ["players", "teams","games"];
 export const numPages: number = pages.length;
@@ -218,7 +218,7 @@ export const validateFilterName = (filterName) => {
   if (filterName == undefined || filterName == '') return false;
 
   // open the saved filters file and add saved filter objects to list
-  var lines = require('fs').readFileSync('./saved_filters.json', 'utf-8')
+  var lines = require('fs').readFileSync(saved_filters_file, 'utf-8')
     .split('\n')
     .filter(Boolean);
 
@@ -237,7 +237,7 @@ export const writeFilterToFile = (data, callback) => {
     Append data object to file
     Input: data: string = data to be saved to file
   */
-  fs.appendFile('./saved_filters.json', data, (err) => {
+  fs.appendFile(saved_filters_file, data, (err) => {
     if (!err) {
       console.log('The filters have been saved!');
       callback();
@@ -276,7 +276,9 @@ export const saveCurrentFilter = (modalId, inputId, filterName, filters) => {
       $('#'+modalId).modal('toggle');
 
       // refresh the saved filters dropdown
-      $('#saved-filters').select2({ data: getSavedFilters() });
+      $('#saved-filters').empty();
+      createSelect2("#saved-filters", 'Select Saved Filter', getSavedFilters);
+
 
     });
   }
@@ -294,7 +296,7 @@ export const getSavedFilters = () => {
   */
   var savedFilters = [];
   // open the saved filters file and add saved filter objects to list
-  var lines = require('fs').readFileSync('./saved_filters.json', 'utf-8')
+  var lines = require('fs').readFileSync(saved_filters_file, 'utf-8')
     .split('\n')
     .filter(Boolean);
 
