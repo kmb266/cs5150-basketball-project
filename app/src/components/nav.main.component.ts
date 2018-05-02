@@ -62,7 +62,10 @@ export class MainNavComponent {
     var new_filters = "";
     $('.input-filter-names').each(function(){
       if ($(this).data('include')) {
-        new_filters += JSON.stringify($(this).data('filter')) + '\n';
+        var current_filter = $(this).data('filter');
+        console.log(current_filter)
+        current_filter.filterName = $(this).val();
+        new_filters += JSON.stringify(current_filter) + '\n';
       }
     });
     console.log(new_filters);
