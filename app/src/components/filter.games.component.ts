@@ -189,6 +189,15 @@ export class GamesFilterComponent implements OnInit {
     this.neutralGames = false;
     this.wins = false;
     this.losses = false;
+    this.ot1 = true;
+    this.ot2 = true;
+    this.ot3 = true;
+    this.ot4 = true;
+    this.ot5 = true;
+    this.ot6 = true;
+    this.otAll = true;
+    this.otNone = false;
+    this.onlyOT = false;
     $(lastNGames).val(null);
     $(upOrDown).val(null);
 
@@ -249,21 +258,20 @@ export class GamesFilterComponent implements OnInit {
       this.losses = false;
     }
 
-    // TODO: Overtime for games tab
-    // // set overtime checkboxes
-    // var otList = ['ot1','ot2','ot3','ot4','ot5','ot6'];
-    // var anyTrue = [];
-    // otList.forEach( (ot) => {
-    //   this[ot] = filters.overtime[ot];
-    //   anyTrue.push(filters.overtime[ot]);
-    // });
-    // this.otAll = false;
-    // if (anyTrue.every(function(tf){return tf == true;})) this.otAll = true;
-    //
-    // this.otNone = false;
-    // if (anyTrue.every(function(tf){return tf == false;})) this.otNone = true;
-    //
-    // this.onlyOT = filters.overtime.onlyQueryOT;
+    // set overtime checkboxes
+    var otList = ['ot1','ot2','ot3','ot4','ot5','ot6'];
+    var anyTrue = [];
+    otList.forEach( (ot) => {
+      this[ot] = filters.overtime[ot];
+      anyTrue.push(filters.overtime[ot]);
+    });
+    this.otAll = false;
+    if (anyTrue.every(function(tf){return tf == true;})) this.otAll = true;
+    
+    this.otNone = false;
+    if (anyTrue.every(function(tf){return tf == false;})) this.otNone = true;
+    
+    this.onlyOT = filters.overtime.onlyQueryOT;
 
   }
 
