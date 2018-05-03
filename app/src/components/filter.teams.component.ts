@@ -43,6 +43,10 @@ export class TeamsFilterComponent implements OnInit {
     tgtSliderExtra:{
       start:{clock: "20:00", sec:-2400},
       end:{clock: "00:00", sec:0}
+    },
+    tgtSliderOT:{
+      start:{clock: "5:00", sec:-300},
+      end:{clock: "0:00", sec:0}
     }
   };
   startTime2ndHalf = {
@@ -62,10 +66,20 @@ export class TeamsFilterComponent implements OnInit {
   losses:boolean = false;
   lastNGames:string;
   upOrDown:string;
+  ot1:boolean = false;
+  ot2:boolean = false;
+  ot3:boolean = false;
+  ot4:boolean = false;
+  ot5:boolean = false;
+  ot6:boolean = false;
+  otAll:boolean = false;
+  otNone:boolean = true;
+  onlyOT:boolean = false;
 
   oldFilters = [];
 
   hidePgtExtra = true;
+  hideOvertime = true;
 
   invalidInput(el) {
     //show a red box around the input box
@@ -120,6 +134,17 @@ export class TeamsFilterComponent implements OnInit {
         losses: this.losses
       }
     }
+
+    filters.overtime = {
+        otSlider: this.gametime.tgtSliderOT,
+        ot1: this.ot1,
+        ot2: this.ot2,
+        ot3: this.ot3,
+        ot4: this.ot4,
+        ot5: this.ot5,
+        ot6: this.ot6,
+        onlyQueryOT: this.onlyOT
+      }
 
     console.log(filters);
     return filters;
@@ -352,6 +377,55 @@ export class TeamsFilterComponent implements OnInit {
         else this.startTime2ndHalf.tgtSliderExtra = false;
         if (data.to >= -1200) this.endTime2ndHalf.tgtSliderExtra = true;
         else this.endTime2ndHalf.tgtSliderExtra = false;
+      }
+    });
+    $("#tgtSliderOT").ionRangeSlider({
+      type: "double",
+      hide_min_max: true,
+      hide_from_to: true,
+      min: -5*60,
+      max: 0,
+      from: -5*60,
+      to: 0,
+      onChange: (data) => {
+        this.gametime.tgtSliderOT.start.sec = data.from;
+        this.gametime.tgtSliderOT.end.sec = data.to;
+
+        this.gametime.tgtSliderOT.start.clock = globals.secondsToGametime(data.from);
+        this.gametime.tgtSliderOT.end.clock = globals.secondsToGametime(data.to);
+      }
+    });
+
+    $(".otButton").change(function () {
+      if (this.checked == false) {
+        $("#teamOtAll").prop('checked', true).click();
+      }
+      else {
+        $("#teamOtNone").prop('checked', true).click();
+      }
+    });
+
+    $("#teamOtAll").change(function () {
+      if (this.checked == true) {
+        $("#teamOt1").prop('checked', false).click();
+        $("#teamOt2").prop('checked', false).click();
+        $("#teamOt3").prop('checked', false).click();
+        $("#teamOt4").prop('checked', false).click();
+        $("#teamOt5").prop('checked', false).click();
+        $("#teamOt6").prop('checked', false).click();
+        $("#teamOtNone").prop('checked', true).click();
+      }
+    });
+
+    $("#teamOtNone").change(function () {
+      if (this.checked== true) {
+        $("#teamOt1").prop('checked', true).click();
+        $("#teamOt2").prop('checked', true).click();
+        $("#teamOt3").prop('checked', true).click();
+        $("#teamOt4").prop('checked', true).click();
+        $("#teamOt5").prop('checked', true).click();
+        $("#teamOt6").prop('checked', true).click();
+        $("#teamOtAll").prop('checked', true).click();
       }
     });
 
