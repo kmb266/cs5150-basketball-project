@@ -18,9 +18,9 @@ export class AppComponent implements OnInit {
 
   currentPage = "players";
   table_data = {
-    players: "loading ...",
-    teams: "loading teams ...",
-    games: "loading games ..."
+    players: {},
+    teams: {},
+    games: {}
   };
 
   filter_data = {
