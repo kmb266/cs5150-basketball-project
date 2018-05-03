@@ -299,32 +299,34 @@ export class PlayersFilterComponent implements OnInit {
     ];
     return data;
   }
+  getTeams1() {
+      var spawn = require('child_process').spawn,
+      py = spawn('python', ['./auto_complete.py']),
+      data = {"field": 0},
+      dataString = '';
+
+      // retrieve the data from the data_manager.py
+      py.stdout.on('data', function(data){
+        dataString += data.toString();
+      });
+
+      // print the data when the child process ends
+      py.stdout.on('end', function(){
+        console.log("Data is: " + dataString);
+        var teams = JSON.parse(dataString.replace(/'/g, '"'));
+        $('#players-team').select2({ data:teams });
+      });
+
+      // if there is an error, print it out
+      py.on('error', function(err) {
+        console.log("Failed to start child. " + err);
+      });
+
+      py.stdin.write(JSON.stringify(data));
+      py.stdin.end();
+  }
   getTeams() {
-    var spawn = require('child_process').spawn,
-        py = spawn('python', ['./auto_complete.py']),
-        data = {field:0},
-        dataString = '';
-
-    // retrieve the data from the data_manager.py
-    py.stdout.on('data', function(data){
-      dataString += data.toString();
-    });
-
-    // print the data when the child process ends
-    py.stdout.on('end', function(){
-      // var teams = JSON.parse(dataString);
-      console.log(dataString);
-    });
-
-    // if there is an error, print it out
-    py.on('error', function(err) {
-      console.log("Failed to start child. " + err);
-    });
-
-    py.stdin.write(JSON.stringify(data));
-    py.stdin.end();
-    return []
-
+    return [];
   }
   getOpponents() {
     var data = [
@@ -499,7 +501,7 @@ export class PlayersFilterComponent implements OnInit {
     globals.createSelect2("#players-out-lineup", 'Select Player(s)', this.getCurrentTeamMembers);
     globals.createSelect2("#players-upOrDown", "Select", globals.getUpOrDown);
     globals.createSelect2("#select-season", 'Ex. 17-18', this.getAvailableSeasons);
-
+    this.getTeams1();
     // styling on select2s done here after initialization
     $(".select2-selection__rendered").css("overflow-x","scroll");
     $(".select2-selection.select2-selection--multiple").css("line-height","1em");

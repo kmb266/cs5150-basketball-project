@@ -1,12 +1,4 @@
-import sys, json, numpy as np
-
-'''
-get the form information from the front end
-'''
-def getForm():
-    lines = read_in()
-    np_lines = np.array(lines)
-    return np_lines
+import sys, json
 
 '''
 retrieve the data from the backend
@@ -66,7 +58,10 @@ def retrieveData(form):
         }
     return data
 
-def read_in():
+'''
+get the form information from the front end
+'''
+def getForm():
     lines = sys.stdin.readlines()
     #Since our input would only be having one line, parse our JSON data from that
     return json.loads(lines[0])
