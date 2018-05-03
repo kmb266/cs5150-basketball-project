@@ -300,26 +300,31 @@ export class PlayersFilterComponent implements OnInit {
     return data;
   }
   getTeams() {
-    var data = [
-      {
-          id: 'team1',
-          text: 'Universiy of Alabama'
-      },
-      {
-          id: 'team2',
-          text: 'University of Arizona'
-      },
-      {
-          id: 'team25',
-          text: 'Cornell',
-          selected: true
-      },
-      {
-          id: 'team351',
-          text: 'Xavier University'
-      }
-    ];
-    return data;
+    var spawn = require('child_process').spawn,
+        py = spawn('python', ['./auto_complete.py']),
+        data = {field:0},
+        dataString = '';
+
+    // retrieve the data from the data_manager.py
+    py.stdout.on('data', function(data){
+      dataString += data.toString();
+    });
+
+    // print the data when the child process ends
+    py.stdout.on('end', function(){
+      // var teams = JSON.parse(dataString);
+      console.log(dataString);
+    });
+
+    // if there is an error, print it out
+    py.on('error', function(err) {
+      console.log("Failed to start child. " + err);
+    });
+
+    py.stdin.write(JSON.stringify(data));
+    py.stdin.end();
+    return []
+
   }
   getOpponents() {
     var data = [
