@@ -1,6 +1,6 @@
 import Constants
 import sys, json, numpy as np
-import ast
+# import ast
 import data_retriever
 
 '''
@@ -44,16 +44,15 @@ def retrieveData(form):
           '''
             # team drop down menu
     	    if target == Constants.AC_TEAM:
-            data = data_retriever.getAllTeams();
-            return {"field" : Constants.AC_TEAM,
-                    "data" : data}
+                data = data_retriever.getAllTeams();
+                return {"field" : Constants.AC_TEAM,"data" : data}
             # player drop down menu
     	    elif target == Constants.AC_PLAYER:
-            # TODO: Add id
-            data = data_retriever.getAllPlayers(1);
-            return {"field" : Constants.AC_PLAYER,
+                # TODO: Add id
+                data = data_retriever.getAllPlayers(1);
+                return {"field" : Constants.AC_PLAYER,
                     "data" : data}
-          else:
+            else:
       		  return getErrorForm(Constants.InvalidFormValue, "Wrong value for key 'field'")
       	#----------------------------------------------
 
@@ -74,7 +73,7 @@ def getForm():
 
 def main():
     form = getForm()
-    form = ast.literal_eval(form)
+    # form = ast.literal_eval(form)
 
     data = retrieveData(form)
 
