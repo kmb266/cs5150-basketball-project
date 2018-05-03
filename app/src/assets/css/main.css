@@ -144,6 +144,6 @@ span.filter-label {
   display: none !important;
 } */
 /* hide the scorll bars */
-:not(.filter-wrapper .content-wrapper)::-webkit-scrollbar {
+:not(.filter-wrapper):not(.content-wrapper)::-webkit-scrollbar {
     display: none;
 }

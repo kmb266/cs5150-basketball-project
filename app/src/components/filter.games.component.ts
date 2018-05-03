@@ -46,6 +46,10 @@ export class GamesFilterComponent implements OnInit {
     ggtSliderExtra:{
       start:{clock: "20:00", sec:-2400},
       end:{clock: "00:00", sec:0}
+    },
+    ggtSliderOT:{
+      start:{clock: "5:00", sec:-300},
+      end:{clock: "0:00", sec:0}
     }
   };
   // Tells if the time referenced in the sliders in the first or second half
@@ -67,11 +71,21 @@ export class GamesFilterComponent implements OnInit {
   losses:boolean = false;
   lastNGames:string;
   upOrDown:string;
+  ot1:boolean = false;
+  ot2:boolean = false;
+  ot3:boolean = false;
+  ot4:boolean = false;
+  ot5:boolean = false;
+  ot6:boolean = false;
+  otAll:boolean = false;
+  otNone:boolean = true;
+  onlyOT:boolean = false;
 
   oldFilters = [];
 
   // Tells if the extra slider shown to show two time frames
   hidePgtExtra = true;
+  hideOvertime = true;
 
   invalidInput(el) {
     //show a red box around the input box
@@ -79,49 +93,6 @@ export class GamesFilterComponent implements OnInit {
   }
 
   getAllFilters() {
-    /*
-      Get the filters entered by the user
-      Returns: Filter object
-      {
-        "page": string,
-        "team": [],
-        "opponent": [],
-        "upOrDown": [],
-        "season": [],
-        "gametime": {
-          "slider": {
-            "start": {
-              "clock": "20:00",
-              "sec": -2400
-            },
-            "end": {
-              "clock": "00:00",
-              "sec": 0
-            }
-          },
-          "sliderExtra": {
-            "start": {
-              "clock": "20:00",
-              "sec": -2400
-            },
-            "end": {
-              "clock": "00:00",
-              "sec": 0
-            }
-          },
-          "multipleTimeFrames": boolean
-        },
-        "location": {
-          "home": boolean,
-          "away": boolean,
-          "neutral": boolean
-        },
-        "outcome": {
-          "wins": boolean,
-          "losses": boolean
-        }
-      }
-    */
     // Initialize filters object to return
     var filters = {};
 
@@ -176,6 +147,19 @@ export class GamesFilterComponent implements OnInit {
         losses: this.losses
       }
     }
+
+    filters.overtime = {
+        otSlider: this.gametime.ggtSliderOT,
+        ot1: this.ot1,
+        ot2: this.ot2,
+        ot3: this.ot3,
+        ot4: this.ot4,
+        ot5: this.ot5,
+        ot6: this.ot6,
+        onlyQueryOT: this.onlyOT
+      }
+
+    console.log(filters);
 
     return filters;
   }
@@ -423,6 +407,55 @@ export class GamesFilterComponent implements OnInit {
         else this.startTime2ndHalf.ggtSliderExtra = false;
         if (data.to >= -1200) this.endTime2ndHalf.ggtSliderExtra = true;
         else this.endTime2ndHalf.ggtSliderExtra = false;
+      }
+    });
+    $("#ggtSliderOT").ionRangeSlider({
+      type: "double",
+      hide_min_max: true,
+      hide_from_to: true,
+      min: -5*60,
+      max: 0,
+      from: -5*60,
+      to: 0,
+      onChange: (data) => {
+        this.gametime.ggtSliderOT.start.sec = data.from;
+        this.gametime.ggtSliderOT.end.sec = data.to;
+
+        this.gametime.ggtSliderOT.start.clock = globals.secondsToGametime(data.from);
+        this.gametime.ggtSliderOT.end.clock = globals.secondsToGametime(data.to);
+      }
+    });
+
+    $(".otButton").change(function () {
+      if (this.checked == false) {
+        $("#gameOtAll").prop('checked', true).click();
+      }
+      else {
+        $("#gameOtNone").prop('checked', true).click();
+      }
+    });
+
+    $("#gameOtAll").change(function () {
+      if (this.checked == true) {
+        $("#gameOt1").prop('checked', false).click();
+        $("#gameOt2").prop('checked', false).click();
+        $("#gameOt3").prop('checked', false).click();
+        $("#gameOt4").prop('checked', false).click();
+        $("#gameOt5").prop('checked', false).click();
+        $("#gameOt6").prop('checked', false).click();
+        $("#gameOtNone").prop('checked', true).click();
+      }
+    });
+
+    $("#gameOtNone").change(function () {
+      if (this.checked== true) {
+        $("#gameOt1").prop('checked', true).click();
+        $("#gameOt2").prop('checked', true).click();
+        $("#gameOt3").prop('checked', true).click();
+        $("#gameOt4").prop('checked', true).click();
+        $("#gameOt5").prop('checked', true).click();
+        $("#gameOt6").prop('checked', true).click();
+        $("#gameOtAll").prop('checked', true).click();
       }
     });
 

@@ -119,12 +119,6 @@
                   #gameEndInput (keyup.enter)="updateSliderEnd(gameEndInput.value,  pgtSlider.id)"/>
         </td>
       </tr>
-      <!-- <tr>
-        <td class="filter-td filterCheckbox" colspan="3">
-          <label class="filter-label" for="includeOT">Include OT</label>
-          <input type="checkbox" class="gametime" id="includeOT"/>
-        </td>
-      </tr> -->
 
       <tr>
         <td colspan="3" style="padding-top:4px;text-align:center;">
@@ -184,14 +178,11 @@
         <td class="time-td">
           <input type="text" class="gametime-input" maxlength="5" value={{gametime.pgtSliderOT.start.clock}}
                   #gameStartInput (keyup.enter)="updateSliderStart(gameStartInput.value, pgtSliderOT.id)" />
-          <!-- <input [(ngModel)]="startTime2ndHalf.pgtSliderOT" (change)="changedStartHalf(pgtSliderOT.id)" type="checkbox" /> -->
         </td>
 
         <td class="filter-td checkbox-info">
-          <!-- <span class="second-half">Check box to make time in 2nd half</span> -->
         </td>
         <td class="filter-td time-td" style="text-align:right;">
-          <!-- <input [(ngModel)]="endTime2ndHalf.pgtSliderOT" (change)="changedEndHalf(pgtSliderOT.id)" type="checkbox" /> -->
           <input type="text" class="gametime-input" maxlength="5" value="{{gametime.pgtSliderOT.end.clock}}"
                   #gameEndInput (keyup.enter)="updateSliderEnd(gameEndInput.value,  pgtSliderOT.id)"/>
         </td>
