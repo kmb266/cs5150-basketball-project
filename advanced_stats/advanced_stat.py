@@ -213,17 +213,17 @@ def qAST(MIN,TmMin,TmMIN):
 
 
 def q5(TmAST,AST,TmFGM):
-	return 1.14*((TmAST-AST)/TmFGM)
+	return float(1.14*((TmAST-AST)/TmFGM))
 	"""
-	Name: ???
-	Returns: the ????? based on parameters
+	Name: q5
+	Returns: the q5 based on parameters
 	Arguments:
 		TmAST: team assist 
 		AST: assist 
 		TmFGM: team field goal made 
 
 		Depend? No  
-		check status: No 
+		check status: Yes 
 
 	"""
 
@@ -396,7 +396,7 @@ def FGmPoss(FGA,FGM,TmOREB_pect):
 
 
 def FTmPoss(FTM,FTA):
-	return ((1-(FTM/FTA))^2 )*0.4*FTA
+	return float(((1-(FTM/FTA))**2 )*0.4*FTA)
 	"""
 	Name: Free Throw Missed Possessions 
 	Returns: the free throw missed possesssions based on parameters
@@ -405,7 +405,7 @@ def FTmPoss(FTM,FTA):
 		FTA: free throw attemped 
 
 		Depend? No    
-		check status: No 
+		check status: Yes 
 
 	"""
 
@@ -645,7 +645,7 @@ def eFG_perc(FGM,FGA,FGM_3):
 
 
 def Turnover_perc(TOV,FGA,FTA):
-	return TOV/(FGA+0.4*FTA+TOV)
+	return float(TOV/(FGA+0.4*FTA+TOV))
 	"""
 	Name: Trunovers percentage 
 	Returns: the trunovers percentage based on parameters
@@ -661,7 +661,10 @@ def Turnover_perc(TOV,FGA,FTA):
 	
 
 def FTr(FTA,FGA):
-	return FTA/FGA
+	if FGA == 0: 
+		return 0.0
+	else:
+		return FTA/FGA
 	"""
 	Name: Free Throw Rate 
 	Returns: the free throw rate based on parameters
@@ -677,7 +680,10 @@ def FTr(FTA,FGA):
 
 
 def FG_2_perc(FGM_2,FGA_2):
-	return FGM_2/FGA_2
+	if FGA_2 == 0: 
+		return 0.0
+	else:
+		return FGM_2/FGA_2
 	"""
 	Name: 2FG Percentage
 	Returns: the 2FG percentage based on parameters
@@ -693,7 +699,10 @@ def FG_2_perc(FGM_2,FGA_2):
 
 
 def FG_3_perc(FGM_3,FGA_3):
-	return FGM_3/FGA_3
+	if FGA_3 == 0: 
+		return 0.0
+	else:
+		return FGM_3/FGA_3
 	"""
 	Name: 3FG Percentage
 	Returns: the 3FG percentage based on parameters
@@ -708,7 +717,10 @@ def FG_3_perc(FGM_3,FGA_3):
 
 
 def FGr_2(FGA_2,FGA):
-	return FGA_2/FGA
+	if FGA == 0: 
+		return 0.0
+	else:
+		return float(FGA_2/FGA)
 	"""
 	Name: 2FG Rate (FG%)
 	Returns: the 2FG rate based on parameters
@@ -723,7 +735,10 @@ def FGr_2(FGA_2,FGA):
 
 
 def FGr_3(FGA_3,FGA):
-	return FGA_3/FGA
+	if FGA == 0: 
+		return 0.0
+	else:
+		return float(FGA_3/FGA)
 	"""
 	Name: 3FG Rate (3P%)
 	Returns: the 3FG rate based on parameters
@@ -739,10 +754,10 @@ def FGr_3(FGA_3,FGA):
 
 
 def Usage_Rate(FGA,FTA,TOV,TmMIN,MIN,TmFGA,TmFTA,TmTOV):
-	return 100*((FGA+0.4*FTA+TOV)*(TmMIN/5))/(MIN*(TmFGA+0.4*TmFTA+TmTOV))
+	return float(100*((FGA+0.4*FTA+TOV)*(TmMIN/5))/(MIN*(TmFGA+0.4*TmFTA+TmTOV)))
 	"""
-	Name: 
-	Returns: the .. based on parameters
+	Name: Usage Rate 
+	Returns: the usage rate based on parameters
 	Arguments:
 		FGA: field goal attemped 
 		FTA: free throw attemped
@@ -754,13 +769,13 @@ def Usage_Rate(FGA,FTA,TOV,TmMIN,MIN,TmFGA,TmFTA,TmTOV):
 		TmTOV: team turnover 
 		
 	Depend? No 
-	check status: No 
+	check status: Yes 
 
 	"""
 
 
 def AST_perc(AST,MIN,TmMIN,TmFGM,FGM):
-	return 100*AST/(((MIN/(TmMIN/5))*TmFGM)-FGM)
+	return float(100*AST/(((MIN/(TmMIN/5))*TmFGM)-FGM))
 	"""
 	Name: Assist Percentage
 	Returns: the Assist Percentage based on parameters
@@ -772,13 +787,16 @@ def AST_perc(AST,MIN,TmMIN,TmFGM,FGM):
 		FGM: field goal made 
 		
 	Depend? Yes  
-	check status: No 
+	check status: cannot find in excel  
 
 	"""
 
 
 def ASTr(AST,FGM):
-	return AST/FGM
+  if FGM == 0: 
+    return 0.0
+  else: 
+    return float(AST/FGM)
 	"""
 	Name: Assists Rate
 	Returns: the assists rate based on parameters
@@ -787,13 +805,13 @@ def ASTr(AST,FGM):
 		FGM: filed goals made 
 	
 	Depend? No 
-	check status: No 
+	check status: cannot find in excel 
 
 	"""
 
 
 def AST_Ratio(AST,FGA,FTA,TOV):
-	return (100*AST)/(FGA+(FTA*0.4)+AST+TOV)
+	return float((100*AST)/(FGA+(FTA*0.4)+AST+TOV))
 	"""
 	Name: Assists Ratio 
 	Returns: the assists ratio based on parameters
@@ -804,13 +822,13 @@ def AST_Ratio(AST,FGA,FTA,TOV):
 		TOV: trunovers (available since the 1977-78 season in the NBA)
 	
 	Depend? No 
-	check status: No 
+	check status: cannot find in excel  
 
 	"""
 
 
 def TS_perc(PTS,FGA,FTA):
-	return PTS/(2*(FGA+0.4*FTA))
+	return float(PTS/(2*(FGA+0.4*FTA)))
 	"""
 	Name: True Shooting percentage 
 	Returns: the True Shooting percentage based on parameters
