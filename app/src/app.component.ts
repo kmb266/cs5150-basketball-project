@@ -17,10 +17,16 @@ export class AppComponent implements OnInit {
   contentHeight = window.innerHeight - globals.navHeight;
 
   currentPage = "players";
-  all_data = {
-    players: "loading ...",
-    teams: "loading teams ...",
-    games: "loading games ..."
+  table_data = {
+    players: {},
+    teams: {},
+    games: {}
+  };
+
+  filter_data = {
+    players: "loading players saved filter...",
+    teams: "loading teams saved filter...",
+    games: "loading games  saved filter..."
   };
 
   ngOnInit(): void {
@@ -28,7 +34,7 @@ export class AppComponent implements OnInit {
   }
 
   receiveData(event) {
-    this.all_data[this.currentPage] = event;
+    this.table_data[this.currentPage] = event;
     console.log(event);
   }
 
@@ -38,7 +44,20 @@ export class AppComponent implements OnInit {
 
   pageChanged(event) {
     this.currentPage = event;
-    console.log(event);
+  }
+
+  savedFilterChanged(event) {
+    /*
+      Navigate to the saved filters' tab
+      and pass filter from nav to correct tab filter
+    */
+
+    // change displayed page
+    this.currentPage = event.page;
+
+    // pass the data to the filter
+    this.filter_data[event.page] = event;
+
   }
 
 }

@@ -16,6 +16,25 @@ export class GamesFilterComponent implements OnInit {
   // use this to pass data to app.component in applyFilters
   @Output() dataEvent = new EventEmitter<string>();
 
+  // Receive the saved filter from the app component
+  @Input()
+  set savedFilter(savedFilterObj: object) {
+
+    // NOTE: If we want to run a default filter object on opening the file,
+    // do it here, remove the if statement and change the blank.data to a filter
+
+    // if a real option has been selected that is not the null value
+    if ($('#saved-filters').val() != -1 ) {
+
+      // apply the saved filters and send to middle stack
+      globals.applyFilters(this.currentPageName, savedFilterObj, this.dataEvent);
+
+      this.updateFilters(savedFilterObj);
+
+    }
+
+  }
+
   currentPageName = "games";
 
   // Object to save time from sliders
@@ -27,6 +46,10 @@ export class GamesFilterComponent implements OnInit {
     ggtSliderExtra:{
       start:{clock: "20:00", sec:-2400},
       end:{clock: "00:00", sec:0}
+    },
+    ggtSliderOT:{
+      start:{clock: "5:00", sec:-300},
+      end:{clock: "0:00", sec:0}
     }
   };
   // Tells if the time referenced in the sliders in the first or second half
@@ -48,11 +71,21 @@ export class GamesFilterComponent implements OnInit {
   losses:boolean = false;
   lastNGames:string;
   upOrDown:string;
+  ot1:boolean = false;
+  ot2:boolean = false;
+  ot3:boolean = false;
+  ot4:boolean = false;
+  ot5:boolean = false;
+  ot6:boolean = false;
+  otAll:boolean = false;
+  otNone:boolean = true;
+  onlyOT:boolean = false;
 
   oldFilters = [];
 
   // Tells if the extra slider shown to show two time frames
   hidePgtExtra = true;
+  hideOvertime = true;
 
   invalidInput(el) {
     //show a red box around the input box
@@ -60,50 +93,6 @@ export class GamesFilterComponent implements OnInit {
   }
 
   getAllFilters() {
-    /*
-      Get the filters entered by the user
-      Returns: Filter object
-      {
-        "page": string,
-        "team": [],
-        "opponent": [],
-        "conference": [],
-        "upOrDown": [],
-        "season": [],
-        "gametime": {
-          "slider": {
-            "start": {
-              "clock": "20:00",
-              "sec": -2400
-            },
-            "end": {
-              "clock": "00:00",
-              "sec": 0
-            }
-          },
-          "sliderExtra": {
-            "start": {
-              "clock": "20:00",
-              "sec": -2400
-            },
-            "end": {
-              "clock": "00:00",
-              "sec": 0
-            }
-          },
-          "multipleTimeFrames": boolean
-        },
-        "location": {
-          "home": boolean,
-          "away": boolean,
-          "neutral": boolean
-        },
-        "outcome": {
-          "wins": boolean,
-          "losses": boolean
-        }
-      }
-    */
     // Initialize filters object to return
     var filters = {};
 
@@ -159,7 +148,19 @@ export class GamesFilterComponent implements OnInit {
       }
     }
 
+    filters.overtime = {
+        otSlider: this.gametime.ggtSliderOT,
+        ot1: this.ot1,
+        ot2: this.ot2,
+        ot3: this.ot3,
+        ot4: this.ot4,
+        ot5: this.ot5,
+        ot6: this.ot6,
+        onlyQueryOT: this.onlyOT
+      }
+
     console.log(filters);
+
     return filters;
   }
   saveFilters(filters) {
@@ -188,11 +189,98 @@ export class GamesFilterComponent implements OnInit {
     this.neutralGames = false;
     this.wins = false;
     this.losses = false;
+    this.ot1 = true;
+    this.ot2 = true;
+    this.ot3 = true;
+    this.ot4 = true;
+    this.ot5 = true;
+    this.ot6 = true;
+    this.otAll = true;
+    this.otNone = false;
+    this.onlyOT = false;
     $(lastNGames).val(null);
     $(upOrDown).val(null);
+
+    globals.clearSliders(this, "ggtSlider");
+
     console.log("cleared all filters");
   }
 
+  updateFilters(filters) {
+    /*
+      Changes the filters in the side bar to match the chose saved filter
+      Inputs:
+        filters: Object that contains all of the filter data
+    */
+
+    // clear all filters just to be safe
+    this.clearAllFilters();
+
+    // set all of the filters with the saved filters
+    globals.updateAllSlidersFromSavedFilter(this, 'ggtSlider', filters);
+    globals.updateSelect2sFromSavedFilter(this.currentPageName, filters);
+    this.updateSimpleInputsFromSavedFilter(filters);
+
+  }
+
+  updateSimpleInputsFromSavedFilter(filters) {
+    /*
+      Changes the checkboxes in the filter to match the filters data
+      Sets the non dropdown input values to match the filters data
+      Inputs:
+        filters: Object that contains all of the filter data
+
+      // NOTE:  this needs to be component specific because each component has
+                a different set of filters
+    */
+
+    // set score input
+    this.upOrDown = filters.upOrDown[1];
+
+    // set recent games input
+    this.lastNGames = filters.recentGames;
+
+    // set location checkboxes
+    this.homeGames = filters.location.home;
+    this.awayGames = filters.location.away;
+    this.neutralGames = filters.location.neutral;
+    if globals.allTrue(filters.location) {
+      this.homeGames = false;
+      this.awayGames = false;
+      this.neutralGames = false;
+    }
+
+    // set outcome checkboxes
+    this.wins = filters.outcome.wins;
+    this.losses = filters.outcome.losses;
+    if globals.allTrue(filters.outcome) {
+      this.wins = false;
+      this.losses = false;
+    }
+
+    // set overtime checkboxes
+    var otList = ['ot1','ot2','ot3','ot4','ot5','ot6'];
+    var anyTrue = [];
+    otList.forEach( (ot) => {
+      this[ot] = filters.overtime[ot];
+      anyTrue.push(filters.overtime[ot]);
+    });
+    this.otAll = false;
+    if (anyTrue.every(function(tf){return tf == true;})) this.otAll = true;
+    
+    this.otNone = false;
+    if (anyTrue.every(function(tf){return tf == false;})) this.otNone = true;
+    
+    this.onlyOT = filters.overtime.onlyQueryOT;
+
+  }
+
+  // For specifications see global.vars
+  saveCurrentFilter(inputId, filterName, modalId) {
+    // Get all currently set filters
+    var filters = this.getAllFilters();
+    globals.saveCurrentFilter(modalId, inputId, filterName, filters);
+  }
 
   // Gametime Slider methods -- for specifications look at globals functions
   updateSliderStart(clock, inputId) {
@@ -253,27 +341,7 @@ export class GamesFilterComponent implements OnInit {
     ];
     return data;
   }
-  getConferences() {
-    var data = [
-      {
-          id: 'conf1',
-          text: 'AAC'
-      },
-      {
-          id: 'conf2',
-          text: 'ACC'
-      },
-      {
-          id: 'conf3',
-          text: 'Ivy League'
-      },
-      {
-          id: 'confX',
-          text: 'WAC'
-      }
-    ];
-    return data;
-  }
+
   getAvailableSeasons() {
     var data = [
       {
@@ -349,13 +417,61 @@ export class GamesFilterComponent implements OnInit {
         else this.endTime2ndHalf.ggtSliderExtra = false;
       }
     });
+    $("#ggtSliderOT").ionRangeSlider({
+      type: "double",
+      hide_min_max: true,
+      hide_from_to: true,
+      min: -5*60,
+      max: 0,
+      from: -5*60,
+      to: 0,
+      onChange: (data) => {
+        this.gametime.ggtSliderOT.start.sec = data.from;
+        this.gametime.ggtSliderOT.end.sec = data.to;
+
+        this.gametime.ggtSliderOT.start.clock = globals.secondsToGametime(data.from);
+        this.gametime.ggtSliderOT.end.clock = globals.secondsToGametime(data.to);
+      }
+    });
+
+    $(".otButton").change(function () {
+      if (this.checked == false) {
+        $("#gameOtAll").prop('checked', true).click();
+      }
+      else {
+        $("#gameOtNone").prop('checked', true).click();
+      }
+    });
+
+    $("#gameOtAll").change(function () {
+      if (this.checked == true) {
+        $("#gameOt1").prop('checked', false).click();
+        $("#gameOt2").prop('checked', false).click();
+        $("#gameOt3").prop('checked', false).click();
+        $("#gameOt4").prop('checked', false).click();
+        $("#gameOt5").prop('checked', false).click();
+        $("#gameOt6").prop('checked', false).click();
+        $("#gameOtNone").prop('checked', true).click();
+      }
+    });
+
+    $("#gameOtNone").change(function () {
+      if (this.checked== true) {
+        $("#gameOt1").prop('checked', true).click();
+        $("#gameOt2").prop('checked', true).click();
+        $("#gameOt3").prop('checked', true).click();
+        $("#gameOt4").prop('checked', true).click();
+        $("#gameOt5").prop('checked', true).click();
+        $("#gameOt6").prop('checked', true).click();
+        $("#gameOtAll").prop('checked', true).click();
+      }
+    });
 
     // set up the multiple select dropdowns
     // id of dropdowns pattern is #currentPageName-category eg. #games-opponent
     select2();
     globals.createSelect2("#games-team", 'Select Team(s)', this.getTeams);
     globals.createSelect2("#games-opponent", 'Select Team(s)', this.getOpponents);
-    globals.createSelect2("#games-conference", 'Select Conf(s)', this.getConferences);
     globals.createSelect2("#games-upOrDown", 'Select', globals.getUpOrDown);
     globals.createSelect2("#games_select-season", 'Ex. 17-18', this.getAvailableSeasons);
 
