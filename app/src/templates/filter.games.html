@@ -17,12 +17,6 @@
           <select id="games-opponent" class="input-filter games-select2 filter-select2" name="gameVsTeamNames[]" multiple="multiple"></select>
         </td>
       </tr>
-      <tr>
-        <td class="filter-td"> <label class="filter-label" for="gameConferenceName[]"> Conference: </label> </td>
-        <td class="filter-td">
-          <select id="games-conference" class="input-filter games-select2 filter-select2" name="gameConferenceName[]" multiple="multiple"></select>
-        </td>
-      </tr>
     </table>
   </div>
 
@@ -101,15 +95,9 @@
                   #gameEndInput (keyup.enter)="updateSliderEnd(gameEndInput.value,  ggtSlider.id)"/>
         </td>
       </tr>
-      <tr>
-        <td class="filter-td filterCheckbox" colspan="3">
-          <label class="filter-label" for="gameIncludeOT">Include OT</label>
-          <input type="checkbox" class="gametime" id="gameIncludeOT"/>
-        </td>
-      </tr>
 
       <tr>
-        <td colspan="3" style="text-align:right;">
+        <td colspan="3" style="padding-top:4px;text-align:center;">
           <button class="btn btn-sm btn-default" (click)="hidePgtExtra=!hidePgtExtra">Toggle Extra Time Period</button>
         </td>
       </tr>
@@ -137,10 +125,79 @@
                   #gameEndExtraInput (keyup.enter)="updateSliderEnd(gameEndInput.value, ggtSliderExtra.id)" />
         </td>
       </tr>
-      <tr [hidden]="hidePgtExtra">
-        <td class="filter-td filterCheckbox" colspan="3">
-          <label class="filter-label" for="gameIncludeOTExtra">Include OT</label>
-          <input type="checkbox" class="gametime" id="gameIncludeOTExtra"/>
+    </table>
+
+    <div style="padding-top:4px;width:92.5%;text-align:right;">
+      <button class="btn btn-sm btn-default" (click)="hideOvertime=!hideOvertime">Toggle Overtime</button>
+    </div>
+    <table id="gameOvertime" [hidden]="hideOvertime">
+      <tr>
+        <td class="filter-td" colspan="3"> <span class="filter-label"> Overtime: </span> </td>
+      </tr>
+      <tr>
+        <td class="filter-td filterCheckbox indent-first-checkbox2" colspan="3" style="text-align:right;">
+          <input type="checkbox" class="gametime" id="gameOnlyOT" name="gameOnlyOT" [(ngModel)]="onlyOT"/>
+          <label class="filter-label" for="gameOnlyOT">Only query for OT</label>
+        </td>
+      </tr>
+      <tr style="width:100%">
+        <td class="filter-td" colspan="3">
+          <div class="slider-wrapper">
+            <input type="text" id="ggtSliderOT" name="ggtSliderOT" value="" #ggtSliderOT/>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="time-td">
+          <input type="text" class="gametime-input" maxlength="5" value={{gametime.ggtSliderOT.start.clock}}
+                  #gameStartInput (keyup.enter)="updateSliderStart(gameStartInput.value, ggtSliderOT.id)" />
+        </td>
+
+        <td class="filter-td checkbox-info">
+        </td>
+        <td class="filter-td time-td" style="text-align:right;">
+          <input type="text" class="gametime-input" maxlength="5" value="{{gametime.ggtSliderOT.end.clock}}"
+                  #gameEndInput (keyup.enter)="updateSliderEnd(gameEndInput.value,  ggtSliderOT.id)"/>
+        </td>
+      </tr>
+      <tr>
+        <td class="filter-td otCheckbox">
+          <label class="filter-label indent-first-checkbox" for="gameOt1">1 OT</label>
+          <input type="checkbox" class="otButton" id="gameOt1" name="gameOt1" [(ngModel)]="ot1"/>
+        </td>
+        <td class="filter-td otCheckbox">
+          <label class="filter-label" for="gameOt2" style="padding-left: 5px;">2 OT</label>
+          <input type="checkbox" class="otButton" id="gameOt2" name="gameOt2" [(ngModel)]="ot2"/>
+        </td>
+        <td class="filter-td otCheckbox">
+          <label class="filter-label" for="gameOt3" style="padding-left: 10px;">3 OT</label>
+          <input type="checkbox" class="otButton" id="gameOt3" name="gameOt3" [(ngModel)]="ot3"/>
+        </td>
+      </tr>
+      <tr>
+        <td class="filter-td otCheckbox">
+          <label class="filter-label indent-first-checkbox" for="gameOt4">4 OT</label>
+          <input type="checkbox" class="otButton" id="gameOt4" name="gameOt4" [(ngModel)]="ot4"/>
+        </td>
+        <td class="filter-td otCheckbox">
+          <label class="filter-label" for="gameOt5" style="padding-left: 5px;">5 OT</label>
+          <input type="checkbox" class="otButton" id="gameOt5" name="gameOt5" [(ngModel)]="ot5"/>
+        </td>
+        <td class="filter-td otCheckbox">
+          <label class="filter-label" for="gameOt6" style="padding-left: 6px;">6+OT</label>
+          <input type="checkbox" class="otButton" id="gameOt6" name="gameOt6" [(ngModel)]="ot6"/>
+        </td>
+      </tr>
+      <tr>
+        <td class="filter-td otCheckbox">
+          <label class="filter-label indent-first-checkbox2" for="gameOtAll">All</label>
+          <input type="checkbox" class="homeAway" id="gameOtAll" name="gameOtAll" [(ngModel)]="otAll"/>
+        </td>
+        <td class="filter-td otCheckbox">
+        </td>
+        <td class="filter-td otCheckbox">
+          <input type="checkbox" class="homeAway" id="gameOtNone" name="gameOtNone" [(ngModel)]="otNone"/>
+          <label class="filter-label" for="gameOtNone">None</label>
         </td>
       </tr>
     </table>
@@ -164,3 +221,28 @@
   </div>
 
 </nav>
+
+<!-- The save filters modal -->
+<div id="games-save-filters-modal" class="modal fade" role="dialog" #modal>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Name your filter</h4>
+      </div>
+      <div class="modal-body">
+        <input id="games-save-filters-input" class="save-filters-input" type="text" maxlength="70" #saveFilter placeholder="Ex. Last 5 Min" autofocus/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success"
+                (click)="saveCurrentFilter(saveFilter.id, saveFilter.value, modal.id)"
+                [disabled]="saveFilter.value.length < 1">
+          Save changes
+        </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

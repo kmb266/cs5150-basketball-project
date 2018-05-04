@@ -1,4 +1,11 @@
 'use strict';
+
+const fs = require('fs');
+
+import * as jquery from 'jquery';
+window['$'] = jquery;
+window['jQuery'] = jquery;
+export const saved_filters_file = './saved_filters.json';
 export const navHeight: number = 50;
 export const pages: Array<string> = ["players", "teams","games"];
 export const numPages: number = pages.length;
@@ -23,6 +30,15 @@ export const gametimeToSeconds = (gametime, isSecondHalf) => {
   if (isSecondHalf) return parseInt(minSec[0])*60 + parseInt(minSec[1]);
   return parseInt(minSec[0])*60 + parseInt(minSec[1]) + 1200;
 }
+export const allTrue = (obj) => {
+  /*
+    Heper function to check if all values of an object are true
+    Returns: boolean
+  */
+  for(var o in obj)
+    if(!obj[o]) return false;
+  return true;
+}
 
 export const createSelect2 = (id, placeholder, getData) => {
   $(id).select2({
@@ -30,6 +46,7 @@ export const createSelect2 = (id, placeholder, getData) => {
     placeholder: placeholder,
     dropdownAutoWidth : true,
     width: 'element',
+    allowClear: true,
     data: getData()
   });
 }
@@ -44,7 +61,7 @@ export const updateSliderStart = (that, clock, inputId) => {
       inputId: string = id of the range slider that corresponds to input
         being changed
   */
-  var seconds = - globals.gametimeToSeconds(clock, that.startTime2ndHalf[inputId]);
+  var seconds = - gametimeToSeconds(clock, that.startTime2ndHalf[inputId]);
   if (seconds >= that.gametime[inputId].end.sec) {
     that.invalidInput(event);
     return;
@@ -64,7 +81,7 @@ export const updateSliderEnd = (that, clock, inputId) => {
       clock: string = game time string in format 'MM:SS'
       inputId: string = id of the range slider to be changed
   */
-  var seconds = - globals.gametimeToSeconds(clock, that.endTime2ndHalf[inputId]);
+  var seconds = - gametimeToSeconds(clock, that.endTime2ndHalf[inputId]);
   if (seconds <= that.gametime[inputId].start.sec) {
     that.invalidInput(event);
     return;
@@ -185,4 +202,232 @@ export const applyFilters = (page, filters_data, emitter) => {
     }
   });
   */
+}
+
+export const validateFilterName = (filterName) => {
+  /*
+    Check if the filter name is valid.
+    Valid means the filter name does not already exist
+
+    Input: filterName: string = name of the filter to be saved
+    --- Do we need to check anything else? --
+  */
+  var valid = true;
+
+  // return false if filter name is empty or undefined
+  if (filterName == undefined || filterName == '') return false;
+
+  // open the saved filters file and add saved filter objects to list
+  var lines = require('fs').readFileSync(saved_filters_file, 'utf-8')
+    .split('\n')
+    .filter(Boolean);
+
+  // iterate through lines list and see if filtername in list
+  lines.forEach(function(line) {
+    var filterJson = JSON.parse(line);
+    if (filterJson.filterName == filterName) {
+      valid = false;
+    }
+  });
+  return valid;
+}
+
+export const writeFilterToFile = (data, callback) => {
+  /*
+    Append data object to file
+    Input: data: string = data to be saved to file
+  */
+  fs.appendFile(saved_filters_file, data, (err) => {
+    if (!err) {
+      console.log('The filters have been saved!');
+      callback();
+
+    }
+    else {
+      // TODO: display error
+      console.log('Failed saving filters');
+      console.log(err);
+    }
+  });
+}
+
+export const saveCurrentFilter = (modalId, inputId, filterName, filters) => {
+  /*
+    Saves current page filters as json object to file
+    Input: filter_name: string = user defined name for set filters
+  */
+  console.log('begin saving filters');
+
+  // check if current filter name already exists
+  if validateFilterName(filterName) {
+
+    // add filter name to object
+    filters.filterName =  filterName;
+
+    // stringify object to make it savable
+    var data = JSON.stringify(filters) + '\n';
+
+    // Save filters' stringified object to file
+    writeFilterToFile(data, () => {
+      // clear modal input
+      $('#'+inputId).val('');
+
+      // close modal
+      $('#'+modalId).modal('toggle');
+
+      // refresh the saved filters dropdown
+      $('#saved-filters').empty();
+      createSelect2("#saved-filters", 'Select Saved Filter', getSavedFilters);
+
+
+    });
+  }
+  else {
+    // the filter name already exists
+    console.log('filtername already exists')
+    // TODO: display error
+  }
+}
+
+export const getSavedFilters = () => {
+  /*
+    Reads saved filters json objects from file and returns them in correct
+    format to be used in select2 dropdown menue
+  */
+  var savedFilters = [];
+  // open the saved filters file and add saved filter objects to list
+  var lines = require('fs').readFileSync(saved_filters_file, 'utf-8')
+    .split('\n')
+    .filter(Boolean);
+
+  // add default option to saved filters to have a null option selected on int
+  var blank = {};
+  blank.id = -1;
+  blank.text='Choose a Filter';
+  blank.selected = true;
+  blank.data = {};
+  savedFilters.push(blank);
+
+  // iterate through lines list and add the formated filter to the filters object
+  lines.forEach(function(line, i) {
+    var filterJson = JSON.parse(line);
+    var dropdownData = {};
+    dropdownData.id = i;
+    dropdownData.text = filterJson.filterName;
+    dropdownData.data = filterJson;
+    savedFilters.push(dropdownData);
+  });
+
+  return savedFilters;
+}
+
+export const clearSliders = (that, sliderId) => {
+  /*
+    Sets range sliders back to default
+    Inputs:
+      that: angular component = the component whose sliders that are being reset
+      sliderId: string = the base id of the sliders to be changed
+  */
+  var extra = sliderId + 'Extra';
+  var ot = sliderId + 'OT';
+  that.gametime = {};
+  that.gametime[sliderId] = {
+    start:{clock: "20:00", sec:-2400},
+    end:{clock: "00:00", sec:0}
+  },
+  that.gametime[extra] = {
+    start:{clock: "20:00", sec:-2400},
+    end:{clock: "00:00", sec:0}
+  },
+  that.gametime[ot] = {
+    start:{clock: "5:00", sec:-300},
+    end:{clock: "0:00", sec:0}
+  }
+  that.startTime2ndHalf = {}
+  that.startTime2ndHalf[sliderId] = false
+  that.startTime2ndHalf[extra] = false
+
+  that.endTime2ndHalf = {}
+  that.endTime2ndHalf[sliderId] = true
+  that.endTime2ndHalf[extra] = true
+
+  // update slider to match the saved filters gametime
+  $("#"+sliderId).data('ionRangeSlider').update({
+    from: that.gametime[sliderId].start.sec,
+    to: that.gametime[sliderId].end.sec
+  });
+
+  // update extra slider to match the saved filters gametime
+  $("#"+extra).data('ionRangeSlider').update({
+    from: that.gametime[extra].start.sec,
+    to: that.gametime[extra].end.sec
+  });
+
+  try { //remove try statement once all tabs have ot
+    // update OTslider to match the saved filters gametime
+    $("#"+ot).data('ionRangeSlider').update({
+      from: that.gametime[ot].start.sec,
+      to: that.gametime[ot].end.sec
+    });
+  }
+  catch(err) {
+
+  }
+
+}
+
+export const updateAllSlidersFromSavedFilter = (that, sliderId, filters) => {
+  /*
+    Set the range sliders and corresponding data in component to the
+    saved filter's data
+    Inputs:
+      filters: Object that contains all of the filter data
+  */
+  var sliderIdExtra = sliderId + 'Extra';
+
+  that.gametime[sliderId] = filters.gametime.slider;
+  that.gametime[sliderIdExtra] = filters.gametime.sliderExtra;
+
+  // update slider to match the saved filters gametime
+  $("#"+sliderId).data('ionRangeSlider').update({
+    from: filters.gametime.slider.start.sec,
+    to: filters.gametime.slider.end.sec
+  });
+
+  // update extra slider to match the saved filters gametime
+  $("#"+sliderIdExtra).data('ionRangeSlider').update({
+    from: filters.gametime.sliderExtra.start.sec,
+    to: filters.gametime.sliderExtra.end.sec
+  });
+
+  //set the gamteime data in component to match the filter for both sliders
+  that.startTime2ndHalf[sliderId] = filters.gametime.slider.start.sec >= -1200;
+  that.endTime2ndHalf[sliderId] = filters.gametime.slider.end.sec >= -1200;
+
+  that.startTime2ndHalf[sliderIdExtra] = filters.gametime.sliderExtra.start.sec >= -1200;
+  that.endTime2ndHalf[sliderIdExtra] = filters.gametime.sliderExtra.end.sec >= -1200;
+
+  // show the extra slider if necessary
+  that.hidePgtExtra = !filters.gametime.multipleTimeFrames;
+
+}
+
+export const updateSelect2sFromSavedFilter = (page, filters) => {
+  /*
+    Changes the dropdown menus' values to match the data in the filter
+    Inputs:
+      page: string = filter's page to edit select2 dropdowns
+      filters: Object that contains all of the filter data
+  */
+  $('.'+page+'-select2').each(function() {
+    var id = this.id.split('-')[1];
+    if (filters[id] != undefined && filters[id].length > 0) {
+      $(this).val(filters[id]).trigger('change');
+    }
+    else {
+      $(this).val(null).trigger('change');
+    }
+  });
+
+
 }

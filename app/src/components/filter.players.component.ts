@@ -1,4 +1,4 @@
-import { NgModule, Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { NgModule, Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import * as globals from './../global.vars';
 
@@ -13,9 +13,31 @@ import * as select2 from 'select2';
   templateUrl: 'templates/filter.players.html'
 })
 export class PlayersFilterComponent implements OnInit {
+  // use this to pass data to app.component in applyFilters
   @Output() dataEvent = new EventEmitter<string>();
 
+  // Receive the saved filter from the app component
+  @Input()
+  set savedFilter(savedFilterObj: object) {
+
+    // NOTE: If we want to run a default filter object on opening the file,
+    // do it here, remove the if statement and change the blank.data to a filter
+
+    // if a real option has been selected that is not the null value
+    if ($('#saved-filters').val() != -1 ) {
+
+      // apply the saved filters and send to middle stack
+      globals.applyFilters(this.currentPageName, savedFilterObj, this.dataEvent);
+
+      this.updateFilters(savedFilterObj);
+
+    }
+
+  }
+
   currentPageName = "players";
+
+  // Object to save time from sliders
   gametime = {
     pgtSlider:{
       start:{clock: "20:00", sec:-2400},
@@ -24,6 +46,10 @@ export class PlayersFilterComponent implements OnInit {
     pgtSliderExtra:{
       start:{clock: "20:00", sec:-2400},
       end:{clock: "00:00", sec:0}
+    },
+    pgtSliderOT:{
+      start:{clock: "5:00", sec:-300},
+      end:{clock: "0:00", sec:0}
     }
   };
   startTime2ndHalf = {
@@ -44,10 +70,20 @@ export class PlayersFilterComponent implements OnInit {
   losses:boolean = false;
   lastNGames:string;
   upOrDown:string;
+  ot1:boolean = true;
+  ot2:boolean = true;
+  ot3:boolean = true;
+  ot4:boolean = true;
+  ot5:boolean = true;
+  ot6:boolean = true;
+  otAll:boolean = true;
+  otNone:boolean = false;
+  onlyOT:boolean = false;
 
   oldFilters = [];
 
   hidePgtExtra = true;
+  hideOvertime = true;
 
   invalidInput(el) {
     //show a red box around the input box
@@ -102,7 +138,18 @@ export class PlayersFilterComponent implements OnInit {
       }
     }
 
+    filters.overtime = {
+        otSlider: this.gametime.pgtSliderOT,
+        ot1: this.ot1,
+        ot2: this.ot2,
+        ot3: this.ot3,
+        ot4: this.ot4,
+        ot5: this.ot5,
+        ot6: this.ot6,
+        onlyQueryOT: this.onlyOT
+      }
     console.log(filters);
+
     return filters;
   }
   saveFilters(filters) {
@@ -113,18 +160,101 @@ export class PlayersFilterComponent implements OnInit {
     this.saveFilters(filters);
     // clear dropdown inputs
     $('.players-select2').val(null).trigger('change');
-    $('#select-season').val('season17').trigger('change');
 
     this.homeGames = false;
     this.awayGames = false;
     this.neutralGames = false;
     this.wins = false;
     this.losses = false;
+    this.ot1 = true;
+    this.ot2 = true;
+    this.ot3 = true;
+    this.ot4 = true;
+    this.ot5 = true;
+    this.ot6 = true;
+    this.otAll = true;
+    this.otNone = false;
+    this.onlyOT = false;
     $(lastNGames).val(null);
     $(upOrDown).val(null);
+
+    globals.clearSliders(this, "pgtSlider");
+
     console.log("cleared all filters");
   }
 
+  updateFilters(filters) {
+    /*
+      Changes the filters in the side bar to match the chose saved filter
+      Inputs:
+        filters: Object that contains all of the filter data
+    */
+
+    // set all of the filters with the saved filters
+    globals.updateAllSlidersFromSavedFilter(this, 'pgtSlider', filters);
+    globals.updateSelect2sFromSavedFilter(this.currentPageName, filters);
+    this.updateSimpleInputsFromSavedFilter(filters);
+
+  }
+
+  updateSimpleInputsFromSavedFilter(filters) {
+    /*
+      Changes the checkboxes in the filter to match the filters data
+      Sets the non dropdown input values to match the filters data
+      Inputs:
+        filters: Object that contains all of the filter data
+
+      // NOTE:  this needs to be component specific because each component has
+                a different set of filters
+    */
+
+    // set score input
+    this.upOrDown = filters.upOrDown[1];
+
+    // set recent games input
+    this.lastNGames = filters.recentGames;
+
+    // set location checkboxes
+    this.homeGames = filters.location.home;
+    this.awayGames = filters.location.away;
+    this.neutralGames = filters.location.neutral;
+    if globals.allTrue(filters.location) {
+      this.homeGames = false;
+      this.awayGames = false;
+      this.neutralGames = false;
+    }
+
+    // set outcome checkboxes
+    this.wins = filters.outcome.wins;
+    this.losses = filters.outcome.losses;
+    if globals.allTrue(filters.outcome) {
+      this.wins = false;
+      this.losses = false;
+    }
+
+    // set overtime checkboxes
+    var otList = ['ot1','ot2','ot3','ot4','ot5','ot6'];
+    var anyTrue = [];
+    otList.forEach( (ot) => {
+      this[ot] = filters.overtime[ot];
+      anyTrue.push(filters.overtime[ot]);
+    });
+    this.otAll = false;
+    if (anyTrue.every(function(tf){return tf == true;})) this.otAll = true;
+
+    this.otNone = false;
+    if (anyTrue.every(function(tf){return tf == false;})) this.otNone = true;
+
+    this.onlyOT = filters.overtime.onlyQueryOT;
+
+  }
+
+  // For specifications see global.vars
+  saveCurrentFilter(inputId, filterName, modalId) {
+    // Get all currently set filters
+    var filters = this.getAllFilters();
+    globals.saveCurrentFilter(modalId, inputId, filterName, filters);
+  }
 
 
   // Gametime Slider methods -- for specifications look at globals functions
@@ -169,27 +299,34 @@ export class PlayersFilterComponent implements OnInit {
     ];
     return data;
   }
+  getTeams1() {
+      var spawn = require('child_process').spawn,
+      py = spawn('python', ['./auto_complete.py']),
+      data = {"field": 0},
+      dataString = '';
+
+      // retrieve the data from the data_manager.py
+      py.stdout.on('data', function(data){
+        dataString += data.toString();
+      });
+
+      // print the data when the child process ends
+      py.stdout.on('end', function(){
+        console.log("Data is: " + dataString);
+        var teams = JSON.parse(dataString.replace(/'/g, '"'));
+        $('#players-team').select2({ data:teams });
+      });
+
+      // if there is an error, print it out
+      py.on('error', function(err) {
+        console.log("Failed to start child. " + err);
+      });
+
+      py.stdin.write(JSON.stringify(data));
+      py.stdin.end();
+  }
   getTeams() {
-    var data = [
-      {
-          id: 'team1',
-          text: 'Universiy of Alabama'
-      },
-      {
-          id: 'team2',
-          text: 'University of Arizona'
-      },
-      {
-          id: 'team25',
-          text: 'Cornell',
-          selected: true
-      },
-      {
-          id: 'team351',
-          text: 'Xavier University'
-      }
-    ];
-    return data;
+    return [];
   }
   getOpponents() {
     var data = [
@@ -208,27 +345,6 @@ export class PlayersFilterComponent implements OnInit {
       {
           id: 'team351',
           text: 'Harvard',
-      }
-    ];
-    return data;
-  }
-  getConferences() {
-    var data = [
-      {
-          id: 'conf1',
-          text: 'AAC'
-      },
-      {
-          id: 'conf2',
-          text: 'ACC'
-      },
-      {
-          id: 'conf3',
-          text: 'Ivy League'
-      },
-      {
-          id: 'confX',
-          text: 'WAC'
       }
     ];
     return data;
@@ -326,23 +442,75 @@ export class PlayersFilterComponent implements OnInit {
         else this.endTime2ndHalf.pgtSliderExtra = false;
       }
     });
+    $("#pgtSliderOT").ionRangeSlider({
+      type: "double",
+      hide_min_max: true,
+      hide_from_to: true,
+      min: -5*60,
+      max: 0,
+      from: -5*60,
+      to: 0,
+      onChange: (data) => {
+        this.gametime.pgtSliderOT.start.sec = data.from;
+        this.gametime.pgtSliderOT.end.sec = data.to;
+
+        this.gametime.pgtSliderOT.start.clock = globals.secondsToGametime(data.from);
+        this.gametime.pgtSliderOT.end.clock = globals.secondsToGametime(data.to);
+      }
+    });
+
+    $(".otButton").change(function () {
+      if (this.checked == false) {
+        $("#otAll").prop('checked', true).click();
+      }
+      else {
+        $("#otNone").prop('checked', true).click();
+      }
+    });
+
+    $("#otAll").change(function () {
+      if (this.checked == true) {
+        $("#ot1").prop('checked', false).click();
+        $("#ot2").prop('checked', false).click();
+        $("#ot3").prop('checked', false).click();
+        $("#ot4").prop('checked', false).click();
+        $("#ot5").prop('checked', false).click();
+        $("#ot6").prop('checked', false).click();
+        $("#otNone").prop('checked', true).click();
+      }
+    });
+
+    $("#otNone").change(function () {
+      if (this.checked== true) {
+        $("#ot1").prop('checked', true).click();
+        $("#ot2").prop('checked', true).click();
+        $("#ot3").prop('checked', true).click();
+        $("#ot4").prop('checked', true).click();
+        $("#ot5").prop('checked', true).click();
+        $("#ot6").prop('checked', true).click();
+        $("#otAll").prop('checked', true).click();
+      }
+    });
 
     // set up the multiple select dropdowns
     select2();
     globals.createSelect2("#players-position", 'Select Position(s)', this.getPositions);
     globals.createSelect2("#players-team", 'Select Team(s)', this.getTeams);
     globals.createSelect2("#players-opponent", 'Select Team(s)', this.getOpponents);
-    globals.createSelect2("#players-conference", 'Select Conf(s)', this.getConferences);
     globals.createSelect2("#players-in-lineup", 'Select Player(s)', this.getCurrentTeamMembers);
     globals.createSelect2("#players-out-lineup", 'Select Player(s)', this.getCurrentTeamMembers);
     globals.createSelect2("#players-upOrDown", "Select", globals.getUpOrDown);
     globals.createSelect2("#select-season", 'Ex. 17-18', this.getAvailableSeasons);
-
+    this.getTeams1();
     // styling on select2s done here after initialization
     $(".select2-selection__rendered").css("overflow-x","scroll");
     $(".select2-selection.select2-selection--multiple").css("line-height","1em");
     $(".select2-selection.select2-selection--multiple").css("min-height","26px");
 
+
+    // tooltip instatiation
+    $(".location-tooltip").tooltip();
+    $(".second-half-tooltip").tooltip();
   }
 
 }
