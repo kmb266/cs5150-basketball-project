@@ -33,7 +33,6 @@ def TmPoss(TmFGA,TmOREB,oppDREB,TmFTA,TmFGM,TmTOV):
 	
 	Depend? No 
 	check status: Yes 
-	
 
 	"""
 
@@ -170,7 +169,7 @@ def ScPoss(FGPart,ASTPart,FTPart,TmOREB,
 	Arguments:
 		FGPart: field goal part (double check)
 		ASTPart: assist part (double check)
-		FTPart: free throw part (double check )
+		FTPart: free throw part (double check)
 		TmOREB: team Total Offensive Rebounds
 		TmScorPoss: team scoring sossessions  
 		TmOREBWgt: team Total Offensive Rebounds weight
@@ -193,9 +192,8 @@ def FGPart(FGM,PTS,FTM,FGA,qAST):
 		PTS: points 
 		FTM: free throw made 
 		FGA: field goal made 
-		qAST: ????
+		qAST: qAST 
 		
-
 		Depend? Yes 
 		check status: Yes 
 
@@ -203,16 +201,19 @@ def FGPart(FGM,PTS,FTM,FGA,qAST):
 
 
 def qAST(MIN,TmMIN,q_12,q_5):
-	return float((MIN/(TmMIN/5))*q_5+(1-(MIN/(TmMIN/5))*q_12))
+	a1 = (MIN/TmMIN)/5
+	return a1*q_5 + ((1-a1)*q_12)
 	"""
-	Name: qAST
+	Name: percentage of field goals assisted by teammates while 
+	the player of interest is in the game plus the expected 
+	rate of assists per field goals made for the player of interest
 	Returns: the qAST based on parameters
 	Arguments:
 		MIN:  MIN 
 		TmMIN: team MIN 
 	
 		Depend? Yes 
-		check status: Yes (difference results from excel sheet)  
+		check status: Yes
 
 	"""
 
@@ -564,7 +565,7 @@ def Stops_1(STL,BLK,FMwt,DOREB_perc,DREB):
 	Arguments:
 		STL: Total steals
 		BLK: Total blocks
-		FMwt: ????
+		FMwt: FMwt
 		DOREB_perc: Total Defensive Rebounds Percentage (double check)
 		DREB: Total defensive rebounds
 		
@@ -613,8 +614,8 @@ def DFG_perc(OppFGM,OppFGA):
 	else:
 		return float(OppFGM/OppFGA)
 	"""
-	Name: ???
-	Returns: the ???? based on parameters
+	Name: Defensive percentage 
+	Returns: the Defensive percentage based on parameters
 	Arguments:
 		OppFGM: Opponent field goal made  
 		OppFGA: Opponent field goal attemped
@@ -803,7 +804,7 @@ def Usage_Rate(FGA,FTA,TOV,TmMIN,MIN,TmFGA,TmFTA,TmTOV):
 def AST_perc(AST,MIN,TmMIN,TmFGM,FGM):
 	return float(100*AST/(((MIN/(TmMIN/5))*TmFGM)-FGM))
 	"""
-	Name: Assist Percentage
+	Name: Assist Percentage (U)
 	Returns: the Assist Percentage based on parameters
 	Arguments:
 		AST: assist 
@@ -876,10 +877,10 @@ def Total_REB(TREB,TmMIN,MIN,TmTREB,OppTREB):
 	Returns: the Total ??? percentage based on parameters
 	Arguments:
 		TREB: ????
-		TmMIN: ???? 
-		MIN: ???
-		TmTREB:  ???? 
-		OppTREB:  ?????
+		TmMIN: team MIN  
+		MIN: MIN 
+		TmTREB:  team TREB  
+		OppTREB:  Opponent TREB(check! team or individual)
 
 	Depend? Yes  
 	check status: No
@@ -895,7 +896,7 @@ def STL_perc(STL,TmMIN,MIN,OppPoss):
 	Name: Total Steals Percentage
 	Returns: the Total Steals Percentage based on parameters
 	Arguments:
-		STL: Total steals
+		STL: Total steals (check! team or individual)
 		TmMIN: team MIN 
 		MIN: MIN  
 		OppPoss: Opponent Possesion 
@@ -914,14 +915,14 @@ def BLK_perc(BLK,TmMIN,MIN,OppFGA,Opp3PA):
 	Name: Total Blocks Percentage
 	Returns: the Total blocks Percentage based on parameters
 	Arguments:
-		BLK: Total blocks
+		BLK: Total blocks (check! team or individual)
 		TmMIN: Team MIN  
 		MIN:  MIN  
 		OppFGA: Opponent field goal attemped 
 		Opp3PA: Opponent 3 points 
 		
 	Depend? Yes  
-	check status: No 
+	check status: No (cannot find in excel)
 
 	"""
 
@@ -932,7 +933,7 @@ def Game_Score(PTS,FGM,FGA,FTA,FTM,ORE,DREB,STL,AST,BLK,PF,TOV):
 	*(FTA-FTM)+0.7*ORE-0.3*DREB+STL 
 	+0.7*AST+0.7*BLK-0.4*PF-TOV)
 	"""
-	Name: Game Score 
+	Name: Game Score （individual) 
 	Returns: the game score based on parameters
 	Arguments:
 		PTS: Points 
@@ -961,7 +962,7 @@ def Pace(TmPoss,OppPoss,TmMIN):
 	Returns: the pace based on parameters
 	Arguments:
 		TmPoss: Total Team Possesion   
-		OppPoss: Opponent Possesion (check!)
+		OppPoss: Opponent Possesion (check!) need calculation??-> use the same calculations as TmPoss
 		TmMIN: team MIN 
 		
 	
