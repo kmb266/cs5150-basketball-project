@@ -3,6 +3,8 @@ import { CommonModule } from "@angular/common";
 import * as globals from './../global.vars';
 
 const ionRangeSlider = require('ion-rangeslider/js/ion.rangeSlider');
+const datePicker = require('bootstrap-datepicker/dist/js/bootstrap-datepicker.js');
+
 import * as jquery from 'jquery';
 window['$'] = jquery;
 window['jQuery'] = jquery;
@@ -64,7 +66,6 @@ export class TeamsFilterComponent implements OnInit {
   neutralGames:boolean = false;
   wins:boolean = false;
   losses:boolean = false;
-  lastNGames:string;
   upOrDown:string;
   ot1:boolean = false;
   ot2:boolean = false;
@@ -105,7 +106,6 @@ export class TeamsFilterComponent implements OnInit {
     filters.gametime.multipleTimeFrames = !this.hidePgtExtra;
 
     filters.upOrDown = [filters.upOrDown, this.upOrDown];
-    filters.recentGames = this.lastNGames;
 
     if (!this.homeGames && !this.awayGames && !this.neutralGames) {
       filters.location = {
@@ -146,6 +146,11 @@ export class TeamsFilterComponent implements OnInit {
         onlyQueryOT: this.onlyOT
       }
 
+    filters.dates = {
+      start: $("#teams-start-date").datepicker('getDate').toLocaleDateString(),
+      end: $("#teams-end-date").datepicker('getDate').toLocaleDateString()
+    }
+
     console.log(filters);
     return filters;
   }
@@ -173,10 +178,10 @@ export class TeamsFilterComponent implements OnInit {
     this.otAll = true;
     this.otNone = false;
     this.onlyOT = false;
-    $(lastNGames).val(null);
     $(upOrDown).val(null);
 
     globals.clearSliders(this, "tgtSlider");
+    globals.clearDates(this.currentPageName);
 
     console.log("cleared all filters");
   }
@@ -195,6 +200,10 @@ export class TeamsFilterComponent implements OnInit {
     globals.updateAllSlidersFromSavedFilter(this, 'tgtSlider', filters);
     globals.updateSelect2sFromSavedFilter(this.currentPageName, filters);
     this.updateSimpleInputsFromSavedFilter(filters);
+    globals.updateDatesFromSavedFilter(filters);
+
+    // make sure placeholders are visible
+    $('.select2-search__field').css('width': '');
 
   }
 
@@ -211,9 +220,6 @@ export class TeamsFilterComponent implements OnInit {
 
     // set score input
     this.upOrDown = filters.upOrDown[1];
-
-    // set recent games input
-    this.lastNGames = filters.recentGames;
 
     // set location checkboxes
     this.homeGames = filters.location.home;
@@ -242,10 +248,10 @@ export class TeamsFilterComponent implements OnInit {
     });
     this.otAll = false;
     if (anyTrue.every(function(tf){return tf == true;})) this.otAll = true;
-    
+
     this.otNone = false;
     if (anyTrue.every(function(tf){return tf == false;})) this.otNone = true;
-    
+
     this.onlyOT = filters.overtime.onlyQueryOT;
 
   }
@@ -269,71 +275,6 @@ export class TeamsFilterComponent implements OnInit {
   }
   changedEndHalf(inputId) {
     globals.changedEndHalf(this, inputId);
-  }
-
-
-  // TODO: integrate with middle stack team make call to db and get the data for the following
-  getTeams() {
-    var data = [
-      {
-          id: 'team1',
-          text: 'Universiy of Alabama'
-      },
-      {
-          id: 'team2',
-          text: 'University of Arizona'
-      },
-      {
-          id: 'team25',
-          text: 'Cornell',
-          selected: true
-      },
-      {
-          id: 'team351',
-          text: 'Xavier University'
-      }
-    ];
-    return data;
-  }
-  getOpponents() {
-    var data = [
-      {
-          id: 'team1',
-          text: 'Universiy of Alabama'
-      },
-      {
-          id: 'team2',
-          text: 'University of Arizona'
-      },
-      {
-          id: 'team25',
-          text: 'Cornell',
-      },
-      {
-          id: 'team351',
-          text: 'Harvard',
-      }
-    ];
-    return data;
-  }
-
-  getAvailableSeasons() {
-    var data = [
-      {
-        id: 'season15',
-        text: '2015-16'
-      },
-      {
-        id: 'season16',
-        text: '2016-17'
-      },
-      {
-        id: 'season17',
-        text: '2017-18',
-        selected: true
-      },
-    ];
-    return data;
   }
 
   applyPlayerFilters(){
@@ -439,10 +380,36 @@ export class TeamsFilterComponent implements OnInit {
 
     // set up the multiple select dropdowns
     select2();
-    globals.createSelect2("#teams-team", 'Select Team(s)', this.getTeams);
-    globals.createSelect2("#teams-opponent", 'Select Team(s)', this.getOpponents);
+    globals.createSelect2("#teams-team", 'Select Team(s)', function(){ return [] });
+    globals.createSelect2("#teams-opponent", 'Select Team(s)', function(){ return [] });
     globals.createSelect2("#teams-upOrDown", "Select", globals.getUpOrDown);
-    globals.createSelect2("#teams_select-season", 'Ex. 17-18', this.getAvailableSeasons);
+
+    // refresh data for select2's that get dropdowns items from db via middle stack
+    globals.getTeams(this.currentPageName);
+
+    // setup datepickers
+    var season = globals.getSeason();
+    var startSeason = season[0];
+    var today = season[1];
+
+    $("#"+this.currentPageName+"-start-date").find('input').val(startSeason.toLocaleDateString());
+    $("#"+this.currentPageName+"-start-date").datepicker({
+      title: "Filter Start Date",
+      startDate: "11/01/2014",
+      endDate : 'now',
+      clearBtn: true,
+      todayBtn: true,
+    });
+    $("#"+this.currentPageName+"-start-date").datepicker('update', startSeason);
+
+    $("#"+this.currentPageName+"-end-date").find('input').val(today.toLocaleDateString());
+    $("#"+this.currentPageName+"-end-date").datepicker({
+      title: "Filter End Date",
+      startDate: "11/01/2014",
+      endDate : 'now',
+      clearBtn: true,
+      todayBtn: true,
+    });
 
     // styling on select2s done here after initialization
     $(".select2-selection__rendered").css("overflow-x","scroll");
