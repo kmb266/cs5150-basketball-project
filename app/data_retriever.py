@@ -29,7 +29,7 @@ def getAllTeams():
 Retrieve all players for the team of the given id.
 '''
 def getAllPlayers():
-  a = {"id" : 1502, "jersey" : 1,  "name" : "Kyle Brown"}
+  a = {"id" : 1502, "jersey" : 111,  "name" : "Kyle Brown"}
   a["text"] = str(a["jersey"]) + ' ' + a["name"]
   b = {"id" : 1603, "jersey" : 10, "name" : "Matt Morgan", "text" : "jersey" + "name"}
   b["text"] = str(b["jersey"]) + ' ' + b["name"]
