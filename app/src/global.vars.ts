@@ -5,10 +5,28 @@ const fs = require('fs');
 import * as jquery from 'jquery';
 window['$'] = jquery;
 window['jQuery'] = jquery;
+
 export const saved_filters_file = './saved_filters.json';
 export const navHeight: number = 50;
 export const pages: Array<string> = ["players", "teams","games"];
 export const numPages: number = pages.length;
+
+export const getSeason = () => {
+  /*
+    Returns object with the default start and end of current season
+    if in season and most recent season if in offseason
+  */
+  var today = new Date();
+  var year = today.getFullYear()
+  var startSeason = new Date('11/1/'+ year);
+  if (startSeason > today) {
+    year = year - 1;
+    startSeason = new Date('11/1/'+ year);
+  }
+  return [startSeason, today];
+
+}
+
 export const secondsToGametime = (totalSeconds) => {
   if (Math.abs(totalSeconds) > 1200) {
     var s = Math.abs(totalSeconds) - 20*60;
@@ -376,6 +394,17 @@ export const clearSliders = (that, sliderId) => {
 
 }
 
+export const clearDates = (page) => {
+  /*
+    clears dates of input page
+    Input:
+      page: string = page to clear datepickers
+  */
+  var season = getSeason();
+  $("#"+page+"-start-date").datepicker('update', season[0]);
+  $("#"+page+"-end-date").find('input').val(season[1].toLocaleDateString());
+}
+
 export const updateAllSlidersFromSavedFilter = (that, sliderId, filters) => {
   /*
     Set the range sliders and corresponding data in component to the
@@ -429,5 +458,68 @@ export const updateSelect2sFromSavedFilter = (page, filters) => {
     }
   });
 
+}
+export const updateDatesFromSavedFilter = (filters) => {
+  /*
+  Changes the datepickers to match the data in the filter
+  Inputs:
+    filters: Object that contains all of the filter data
+  */
+  $("#"+filters.page+"-start-date").datepicker('update', filters.dates.start);
+  $("#"+filters.page+"-end-date").datepicker('update', filters.dates.end);
 
+}
+export const getTeams = (page) => {
+  /*
+    Middle stack:
+      Program runs python auto_complete.py and sets the select2s with the id
+  */
+  var spawn = require('child_process').spawn,
+  py = spawn('python', ['./auto_complete.py']),
+  data = {"field": 0},
+  dataString = '';
+
+  // retrieve the data from the data_manager.py
+  py.stdout.on('data', function(data){
+    dataString += data.toString();
+  });
+
+  // print the data when the child process ends
+  py.stdout.on('end', function(){
+    var teams = JSON.parse(dataString.replace(/'/g, '"'));
+    var placeholder = 'Select Team(s)';
+
+    $('#'+page+'-opponent').select2({
+      placeholder: placeholder,
+      dropdownAutoWidth : true,
+      width: '115px',
+      allowClear: true,
+      data: teams
+    });
+
+    teams.forEach(function(teamObj){
+      if (teamObj.text == "Cornell") {
+        teamObj.selected = true;
+      }
+    });
+
+    $('#'+page+'-team').select2({
+      placeholder: placeholder,
+      dropdownAutoWidth : true,
+      width: '115px',
+      allowClear: true,
+      data: teams
+    });
+
+    $('.select2-search__field').css('width': '');
+
+  });
+
+  // if there is an error, print it out
+  py.on('error', function(err) {
+    console.log("Failed to start child. " + err);
+  });
+
+  py.stdin.write(JSON.stringify(data));
+  py.stdin.end();
 }
