@@ -320,7 +320,183 @@ print PProd(0.0,0.35,0.0,9.0,21.5,0.56,0.278,0.0)
 
 
 
+def ScPoss(FGPart,ASTPart,FTPart,TmOREB,
+      TmScorPoss,TmOREBWgt,TmPlay_pect,OREBPart):
+  return float((FGPart+ASTPart+FTPart)*(1-(TmOREB/TmScorPoss)
+    *TmOREBWgt*TmPlay_pect)+OREBPart)
+
+print ScPoss(3.25,0.0,0.8,9.0,21.5,0.56,0.278,0.0)
+# test result: 3.786
+# exel result: 3.8
+# excel location: STAT ANALYSIS(D5)
 
 
 
 
+def FTPart(FTM,FTA):
+  return float((1-(1-(FTM/FTA))**2 )*0.4*FTA)
+
+print FTPart(6.0,7.0)
+# test result: 274.2%
+# exel result: 274%
+# excel location: STAT ANALYSIS(V8)
+
+
+
+
+def ASTPart(TmPTS,TmFTM,PTS,FTM,TmFGA,FGA,AST):
+  return 0.5*(((TmPTS-TmFTM)-(PTS-FTM))/(2*(TmFGA-FGA) ))*AST
+
+print ASTPart(45.0,15.0,0.0,0.0,52.0,3.0,1.0)
+# test result: 15.3%
+# exel result: 15%
+# excel location: STAT ANALYSIS(U4)
+
+
+
+
+def TmScorPoss(TmFGM,TmFTM,TmFTA):
+  return float(TmFGM+(1-(1-(TmFTM/TmFTA))**2 )*TmFTA*0.4)
+
+print TmScorPoss(13.0,15.0,26.0)
+# test result: 21.53
+# exel result: 21.5
+# excel location: STAT ANALYSIS(D19)
+
+
+
+
+def TmOREBWgt(TmOREB_pect,TmPlay_pect):
+  return float(((1-TmOREB_pect)*TmPlay_pect)/((1-TmOREB_pect)
+      *TmPlay_pect+TmOREB_pect*(1-TmPlay_pect)))
+
+print TmOREBWgt(0.231,0.278)
+# test result: 56.17%
+# exel result: 56%
+# excel location: STAT ANALYSIS(P19)
+
+
+
+
+
+def TmOREB_pect(TmOREB,OppTREB,OppDREB):
+  return float(TmOREB/(TmOREB+(OppTREB-OppDREB)))
+
+print TmOREB_pect(9.0,47.0,30.0)
+# test result: 34.6%
+# exel result: 23.1%
+# excel location: STAT ANALYSIS(019)
+# Note: different fomulars used 
+
+
+
+
+
+def TmPlay(TmFGA,TmFTA,TmTOV):
+  return TmFGA+TmFTA*0.4+TmTOV
+
+print TmPlay(52.0,26.0,15.0)
+# test result: 77.4
+# exel result: 77.4
+# excel location: STAT ANALYSIS(L19)
+
+
+
+def TmPlay_pect(TmScorPoss, TmFGA,TmFTA,TmTOV):
+  return TmScorPoss/(TmFGA+TmFTA*0.4+TmTOV)
+
+print TmPlay_pect(21.5,52.0,26,15)
+# test result: 27.8%
+# exel result: 27.8%
+# excel location: STAT ANALYSIS(M19)
+
+
+
+
+def OREBPart(OREB,TmOREBWgt,TmPlay_pect):
+  return float(OREB*TmOREBWgt*TmPlay_pect)
+
+print OREBPart(0.0,0.56,0.278)
+# test result: 31.1%
+# exel result: 31%
+# excel location: STAT ANALYSIS(W12)
+
+
+
+
+def FGmPoss(FGA,FGM,TmOREB_pect):
+  return (FGA-FGM)*(1-1.07*TmOREB_pect)
+
+print FGmPoss(1.0,0.0,0.231)
+# test result: 75.3%
+# exel result: 75%
+# excel location: STAT ANALYSIS(X3)
+
+
+
+
+def TmDRTG(OppPTS,TmPoss):
+  if TmPoss == 0:
+    return 0.0
+  else:
+    return float(100*(OppPTS/TmPoss))
+
+print TmDRTG(77.0, 67.8)
+# test result: 113.57
+# exel result: 113.6
+# excel location: STAT ANALYSIS(I19)
+
+
+
+
+def Individual_Offensize_Rating(PProd, TotPoss):
+  if TotPoss == 0:
+    return 0.0
+  else:
+    return 100*(PProd/TotPoss)
+  
+print Individual_Offensize_Rating(8.7,10.6)
+# test result: 82.1
+# exel result: 82.4
+# excel location: STAT ANALYSIS(F5)
+
+
+
+
+
+def Individual_Floor_Percentage(ScPoss,TotPoss):
+  if TotPoss == 0:
+    return 0.0
+  else:
+    return float(ScPoss/TotPoss)
+  
+  print Individual_Floor_Percentage(3.8, 10.6)
+# test result: 35.8%
+# exel result: 35.8
+# excel location: STAT ANALYSIS(J5)
+
+
+
+
+def Team_Floor_Percentage(TmScorPoss, TmPoss):
+  if TmPoss == 0:
+    return 0.0
+  else:
+    return float(TmScorPoss/TmPoss)
+    
+y = Team_Floor_Percentage(21.5,67.8)
+print (y)
+# test result: 31.7%
+# exel result: 31.8%
+# excel location: STAT ANALYSIS(J19)
+
+
+
+def DRTG(TmDRTG,OppPtsPScorPoss,Stop_perc):
+  return float(TmDRTG+0.2*(100*OppPtsPScorPoss*(1-Stop_perc)-TmDRTG))
+  
+x = DRTG(113.6,2.16,0)
+print(x)
+# test result: 134.08
+# exel result: 134.1
+# excel location: STAT ANALYSIS(I3)
