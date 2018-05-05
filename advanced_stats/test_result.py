@@ -25,8 +25,6 @@ print FTmPoss(0.0,2.0)
 
 
 
-
-
 def Usage_Rate(FGA,FTA,TOV,TmMIN,MIN,TmFGA,TmFTA,TmTOV):
   return float(100*((FGA+0.4*FTA+TOV)*(TmMIN/5))/(MIN*(TmFGA+0.4*TmFTA+TmTOV)))
 
@@ -77,8 +75,8 @@ def TmPoss(FGA, TmOREB,oppDREB,FTA,FGM,TOV):
   return float(FGA-(TmOREB/(TmOREB+oppDREB))*(FGA-FGM)*1.07+TOV + 0.4*FTA)
 
 print TmPoss(52.0, 9.0, 30.0, 26.0, 13.0, 15.0)
-# test result: 67.77
-# exel result: 68
+#
+#
 # excel location: STAT ANALYSIS(C19)
 
 
@@ -124,7 +122,7 @@ print DOREB_perc(17.0,20.0)
 # test result: 20.0
 # exel result: 45.9% 
 # excel location: STAT ANALYSIS(AC19)
-# Note: different fomular from excel sheet, double check 
+# Note: different fomular from excel sheet, double check? 
 
 
 
@@ -151,17 +149,14 @@ print Stops_1(0.0,1.0,0.45,0.459,2.0)
 
 
 
-
-
-
 def Stops_2(OppFGA,OppFGM,TmBLK,TmMIN,FMwt,DOREB_perc
       ,OppTOV,TmSTL,MIN,PF,TmPF,OppFTA,OppFTM):
   return  float((((OppFGA-OppFGM-TmBLK)/TmMIN)*FMwt*(1-1.07*DOREB_perc) 
       +((OppTOV-TmSTL)/TmMIN))*MIN+(PF/TmPF) 
       *0.4*OppFTA*(1-(OppFTM/OppFTA))**2)
 
-print Stops_2(70.0,29.0,1.0,200.0,0.45,0.459,8.0,1.0,0.0,0.0,15.0,18.0,13.0)
-# test result: 0.0
+print Stops_2(70.0,29.0,1.0,200.0,0.45,0.459,8.0,1.0,4.0,0.0,15.0,18.0,13.0)
+# test result: 0.323
 # exel result: 0.32 
 # excel location: STAT ANALYSIS(AF3)
 
@@ -180,6 +175,8 @@ print Stops(1.3,1.25)
 # test result: 2.55
 # exel result: 1.9 
 # excel location: STAT ANALYSIS(AH4)
+
+# Note: different fomulars(checked. OK) 
 
 
 
@@ -278,7 +275,7 @@ print PProdFG(4.0,11.0,2.0,13.0,1.08,1.0)
 def qAST(MIN,TmMIN,q_12,q_5):
   return float(q_5*(MIN/(TmMIN/5))+(1-(MIN/(TmMIN/5))*q_12))
 print qAST(4.0,200.0,0.77,0.88)
-# test result: 101%
+# test result: 77% 
 # exel result: 78% 
 # excel location: STAT ANALYSIS(R3)
 
@@ -386,7 +383,7 @@ print TmOREB_pect(9.0,47.0,30.0)
 # test result: 34.6%
 # exel result: 23.1%
 # excel location: STAT ANALYSIS(019)
-# Note: different fomulars used 
+# Note: different fomulars used. Checked (ok)
 
 
 
@@ -472,7 +469,7 @@ def Individual_Floor_Percentage(ScPoss,TotPoss):
   
   print Individual_Floor_Percentage(3.8, 10.6)
 # test result: 35.8%
-# exel result: 35.8
+# exel result: 35.8%
 # excel location: STAT ANALYSIS(J5)
 
 
