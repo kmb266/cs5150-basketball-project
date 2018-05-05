@@ -178,7 +178,7 @@ def ScPoss(FGPart,ASTPart,FTPart,TmOREB,
 		OREBPart: Total Offensive Rebounds part 
 
 	Depend? Yes   
-	check status: No 
+	check status: Yes 
 
 	"""
 
@@ -253,7 +253,7 @@ def q12(TmAST,TmMIN,MIN,AST,TmFGM,FGM):
 
 
 def ASTPart(TmPTS,TmFTM,PTS,FTM,TmFGA,FGA,AST):
-	return 0.5*(((TmPTS-TmFTM)-(PTS-FTM))/(2*(TmFGA-FGA) ))*AST
+	return 0.5*(((TmPTS-TmFTM)-(PTS-FTM))/(2*(TmFGA-FGA)))*AST
 	"""
 	Name: Assist Part 
 	Returns: the assist part based on parameters
@@ -268,13 +268,13 @@ def ASTPart(TmPTS,TmFTM,PTS,FTM,TmFGA,FGA,AST):
 		
 
 		Depend? No  
-		check status: No 
+		check status: Yes 
 
 	"""
 
 
 def FTPart(FTM,FTA):
-	return (1-(1-(FTM/FTA))^2 )*0.4*FTA
+	return float((1-(1-(FTM/FTA))**2 )*0.4*FTA)
 	"""
 	Name: Free Throw Part 
 	Returns: the free throw part based on parameters
@@ -283,13 +283,13 @@ def FTPart(FTM,FTA):
 		FTA: free throw attemped 
 
 		Depend? No  
-		check status: No 
+		check status: Yes 
 
 	"""
 
 
 def TmScorPoss(TmFGM,TmFTM,TmFTA):
-	return TmFGM+(1-(1-(TmFTM/TmFTA))^2 )*TmFTA*0.4
+	return float(TmFGM+(1-(1-(TmFTM/TmFTA))**2)*TmFTA*0.4)
 	"""
 	Name: Team Scoring Possession 
 	Returns: the Team Scoring Possession based on parameters
@@ -299,14 +299,14 @@ def TmScorPoss(TmFGM,TmFTM,TmFTA):
 		TmFTA: team three throw attemped 
 
 		Depend? No  
-		check status: No 
+		check status: Yes 
 
 	"""
 
 
-def TmOREBWgt(TmOREB,TmPlay):
-	return ((1-TmOREB_pect)*TmPlay_pect)/((1-TmOREB_pect)
-			*TmPlay_pect+TmOREB_pect*(1-TmPlay_pect))
+def TmOREBWgt(TmOREB_pect,TmPlay_pect):
+	return float(((1-TmOREB_pect)*TmPlay_pect)/((1-TmOREB_pect)
+			*TmPlay_pect+TmOREB_pect*(1-TmPlay_pect)))
 	"""
 	Name: Team Total Offensive Rebounds Weight 
 	Returns: the Team Total Offensive Rebounds Weight based on parameters
@@ -315,28 +315,28 @@ def TmOREBWgt(TmOREB,TmPlay):
 		TmPlay: team play 
 
 		Depend? No  
-		check status: No 
+		check status: Yes 
 
 	"""
 
 
-def TmOREB_pect(TmOREB,OppTREB):
-	return TmOREB/(TmOREB+(OppTREB-OppDREB))
+def TmOREB_pect(TmOREB,OppTREB,OppDREB):
+	return float(TmOREB/(TmOREB+(OppTREB-OppDREB)))
 	"""
 	Name: Team Total Offensive Rebounds Weight Percentage  
 	Returns: the Team Total Offensive Rebounds Weight Percentage based on parameters
 	Arguments:
 		TmOREB: team Total Offensive Rebounds
-		OppTREB:  ????????? 
+		OppTREB:  Opponent TREB  
 
 		Depend? Yes   
-		check status: No 
+		check status: Yes (different results from excel sheet, different fomulars used) 
 
 	"""
 
 
 def TmPlay(TmFGA,TmFTA,TmTOV):
-	return TmFGA+TmFTA*0.4+TmTOV
+	return float(TmFGA+TmFTA*0.4+TmTOV)
 	"""
 	Name: Team Play
 	Returns: the Team Play based on parameters
@@ -346,13 +346,13 @@ def TmPlay(TmFGA,TmFTA,TmTOV):
 		TmTOV: team turnover 
 
 		Depend? No    
-		check status: No 
+		check status: Yes  
 
 	"""
 
 
 def TmPlay_pect(TmScorPoss, TmFGA,TmFTA,TmTOV):
-	return TmScorPoss/(TmFGA+TmFTA*0.4+TmTOV)
+	return float(TmScorPoss/(TmFGA+TmFTA*0.4+TmTOV))
 	"""
 	Name: Team Play percentage 
 	Returns: the Team Play Percentageg based on parameters
@@ -363,13 +363,13 @@ def TmPlay_pect(TmScorPoss, TmFGA,TmFTA,TmTOV):
 		TmTOV: team turnover 
 
 		Depend? Yes    
-		check status: No 
+		check status: Yes  
 
 	"""
 
 
 def OREBPart(OREB,TmOREBWgt,TmPlay_pect):
-	return OREB*TmOREBWgt*TmPlay_pect
+	return float(OREB*TmOREBWgt*TmPlay_pect)
 	"""
 	Name: Offensive Rebound Part 
 	Returns: the Offensive Rebound Part based on parameters
@@ -379,7 +379,7 @@ def OREBPart(OREB,TmOREBWgt,TmPlay_pect):
 		TmPlay_pect: Team Play percentage 
 
 		Depend? Yes     
-		check status: No 
+		check status: Yes 
 
 	"""
 
@@ -395,13 +395,13 @@ def FGmPoss(FGA,FGM,TmOREB_pect):
 		TmOREB_pect: Team Total Offensive Rebounds Weight Percentage
 
 		Depend? Yes    
-		check status: No 
+		check status: Yes 
 
 	"""
 
 
 def FTmPoss(FTM,FTA):
-	return float(((1-(FTM/FTA))**2 )*0.4*FTA)
+	return float(((1-(FTM/FTA))**2)*0.4*FTA)
 	"""
 	Name: Free Throw Missed Possessions 
 	Returns: the free throw missed possesssions based on parameters
@@ -416,7 +416,10 @@ def FTmPoss(FTM,FTA):
 
 
 def Individual_Offensize_Rating(PProd, TotPoss):
-	return 100*(PProd/TotPoss)
+	if TotPoss == 0:
+		return 0.0
+	else:
+		return 100*(PProd/TotPoss)
 	"""
 	Name: Individual Offensize Rating
 	Returns: the Individual Offensize Rating based on parameters
@@ -425,13 +428,16 @@ def Individual_Offensize_Rating(PProd, TotPoss):
 		TotPoss: Individual Total Possession 
 
 		Depend? Yes    
-		check status: No 
+		check status: Yes 
 
 	"""
 
 
 def Individual_Floor_Percentage(ScPoss,TotPoss):
-	return ScPoss/TotPoss
+	if TotPoss == 0:
+		return 0.0
+	else:
+		return float(ScPoss/TotPoss)
 	"""
 	Name: Individual Floor Percentage
 	Returns: the Individual Floor Percentage based on parameters
@@ -440,13 +446,16 @@ def Individual_Floor_Percentage(ScPoss,TotPoss):
 		TotPoss: Individual Total Possession 
 
 		Depend? Yes    
-		check status: No 
+		check status: Yes 
 
 	"""
 
 
 def Team_Floor_Percentage(TmScorPoss, TmPoss):
-	return TmScorPoss/TmPoss
+	if TmPoss == 0:
+		return 0.0
+	else:
+		return float(TmScorPoss/TmPoss)
 	"""
 	Name: Team Floor Percentage
 	Returns: the Team Floor Percentage based on parameters
@@ -455,13 +464,16 @@ def Team_Floor_Percentage(TmScorPoss, TmPoss):
 		TotPoss: Individual Total Possession 
 
 		Depend? Yes    
-		check status: No 
+		check status: Yes 
 
 	"""
 
 
 def TmDRTG(OppPTS,TmPoss):
-	return 100*(OppPTS/TmPoss)
+	if TmPoss == 0:
+		return 0.0
+	else:
+		return float(100*(OppPTS/TmPoss))
 	"""
 	Name: Team Defensive Rating 
 	Returns: the Team Defensive Rating based on parameters
@@ -470,13 +482,13 @@ def TmDRTG(OppPTS,TmPoss):
 		TmPoss: Total Team Possesion 
 
 		Depend? Yes    
-		check status: No 
+		check status: Yes 
 
 	"""
 
 
 def DRTG(TmDRTG,OppPtsPScorPoss,Stop_perc):
-	return TmDRTG+0.2*(100*OppPtsPScorPoss*(1-Stop_perc)-TmDRTG)
+	return float(TmDRTG+0.2*(100*OppPtsPScorPoss*(1-Stop_perc)-TmDRTG))
 	"""
 	Name: Individual Defensive Rating 
 	Returns: the Individual Defensive Rating based on parameters
@@ -486,7 +498,7 @@ def DRTG(TmDRTG,OppPtsPScorPoss,Stop_perc):
 		Stop_perc: Stop percentage (double check)
 		
 		Depend? Yes    
-		check status: No 
+		check status: Yes 
 
 	"""
 
@@ -518,10 +530,10 @@ def Stop_perc(Stops,OppMIN,TmPoss,MIN):
 	Name: Stop Percentage
 	Returns: the stop percentage based on parameters
 	Arguments:
-		Stops: ????
-		OppMIN: ???
+		Stops: Stops 
+		OppMIN: Opponenet MIN 
 		TmPoss: Total Team Possesion 
-		MIN: ???? 
+		MIN: MIN  
 		
 		Depend? Yes    
 		check status: Yes (answers are different from excel sheet) 
@@ -566,10 +578,10 @@ def FMwt(DFG_perc,DOREB_perc):
 	return float((DFG_perc*(1-DOREB_perc))/(DFG_perc
 			*(1-DOREB_perc)+(1-DFG_perc)*DOREB_perc))
 	"""
-	Name: ？？？？？
-	Returns: the ？？？？ based on parameters
+	Name: FMwt
+	Returns: the FMwt based on parameters
 	Arguments:
-		DFG_perc: ??????
+		DFG_perc: deffensive rate percentage 
 		DOREB_perc: Total Defensive Rebounds Percentage (double check)
 		
 		Depend? Yes     
@@ -626,7 +638,7 @@ def Stops_2(OppFGA,OppFGM,TmBLK,TmMIN,FMwt,DOREB_perc
 		OppFGM: Opponent field goal made 
 		TmBLK: Team total blocks 
 		TmMIN: Team MIN
-		FMwt: ?????
+		FMwt: FMwt
 		DOREB_perc: Total Defensive Rebounds Percentage (double check)
 		OppTOV: Opponent turnover 
 		TmSTL: Team total steals 
@@ -776,8 +788,8 @@ def Usage_Rate(FGA,FTA,TOV,TmMIN,MIN,TmFGA,TmFTA,TmTOV):
 		FGA: field goal attemped 
 		FTA: free throw attemped
 		TOV: turnover 
-		TmMIN: ???? 
-		MIN: ????? 
+		TmMIN: Team MIN  
+		MIN: MIN  
 		TmFGA: team field goal attemped
 		TmFTA: team free throw attemped
 		TmTOV: team turnover 
@@ -870,7 +882,9 @@ def Total_REB(TREB,TmMIN,MIN,TmTREB,OppTREB):
 		OppTREB:  ?????
 
 	Depend? Yes  
-	check status: No 
+	check status: No
+
+	Note: cannot find in excel, team/individual ?? 
 
 	"""
 
@@ -901,8 +915,8 @@ def BLK_perc(BLK,TmMIN,MIN,OppFGA,Opp3PA):
 	Returns: the Total blocks Percentage based on parameters
 	Arguments:
 		BLK: Total blocks
-		TmMIN: ??? 
-		MIN:  ???? 
+		TmMIN: Team MIN  
+		MIN:  MIN  
 		OppFGA: Opponent field goal attemped 
 		Opp3PA: Opponent 3 points 
 		
