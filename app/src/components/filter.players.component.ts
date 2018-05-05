@@ -3,6 +3,8 @@ import { CommonModule } from "@angular/common";
 import * as globals from './../global.vars';
 
 const ionRangeSlider = require('ion-rangeslider/js/ion.rangeSlider');
+const datePicker = require('bootstrap-datepicker/dist/js/bootstrap-datepicker.js');
+
 import * as jquery from 'jquery';
 window['$'] = jquery;
 window['jQuery'] = jquery;
@@ -61,14 +63,12 @@ export class PlayersFilterComponent implements OnInit {
     pgtSliderExtra: true,
   }
 
-
   // 2 way bound filters -- simple inputs
   homeGames:boolean = false;
   awayGames:boolean = false;
   neutralGames:boolean = false;
   wins:boolean = false;
   losses:boolean = false;
-  lastNGames:string;
   upOrDown:string;
   ot1:boolean = true;
   ot2:boolean = true;
@@ -108,7 +108,6 @@ export class PlayersFilterComponent implements OnInit {
     filters.gametime.multipleTimeFrames = !this.hidePgtExtra;
 
     filters.upOrDown = [filters.upOrDown, this.upOrDown];
-    filters.recentGames = this.lastNGames;
 
     if (!this.homeGames && !this.awayGames && !this.neutralGames) {
       filters.location = {
@@ -148,6 +147,12 @@ export class PlayersFilterComponent implements OnInit {
         ot6: this.ot6,
         onlyQueryOT: this.onlyOT
       }
+
+    filters.dates = {
+      start: $("#players-start-date").datepicker('getDate').toLocaleDateString(),
+      end: $("#players-end-date").datepicker('getDate').toLocaleDateString()
+    }
+
     console.log(filters);
 
     return filters;
@@ -175,10 +180,10 @@ export class PlayersFilterComponent implements OnInit {
     this.otAll = true;
     this.otNone = false;
     this.onlyOT = false;
-    $(lastNGames).val(null);
     $(upOrDown).val(null);
 
     globals.clearSliders(this, "pgtSlider");
+    globals.clearDates(this.currentPageName);
 
     console.log("cleared all filters");
   }
@@ -194,6 +199,10 @@ export class PlayersFilterComponent implements OnInit {
     globals.updateAllSlidersFromSavedFilter(this, 'pgtSlider', filters);
     globals.updateSelect2sFromSavedFilter(this.currentPageName, filters);
     this.updateSimpleInputsFromSavedFilter(filters);
+    globals.updateDatesFromSavedFilter(filters);
+
+    // make sure placeholders are visible
+    $('.select2-search__field').css('width': '');
 
   }
 
@@ -204,15 +213,12 @@ export class PlayersFilterComponent implements OnInit {
       Inputs:
         filters: Object that contains all of the filter data
 
-      // NOTE:  this needs to be component specific because each component has
+      // NOTE:  this can be component specific because each component has
                 a different set of filters
     */
 
     // set score input
     this.upOrDown = filters.upOrDown[1];
-
-    // set recent games input
-    this.lastNGames = filters.recentGames;
 
     // set location checkboxes
     this.homeGames = filters.location.home;
@@ -271,10 +277,11 @@ export class PlayersFilterComponent implements OnInit {
     globals.changedEndHalf(this, inputId);
   }
 
-
-  // TODO: integrate with middle stack team make call to db and get the data for the following
-
   getPositions() {
+    /*
+      Returns hard-coded list of 5 positions in basketball
+      in the format that select2 needs to create a dropdown menu
+    */
     var data = [
       {
           id: 'point-guard',
@@ -299,56 +306,6 @@ export class PlayersFilterComponent implements OnInit {
     ];
     return data;
   }
-  getTeams1() {
-      var spawn = require('child_process').spawn,
-      py = spawn('python', ['./auto_complete.py']),
-      data = {"field": 0},
-      dataString = '';
-
-      // retrieve the data from the data_manager.py
-      py.stdout.on('data', function(data){
-        dataString += data.toString();
-      });
-
-      // print the data when the child process ends
-      py.stdout.on('end', function(){
-        console.log("Data is: " + dataString);
-        var teams = JSON.parse(dataString.replace(/'/g, '"'));
-        $('#players-team').select2({ data:teams });
-      });
-
-      // if there is an error, print it out
-      py.on('error', function(err) {
-        console.log("Failed to start child. " + err);
-      });
-
-      py.stdin.write(JSON.stringify(data));
-      py.stdin.end();
-  }
-  getTeams() {
-    return [];
-  }
-  getOpponents() {
-    var data = [
-      {
-          id: 'team1',
-          text: 'Universiy of Alabama'
-      },
-      {
-          id: 'team2',
-          text: 'University of Arizona'
-      },
-      {
-          id: 'team25',
-          text: 'Cornell',
-      },
-      {
-          id: 'team351',
-          text: 'Harvard',
-      }
-    ];
-    return data;
-  }
   getCurrentTeamMembers() {
     var data = [
       {
@@ -367,24 +324,6 @@ export class PlayersFilterComponent implements OnInit {
         id: 'cornell-player32',
           text: '32 Jack Gordon'
       }
-    ];
-    return data;
-  }
-  getAvailableSeasons() {
-    var data = [
-      {
-        id: 'season15',
-        text: '2015-16'
-      },
-      {
-        id: 'season16',
-        text: '2016-17'
-      },
-      {
-        id: 'season17',
-        text: '2017-18',
-        selected: true
-      },
     ];
     return data;
   }
@@ -495,22 +434,48 @@ export class PlayersFilterComponent implements OnInit {
     // set up the multiple select dropdowns
     select2();
     globals.createSelect2("#players-position", 'Select Position(s)', this.getPositions);
-    globals.createSelect2("#players-team", 'Select Team(s)', this.getTeams);
-    globals.createSelect2("#players-opponent", 'Select Team(s)', this.getOpponents);
+    globals.createSelect2("#players-team", 'Select Team(s)', function(){ return [] });
+    globals.createSelect2("#players-opponent", 'Select Team(s)', function(){ return []; });
     globals.createSelect2("#players-in-lineup", 'Select Player(s)', this.getCurrentTeamMembers);
     globals.createSelect2("#players-out-lineup", 'Select Player(s)', this.getCurrentTeamMembers);
     globals.createSelect2("#players-upOrDown", "Select", globals.getUpOrDown);
-    globals.createSelect2("#select-season", 'Ex. 17-18', this.getAvailableSeasons);
-    this.getTeams1();
+
+    // refresh data for select2's that get dropdowns items from db via middle stack
+    globals.getTeams(this.currentPageName);
+
+    // setup datepickers
+    var season = globals.getSeason();
+    var startSeason = season[0];
+    var today = season[1];
+
+    $("#"+this.currentPageName+"-start-date").find('input').val(startSeason.toLocaleDateString());
+    $("#"+this.currentPageName+"-start-date").datepicker({
+      title: "Filter Start Date",
+      startDate: "11/01/2014",
+      endDate : 'now',
+      clearBtn: true,
+      todayBtn: true,
+    });
+    $("#"+this.currentPageName+"-start-date").datepicker('update', startSeason);
+
+    $("#"+this.currentPageName+"-end-date").find('input').val(today.toLocaleDateString());
+    $("#"+this.currentPageName+"-end-date").datepicker({
+      title: "Filter End Date",
+      startDate: "11/01/2014",
+      endDate : 'now',
+      clearBtn: true,
+      todayBtn: true,
+    });
+
     // styling on select2s done here after initialization
     $(".select2-selection__rendered").css("overflow-x","scroll");
     $(".select2-selection.select2-selection--multiple").css("line-height","1em");
     $(".select2-selection.select2-selection--multiple").css("min-height","26px");
 
-
     // tooltip instatiation
     $(".location-tooltip").tooltip();
     $(".second-half-tooltip").tooltip();
+    $(".time-tooltip").tooltip();
   }
 
 }

@@ -1,5 +1,6 @@
 body {
   overflow-y: hidden;
+  line-height: 1em;
 }
 
 #nav-logo {
@@ -100,6 +101,9 @@ span.filter-label {
   margin-left: 27px;
 }
 
+.toggle-btn {
+  width: 100%;
+}
 
 .content-wrapper {
   padding: 8px;
@@ -125,12 +129,16 @@ span.filter-label {
   font-size: 12px;
   z-index: 0;
 }
+.select2-container .select2-selection--multiple {
+  min-height: 26px !important;
+}
+
 .upOrDown {
   font-size: 8px;
 }
 
 #saved-filters-wrapper {
-  padding:8px 8px 8px 0px;
+  padding:12px 8px 8px 0px;
 
 }
 
@@ -146,4 +154,20 @@ span.filter-label {
 /* hide the scorll bars */
 :not(.filter-wrapper):not(.content-wrapper)::-webkit-scrollbar {
     display: none;
+}
+
+
+.date-input {
+  height: 2em;
+}
+.input-group-addon {
+  padding: 3px 12px;
+}
+.select2-selection__clear {
+  color: #bbb;
+}
+
+
+.form-group {
+  margin-bottom: 0px !important;
 }
