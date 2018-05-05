@@ -436,12 +436,13 @@ export class PlayersFilterComponent implements OnInit {
     globals.createSelect2("#players-position", 'Select Position(s)', this.getPositions);
     globals.createSelect2("#players-team", 'Select Team(s)', function(){ return [] });
     globals.createSelect2("#players-opponent", 'Select Team(s)', function(){ return []; });
-    globals.createSelect2("#players-in-lineup", 'Select Player(s)', this.getCurrentTeamMembers);
-    globals.createSelect2("#players-out-lineup", 'Select Player(s)', this.getCurrentTeamMembers);
+    globals.createSelect2("#players-in-lineup", 'Select Player(s)', function(){ return [] });
+    globals.createSelect2("#players-out-lineup", 'Select Player(s)', function(){ return [] });
     globals.createSelect2("#players-upOrDown", "Select", globals.getUpOrDown);
 
     // refresh data for select2's that get dropdowns items from db via middle stack
     globals.getTeams(this.currentPageName);
+    globals.getPlayers(this.currentPageName);
 
     // setup datepickers
     var season = globals.getSeason();

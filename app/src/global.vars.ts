@@ -523,3 +523,53 @@ export const getTeams = (page) => {
   py.stdin.write(JSON.stringify(data));
   py.stdin.end();
 }
+
+export const getPlayers = (page) => {
+  /*
+    Middle stack:
+      Program runs python auto_complete.py and sets the select2s with the id
+  */
+  var spawn = require('child_process').spawn,
+  py = spawn('python', ['./auto_complete.py']),
+  data = {"field": 1},
+  dataString = '';
+
+  // retrieve the data from the data_manager.py
+  py.stdout.on('data', function(data){
+    dataString += data.toString();
+  });
+
+  // print the data when the child process ends
+  py.stdout.on('end', function(){
+    console.log(typeof(dataString), dataString.replace(/'/g, '"'));
+    var players = JSON.parse(dataString.replace(/'/g, '"')) 
+    var placeholder = 'Select Team(s)';
+
+    $('#'+page+'-out-lineup').select2({
+      placeholder: placeholder,
+      dropdownAutoWidth : true,
+      width: '115px',
+      allowClear: true,
+      data: players
+    });
+
+    $('#'+page+'-in-lineup').select2({
+      placeholder: placeholder,
+      dropdownAutoWidth : true,
+      width: '115px',
+      allowClear: true,
+      data: players
+    });
+
+    $('.select2-search__field').css('width': '');
+
+  });
+
+  // if there is an error, print it out
+  py.on('error', function(err) {
+    console.log("Failed to start child. " + err);
+  });
+
+  py.stdin.write(JSON.stringify(data));
+  py.stdin.end();
+}

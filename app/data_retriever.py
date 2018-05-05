@@ -28,8 +28,14 @@ def getAllTeams():
 '''
 Retrieve all players for the team of the given id.
 '''
-def getAllPlayers(teamId):
-  return [{"id" : 1502, "jersey" : 1,  "name" : "Kyle Brown"},
-          {"id" : 1603, "jersey" : 10, "name" : "Matt Morgan"},
-          {"id" : 1902, "jersey" : 12, "name" : "Jordan Abdur Ra'oof"},
-          {"id" : 1807, "jersey" : 32, "name" : "Jack Gordon"}]
+def getAllPlayers():
+  a = {"id" : 1502, "jersey" : 1,  "name" : "Kyle Brown"}
+  a["text"] = str(a["jersey"]) + ' ' + a["name"]
+  b = {"id" : 1603, "jersey" : 10, "name" : "Matt Morgan", "text" : "jersey" + "name"}
+  b["text"] = str(b["jersey"]) + ' ' + b["name"]
+  c = {"id" : 1902, "jersey" : 12, "name" : "Jordan Abdur Ra oof", "text" : "jersey" + "name"}
+  c["text"] = str(c["jersey"]) + ' ' + c["name"]
+  d = {"id" : 1807, "jersey" : 32, "name" : "Jack Gordon","text" : "jersey" + "name"}
+  d["text"] = str(d["jersey"]) + ' ' + d["name"]
+
+  return [a,b,c,d]
