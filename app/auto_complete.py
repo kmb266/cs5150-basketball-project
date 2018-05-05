@@ -18,8 +18,8 @@ def retrieveData(form):
         return data
             # player drop down menu
       elif target == Constants.AC_PLAYER:
-                # TODO: Add id
-        data = getAllPlayers(1);
+        # don't need id for now just Cornell basketball
+        data = getAllPlayers();
         return data
       else:
         return getErrorForm(Constants.InvalidFormValue, "Wrong value for key 'field'")
