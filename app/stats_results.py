@@ -85,6 +85,38 @@ def stats_calculation(data):
 		PIE = PIE(PTS,FGM,FTM,FGA,FTA,DREB,OREB,AST,STL,BLK,PF,TO,GmPTS,GmFGM,GmFTM,GmFGA,GmFTA,GmDREB,GmOREB,GmAST,GmSTL,GmBLK,GmPF,GmTO)
 
 
+#adding results to dictionary 
+		data["TmPoss"] = TmPoss
+		data["OppPoss"] = OppPoss
+		data["PProdAst"] = PProdAst
+		data["q5"] = q5
+		data["q12"] = q12
+		data["ASTPart"] = ASTPart
+		data["FTPart"] = FTPart
+		data["TmScorPoss"] = TmScorPoss
+		data["TmOREB_pect"] = TmOREB_pect
+		data["TmPlay"] = TmPlay
+		data["FTmPoss"] = FTmPoss
+		data["DOREB_perc"] = DOREB_perc
+		data["DFG_perc"] = DFG_perc
+		data["eFG_perc"] = eFG_perc
+		data["Turnover_perc"] = Turnover_perc
+		data["FTr"] = FTr
+		data["FG_2_perc"] = FG_2_perc
+		data["FG_3_perc"] = FG_3_perc
+		data["FGr_2"] = FGr_2
+		data["FGr_3"] = FGr_3
+		data["Usage_Rate"] = Usage_Rate
+		data["ASTPart"] = ASTPart
+		data["ASTr"] = ASTr
+		data["AST_Ratio"] = AST_Ratio
+		data["OppPtsPScorPoss"] = OppPtsPScorPoss
+		data["TS_perc"] = TS_perc
+		data["Total_REB_pect"] = Total_REB_pect
+		data["BLK_perc"] = BLK_perc
+		data["Game_Score"] = Game_Score
+		data["PIE"] = PIE
+
 		#second level calculation 
 		TmORTG = TmORTG (TmPoints, TmPoss)
 		qAST = qAST(MIN,TmMIN,q_12,q_5)
