@@ -209,4 +209,4 @@ def stats_calculation(data):
 
 
 
-	return [TmPoss, PProdAst,]
+	return data 
