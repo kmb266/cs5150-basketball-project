@@ -315,7 +315,7 @@ def TmOREBWgt(TmOREB_pect,TmPlay_pect):
 		TmOREB: team Total Offensive Rebounds
 		TmPlay: team play 
 
-		Depend? No  
+		Depend? Yes   
 		check status: Yes 
 
 	"""
@@ -600,7 +600,7 @@ def DOREB_perc(OppOREB,TmDREB):
 		OppOREB: Opponent Total offensive rebounds
 		TmDREB: Team Total defensive rebounds
 		
-		Depend? Yes     
+		Depend? No      
 		check status: Yes 
 
 		Note: check the fomular, in the excel, it is OppOREB/(OppOREB+TmDREB) 
@@ -620,7 +620,7 @@ def DFG_perc(OppFGM,OppFGA):
 		OppFGM: Opponent field goal made  
 		OppFGA: Opponent field goal attemped
 		
-		Depend? Yes     
+		Depend? No     
 		check status: Yes
 
 	"""
@@ -665,7 +665,7 @@ def eFG_perc(FGM,FGA,FGM_3):
 		FGA: Fieldgoals attempted
 		FGM_3: 3 point shot makes
 
-		Depend? Yes 
+		Depend? No  
 		check status: Yes 
 
 	"""
@@ -882,7 +882,7 @@ def Total_REB_pect (TREB,TmMIN,MIN,TmTREB,OppTREB):
 		TmTREB:  team TREB  
 		OppTREB:  Opponent TREB(check! team or individual)
 
-	Depend? Yes  
+	Depend? No 
 	check status: Yes (cannot find in excel, used NBA data to test)
 
 	"""
@@ -917,7 +917,7 @@ def BLK_perc(BLK,TmMIN,MIN,OppFGA,Opp3PA):
 		OppFGA: Opponent field goal attemped 
 		Opp3PA: Opponent 3 points 
 		
-	Depend? Yes  
+	Depend? No  
 	check status: Yes (cannot find in excel, used NBA data to test)
 
 	"""
@@ -945,7 +945,7 @@ def Game_Score(PTS,FGM,FGA,FTA,FTM,ORE,DREB,STL,AST,BLK,PF,TOV):
 		PF: total personal fouls 
 		TOV: turnover 
 		
-	Depend? Yes  
+	Depend? No   
 	check status: Yes (cannot find in excel sheet) 
 
 	"""
@@ -1003,7 +1003,7 @@ def PIE(PTS,FGM,FTM,FGA,FTA,DREB,OREB,AST,STL,BLK
 	    GmPF: game total personal fouls 
 	    GmTO: game total turnover 
 		
-	Depend? Yes 
+	Depend? No  
 	check status: No 
 
 	"""
