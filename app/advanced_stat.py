@@ -33,8 +33,33 @@ def TmPoss(TmFGA,TmOREB,oppDREB,TmFTA,TmFGM,TmTOV):
 	
 	Depend? No 
 	check status: Yes 
+	level: 1 
+
 
 	"""
+
+
+def OppPoss(OppFGA,OppOREB,TmDREB,OppFTA,OppFGM,OppTOV):
+	return float(OppFGA-(OppOREB/(OppOREB+TmDREB))*(OppFGA-OppFGM)*1.07+OppTOV + 0.4*OppFTA)
+	"""
+	Name: Opponent Total Team Possesion 
+	Returns: the total opponent possession based on parameters
+	Arguments:
+		OppFGA: opponent field goals attemped 
+		OppOREB: opponent team Total Offensive Rebounds (double check) 
+		TmDREB:  Total Defensive Rebounds (double check) 
+		OppFTA: opponent free throw attemped 
+		OppFGM: opponent field goals made 
+		
+	
+	Depend? No 
+	check status: Yes 
+	level: 1 
+
+
+	"""
+
+
 
 
 def TmORTG (TmPoints, TmPoss):
@@ -50,6 +75,7 @@ def TmORTG (TmPoints, TmPoss):
 
 	Depend? Yes 
 	check status: Yes  
+	level: 2 
 
 	"""
 
@@ -73,6 +99,7 @@ def PProd(PProdFG, PProdAst,FTM,TmOREB,
 		
 	Depend? Yes 
 	check status: Yes 
+	level: 5 
 
 	"""
 
@@ -92,6 +119,7 @@ def PProdFG(FGM,PTS,FTM,FGA,qAST,FGM_3):
 
 	Depend? Yes 
 	check status: Yes (different results from excel sheet)
+	level: 3 
 
 	"""
 
@@ -116,6 +144,7 @@ def PProdAst(TmFGM, FGM, Tm3PM, TmPTS, TmFTM, PTS, FGA, AST, FGM_3,FTM, TmFGA):
 		
 	Depend? No  
 	check status: Yes 
+	level: 1 
 
 	"""
 
@@ -138,6 +167,7 @@ def PProdOREB(ORB,TmOREBWgt,TmPlay_pect,TmPTS,
 		
 	Depend? Yes   
 	check status: Yes  
+	level: 4  
 
 	"""
 
@@ -155,6 +185,7 @@ def TotPoss(ScPoss,FGmPoss,FTmPoss,TOV):
 		
 	Depend? Yes   
 	check status: Yes 
+	level: 6 
 
 	"""
 
@@ -178,6 +209,7 @@ def ScPoss(FGPart,ASTPart,FTPart,TmOREB,
 
 	Depend? Yes   
 	check status: Yes 
+	level: 5 
 
 	"""
 
@@ -196,6 +228,7 @@ def FGPart(FGM,PTS,FTM,FGA,qAST):
 		
 		Depend? Yes 
 		check status: Yes 
+		level: 3
 
 	"""
 
@@ -214,6 +247,7 @@ def qAST(MIN,TmMIN,q_12,q_5):
 	
 		Depend? Yes 
 		check status: Yes
+		level: 2 
 
 	"""
 
@@ -230,6 +264,7 @@ def q5(TmAST,AST,TmFGM):
 
 		Depend? No  
 		check status: Yes 
+		level: 1 
 
 	"""
 
@@ -248,7 +283,8 @@ def q12(TmAST,TmMIN,MIN,AST,TmFGM,FGM):
 		FGM: field goal made 
 
 		Depend? No    
-		check status: Yes  
+		check status: Yes 
+		level: 1  
 
 	"""
 
@@ -270,6 +306,7 @@ def ASTPart(TmPTS,TmFTM,PTS,FTM,TmFGA,FGA,AST):
 
 		Depend? No  
 		check status: Yes 
+		level: 1 
 
 	"""
 
@@ -285,6 +322,7 @@ def FTPart(FTM,FTA):
 
 		Depend? No  
 		check status: Yes 
+		level: 1 
 
 	"""
 
@@ -301,6 +339,7 @@ def TmScorPoss(TmFGM,TmFTM,TmFTA):
 
 		Depend? No  
 		check status: Yes 
+		level: 1 
 
 	"""
 
@@ -317,6 +356,7 @@ def TmOREBWgt(TmOREB_pect,TmPlay_pect):
 
 		Depend? Yes   
 		check status: Yes 
+		level: 3
 
 	"""
 
@@ -332,6 +372,7 @@ def TmOREB_pect(TmOREB,OppTREB,OppDREB):
 
 		Depend? No    
 		check status: Yes (different results from excel sheet, different fomulars used) 
+		level: 1 
 
 	"""
 
@@ -348,6 +389,7 @@ def TmPlay(TmFGA,TmFTA,TmTOV):
 
 		Depend? No    
 		check status: Yes  
+		level: 1 
 
 	"""
 
@@ -364,7 +406,8 @@ def TmPlay_pect(TmScorPoss, TmFGA,TmFTA,TmTOV):
 		TmTOV: team turnover 
 
 		Depend? Yes    
-		check status: Yes  
+		check status: Yes 
+		level: 2 
 
 	"""
 
@@ -380,7 +423,8 @@ def OREBPart(OREB,TmOREBWgt,TmPlay_pect):
 		TmPlay_pect: Team Play percentage 
 
 		Depend? Yes     
-		check status: Yes 
+		check status: Yes
+		level: 4 
 
 	"""
 
@@ -397,6 +441,7 @@ def FGmPoss(FGA,FGM,TmOREB_pect):
 
 		Depend? Yes    
 		check status: Yes 
+		level: 2
 
 	"""
 
@@ -412,6 +457,7 @@ def FTmPoss(FTM,FTA):
 
 		Depend? No    
 		check status: Yes 
+		level: 1 
 
 	"""
 
@@ -430,6 +476,7 @@ def Individual_Offensize_Rating(PProd, TotPoss):
 
 		Depend? Yes    
 		check status: Yes 
+		level: 7
 
 	"""
 
@@ -447,7 +494,8 @@ def Individual_Floor_Percentage(ScPoss,TotPoss):
 		TotPoss: Individual Total Possession 
 
 		Depend? Yes    
-		check status: Yes 
+		check status: Yes
+		level: 7
 
 	"""
 
@@ -466,6 +514,7 @@ def Team_Floor_Percentage(TmScorPoss, TmPoss):
 
 		Depend? Yes    
 		check status: Yes 
+		level: 2
 
 	"""
 
@@ -484,6 +533,7 @@ def TmDRTG(OppPTS,TmPoss):
 
 		Depend? Yes    
 		check status: Yes 
+		level: 2
 
 	"""
 
@@ -500,6 +550,7 @@ def DRTG(TmDRTG,OppPtsPScorPoss,Stop_perc):
 		
 		Depend? Yes    
 		check status: Yes 
+		level: 6
 
 	"""
 
@@ -518,6 +569,7 @@ def OppPtsPScorPoss(OppPTS,OppFGM,OppFTM,OppFTA):
 		
 		Depend? No    
 		check status: Yes 
+		level: 1 
 
 	"""
 
@@ -538,6 +590,7 @@ def Stop_perc(Stops,OppMIN,TmPoss,MIN):
 		
 		Depend? Yes    
 		check status: Yes (answers are different from excel sheet) 
+		level: 5 
 
 	"""
 
@@ -553,6 +606,7 @@ def Stops(Stops_1,Stops_2):
 		
 		Depend? Yes     
 		check status: Yes (different results from excel)
+		level: 4 
 
 	"""
 
@@ -571,6 +625,7 @@ def Stops_1(STL,BLK,FMwt,DOREB_perc,DREB):
 		
 		Depend? Yes     
 		check status: Yes 
+		level: 3
 
 	"""
 
@@ -587,6 +642,7 @@ def FMwt(DFG_perc,DOREB_perc):
 		
 		Depend? Yes     
 		check status: Yes 
+		level: 2
 
 	"""
 
@@ -602,8 +658,10 @@ def DOREB_perc(OppOREB,TmDREB):
 		
 		Depend? No      
 		check status: Yes 
+		level: 1 
 
 		Note: check the fomular, in the excel, it is OppOREB/(OppOREB+TmDREB) 
+
 
 	"""
 
@@ -622,6 +680,7 @@ def DFG_perc(OppFGM,OppFGA):
 		
 		Depend? No     
 		check status: Yes
+		level: 1 
 
 	"""
 
@@ -651,6 +710,7 @@ def Stops_2(OppFGA,OppFGM,TmBLK,TmMIN,FMwt,DOREB_perc
 		
 		Depend? Yes     
 		check status: Yes 
+		level: 3
 
 	"""
 
@@ -667,6 +727,7 @@ def eFG_perc(FGM,FGA,FGM_3):
 
 		Depend? No  
 		check status: Yes 
+		level: 1 
 
 	"""
 
@@ -683,6 +744,7 @@ def Turnover_perc(TOV,FGA,FTA):
 		 
 	Depend? No 
 	check status: Yes 
+	level: 1 
 
 	"""
 	
@@ -702,6 +764,7 @@ def FTr(FTA,FGA):
 	
 	Depend? No 
 	check status: Yes  
+	level: 1 
 
 	"""
 
@@ -720,6 +783,7 @@ def FG_2_perc(FGM_2,FGA_2):
 	
 	Depend? No 
 	check status: Yes 
+	level: 1 
 
 	"""
 
@@ -739,6 +803,7 @@ def FG_3_perc(FGM_3,FGA_3):
 	
 	Depend? No 
 	check status: Yes 
+	level: 1 
 
 	"""
 
@@ -757,6 +822,7 @@ def FGr_2(FGA_2,FGA):
 	
 	Depend? No 
 	check status: Yes 
+	level: 1 
 
 	"""
 
@@ -775,6 +841,7 @@ def FGr_3(FGA_3,FGA):
 	
 	Depend? No 
 	check status: Yes 
+	level: 1 
 
 	"""
 
@@ -797,6 +864,7 @@ def Usage_Rate(FGA,FTA,TOV,TmMIN,MIN,TmFGA,TmFTA,TmTOV):
 		
 	Depend? No 
 	check status: Yes 
+	level: 1 
 
 	"""
 
@@ -814,7 +882,8 @@ def AST_perc(AST,MIN,TmMIN,TmFGM,FGM):
 		FGM: field goal made 
 		
 	Depend? No  
-	check status: Yes (cannot find in excel, used NBA data)  
+	check status: Yes (cannot find in excel, used NBA data) 
+	level: 1  
 
 	"""
 
@@ -833,6 +902,7 @@ def ASTr(AST,FGM):
 	
 	Depend? No 
 	check status: Yes (cannot find in excel) 
+	level: 1 
 
 	"""
 
@@ -849,7 +919,8 @@ def AST_Ratio(AST,FGA,FTA,TOV):
 		TOV: trunovers (available since the 1977-78 season in the NBA)
 	
 	Depend? No 
-	check status: Yes(cannot find in excel)  
+	check status: Yes(cannot find in excel) 
+	level: 1  
 
 	"""
 
@@ -866,6 +937,7 @@ def TS_perc(PTS,FGA,FTA):
 
 	Depend? No 
 	check status: Yes 
+	level: 1 
 
 	"""
 
@@ -884,6 +956,7 @@ def Total_REB_pect (TREB,TmMIN,MIN,TmTREB,OppTREB):
 
 	Depend? No 
 	check status: Yes (cannot find in excel, used NBA data to test)
+	level: 1 
 
 	"""
 
@@ -901,6 +974,7 @@ def STL_perc(STL,TmMIN,MIN,OppPoss):
 		
 	Depend? Yes  
 	check status: Yes (cannot find in excel, used NBA data to test)
+	level: 2 
 
 	"""
 
@@ -919,6 +993,7 @@ def BLK_perc(BLK,TmMIN,MIN,OppFGA,Opp3PA):
 		
 	Depend? No  
 	check status: Yes (cannot find in excel, used NBA data to test)
+	level: 1 
 
 	"""
 
@@ -947,6 +1022,7 @@ def Game_Score(PTS,FGM,FGA,FTA,FTM,ORE,DREB,STL,AST,BLK,PF,TOV):
 		
 	Depend? No   
 	check status: Yes (cannot find in excel sheet) 
+	level: 1 
 
 	"""
 
@@ -964,6 +1040,7 @@ def Pace(TmPoss,OppPoss,TmMIN):
 	
 	Depend? Yes 
 	check status: Yes(cannot find in excel)  
+	level: 2 
 
 	"""
 
@@ -1005,5 +1082,6 @@ def PIE(PTS,FGM,FTM,FGA,FTA,DREB,OREB,AST,STL,BLK
 		
 	Depend? No  
 	check status: No 
+	level: 1 
 
 	"""
