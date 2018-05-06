@@ -9,7 +9,6 @@ from sqlalchemy import or_, and_, between
 
 
 
-
 '''
 Retrieve all the team names and ids. Should return a list of teams with the id and the name of each team.
 '''
@@ -20,20 +19,22 @@ def getAllTeams():
     teams = session.query(Team).all()
     result = []
     for team in teams:
-        team_obj = {"id": team.team_id, "name": team.name}
+        team_obj = {"id": team.team_id, "text": team.name}
         result.append(team_obj)
 
     return json.dumps(result)
-
-    return [{"id" : 1502, "name" : "Cornell University"},
-                {"id" : 1603, "name" : "Dartmouth College"},
-                {"id" : 1902, "name" : "Princeton University"},
-                {"id" : 1807, "name" : "Harvard University"},
-                {"id" : 1697, "name" : "Yale University"}]
+'''
+    return [{"id" : 1502, "text" : "Cornell University"},
+                {"id" : 1603, "text" : "Dartmouth College"},
+                {"id" : 1902, "text" : "Princeton University"},
+                {"id" : 1807, "text" : "Harvard University"},
+                {"id" : 1697, "text" : "Yale University"}]
+'''
 
 '''
 Retrieve all players for the team of the given id.
 '''
+
 def getAllPlayers(teamId):
     engine = create_engine('sqlite:///basketball.db', echo=False)
     Session = sessionmaker(bind=engine)
@@ -45,14 +46,22 @@ def getAllPlayers(teamId):
     # Can't give jersey number in return because this is not stored uniquely by player, but rather by game
     for player in players:
         if player.name != "TEAM": # Don't include team's stats, though we might want to include this - check w/ client
-            result.append({"id": player.id, "name": player.name})
+            result.append({"id": player.id, "text": player.name})
 
     return json.dumps(result)
+'''
+  return [{"id" : 1502, "name" : "Cornell University"},
+                {"id" : 1603, "name" : "Dartmouth College"},
+                {"id" : 1902, "name" : "Princeton University"},
+                {"id" : 1807, "name" : "Harvard University"},
+                {"id" : 1697, "name" : "Yale University"}]
+'''
 
 
 def masterQuery(json_form):
     data = json.loads(json.dumps(json_form))
-    print(data)
+
+    #print(data)
     engine = create_engine('sqlite:///basketball.db', echo=False)
     Session = sessionmaker(bind=engine)
     session = Session()
@@ -76,8 +85,6 @@ def masterQuery(json_form):
                 Game.visitor.in_(teamIds)
             )
      )
-
-
 
     # If there's a season, get all games within that season
     seasons = data["season"]
@@ -167,58 +174,58 @@ def masterQuery(json_form):
                 player = session.query(Player).filter_by(id=play.player_id).first()
                 box_score[play.player_id] = {
                     "name": player.name,
-                    "fga": 0,
-                    "fgm": 0,
-                    "fga3": 0,
-                    "fgm3": 0,
-                    "fta": 0,
-                    "ftm": 0,
-                    "tp": 0,
-                    "oreb": 0,
-                    "dreb": 0,
-                    "treb": 0,
-                    "ast": 0,
-                    "stl": 0,
-                    "blk": 0,
-                    "to": 0,
-                    "pf": 0,
-                    "pts": 0
+                    "FGA": 0,
+                    "FG": 0,
+                    "FGA3": 0,
+                    "3PT": 0,
+                    "FTA": 0,
+                    "FT": 0,
+                    "TP": 0,
+                    "OREB": 0,
+                    "DREB": 0,
+                    "REB": 0,
+                    "AST": 0,
+                    "STL": 0,
+                    "BLK": 0,
+                    "TO": 0,
+                    "PF": 0,
+                    "PTS": 0
                 }
 
             if play.type == "3PTR":
-                box_score[play.player_id]["fga3"] += 1
+                box_score[play.player_id]["FGA3"] += 1
                 if play.action == "GOOD":
-                    box_score[play.player_id]["fgm3"] += 1
-                    box_score[play.player_id]["pts"] += 3
+                    box_score[play.player_id]["3PT"] += 1
+                    box_score[play.player_id]["PTS"] += 3
             elif play.type == "JUMPER" or play.type == "LAYUP" or play.type == "DUNK":
-                box_score[play.player_id]["fga"] += 1
+                box_score[play.player_id]["FGA"] += 1
                 if play.action == "GOOD":
-                    box_score[play.player_id]["fgm"] += 1
-                    box_score[play.player_id]["pts"] += 2
+                    box_score[play.player_id]["FG"] += 1
+                    box_score[play.player_id]["PTS"] += 2
             elif play.action == "REBOUND":
-                box_score[play.player_id]["treb"] += 1
+                box_score[play.player_id]["REB"] += 1
                 if play.type == "DEF":
-                    box_score[play.player_id]["dreb"] += 1
+                    box_score[play.player_id]["DREB"] += 1
                 elif play.type == "OFF":
-                    box_score[play.player_id]["oreb"] += 1
+                    box_score[play.player_id]["OREB"] += 1
             elif play.action == "STEAL":
-                box_score[play.player_id]["stl"] += 1
+                box_score[play.player_id]["STL"] += 1
             elif play.action == "BLOCK":
-                box_score[play.player_id]["blk"] += 1
+                box_score[play.player_id]["BLK"] += 1
             elif play.action == "TURNOVER":
-                box_score[play.player_id]["to"] += 1
+                box_score[play.player_id]["TO"] += 1
             elif play.action == "STEAL":
-                box_score[play.player_id]["stl"] += 1
+                box_score[play.player_id]["STL"] += 1
             elif play.type == "FT":
-                box_score[play.player_id]["fta"] += 1
+                box_score[play.player_id]["FTA"] += 1
                 if play.action == "GOOD":
-                    box_score[play.player_id]["ftm"] += 1
+                    box_score[play.player_id]["FT"] += 1
         return box_score
 
     box_score = generate_box_score(plays)
-    return box_score
+    return box_score.values()
 
-
+'''
 print(masterQuery({
   "page": "players",
   "position": [],
@@ -279,3 +286,4 @@ print(masterQuery({
     "onlyQueryOT": False
   }
 }))
+'''
