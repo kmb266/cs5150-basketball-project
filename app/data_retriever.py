@@ -161,38 +161,182 @@ def masterQuery(json_form):
     if players_out:
         plays = list(filter(lambda p: not player_in(p, players_in), plays))
 
-
     def generate_box_score(plays):
         """
         Generates a box score for each player involved in the plays listed
         :param plays: The list of plays
         :return: A dict containing box scores for each player
         """
-        box_score = {}
+        attributes = ["FG", "FGA3", "3PT", "FTA", "FT", "TP", "OREB",
+                "DREB", "REB", "AST", "STL", "BLK", "TO", "PF", "PTS"]
+        players = {}
+        teams = {}
+
         for play in plays:
-            if play.player_id and play.player_id not in box_score:
+            #Create player if its not in the list
+            player_id = play.player_id
+            if player_id is None:
+                continue
+            if player_id and player_id not in players:
                 player = session.query(Player).filter_by(id=play.player_id).first()
-                box_score[play.player_id] = {
-                    "name": player.name,
-                    "FGA": 0,
-                    "FG": 0,
-                    "FGA3": 0,
-                    "3PT": 0,
-                    "FTA": 0,
-                    "FT": 0,
-                    "TP": 0,
-                    "OREB": 0,
-                    "DREB": 0,
-                    "REB": 0,
-                    "AST": 0,
-                    "STL": 0,
-                    "BLK": 0,
-                    "TO": 0,
-                    "PF": 0,
-                    "PTS": 0
+                players[player_id] = {
+                    "name" : player.name,
+                    "team" : player.team,
+                    "games" : {}
                 }
 
+                if player.team not in teams:
+                    teams[player.team] = {
+                        "games" : {}
+                    }
+
+            #Create game for the player if its not in the list
+            game_id = play.game_id
+
+            if game_id and game_id not in players[player_id]["games"]:
+                players[player_id]["games"][game_id] = {
+                    "FGA": 0.0,
+                    "FG": 0.0,
+                    "FGA3": 0.0,
+                    "3PT": 0.0,
+                    "FTA": 0.0,
+                    "FT": 0.0,
+                    "TP": 0.0,
+                    "OREB": 0.0,
+                    "DREB": 0.0,
+                    "REB": 0.0,
+                    "AST": 0.0,
+                    "STL": 0.0,
+                    "BLK": 0.0,
+                    "TO": 0.0,
+                    "PF": 0.0,
+                    "PTS": 0.0
+                }
+
+            team = players[player_id]["team"]
+            if game_id and team and game_id not in teams[team]["games"]:
+                teams[team]["games"][game_id] = {
+                    "FGA": 0.0,
+                    "FG": 0.0,
+                    "FGA3": 0.0,
+                    "3PT": 0.0,
+                    "FTA": 0.0,
+                    "FT": 0.0,
+                    "TP": 0.0,
+                    "OREB": 0.0,
+                    "DREB": 0.0,
+                    "REB": 0.0,
+                    "AST": 0.0,
+                    "STL": 0.0,
+                    "BLK": 0.0,
+                    "TO": 0.0,
+                    "PF": 0.0,
+                    "PTS": 0.0
+                }
+
+
             if play.type == "3PTR":
+                players[player_id]["games"][game_id]["FGA3"] += 1
+                teams[team]["games"][game_id]["FGA3"] += 1
+                if play.action == "GOOD":
+                    players[player_id]["games"][game_id]["3PT"] += 1
+                    players[player_id]["games"][game_id]["PTS"] += 3
+                    teams[team]["games"][game_id]["3PT"] += 1
+                    teams[team]["games"][game_id]["PTS"] += 3
+            elif play.type == "JUMPER" or play.type == "LAYUP" or play.type == "DUNK":
+                players[player_id]["games"][game_id]["FGA"] += 1
+                teams[team]["games"][game_id]["FGA"] += 1
+                if play.action == "GOOD":
+                    players[player_id]["games"][game_id]["FG"] += 1
+                    teams[team]["games"][game_id]["FG"] += 1
+                    players[player_id]["games"][game_id]["PTS"] += 2
+                    teams[team]["games"][game_id]["PTS"] += 2
+            elif play.action == "REBOUND":
+                players[player_id]["games"][game_id]["REB"] += 1
+                teams[team]["games"][game_id]["REB"] += 1
+                if play.type == "DEF":
+                    players[player_id]["games"][game_id]["DREB"] += 1
+                    teams[team]["games"][game_id]["DREB"] += 1
+                elif play.type == "OFF":
+                    players[player_id]["games"][game_id]["OREB"] += 1
+                    teams[team]["games"][game_id]["OREB"] += 1
+            elif play.action == "STEAL":
+                players[player_id]["games"][game_id]["STL"] += 1
+                teams[team]["games"][game_id]["STL"] += 1
+            elif play.action == "BLOCK":
+                players[player_id]["games"][game_id]["BLK"] += 1
+                teams[team]["games"][game_id]["BLK"] += 1
+            elif play.action == "TURNOVER":
+                players[player_id]["games"][game_id]["TO"] += 1
+                teams[team]["games"][game_id]["TO"] += 1
+            elif play.action == "STEAL":
+                players[player_id]["games"][game_id]["STL"] += 1
+                teams[team]["games"][game_id]["STL"] += 1
+            elif play.type == "FT":
+                players[player_id]["games"][game_id]["FTA"] += 1
+                teams[team]["games"][game_id]["FTA"] += 1
+                if play.action == "GOOD":
+                    players[player_id]["games"][game_id]["FT"] += 1
+                    teams[team]["games"][game_id]["FT"] += 1
+                    players[player_id]["games"][game_id]["PTS"] += 1
+                    teams[team]["games"][game_id]["PTS"] += 1
+            elif play.action == "ASSIST":
+                players[player_id]["games"][game_id]["AST"] += 1
+                teams[team]["games"][game_id]["AST"] += 1
+            elif play.action == "FOUL":
+                players[player_id]["games"][game_id]["PF"] += 1
+                teams[team]["games"][game_id]["PF"] += 1
+
+        return (players, teams)
+
+    (box_score, teams) = generate_box_score(plays)
+    return (box_score.values(), teams)
+'''
+
+            if play.player_id and play.player_id not in players:
+                player = session.query(Player).filter_by(id=play.player_id).first()
+                game = play.game_id
+                team = player.team
+                players[play.player_id] = {
+                    "name": player.name,
+                    "FGA": 0.0,
+                    "FG": 0.0,
+                    "FGA3": 0.0,
+                    "3PT": 0.0,
+                    "FTA": 0.0,
+                    "FT": 0.0,
+                    "TP": 0.0,
+                    "OREB": 0.0,
+                    "DREB": 0.0,
+                    "REB": 0.0,
+                    "AST": 0.0,
+                    "STL": 0.0,
+                    "BLK": 0.0,
+                    "TO": 0.0,
+                    "PF": 0.0,
+                    "PTS": 0.0,
+                    "games_played" : 1.0,
+                    "last_game" : play.game_id,
+                    "team" : team
+                }
+                if team not in team_score:
+                    team_score[team] = {
+                    "id": team,
+                    "games_played" : 1.0,
+                    "last_game" : play.game_id
+                }
+            elif play.player_id and play.player_id in box_score:
+                if box_score[play.player_id]["last_game"] != play.game_id:
+                    box_score[play.player_id]["games_played"] += 1
+                    box_score[play.player_id]["last_game"] = play.game_id
+
+                team = box_score[play.player_id]["team"]
+                if team_score[team]["last_game"] != play.game_id:
+                    team_score[team]["games_played"] += 1
+                    team_score[team]["last_game"] = play.game_id
+
+            if play.type == "3PTR":
+                box_score[play.player_id]["FGA3"] += 1
                 box_score[play.player_id]["FGA3"] += 1
                 if play.action == "GOOD":
                     box_score[play.player_id]["3PT"] += 1
@@ -220,10 +364,15 @@ def masterQuery(json_form):
                 box_score[play.player_id]["FTA"] += 1
                 if play.action == "GOOD":
                     box_score[play.player_id]["FT"] += 1
-        return box_score
+                    box_score[play.player_id]["PTS"] += 1
+            elif play.action == "FOUL":
+                box_score[play.player_id]["PF"] += 1
 
-    box_score = generate_box_score(plays)
-    return box_score.values()
+        return (box_score, team_score)
+
+    (box_score, team_score) = generate_box_score(plays)
+    return (box_score.values(), team_score)
+'''
 
 '''
 print(masterQuery({
