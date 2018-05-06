@@ -5,7 +5,6 @@ import numpy;
 def stats_calculation(data):
 	for dic in data:
 
-
 		#get basic data 
 
 		AST = 1
@@ -22,15 +21,16 @@ def stats_calculation(data):
 		MIN = 1 
 		ORE = 1 
 		OREB_perc = 1 
-		oppDREB = 1 
-		oppTREB = 1 
-		oppOREB = 1 
-		oppFGM = 1 
-		oppFGA = 1 
-		oppFTA = 1 
-		oppFTM = 1 
-		oppTOV = 1 
-		opp3PA = 1 
+		OppDREB = 1 
+		OppTREB = 1 
+		OppOREB = 1 
+		OppFGM = 1 
+		OppFGA = 1 
+		OppFTA = 1 
+		OppPTS
+		OppFTM = 1 
+		OppTOV = 1 
+		Opp3PA = 1 
 		PF = 1 
 		PTS = 1 
 		STL = 1
@@ -77,10 +77,30 @@ def stats_calculation(data):
 		ASTPart = AST_perc(AST,MIN,TmMIN,TmFGM,FGM)
 		ASTr = ASTr(AST,FGM)
 		AST_Ratio = AST_Ratio(AST,FGA,FTA,TOV)
+		OppPtsPScorPoss = OppPtsPScorPoss(OppPTS,OppFGM,OppFTM,OppFTA)
 		TS_perc = TS_perc(PTS,FGA,FTA)
 		Total_REB_pect = Total_REB_pect (TREB,TmMIN,MIN,TmTREB,OppTREB)
 		BLK_perc = BLK_perc(BLK,TmMIN,MIN,OppFGA,Opp3PA)
 		Game_Score = Game_Score(PTS,FGM,FGA,FTA,FTM,ORE,DREB,STL,AST,BLK,PF,TOV)
 		PIE = PIE(PTS,FGM,FTM,FGA,FTA,DREB,OREB,AST,STL,BLK,PF,TO,GmPTS,GmFGM,GmFTM,GmFGA,GmFTA,GmDREB,GmOREB,GmAST,GmSTL,GmBLK,GmPF,GmTO)
 
-		 
+
+		#second level calculation 
+		TmORTG = TmORTG (TmPoints, TmPoss)
+		qAST = qAST(MIN,TmMIN,q_12,q_5)
+		TmPlay_pect = TmPlay_pect(TmScorPoss, TmFGA,TmFTA,TmTOV)
+		FGmPoss = FGmPoss(FGA,FGM,TmOREB_pect)
+		Team_Floor_Percentage = Team_Floor_Percentage(TmScorPoss, TmPoss)
+		TmDRTF = TmDRTG(OppPTS,TmPoss)
+		Stop_perc = Stop_perc(Stops,OppMIN,TmPoss,MIN)
+		FMwt = FMwt(DFG_perc,DOREB_perc)
+
+
+		#third level calculation 
+		
+
+
+
+
+
+	return [TmPoss, PProdAst,]
