@@ -81,7 +81,7 @@ def TmORTG (TmPoints, TmPoss):
 
 
 def PProd(PProdFG, PProdAst,FTM,TmOREB,
-		TMScorPoss,TmOREBWgt,TmPlay_pect,PProdOREB):
+		TmScorPoss,TmOREBWgt,TmPlay_pect,PProdOREB):
 	return float((PProdFG+PProdAst+FTM)*(1-(TmOREB/TMScorPoss)
 			*TmOREBWgt*TmPlay_pect)+PProdOREB)
 	"""
