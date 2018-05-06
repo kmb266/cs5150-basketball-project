@@ -1,5 +1,5 @@
 import Constants
-from data_retriever import getAllPlayers, getAllTeams
+from data_retriever import getAllTeams, getAllPlayers
 import sys, json
 
 def getErrorForm(code, msg):
@@ -19,7 +19,8 @@ def retrieveData(form):
             # player drop down menu
       elif target == Constants.AC_PLAYER:
         # don't need id for now just Cornell basketball
-        data = getAllPlayers();
+        cornell_id = "COR"
+        data = getAllPlayers(cornell_id);
         return data
       else:
         return getErrorForm(Constants.InvalidFormValue, "Wrong value for key 'field'")
@@ -33,6 +34,7 @@ def getForm():
 
 def main():
     form = getForm()
+    #form = {"field" : 1}
     data = retrieveData(form)
     #return what we get
     print data

@@ -1,9 +1,16 @@
 import sys, json
+from data_retriever import masterQuery
 
 '''
 retrieve the data from the backend
 '''
 def retrieveData(form):
+    data = masterQuery(form)
+    #data = json.dumps(data)
+    final = {"dataTab" : "players", "data" : data}
+    final = json.dumps(final)
+    return final
+    '''
     data = {"dataTab" : "players",
             "data" : [
                 {
@@ -57,7 +64,13 @@ def retrieveData(form):
             ]
         }
     return data
+    '''
 
+def tidyForm(form):
+    if ('season' in form) == False:
+        form['season'] = None
+
+    return form
 '''
 get the form information from the front end
 '''
@@ -68,6 +81,8 @@ def getForm():
 
 def main():
     form = getForm()
+    #form = {"team" : ["COR"], "opponent" : []}
+    form = tidyForm(form)
     data = retrieveData(form)
 
     #return what we get

@@ -188,9 +188,10 @@ export const applyFilters = (page, filters_data, emitter) => {
 
   var spawn = require('child_process').spawn,
       py = spawn('python', ['./data_manager.py']),
-      data = [99,2,3,4,5,6,7,8,9],
+      data = filters_data,
       dataString = '';
 
+  //console.log(filters_data)
   // retrieve the data from the data_manager.py
   py.stdout.on('data', function(data){
     dataString += data.toString();
@@ -198,7 +199,11 @@ export const applyFilters = (page, filters_data, emitter) => {
 
   // print the data when the child process ends
   py.stdout.on('end', function(){
-    emitter.emit(dataString);
+    var data = JSON.parse(dataString);
+    console.log(data)
+    emitter.emit(dataString.replace(/'/g, ' '));
+
+    //console.log("Data string: " + dataString)
   });
 
   // if there is an error, print it out
@@ -476,17 +481,21 @@ export const getTeams = (page) => {
   */
   var spawn = require('child_process').spawn,
   py = spawn('python', ['./auto_complete.py']),
-  data = {"field": 0},
+  data = {'field': 0},
   dataString = '';
 
   // retrieve the data from the data_manager.py
   py.stdout.on('data', function(data){
     dataString += data.toString();
+    //console.log("Hello");
   });
 
+  //console.log("Calling getTeams!");
   // print the data when the child process ends
   py.stdout.on('end', function(){
-    var teams = JSON.parse(dataString.replace(/'/g, '"'));
+    //console.log("Finished calling get Teams!");
+    //console.log(dataString)
+    var teams = JSON.parse(dataString)//.replace(/'/g, '"'));
     var placeholder = 'Select Team(s)';
 
     $('#'+page+'-opponent').select2({
@@ -541,8 +550,9 @@ export const getPlayers = (page) => {
 
   // print the data when the child process ends
   py.stdout.on('end', function(){
-    console.log(typeof(dataString), dataString.replace(/'/g, '"'));
-    var players = JSON.parse(dataString.replace(/'/g, '"')) 
+    //console.log(typeof(dataString), dataString.replace(/'/g, '"'));
+    //console.log("Players: " + dataString)
+    var players = JSON.parse(dataString)//.replace(/'/g, '"'))
     var placeholder = 'Select Team(s)';
 
     $('#'+page+'-out-lineup').select2({
