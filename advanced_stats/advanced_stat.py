@@ -247,7 +247,7 @@ def q12(TmAST,TmMIN,MIN,AST,TmFGM,FGM):
 		TmFGM: team field goal made 
 		FGM: field goal made 
 
-		Depend? Yes   
+		Depend? No    
 		check status: Yes  
 
 	"""
@@ -330,7 +330,7 @@ def TmOREB_pect(TmOREB,OppTREB,OppDREB):
 		TmOREB: team Total Offensive Rebounds
 		OppTREB:  Opponent TREB  
 
-		Depend? Yes   
+		Depend? No    
 		check status: Yes (different results from excel sheet, different fomulars used) 
 
 	"""
@@ -813,7 +813,7 @@ def AST_perc(AST,MIN,TmMIN,TmFGM,FGM):
 		TmFGM: team field goal made 
 		FGM: field goal made 
 		
-	Depend? Yes  
+	Depend? No  
 	check status: Yes (cannot find in excel, used NBA data)  
 
 	"""
