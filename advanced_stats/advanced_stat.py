@@ -516,7 +516,7 @@ def OppPtsPScorPoss(OppPTS,OppFGM,OppFTM,OppFTA):
 		OppFTM: Opponent free throw made 
 		OppFTA: Opponent free throw attemped 
 		
-		Depend? Yes    
+		Depend? No    
 		check status: Yes 
 
 	"""
