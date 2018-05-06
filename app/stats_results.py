@@ -205,3 +205,6 @@ def stats_calculation(data):
 		#adding results to dictinory 
 		data["Individual_Offensize_Rating"] = Individual_Offensize_Rating
 		data["Individual_Floor_Percentage"] = Individual_Floor_Percentage
+
+
+	return data 	
