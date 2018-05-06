@@ -85,7 +85,7 @@ def stats_calculation(data):
 		PIE = PIE(PTS,FGM,FTM,FGA,FTA,DREB,OREB,AST,STL,BLK,PF,TO,GmPTS,GmFGM,GmFTM,GmFGA,GmFTA,GmDREB,GmOREB,GmAST,GmSTL,GmBLK,GmPF,GmTO)
 
 
-#adding results to dictionary 
+		#adding results to dictionary 
 		data["TmPoss"] = TmPoss
 		data["OppPoss"] = OppPoss
 		data["PProdAst"] = PProdAst
@@ -128,7 +128,78 @@ def stats_calculation(data):
 		FMwt = FMwt(DFG_perc,DOREB_perc)
 
 
+		#adding results to dictionary 
+		data["TmORTG"] = TmORTG
+		data["qAST"] = qAST
+		data["TmPlay_pect"] = TmPlay_pect
+		data["FGmPoss"] = FGmPoss
+		data["Team_Floor_Percentage"] = Team_Floor_Percentage
+		data["TmDRTG"] = TmDRTG
+		data["FMwt"] = FMwt
+		data["Pace"] = Pace
+		data["STL_perc"] = STL_perc
+
+
 		#third level calculation 
+		PProdFG = PProdFG(FGM,PTS,FTM,FGA,qAST,FGM_3)
+		FGPart = FGPart(FGM,PTS,FTM,FGA,qAST)
+		TmOREBWgt = TmOREBWgt(TmOREB_pect,TmPlay_pect)
+		Stops_1 = Stops_1(STL,BLK,FMwt,DOREB_perc,DREB)
+		Stops_2 = Stops_2(OppFGA,OppFGM,TmBLK,TmMIN,FMwt,DOREB_perc,OppTOV,TmSTL,MIN,PF,TmPF,OppFTA,OppFTM)
+
+
+		#adding results to dictionary 
+		data["PProdFG"] = PProdFG
+		data["FGPart"] = FGPart
+		data["TmOREBWgt"] = TmOREBWgt
+		data["Stops_1"] = Stops_1
+		data["Stops_2"] = Stops_2 
+
+
+
+		#forth level calculation 
+		PProdOREB = PProdOREB(ORB,TmOREBWgt,TmPlay_pect,TmPTS,TmFGM,TmFTM,TmFTA)
+		OREBPart = OREBPart(OREB,TmOREBWgt,TmPlay_pect)
+		Stops = Stops(Stops_1,Stops_2)
+
+
+		#adding results to dictionary 
+		data["PProdOREB"] = PProdOREB
+		data["OREBPart"] = OREBPart
+		data["Stops"] = Stops
+
+
+		#fifth level calculation 
+		PProd = PProd(PProdFG, PProdAst,FTM,TmOREB,TmScorPoss,TmOREBWgt,TmPlay_pect,PProdOREB)
+		ScPoss = ScPoss(FGPart,ASTPart,FTPart,TmOREB,TmScorPoss,TmOREBWgt,TmPlay_pect,OREBPart)
+		Stop_perc = Stop_perc(Stops,OppMIN,TmPoss,MIN)
+
+		#adding results to dictionary 
+		data["PProd"] = PProd
+		data["ScPoss"] = ScPoss
+		data["Stop_perc"] = Stop_perc 
+
+
+
+		#sixth level calculation 
+		TotPoss = TotPoss(ScPoss,FGmPoss,FTmPoss,TOV)
+		DRTG = DRTG(TmDRTG,OppPtsPScorPoss,Stop_perc)
+
+
+		#adding results to dictinory 
+		data["TotPoss"] = TotPoss
+		data["DRTG"] = DRTG 
+
+
+		#seventh level calculation 
+		Individual_Offensize_Rating = Individual_Offensize_Rating(PProd, TotPoss)
+		Individual_Floor_Percentage = Individual_Floor_Percentage(ScPoss,TotPoss)
+
+		#adding results to dictinory 
+		data["Individual_Offensize_Rating"] = Individual_Offensize_Rating
+		data["Individual_Floor_Percentage"] = Individual_Floor_Percentage
+
+
 		
 
 
