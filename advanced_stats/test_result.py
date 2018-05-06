@@ -71,12 +71,12 @@ print AST_Ratio(2.0,9.0,7.0,5.0)
 
 
 
-def TmPoss(FGA, TmOREB,oppDREB,FTA,FGM,TOV):
-  return float(FGA-(TmOREB/(TmOREB+oppDREB))*(FGA-FGM)*1.07+TOV + 0.4*FTA)
+def TmPoss(TmFGA, TmOREB,oppDREB,TmFTA,TmFGM,TmTOV):
+  return float(TmFGA-(TmOREB/(TmOREB+oppDREB))*(TmFGA-TmFGM)*1.07+TmTOV + 0.4*TmFTA)
 
 print TmPoss(52.0, 9.0, 30.0, 26.0, 13.0, 15.0)
-#
-#
+# test result: 67.77
+# exel result: 67.8
 # excel location: STAT ANALYSIS(C19)
 
 
@@ -122,7 +122,7 @@ print DOREB_perc(17.0,20.0)
 # test result: 20.0
 # exel result: 45.9% 
 # excel location: STAT ANALYSIS(AC19)
-# Note: different fomular from excel sheet, double check? 
+# Note: different fomular from excel sheet, double check? (ask during presentation)
 
 
 
@@ -497,3 +497,93 @@ print(x)
 # test result: 134.08
 # exel result: 134.1
 # excel location: STAT ANALYSIS(I3)
+
+
+
+
+
+def Game_Score(PTS,FGM,FGA,FTA,FTM,ORE,DREB,STL,AST,BLK,PF,TOV):
+  return float(PTS+0.4*FGM-0.7*FGA-0.4 
+  *(FTA-FTM)+0.7*ORE-0.3*DREB+STL 
+  +0.7*AST+0.7*BLK-0.4*PF-TOV)
+  
+x = Game_Score(11.0,4.0,13.0,2.0,2.0,0.0,5.0,0.0,0.0,0.0,3.0,0.0)
+print(x)
+# test result: 0.7999
+# exel result: ?????
+# excel location: ?????
+
+x = Game_Score(0.0,0.0,1.0,2.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0)
+print(x)
+# test result: -2.5
+# exel result: ?????
+# excel location: ?????
+
+
+
+
+def AST_perc(AST,MIN,TmMIN,TmFGM,FGM):
+  return float(100*AST/(((MIN/(TmMIN/5))*TmFGM)-FGM))
+  
+x = AST_perc(747.0,3026.0,19730.0,3311.0,857.0)
+print(x)
+# test result: 44.41
+# NBA web result: 44.4
+# excel location: cannot find in excel, used NBA data to test
+
+
+
+
+
+def Total_REB_pect (TREB,TmMIN,MIN,TmTREB,OppTREB):
+  return 100*(TREB*(TmMIN/5))/(MIN*(TmTREB+OppTREB))
+  
+x = Total_REB_pect(709.0,19730.0,3026.0, 3455.0,3578.0)
+print(x)
+# test result: 13.1
+# NBA web result: 13.1
+# excel location: cannot find in excel, used NBA data to test
+
+
+
+
+def STL_perc(STL,TmMIN,MIN,OppPoss):
+  return  float(100*(STL*(TmMIN/5))/(MIN*OppPoss))
+
+x = STL_perc(116.0,19730.0,3026.0,8059.5)
+print(x)
+# test result: 1.876
+# NBA web result: 1.9
+# excel location: cannot find in excel, used NBA data to test
+
+
+
+
+def BLK_perc(BLK,TmMIN,MIN,OppFGA,Opp3PA):
+  return float(100*(BLK*(TmMIN/5))/(MIN*(OppFGA-Opp3PA)))
+
+x = BLK_perc(71.0,19730.0,3026.0,7238.0,2596.0)
+print(x)
+# test result: 1.99
+# NBA web result: 2.0
+# excel location: cannot find in excel, used NBA data to test
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

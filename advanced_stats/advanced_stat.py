@@ -650,7 +650,7 @@ def Stops_2(OppFGA,OppFGM,TmBLK,TmMIN,FMwt,DOREB_perc
 		OppFTM: Opponent free throw made 
 		
 		Depend? Yes     
-		check status: Yes (number do not match)
+		check status: Yes 
 
 	"""
 
@@ -804,17 +804,17 @@ def Usage_Rate(FGA,FTA,TOV,TmMIN,MIN,TmFGA,TmFTA,TmTOV):
 def AST_perc(AST,MIN,TmMIN,TmFGM,FGM):
 	return float(100*AST/(((MIN/(TmMIN/5))*TmFGM)-FGM))
 	"""
-	Name: Assist Percentage (U)
+	Name: Assist Percentage (Individual)
 	Returns: the Assist Percentage based on parameters
 	Arguments:
 		AST: assist 
-		MIN: ???
-		TmMIN: ??? 
+		MIN: minutes 
+		TmMIN: team minutes  
 		TmFGM: team field goal made 
 		FGM: field goal made 
 		
 	Depend? Yes  
-	check status: cannot find in excel  
+	check status: Yes (cannot find in excel, used NBA data)  
 
 	"""
 
@@ -832,7 +832,7 @@ def ASTr(AST,FGM):
 		FGM: filed goals made 
 	
 	Depend? No 
-	check status: cannot find in excel 
+	check status: Yes (cannot find in excel) 
 
 	"""
 
@@ -849,7 +849,7 @@ def AST_Ratio(AST,FGA,FTA,TOV):
 		TOV: trunovers (available since the 1977-78 season in the NBA)
 	
 	Depend? No 
-	check status: cannot find in excel  
+	check status: Yes(cannot find in excel)  
 
 	"""
 
@@ -870,22 +870,20 @@ def TS_perc(PTS,FGA,FTA):
 	"""
 
 
-def Total_REB(TREB,TmMIN,MIN,TmTREB,OppTREB):
+def Total_REB_pect (TREB,TmMIN,MIN,TmTREB,OppTREB):
 	return 100*(TREB*(TmMIN/5))/(MIN*(TmTREB+OppTREB))
 	"""
-	Name: Total ???
-	Returns: the Total ??? percentage based on parameters
+	Name: Total rebound percentage 
+	Returns: the Total Total rebound percentage based on parameters
 	Arguments:
-		TREB: ????
+		TREB: personal total recound 
 		TmMIN: team MIN  
 		MIN: MIN 
 		TmTREB:  team TREB  
 		OppTREB:  Opponent TREB(check! team or individual)
 
 	Depend? Yes  
-	check status: No
-
-	Note: cannot find in excel, team/individual ?? 
+	check status: Yes (cannot find in excel, used NBA data to test)
 
 	"""
 
@@ -893,7 +891,7 @@ def Total_REB(TREB,TmMIN,MIN,TmTREB,OppTREB):
 def STL_perc(STL,TmMIN,MIN,OppPoss):
 	return  float(100*(STL*(TmMIN/5))/(MIN*OppPoss))
 	"""
-	Name: Total Steals Percentage
+	Name: Total Steals Percentage (Individual)
 	Returns: the Total Steals Percentage based on parameters
 	Arguments:
 		STL: Total steals (check! team or individual)
@@ -902,15 +900,13 @@ def STL_perc(STL,TmMIN,MIN,OppPoss):
 		OppPoss: Opponent Possesion 
 		
 	Depend? Yes  
-	check status: cannot find in excel 
-
-	Note: should this return team or individual stat?? 
+	check status: Yes (cannot find in excel, used NBA data to test)
 
 	"""
 
 
 def BLK_perc(BLK,TmMIN,MIN,OppFGA,Opp3PA):
-	return 100*(BLK*(TmMIN/5))/(MIN*(OppFGA-Opp3PA))
+	return float(100*(BLK*(TmMIN/5))/(MIN*(OppFGA-Opp3PA)))
 	"""
 	Name: Total Blocks Percentage
 	Returns: the Total blocks Percentage based on parameters
@@ -922,7 +918,7 @@ def BLK_perc(BLK,TmMIN,MIN,OppFGA,Opp3PA):
 		Opp3PA: Opponent 3 points 
 		
 	Depend? Yes  
-	check status: No (cannot find in excel)
+	check status: Yes (cannot find in excel, used NBA data to test)
 
 	"""
 
@@ -950,7 +946,7 @@ def Game_Score(PTS,FGM,FGA,FTA,FTM,ORE,DREB,STL,AST,BLK,PF,TOV):
 		TOV: turnover 
 		
 	Depend? Yes  
-	check status: No 
+	check status: Yes (cannot find in excel sheet) 
 
 	"""
 
@@ -967,7 +963,7 @@ def Pace(TmPoss,OppPoss,TmMIN):
 		
 	
 	Depend? Yes 
-	check status: cannot find in excel  
+	check status: Yes(cannot find in excel)  
 
 	"""
 
@@ -975,8 +971,8 @@ def Pace(TmPoss,OppPoss,TmMIN):
 def PIE(PTS,FGM,FTM,FGA,FTA,DREB,OREB,AST,STL,BLK
 	,PF,TO,GmPTS,GmFGM,GmFTM,GmFGA,GmFTA,GmDREB
 	,GmOREB,GmAST,GmSTL,GmBLK,GmPF,GmTO):
-	return (PTS+FGM+FTM-FGA-FTA+DREB+(0.5*OREB)+AST+STL \
-		+(0.5*BLK)-PF-TO)/(GmPTS+GmFGM+GmFTM-GmFGA \
+	return (PTS+FGM+FTM-FGA-FTA+DREB+(0.5*OREB)+AST+STL
+		+(0.5*BLK)-PF-TO)/(GmPTS+GmFGM+GmFTM-GmFGA
 		-GmFTA+GmDREB+(0.5*GmOREB)+GmAST+GmSTL+(0.5*GmBLK)-GmPF-GmTO)
 	"""
 	Name: Player Impact Rate 
