@@ -68,7 +68,7 @@ def getAverages(players_score, team_score):
     attributes = ["FG", "FGA3", "3PT", "FTA", "FT", "TP", "OREB",
                 "DREB", "REB", "AST", "STL", "BLK", "TO", "PF", "PTS"]
     players_boxscore = []
-    teams_boxscore = []
+    teams_boxscore = {}
 
     for values in players_score:
         games = values["games"]
@@ -98,9 +98,22 @@ def getAverages(players_score, team_score):
                     team[attribute] = game_boxscore[attribute]
             team[attribute] = round(team[attribute] / games_played, 2)
 
-        teams_boxscore.append(team)
+        teams_boxscore[team_id] = team
 
     return (players_boxscore, teams_boxscore)
+
+
+def filterResults(players_score, team_score, form):
+    teamIds = form["team"]
+    data = []
+    for team_id in teamIds:
+        team_boxscore = team_score[team_id]
+        team_boxscore["name"] = "TEAM OVERALL"
+        data.append(team_boxscore)
+        for player in players_score:
+            if player["team"] == team_id:
+                data.append(player)
+    return data
 
 '''
 retrieve the data from the backend
@@ -108,6 +121,7 @@ retrieve the data from the backend
 def retrieveData(form):
     (players_score, team_score) = masterQuery(form)
     (players_score, team_score) = getAverages(players_score, team_score)
+    players_score = filterResults(players_score, team_score, form)
     #data = json.dumps(data)
     final = {"dataTab" : "players", "data" : players_score, "teamOverall" : team_score}
     final = json.dumps(final)
