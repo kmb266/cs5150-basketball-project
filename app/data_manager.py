@@ -155,7 +155,7 @@ def main():
     data = retrieveData(form)
 
     #return what we get
-    print data
+    print(data)
     sys.stdout.flush()
 
 #start process
