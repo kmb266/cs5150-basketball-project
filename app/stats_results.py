@@ -3,7 +3,41 @@ import numpy;
 
 
 def stats_calculation(data):
-	for dic in data:
+	for player in data["players"]:
+		games = player["games"]
+		team_id = player["team"]
+		for game_id, box_score in games.items():
+			# Player values
+			AST = box_score["AST"]
+			BLK = box_score["AST"]
+			DREB = box_score["AST"]
+			FGM = box_score["AST"]
+			FGA = box_score["AST"]
+			FTA = box_score["AST"]
+			FGM_2 =box_score["AST"]
+			FGA_2 = box_score["AST"]
+			FGM_3 = box_score["AST"]
+			FGA_3 = box_score["AST"]
+			FTM = box_score["AST"]
+			MIN = box_score["AST"]
+			ORE = box_score["AST"]
+
+			opponent_id = box_score["away"]
+			if team_id == opponent_id:
+				opponent_id = box_score["home"]
+
+			# Team values
+			team_boxscore = data["TeamOverall"][opponent_id]["games"][game_id]
+			TmAST = team_boxscore["AST"]
+
+			# Opponent team values
+			team_boxscore = data["TeamOverall"][opponent_id]["games"][game_id]
+			OppPTS = team_boxscore["PTS"]
+
+
+	for player in data:
+
+
 
 		AST = 1
 		BLK = 1
