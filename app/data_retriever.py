@@ -62,7 +62,7 @@ def masterQuery(json_form):
     data = json.loads(json.dumps(json_form))
 
     #print(data)
-        engine = create_engine('sqlite:///basketball.db', echo=False)
+    engine = create_engine('sqlite:///basketball.db', echo=False)
     Session = sessionmaker(bind=engine)
     session = Session()
     teamIds = data["team"]
@@ -562,4 +562,3 @@ def masterQuery(json_form):
 #     "onlyQueryOT": False
 #   }
 # }))
-

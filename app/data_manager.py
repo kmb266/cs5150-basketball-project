@@ -149,7 +149,7 @@ def getForm():
 
 def main():
     form = getForm()
-    #form = sampleForm()
+    # form = sampleForm()
 
     form = tidyForm(form)
     data = retrieveData(form)
