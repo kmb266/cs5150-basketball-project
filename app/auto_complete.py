@@ -7,7 +7,7 @@ def getErrorForm(code, msg):
     return data
 
 def retrieveData(form):
-    #print type(form)
+    #print(type(form))
     target = form["field"]
     if target is None:
         return getErrorForm(Constants.FormMissingElement, "Missing value for the key 'field'")
