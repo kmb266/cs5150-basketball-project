@@ -503,7 +503,16 @@ export const getTeams = (page) => {
       dropdownAutoWidth : true,
       width: '115px',
       allowClear: true,
-      data: teams
+      data: teams.sort(function (a, b) {
+            a = a.text.toLowerCase();
+            b = b.text.toLowerCase();
+            if (a > b) {
+                return 1;
+            } else if (a < b) {
+                return -1;
+            }
+            return 0;
+        });
     });
 
     teams.forEach(function(teamObj){
