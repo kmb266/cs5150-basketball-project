@@ -3,14 +3,14 @@ import numpy;
 
 
 def stats_calculation(data):
-	#print "Number of players: " + str(len(data["data"]))
-	#print "Calculating advanced stats:"
+	#print("Number of players: " + str(len(data["data"])))
+	#print("Calculating advanced stats:")
 	for player in data["data"]:
-		#print "--Calculating stats for " + player["name"]
+		#print("--Calculating stats for " + player["name"])
 		games = player["games"]
 		team_id = player["team"]
 		for game_id, box_score in games.items():
-			#print "----Calculating game " + str(game_id)
+			#print("----Calculating game " + str(game_id))
 			# Player values
 			AST = box_score["AST"]
 			BLK = box_score["BLK"]
