@@ -3,7 +3,7 @@ from data_retriever import masterQuery
 from stats_results import stats_calculation
 
 def sampleForm():
-    form = "{
+    form = {
   "page": "players",
   "position": [],
   "team": [],
