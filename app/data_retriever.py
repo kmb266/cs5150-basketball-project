@@ -105,8 +105,8 @@ def masterQuery(json_form):
 
         if "dates" in data:
             dates = data["dates"]
-            start = datetime.datetime.strptime(dates["start"], "%D")
-            end = datetime.datetime.strptime(dates["end"], "%D")
+            start = datetime.datetime.fromtimestamp(dates["start"]/1000.0)
+            end = datetime.datetime.fromtimestamp(dates["end"]/1000.0)
             games_query = games_query.filter(and_(Game.date >= start, Game.date <= end))
 
     # So at this point we should only be looking at games within the seasons selected
@@ -411,95 +411,12 @@ def masterQuery(json_form):
                     players[player_id]["games"][game_id]["MIN"] += \
                         players[player_id]["games"][game_id]["last_time"] - sec_end # End of normal period game
 
-        # TODO: Right now, we have total time in secs for each player per game in MIN, probably want to divide by 60
 
         return (players, teams)
 
     (box_score, teams) = generate_box_score(plays)
     return (box_score.values(), teams)
 
-'''
-
-            if play.player_id and play.player_id not in players:
-                player = session.query(Player).filter_by(id=play.player_id).first()
-                game = play.game_id
-                team = player.team
-                players[play.player_id] = {
-                    "name": player.name,
-                    "FGA": 0.0,
-                    "FG": 0.0,
-                    "FGA3": 0.0,
-                    "3PT": 0.0,
-                    "FTA": 0.0,
-                    "FT": 0.0,
-                    "TP": 0.0,
-                    "OREB": 0.0,
-                    "DREB": 0.0,
-                    "REB": 0.0,
-                    "AST": 0.0,
-                    "STL": 0.0,
-                    "BLK": 0.0,
-                    "TO": 0.0,
-                    "PF": 0.0,
-                    "PTS": 0.0,
-                    "games_played" : 1.0,
-                    "last_game" : play.game_id,
-                    "team" : team
-                }
-                if team not in team_score:
-                    team_score[team] = {
-                    "id": team,
-                    "games_played" : 1.0,
-                    "last_game" : play.game_id
-                }
-            elif play.player_id and play.player_id in box_score:
-                if box_score[play.player_id]["last_game"] != play.game_id:
-                    box_score[play.player_id]["games_played"] += 1
-                    box_score[play.player_id]["last_game"] = play.game_id
-
-                team = box_score[play.player_id]["team"]
-                if team_score[team]["last_game"] != play.game_id:
-                    team_score[team]["games_played"] += 1
-                    team_score[team]["last_game"] = play.game_id
-
-            if play.type == "3PTR":
-                box_score[play.player_id]["FGA3"] += 1
-                box_score[play.player_id]["FGA3"] += 1
-                if play.action == "GOOD":
-                    box_score[play.player_id]["3PT"] += 1
-                    box_score[play.player_id]["PTS"] += 3
-            elif play.type == "JUMPER" or play.type == "LAYUP" or play.type == "DUNK":
-                box_score[play.player_id]["FGA"] += 1
-                if play.action == "GOOD":
-                    box_score[play.player_id]["FG"] += 1
-                    box_score[play.player_id]["PTS"] += 2
-            elif play.action == "REBOUND":
-                box_score[play.player_id]["REB"] += 1
-                if play.type == "DEF":
-                    box_score[play.player_id]["DREB"] += 1
-                elif play.type == "OFF":
-                    box_score[play.player_id]["OREB"] += 1
-            elif play.action == "STEAL":
-                box_score[play.player_id]["STL"] += 1
-            elif play.action == "BLOCK":
-                box_score[play.player_id]["BLK"] += 1
-            elif play.action == "TURNOVER":
-                box_score[play.player_id]["TO"] += 1
-            elif play.action == "STEAL":
-                box_score[play.player_id]["STL"] += 1
-            elif play.type == "FT":
-                box_score[play.player_id]["FTA"] += 1
-                if play.action == "GOOD":
-                    box_score[play.player_id]["FT"] += 1
-                    box_score[play.player_id]["PTS"] += 1
-            elif play.action == "FOUL":
-                box_score[play.player_id]["PF"] += 1
-
-        return (box_score, team_score)
-
-    (box_score, team_score) = generate_box_score(plays)
-    return (box_score.values(), team_score)
-'''
 
 #
 # print(masterQuery({
