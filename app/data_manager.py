@@ -63,7 +63,7 @@ def sampleForm():
     "ot4": True,
     "ot5": True,
     "ot6": True,
-    "onlyQueryOT": false
+    "onlyQueryOT": False
   },
   "dates": {
     "start": 1509508800000,
