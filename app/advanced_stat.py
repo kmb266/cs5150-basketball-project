@@ -870,7 +870,7 @@ def Usage_Rate(FGA,FTA,TOV,TmMIN,MIN,TmFGA,TmFTA,TmTOV):
 
 
 def AST_perc(AST,MIN,TmMIN,TmFGM,FGM):
-	return float(100*AST/(((MIN/float(TmMIN/5))*TmFGM)-FGM))
+	return float(100*AST/(((MIN/(TmMIN/5))*TmFGM)-FGM))
 	"""
 	Name: Assist Percentage (Individual)
 	Returns: the Assist Percentage based on parameters
@@ -894,6 +894,18 @@ def ASTr(AST,FGM):
   else:
     return float(AST/FGM)
 
+'''
+	Name: Assists Rate
+	Returns: the assists rate based on parameters
+	Arguments:
+		AST: assists
+		FGM: filed goals made
+
+	Depend? No
+	check status: Yes (cannot find in excel)
+	level: 1
+
+'''
 
 
 def AST_Ratio(AST,FGA,FTA,TOV):
@@ -993,6 +1005,28 @@ def Game_Score(PTS,FGM,FGA,FTA,FTM,ORE,DREB,STL,AST,BLK,PF,TOV):
 	*(FTA-FTM)+0.7*ORE-0.3*DREB+STL
 	+0.7*AST+0.7*BLK-0.4*PF-TOV)
 
+'''
+	Name: Game Score (individual)
+	Returns: the game score based on parameters
+	Arguments:
+		PTS: Points
+		FGM: field goal made
+		FGA: field goal attemped
+		FTA: free throw attemped
+		FTM: free throw made
+		ORE: Offensive Rebounds
+		DREB: Total Offensive Rebounds
+		STL: total steals
+		AST: assist
+		BLK: total blocks
+		PF: total personal fouls
+		TOV: turnover
+
+	Depend? No
+	check status: Yes (cannot find in excel sheet)
+	level: 1
+
+'''
 
 
 def Pace(TmPoss,OppPoss,TmMIN):
