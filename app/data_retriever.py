@@ -449,66 +449,64 @@ def masterQuery(json_form):
     return (box_score.values(), team_score)
 '''
 
-
-print(masterQuery({
-  "page": "players",
-  "position": [],
-  "team": [
-    "COR"
-  ],
-  "opponent": [
-      "CENTPENN"
-  ],
-  "in": [],  # Kyle's id is 1 right now
-  "out": [],
-  "upOrDown": [
-    "within",
-    15
-  ],
-  "season": [
-    "2018"
-  ],
-  "gametime": {
-    "slider": {
-      "start": {
-        "clock": "20:00",
-        "sec": -1200
-      },
-      "end": {
-        "clock": "00:00",
-        "sec": 0
-      }
-    },
-    "sliderExtra": {
-      "start": {
-        "clock": "20:00",
-        "sec": -2400
-      },
-      "end": {
-        "clock": "00:00",
-        "sec": 0
-      }
-    },
-    "multipleTimeFrames": False
-  },
-  "location": {
-    "home": True,
-    "away": True,
-    "neutral": True
-  },
-  "outcome": {
-    "wins": True,
-    "losses": True
-  },
-  "overtime": {
-    "ot1": False,
-    "ot2": False,
-    "ot3": False,
-    "ot4": False,
-    "ot5": False,
-    "ot6": False,
-    "onlyQueryOT": False
-  }
-}))
-
-
+# 
+# print(masterQuery({
+#   "page": "players",
+#   "position": [],
+#   "team": [
+#     "COR"
+#   ],
+#   "opponent": [
+#       "CENTPENN"
+#   ],
+#   "in": [],  # Kyle's id is 1 right now
+#   "out": [],
+#   "upOrDown": [
+#     "within",
+#     15
+#   ],
+#   "season": [
+#     "2018"
+#   ],
+#   "gametime": {
+#     "slider": {
+#       "start": {
+#         "clock": "20:00",
+#         "sec": -1200
+#       },
+#       "end": {
+#         "clock": "00:00",
+#         "sec": 0
+#       }
+#     },
+#     "sliderExtra": {
+#       "start": {
+#         "clock": "20:00",
+#         "sec": -2400
+#       },
+#       "end": {
+#         "clock": "00:00",
+#         "sec": 0
+#       }
+#     },
+#     "multipleTimeFrames": False
+#   },
+#   "location": {
+#     "home": True,
+#     "away": True,
+#     "neutral": True
+#   },
+#   "outcome": {
+#     "wins": True,
+#     "losses": True
+#   },
+#   "overtime": {
+#     "ot1": False,
+#     "ot2": False,
+#     "ot3": False,
+#     "ot4": False,
+#     "ot5": False,
+#     "ot6": False,
+#     "onlyQueryOT": False
+#   }
+# }))
