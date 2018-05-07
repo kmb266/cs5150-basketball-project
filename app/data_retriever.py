@@ -87,20 +87,27 @@ def masterQuery(json_form):
      )
 
     # If there's a season, get all games within that season
-    seasons = data["season"]
-    if seasons:
-        # If the list of seasons isn't empty
-        # Make a datetime from the season year number
-        datetime_ranges = []
-        for season in seasons:
-            year = int(season)
-            start = datetime.datetime(year-1, 6, 2) # Season starts on June 2 of prior year
-            end = datetime.datetime(year, 6, 1)   # Season ends on June 1 of this year
-            datetime_ranges.append([start, end])
-        conds = []
-        for d in datetime_ranges:
-            conds.append(and_(Game.date>d[0], Game.date< d[1]))
-        games_query = games_query.filter(or_(*conds)) # Pray that this works
+    if "season" in data:
+        seasons = data["season"]
+        if seasons:
+            # If the list of seasons isn't empty
+            # Make a datetime from the season year number
+            datetime_ranges = []
+            for season in seasons:
+                year = int(season)
+                start = datetime.datetime(year-1, 6, 2) # Season starts on June 2 of prior year
+                end = datetime.datetime(year, 6, 1)   # Season ends on June 1 of this year
+                datetime_ranges.append([start, end])
+            conds = []
+            for d in datetime_ranges:
+                conds.append(and_(Game.date>d[0], Game.date< d[1]))
+            games_query = games_query.filter(or_(*conds)) # Pray that this works
+
+        if "dates" in data:
+            dates = data["dates"]
+            start = datetime.datetime.strptime(dates["start"], "%D")
+            end = datetime.datetime.strptime(dates["end"], "%D")
+            games_query = games_query.filter(and_(Game.date >= start, Game.date <= end))
 
     # So at this point we should only be looking at games within the seasons selected
 
@@ -465,9 +472,10 @@ print(masterQuery({
     "within",
     15
   ],
-  "season": [
-    "2018"
-  ],
+  "dates": {
+    "start": "11/1/2017",
+    "end": "5/7/2018"
+  },
   "gametime": {
     "slider": {
       "start": {
@@ -510,5 +518,4 @@ print(masterQuery({
     "onlyQueryOT": False
   }
 }))
-
 
