@@ -147,8 +147,8 @@ export class TeamsFilterComponent implements OnInit {
       }
 
     filters.dates = {
-      start: $("#teams-start-date").datepicker('getDate').toLocaleDateString(),
-      end: $("#teams-end-date").datepicker('getDate').toLocaleDateString()
+      start: $("#teams-start-date").datepicker('getDate').getTime(),
+      end: $("#teams-end-date").datepicker('getDate').getTime()
     }
 
     console.log(filters);
