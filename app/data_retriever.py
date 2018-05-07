@@ -154,12 +154,20 @@ def masterQuery(json_form):
                 play.v5 in players:
                 return True
 
+    positions = data["position"]
 
+    # Position filter: Only include players with the given positions - expected value is int list
+    if positions:
+        plays = list(filter(lambda p: session.query(Player).filter_by(id=p.player_id).first().position in positions, plays))
+
+    # Lineup filters: filter by players in/out of the game
     if players_in:
         plays = list(filter(lambda p: player_in(p, players_in), plays))
 
     if players_out:
         plays = list(filter(lambda p: not player_in(p, players_in), plays))
+
+
 
     def generate_box_score(plays):
         """
@@ -173,7 +181,7 @@ def masterQuery(json_form):
         teams = {}
 
         for play in plays:
-            #Create player if its not in the list
+            # Create player if its not in the list
             player_id = play.player_id
             if player_id is None:
                 continue
@@ -210,7 +218,11 @@ def masterQuery(json_form):
                     "BLK": 0.0,
                     "TO": 0.0,
                     "PF": 0.0,
-                    "PTS": 0.0
+                    "PTS": 0.0,
+                    "MIN": 0.0,
+                    "LAST_IN_OR_OUT": "OUT", # Used to keep track of whether the last sub in this game was in or out
+                    "SEEN": False, # Used to keep track of whether the player has been seen yet
+                    "last_time": sec_start
                 }
 
             team = players[player_id]["team"]
@@ -234,6 +246,27 @@ def masterQuery(json_form):
                     "PTS": 0.0
                 }
 
+            if not players[player_id]["games"][game_id]["SEEN"]:
+                players[player_id]["games"][game_id]["SEEN"] = True
+                if play.action == "SUB" and play.type == "OUT":
+                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "OUT"
+                    players[player_id]["games"][game_id]["MIN"] = sec_start - time_converted(play.period, play.time)
+
+                else:
+                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "IN"
+                    # players[player_id]["games"][game_id]["last_time"] = time_converted(play.period, play.time)
+
+
+                # Player being seen in the game for the first time (includes sub in plays)
+            # elif players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "OUT":
+            #     players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "IN"
+            #     # Get the difference between the last sub in and add this to MINS
+            #     now = time_converted(play.period, play.time)
+            #     players[player_id]["games"][game_id]["LAST_IN_OR_OUT"]["MINS"] += \
+            #         players[player_id]["games"][game_id]["last_time"] - now
+            #     players[player_id]["games"][game_id]["last_time"] = now
+
+
 
             if play.type == "3PTR":
                 players[player_id]["games"][game_id]["FGA3"] += 1
@@ -243,6 +276,17 @@ def masterQuery(json_form):
                     players[player_id]["games"][game_id]["PTS"] += 3
                     teams[team]["games"][game_id]["3PT"] += 1
                     teams[team]["games"][game_id]["PTS"] += 3
+            elif play.action == "SUB":
+                if play.type == "IN":
+                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "IN"
+                    players[player_id]["games"][game_id]["SEEN"] = True
+                    players[player_id]["games"][game_id]["last_time"] = time_converted(play.period, play.time)
+                elif play.type == "OUT":
+                    now = time_converted(play.period, play.time)
+                    players[player_id]["games"][game_id]["MIN"] += \
+                        players[player_id]["games"][game_id]["last_time"] - now
+                    players[player_id]["games"][game_id]["last_time"] = now
+                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "OUT"
             elif play.type == "JUMPER" or play.type == "LAYUP" or play.type == "DUNK":
                 players[player_id]["games"][game_id]["FGA"] += 1
                 teams[team]["games"][game_id]["FGA"] += 1
@@ -287,10 +331,21 @@ def masterQuery(json_form):
                 players[player_id]["games"][game_id]["PF"] += 1
                 teams[team]["games"][game_id]["PF"] += 1
 
+        # If we're done and the player was last subbed in, fix their minutes by subbing them out
+        for player_id in players:
+            for game_id in players[player_id]["games"]:
+                if players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "IN":
+                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "OUT"
+                    players[player_id]["games"][game_id]["MIN"] += \
+                        players[player_id]["games"][game_id]["last_time"] - sec_end # End of normal period game
+
+        # TODO: Right now, we have total time in secs for each player per game in MIN, probably want to divide by 60
+
         return (players, teams)
 
     (box_score, teams) = generate_box_score(plays)
     return (box_score.values(), teams)
+
 '''
 
             if play.player_id and play.player_id not in players:
@@ -374,7 +429,7 @@ def masterQuery(json_form):
     return (box_score.values(), team_score)
 '''
 
-'''
+
 print(masterQuery({
   "page": "players",
   "position": [],
@@ -384,7 +439,7 @@ print(masterQuery({
   "opponent": [
       "CENTPENN"
   ],
-  "in": [],
+  "in": [17],
   "out": [],
   "upOrDown": [
     "withIn",
@@ -435,4 +490,5 @@ print(masterQuery({
     "onlyQueryOT": False
   }
 }))
-'''
+
+
