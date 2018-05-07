@@ -87,20 +87,27 @@ def masterQuery(json_form):
      )
 
     # If there's a season, get all games within that season
-    seasons = data["season"]
-    if seasons:
-        # If the list of seasons isn't empty
-        # Make a datetime from the season year number
-        datetime_ranges = []
-        for season in seasons:
-            year = int(season)
-            start = datetime.datetime(year-1, 6, 2) # Season starts on June 2 of prior year
-            end = datetime.datetime(year, 6, 1)   # Season ends on June 1 of this year
-            datetime_ranges.append([start, end])
-        conds = []
-        for d in datetime_ranges:
-            conds.append(and_(Game.date>d[0], Game.date< d[1]))
-        games_query = games_query.filter(or_(*conds)) # Pray that this works
+    if "season" in data:
+        seasons = data["season"]
+        if seasons:
+            # If the list of seasons isn't empty
+            # Make a datetime from the season year number
+            datetime_ranges = []
+            for season in seasons:
+                year = int(season)
+                start = datetime.datetime(year-1, 6, 2) # Season starts on June 2 of prior year
+                end = datetime.datetime(year, 6, 1)   # Season ends on June 1 of this year
+                datetime_ranges.append([start, end])
+            conds = []
+            for d in datetime_ranges:
+                conds.append(and_(Game.date>d[0], Game.date< d[1]))
+            games_query = games_query.filter(or_(*conds)) # Pray that this works
+
+        if "dates" in data:
+            dates = data["dates"]
+            start = datetime.datetime.strptime(dates["start"], "%D")
+            end = datetime.datetime.strptime(dates["end"], "%D")
+            games_query = games_query.filter(and_(Game.date >= start, Game.date <= end))
 
     # So at this point we should only be looking at games within the seasons selected
 
@@ -122,10 +129,33 @@ def masterQuery(json_form):
 
     # At this point, we're looking at all the plays in all the games selected by filters
 
-    # Now apply timing filters
+    # Overtime filter
+    if "overtime" in data["overtime"]:
+        overtimes = data["overtime"]
+        if overtimes["onlyQueryOT"] is True:
+            plays_query = plays_query.filter(Play.period > 2)
+        valid_OT_periods = []
+        for key in overtimes:
+            if key != "onlyQueryOT":
+                if overtimes[key] is True:
+                    valid_OT_periods.append(key[2:])
+        if valid_OT_periods:
+            # If the user is filtering to show overtimes
+            plays_query = plays_query.filter(Play.period.in_(valid_OT_periods))
 
+
+
+
+    time_periods = []
     sec_start = data["gametime"]["slider"]["start"]["sec"]
     sec_end = data["gametime"]["slider"]["end"]["sec"]
+    time_periods.append([sec_start, sec_end])
+
+    if data["gametime"]["multipleTimeFrames"] is True:
+        sec_start_2 = data["gametime"]["sliderExtra"]["start"]["sec"]
+        sec_end_2 = data["gametime"]["sliderExtra"]["start"]["sec"]
+        time_periods.append([sec_start_2, sec_end_2])
+
 
     def time_converted(period, time):
         """
@@ -134,17 +164,33 @@ def masterQuery(json_form):
         :param time:
         :return:
         """
+        if period < 3:
+            result = -2400 + ((period-1) * 1200) # Period 1 -> 2400, period 2 -> 1200
+            mins_to_secs = 1200 - int(time[:2]) * 60 # 20 mins -> 0, 0 mins -> 1200
+            secs_to_secs = int(time[3:])
+            return result + mins_to_secs - secs_to_secs
+        else:
+            # TODO: Check if this works
+            result = (period - 3) * 5 * 60
+            mins_to_secs = 300 - int(time[:2]) * 60
+            secs_to_secs = int(time[3:])
+            return result + mins_to_secs - secs_to_secs
 
-        result = -2400 + ((period-1) * 1200) # Period 1 -> 2400, period 2 -> 1200
-        mins_to_secs = 1200 - int(time[:2]) * 60 # 20 mins -> 0, 0 mins -> 1200
-        secs_to_secs = int(time[3:])
-        return result + mins_to_secs - secs_to_secs
+    # Now apply timing filters
+    # TODO: Implement this in the same way we did dates for seasons
+    time_period_conds = []
+    for time in time_periods:
+        time_period_conds.append(and_(Play.time_converted >= time[0], Play.time_converted <= time[1]))
+    if time_period_conds:
+        plays_query = plays_query.filter(or_(*time_period_conds))  # Pray that this works
 
-    # TODO: Try and fix this following filter, but because it's not working, for now we substitute with Python filter
-    # plays_query.filter(and_(time_converted(Play.period, Play.time) >= sec_start, time_converted(Play.period, Play.time) <= sec_end))
+    # # TODO: Try and fix this following filter, but because it's not working, for now we substitute with Python filter
+    # # plays_query.filter(and_(time_converted(Play.period, Play.time) >= sec_start, time_converted(Play.period, Play.time) <= sec_end))
+    # plays = plays_query.all()
+    #
+    # plays = list(filter(lambda p: time_converted(p.period, p.time) >= sec_start and time_converted(p.period, p.time) <= sec_end, plays))
+
     plays = plays_query.all()
-    plays = list(filter(lambda p: time_converted(p.period, p.time) >= sec_start and time_converted(p.period, p.time) <= sec_end, plays))
-
     # Lastly, filter the plays based on players in/out
     players_in = data["in"]
     players_out = data["out"]
@@ -185,6 +231,7 @@ def masterQuery(json_form):
             plays = list(filter(lambda p: p.away_score - p.home_score >= up_or_down[1], plays))
         elif up_or_down == "up":
             plays = list(filter(lambda p: p.home_score - p.away_score >= up_or_down[1], plays))
+
 
 
 
@@ -514,3 +561,4 @@ def masterQuery(json_form):
 #     "onlyQueryOT": False
 #   }
 # }))
+
