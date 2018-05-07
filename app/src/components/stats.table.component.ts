@@ -9,10 +9,10 @@ import { CommonModule } from '@angular/common';
 
 export class StatsTableComponent {
   public readonly header = 'h1';
-  public readonly headers = ["Player","FG","3PT","FT","OREB","DREB","REB","AST","STL","BLK","TO","PF","PTS"];
+  public readonly headers = ["Player","FG","3PT","FT","OREB","DREB","REB","AST","STL","BLK","TO","PF","PTS", "Usage_Rate", "PIE", "Game_Score"];
 
   //list of headers/columns to display in tables *** CHANGE DO GET LIST PASSED IN FROM DB ***
-  keyHeaders = ["name","FG","3PT","FT","OREB","DREB","REB","AST","STL","BLK","TO","PF","PTS"];
+  keyHeaders = ["name","FG","3PT","FT","OREB","DREB","REB","AST","STL","BLK","TO","PF","PTS", "Usage_Rate", "PIE", "Game_Score"];
   public init_data = [{'FT': 0, 'STL': 0, '3PT': 0, 'BLK': 0, 'FG': 0, 'REB': 0, 'DREB': 0, 'name': 'Player Name', 'AST': 0, 'OREB': 0, 'TO': 0, 'PF': 0, 'PTS': 0, 'jersey': '-'}];
 
   // Lists of players and columns/headers to be displayed
