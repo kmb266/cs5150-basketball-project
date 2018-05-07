@@ -1,5 +1,6 @@
 import datetime
 from db import Game, Team, Player, PlayerIn, TeamIn, Play
+from sqlalchemy import Column
 
 def parse_game(data, session):
     """
@@ -129,8 +130,8 @@ def parse_plays(data, session):
             away_score=away_score,text=text)
         session.add(p)
 
-    action = Column(String)
-    type = Column(String)
+    action = ""
+    type = ""
     player_id = Column(Integer, ForeignKey('players.id'))
 
 
