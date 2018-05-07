@@ -371,7 +371,7 @@ def TmOREB_pect(TmOREB,OppTREB,OppDREB):
 		OppTREB:  Opponent TREB
 
 		Depend? No
-		check status: Yes (different results from excel sheet, different fomulars used)
+		check status: Yes 
 		level: 1
 
 	"""
@@ -659,8 +659,6 @@ def DOREB_perc(OppOREB,TmDREB):
 		Depend? No
 		check status: Yes
 		level: 1
-
-		Note: check the fomular, in the excel, it is OppOREB/(OppOREB+TmDREB)
 
 
 	"""
