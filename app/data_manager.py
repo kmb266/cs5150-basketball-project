@@ -3,23 +3,16 @@ from data_retriever import masterQuery
 from stats_results import stats_calculation
 
 def sampleForm():
-    form = {
+    form = "{
   "page": "players",
   "position": [],
-  "team": [
-    "COR"
-  ],
-  "opponent": [
-    "COL"
-  ],
+  "team": [],
+  "opponent": [],
   "in": [],
   "out": [],
   "upOrDown": [
     "withIn",
     None
-  ],
-  "season": [
-    "2018"
   ],
   "gametime": {
     "slider": {
@@ -54,13 +47,27 @@ def sampleForm():
     "losses": True
   },
   "overtime": {
-    "ot1": False,
-    "ot2": False,
-    "ot3": False,
-    "ot4": False,
-    "ot5": False,
-    "ot6": False,
-    "onlyQueryOT": False
+    "otSlider": {
+      "start": {
+        "clock": "5:00",
+        "sec": -300
+      },
+      "end": {
+        "clock": "0:00",
+        "sec": 0
+      }
+    },
+    "ot1": True,
+    "ot2": True,
+    "ot3": True,
+    "ot4": True,
+    "ot5": True,
+    "ot6": True,
+    "onlyQueryOT": false
+  },
+  "dates": {
+    "start": 1509508800000,
+    "end": 1525665600000
   }
 }
     return form
@@ -148,14 +155,14 @@ def getForm():
     return json.loads(lines[0])
 
 def main():
-    form = getForm()
-    # form = sampleForm()
+    # form = getForm()
+    form = sampleForm()
 
     form = tidyForm(form)
     data = retrieveData(form)
 
     #return what we get
-    print data
+    print(data)
     sys.stdout.flush()
 
 #start process

@@ -149,8 +149,8 @@ export class PlayersFilterComponent implements OnInit {
       }
 
     filters.dates = {
-      start: $("#players-start-date").datepicker('getDate').toLocaleDateString(),
-      end: $("#players-end-date").datepicker('getDate').toLocaleDateString()
+      start: $("#players-start-date").datepicker('getDate').getTime(),
+      end: $("#players-end-date").datepicker('getDate').getTime()
     }
 
     console.log(filters);
