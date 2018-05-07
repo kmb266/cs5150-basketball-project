@@ -362,7 +362,7 @@ def TmOREBWgt(TmOREB_pect,TmPlay_pect):
 
 
 def TmOREB_pect(TmOREB,OppTREB,OppDREB):
-	return float(TmOREB/(TmOREB+(OppTREB-OppDREB)))
+	return float(TmOREB/(TmOREB+OppDREB))
 	"""
 	Name: Team Total Offensive Rebounds Weight Percentage
 	Returns: the Team Total Offensive Rebounds Weight Percentage based on parameters
@@ -371,7 +371,7 @@ def TmOREB_pect(TmOREB,OppTREB,OppDREB):
 		OppTREB:  Opponent TREB
 
 		Depend? No
-		check status: Yes (different results from excel sheet, different fomulars used)
+		check status: Yes 
 		level: 1
 
 	"""
@@ -648,7 +648,7 @@ def FMwt(DFG_perc,DOREB_perc):
 
 
 def DOREB_perc(OppOREB,TmDREB):
-	return float(OppOREB/(OppOREB/TmDREB))
+	return float(OppOREB/(OppOREB+TmDREB))
 	"""
 	Name: Total Defensive Rebounds Percentage
 	Returns: the Total Defensive Rebounds Percentage based on parameters
@@ -659,8 +659,6 @@ def DOREB_perc(OppOREB,TmDREB):
 		Depend? No
 		check status: Yes
 		level: 1
-
-		Note: check the fomular, in the excel, it is OppOREB/(OppOREB+TmDREB)
 
 
 	"""

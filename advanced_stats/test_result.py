@@ -107,10 +107,10 @@ print DFG_perc(29.0,70.0)
 
 
 def DOREB_perc(OppOREB,TmDREB):
-  return float(OppOREB/(OppOREB/TmDREB))
+  return float(OppOREB/(OppOREB+TmDREB))
 
 print DOREB_perc(17.0,20.0)
-# test result: 20.0
+# test result: 45.94%
 # exel result: 45.9% 
 # excel location: STAT ANALYSIS(AC19)
 # Note: different fomular from excel sheet, double check? (ask during presentation)
@@ -364,13 +364,13 @@ print TmOREBWgt(0.231,0.278)
 
 
 def TmOREB_pect(TmOREB,OppTREB,OppDREB):
-  return float(TmOREB/(TmOREB+(OppTREB-OppDREB)))
+  return float(TmOREB/(TmOREB+OppDREB))
 
 print TmOREB_pect(9.0,47.0,30.0)
-# test result: 34.6%
+# test result: 23.07%
 # exel result: 23.1%
 # excel location: STAT ANALYSIS(019)
-# Note: different fomulars used. Checked (ok)
+
 
 
 
@@ -441,7 +441,6 @@ print Individual_Offensize_Rating(8.7,10.6)
 # test result: 82.1
 # exel result: 82.4
 # excel location: STAT ANALYSIS(F5)
-
 
 
 
