@@ -19,7 +19,7 @@ def FTmPoss(FTM,FTA):
 
 print FTmPoss(0.0,2.0)
 # test result: 80.0%
-# exel result: 88% 
+# exel result: 80.0% 
 # excel location: STAT ANALYSIS(Y3)
 
 
@@ -40,10 +40,11 @@ print Usage_Rate(1.0,2.0,1.0,200.0,4.0,52.0,26.0,15.0)
 def AST_perc(AST,MIN,TmMIN,TmFGM,FGM):
   return float(100*AST/(((MIN/(TmMIN/5))*TmFGM)-FGM))
 
-print AST_perc(1.0,4.0,200.0,13.0,1.0)
-# test result: 333.33
-# exel result: ??????
-# excel location: ??????
+x = AST_perc(747.0,3026.0,19730.0,3429.0,857.0)
+print(x)
+# test result: 42.14%
+# NBA web result: 44.4%
+# excel location: cannot find in excel, used NBA data to test
 
 
 
@@ -84,21 +85,11 @@ print TmPoss(52.0, 9.0, 30.0, 26.0, 13.0, 15.0)
 def Pace(TmPoss,OppPoss,TmMIN):
   return float(40*((TmPoss+OppPoss)/(2*(TmMIN/5))))
 
-print Pace(67.77, 65.04,200.0)
-# test result: 66.405
-# exel result: ??????
-# excel location: ??????
-
-
-
-
-def STL_perc(STL,TmMIN,MIN,OppPoss):
-  return  float(100*(STL*(TmMIN/5))/(MIN*OppPoss))
-
-print STL_perc(1.0,200.0,4.0,65.04)
-# test result: 15.375
-# exel result: ??????
-# excel location: ??????
+x =  Pace(8051.97, 8059.5, 19730.0)
+print(x)
+# test result: 81.65
+# NBA web result: 98.0
+# excel location: cannot find in excel, used NBA data to test
 
 
 
@@ -203,8 +194,6 @@ print OppPtsPScorPoss(77.0,29.0,17.0,18.0)
 # test result: 2.128
 # exel result: ???????  
 # excel location: ????????
-
-
 
 
 
@@ -374,8 +363,6 @@ print TmOREBWgt(0.231,0.278)
 
 
 
-
-
 def TmOREB_pect(TmOREB,OppTREB,OppDREB):
   return float(TmOREB/(TmOREB+(OppTREB-OppDREB)))
 
@@ -384,8 +371,6 @@ print TmOREB_pect(9.0,47.0,30.0)
 # exel result: 23.1%
 # excel location: STAT ANALYSIS(019)
 # Note: different fomulars used. Checked (ok)
-
-
 
 
 
