@@ -268,6 +268,8 @@ def masterQuery(json_form):
             #Create game for the player if its not in the list
             game_id = play.game_id
 
+            g = session.query(Game).filter_by(id=game_id).first()
+
             if game_id and game_id not in players[player_id]["games"]:
                 players[player_id]["games"][game_id] = {
                     "FGA": 0.0,
@@ -289,7 +291,9 @@ def masterQuery(json_form):
                     "MIN": 0.0,
                     "LAST_IN_OR_OUT": "OUT", # Used to keep track of whether the last sub in this game was in or out
                     "SEEN": False, # Used to keep track of whether the player has been seen yet
-                    "last_time": sec_start
+                    "last_time": sec_start,
+                    "home": g.home,
+                    "away" : g.visitor
                 }
 
             team = players[player_id]["team"]
@@ -496,64 +500,65 @@ def masterQuery(json_form):
     return (box_score.values(), team_score)
 '''
 
+#
+# print(masterQuery({
+#   "page": "players",
+#   "position": [],
+#   "team": [
+#     "COR"
+#   ],
+#   "opponent": [
+#       "CENTPENN"
+#   ],
+#   "in": [],  # Kyle's id is 1 right now
+#   "out": [],
+#   "upOrDown": [
+#     "within",
+#     15
+#   ],
+#   "season": [
+#     "2018"
+#   ],
+#   "gametime": {
+#     "slider": {
+#       "start": {
+#         "clock": "20:00",
+#         "sec": -1200
+#       },
+#       "end": {
+#         "clock": "00:00",
+#         "sec": 0
+#       }
+#     },
+#     "sliderExtra": {
+#       "start": {
+#         "clock": "20:00",
+#         "sec": -2400
+#       },
+#       "end": {
+#         "clock": "00:00",
+#         "sec": 0
+#       }
+#     },
+#     "multipleTimeFrames": False
+#   },
+#   "location": {
+#     "home": True,
+#     "away": True,
+#     "neutral": True
+#   },
+#   "outcome": {
+#     "wins": True,
+#     "losses": True
+#   },
+#   "overtime": {
+#     "ot1": False,
+#     "ot2": False,
+#     "ot3": False,
+#     "ot4": False,
+#     "ot5": False,
+#     "ot6": False,
+#     "onlyQueryOT": False
+#   }
+# }))
 
-print(masterQuery({
-  "page": "players",
-  "position": [],
-  "team": [
-    "COR"
-  ],
-  "opponent": [
-      "CENTPENN"
-  ],
-  "in": [],  # Kyle's id is 1 right now
-  "out": [],
-  "upOrDown": [
-    "within",
-    15
-  ],
-  "season": [
-    "2018"
-  ],
-  "gametime": {
-    "slider": {
-      "start": {
-        "clock": "20:00",
-        "sec": -1200
-      },
-      "end": {
-        "clock": "00:00",
-        "sec": 0
-      }
-    },
-    "sliderExtra": {
-      "start": {
-        "clock": "20:00",
-        "sec": -2400
-      },
-      "end": {
-        "clock": "00:00",
-        "sec": 0
-      }
-    },
-    "multipleTimeFrames": False
-  },
-  "location": {
-    "home": True,
-    "away": True,
-    "neutral": True
-  },
-  "outcome": {
-    "wins": True,
-    "losses": True
-  },
-  "overtime": {
-    "ot1": False,
-    "ot2": False,
-    "ot3": False,
-    "ot4": False,
-    "ot5": False,
-    "ot6": False,
-    "onlyQueryOT": False
-  }
-}))

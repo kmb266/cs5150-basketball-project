@@ -1,5 +1,6 @@
 import sys, json
 from data_retriever import masterQuery
+from stats_results import stats_calculation
 
 def sampleForm():
     form = {
@@ -67,6 +68,7 @@ def sampleForm():
 def getAverages(players_score, team_score):
     attributes = ["FG", "FGA3", "3PT", "FTA", "FT", "TP", "OREB",
                 "DREB", "REB", "AST", "STL", "BLK", "TO", "PF", "PTS"]
+    advanced_attributes = ["Usage_Rate", "PIE", "Game_Score"]
     players_boxscore = []
     teams_boxscore = {}
 
@@ -75,13 +77,14 @@ def getAverages(players_score, team_score):
         player = {"name" : values["name"], "team" : values["team"]}
         games_played = len(games)
 
-        for attribute in attributes:
+        for attribute in attributes + advanced_attributes:
             for game, game_boxscore in games.items():
-                if attribute in player:
-                    player[attribute] += game_boxscore[attribute]
-                else:
-                    player[attribute] = game_boxscore[attribute]
-            player[attribute] = round(player[attribute] / games_played, 2)
+                if attribute in game_boxscore:
+                    if attribute in player:
+                        player[attribute] += game_boxscore[attribute]
+                    else:
+                        player[attribute] = game_boxscore[attribute]
+                    player[attribute] = round(player[attribute] / games_played, 2)
 
         players_boxscore.append(player)
 
@@ -92,11 +95,12 @@ def getAverages(players_score, team_score):
 
         for attribute in attributes:
             for game, game_boxscore in games.items():
-                if attribute in team:
-                    team[attribute] += game_boxscore[attribute]
-                else:
-                    team[attribute] = game_boxscore[attribute]
-            team[attribute] = round(team[attribute] / games_played, 2)
+                if attribute in game_boxscore:
+                    if attribute in team:
+                        team[attribute] += game_boxscore[attribute]
+                    else:
+                        team[attribute] = game_boxscore[attribute]
+                    team[attribute] = round(team[attribute] / games_played, 2)
 
         teams_boxscore[team_id] = team
 
@@ -120,6 +124,9 @@ retrieve the data from the backend
 '''
 def retrieveData(form):
     (players_score, team_score) = masterQuery(form)
+    final = {"dataTab" : "players", "data" : players_score, "teamOverall" : team_score}
+    stats_calculation(final)
+
     (players_score, team_score) = getAverages(players_score, team_score)
     players_score = filterResults(players_score, team_score, form)
     #data = json.dumps(data)
