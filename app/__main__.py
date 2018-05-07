@@ -160,7 +160,7 @@ def xml_to_database(xml_file):
     for period in plays:
         for play in plays[period]:
             # print(play)
-            player_id = session.query(Player).filter_by(name=play["checkname"], team=play["team"]).first().id
+            player_id = session.query(Player).filter_by(name=play["checkname"], team=play["team"]).first().id # This is breaking on file GAME16 in 2014-2015 database
             # Update home_on_court and away_on_court as necessary
             if play["action"] == "SUB":
                 if play["type"] == "OUT":
@@ -356,9 +356,17 @@ def json_to_database(json_file):
 
 # This loops populates the database using all the xml files
 for dir in os.listdir("../xml_data"):
-    print("In directory: {}\n----\n".format(dir))  # TODO: Comment out for production
+    # print("In directory: {}\n----\n".format(dir))  # TODO: Comment out for production
     for filename in os.listdir("../xml_data/{}".format(dir)):
         if filename.endswith(".xml"):
             fl = "../xml_data/{}/{}".format(dir, filename)
-            xml_to_database(fl)
-            print("Finished populating data from {}".format(fl)) # TODO: Comment out for production
+            # print("Trying to populate data from {}".format(fl))
+            try:
+                xml_to_database(fl)
+            except AttributeError:
+                print("ERROR: AttributeError in file {}".format(fl))
+            except Exception as ex:
+                print("ERROR: {} in file {} | Arguments: {}".format(type(ex).__name__, fl, ex.args))
+
+
+            # print("Finished populating data from {}".format(fl)) # TODO: Comment out for production
