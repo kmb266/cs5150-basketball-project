@@ -104,6 +104,15 @@ def masterQuery(json_form):
 
     # So at this point we should only be looking at games within the seasons selected
 
+    # Filter out games based on wins/losses
+    outcome = data["outcome"]
+    if outcome["wins"] is False:
+        # Only show losses
+        games_query = games_query.filter(Game.loser.in_(teamIds))
+    if outcome["losses"] is False:
+        # Only show wins
+        games_query = games_query.filter(Game.winner.in_(teamIds))
+
     # At the very end, filter the plays by who's in and who's out
 
     # Get all the game ids of the valid games we've looked at
@@ -261,7 +270,7 @@ def masterQuery(json_form):
                 players[player_id]["games"][game_id]["SEEN"] = True
                 if play.action == "SUB" and play.type == "OUT":
                     players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "OUT"
-                    players[player_id]["games"][game_id]["MIN"] = sec_start - time_converted(play.period, play.time)
+                    players[player_id]["games"][game_id]["MIN"] = (sec_start - time_converted(play.period, play.time))/60
 
                 else:
                     players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "IN"
@@ -295,7 +304,7 @@ def masterQuery(json_form):
                 elif play.type == "OUT":
                     now = time_converted(play.period, play.time)
                     players[player_id]["games"][game_id]["MIN"] += \
-                        players[player_id]["games"][game_id]["last_time"] - now
+                        (players[player_id]["games"][game_id]["last_time"] - now)/60
                     players[player_id]["games"][game_id]["last_time"] = now
                     players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "OUT"
             elif play.type == "JUMPER" or play.type == "LAYUP" or play.type == "DUNK":

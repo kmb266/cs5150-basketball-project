@@ -39,6 +39,8 @@ def parse_venue_info(root_node, dict):
             date = datetime.datetime.strptime(date, '%m/%d/%Y %I %p')
 
 
+
+
     # Extract information on whether the game is a league game, playoff game
     is_league = False if root.attrib['leaguegame'] == "N" else True
     is_playoff = False if root.attrib['postseason'] == "N" else True
@@ -49,7 +51,7 @@ def parse_venue_info(root_node, dict):
         'is_league': is_league,
         'is_playoff': is_playoff,
         'home_name': home_name,
-        'vis_name': vis_name
+        'vis_name': vis_name,
     }
 
     return dict
@@ -86,6 +88,8 @@ def get_team_info(team_node, dict):
     stats_dict = {}
     for attrName, attrValue in stats.attrib.items():
         stats_dict[attrName] = attrValue
+
+    stats_dict["score"] = linescore.attrib["score"]
     # print(stats_dict)
 
 
@@ -148,6 +152,7 @@ def parse_game_file(filename):
     for team in root.findall("team"):
         game_dict = get_team_info(team, game_dict)
     game_dict = get_play_info(root, game_dict)
+
     return game_dict
 
 

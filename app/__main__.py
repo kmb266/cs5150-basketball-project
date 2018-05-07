@@ -86,6 +86,33 @@ def xml_to_database(xml_file):
     session.add(plays_in_team_two)
     session.commit()
 
+    # Put in information on total game scores
+    if team1['special']['vh'] == 'H':
+        # team1 is the home team
+        g.home_score = team1['stats']['score']
+        g.visitor_score = team2['stats']['score']
+    else:
+        g.home_score = team2['stats']['score']
+        g.visitor_score = team1['stats']['score']
+
+    if team1['stats']['score'] > team2['stats']['score']:
+        if team1['special']['vh'] == 'H':
+            g.winner = team1['id']
+            g.loser = team2['id']
+        else:
+            g.winner = team2['id']
+            g.loser = team1['id']
+    else:
+        if team1['special']['vh'] == 'H':
+            g.winner = team2['id']
+            g.loser = team1['id']
+        else:
+            g.winner = team1['id']
+            g.loser = team2['id']
+
+    session.add(g)
+    session.commit()
+
     # Loop through Players and add them to the database if they don't already exist, repeat for team2
     starters_team_1 = []
     for player in team1['players']:
