@@ -229,6 +229,8 @@ def xml_to_database(xml_file):
                 v4=away_on_court[3] if len(away_on_court) > 3 else -1,
                 v5=away_on_court[4] if len(away_on_court) > 4 else -1
             )
+
+            this_play.convert_time(int(this_play.period), this_play.time)
             session.add(this_play)
     session.commit()
 
@@ -367,7 +369,7 @@ def json_to_database(json_file):
     parse_json.parse_game(data, session)
     parse_json.parse_teams(data, session)
     parse_json.parse_players(data, session)
-    parse_json.parse_plays(data, session)
+    # parse_json.parse_plays(data, session)
 
     session.commit()
 

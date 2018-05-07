@@ -14,13 +14,13 @@ def retrieveData(form):
     else:
       # team drop down menu
       if target == Constants.AC_TEAM:
-        data = getAllTeams();
+        data = getAllTeams()
         return data
             # player drop down menu
       elif target == Constants.AC_PLAYER:
         # don't need id for now just Cornell basketball
         cornell_id = "COR"
-        data = getAllPlayers(cornell_id);
+        data = getAllPlayers(cornell_id)
         return data
       else:
         return getErrorForm(Constants.InvalidFormValue, "Wrong value for key 'field'")
@@ -37,7 +37,7 @@ def main():
     #form = {"field" : 1}
     data = retrieveData(form)
     #return what we get
-    print data
+    print(data)
     sys.stdout.flush()
 
 #start process
