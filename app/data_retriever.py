@@ -160,12 +160,23 @@ def masterQuery(json_form):
     if positions:
         plays = list(filter(lambda p: session.query(Player).filter_by(id=p.player_id).first().position in positions, plays))
 
-    # Lineup filters: filter by players in/out of the game
+    # Lineup filters: Filter by players in/out of the game
     if players_in:
         plays = list(filter(lambda p: player_in(p, players_in), plays))
 
     if players_out:
         plays = list(filter(lambda p: not player_in(p, players_in), plays))
+
+    # Score filters: Filter by point differentials
+    up_or_down = data["upOrDown"]
+    if up_or_down[1] is not None:
+        if up_or_down[0] == "within":
+            plays = list(filter(lambda p: abs(p.home_score - p.away_score) <= up_or_down[1], plays))
+        elif up_or_down == "down":
+            plays = list(filter(lambda p: p.away_score - p.home_score >= up_or_down[1], plays))
+        elif up_or_down == "up":
+            plays = list(filter(lambda p: p.home_score - p.away_score >= up_or_down[1], plays))
+
 
 
 
@@ -439,11 +450,11 @@ print(masterQuery({
   "opponent": [
       "CENTPENN"
   ],
-  "in": [17],
+  "in": [],  # Kyle's id is 1 right now
   "out": [],
   "upOrDown": [
-    "withIn",
-    None
+    "within",
+    15
   ],
   "season": [
     "2018"
@@ -452,7 +463,7 @@ print(masterQuery({
     "slider": {
       "start": {
         "clock": "20:00",
-        "sec": -2400
+        "sec": -1200
       },
       "end": {
         "clock": "00:00",
