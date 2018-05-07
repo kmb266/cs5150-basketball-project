@@ -362,7 +362,7 @@ def TmOREBWgt(TmOREB_pect,TmPlay_pect):
 
 
 def TmOREB_pect(TmOREB,OppTREB,OppDREB):
-	return float(TmOREB/(TmOREB+(OppTREB-OppDREB)))
+	return float(TmOREB/(TmOREB+OppDREB))
 	"""
 	Name: Team Total Offensive Rebounds Weight Percentage
 	Returns: the Team Total Offensive Rebounds Weight Percentage based on parameters
@@ -648,7 +648,7 @@ def FMwt(DFG_perc,DOREB_perc):
 
 
 def DOREB_perc(OppOREB,TmDREB):
-	return float(OppOREB/(OppOREB/TmDREB))
+	return float(OppOREB/(OppOREB+TmDREB))
 	"""
 	Name: Total Defensive Rebounds Percentage
 	Returns: the Total Defensive Rebounds Percentage based on parameters
