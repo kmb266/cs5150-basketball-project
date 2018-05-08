@@ -157,7 +157,7 @@ def parse_game_file(filename):
 
 
 # For testing
-game_info = parse_game_file("MBK_0105.xml")
+# game_info = parse_game_file("MBK_0105.xml")
 # print(game_info)
 
 

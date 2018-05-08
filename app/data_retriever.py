@@ -9,37 +9,52 @@ from sqlalchemy import or_, and_, between
 
 
 
-'''
-Retrieve all the team names and ids. Should return a list of teams with the id and the name of each team.
-'''
+
 def getAllTeams():
-    engine = create_engine('sqlite:///basketball.db', echo=False)
-    Session = sessionmaker(bind=engine)
-    session = Session()
-    teams = session.query(Team).all()
+    '''
+    Retrieve all the team names and ids. Should return a list of teams with the id and the name of each team.
+    '''
+    which_db = "json"
+    # To fetch all team names, we try and use the json database. If this does not exist, default to XML
+
+    try:
+        engine = create_engine('sqlite:///basketball_json.db', echo=False)
+        Session = sessionmaker(bind=engine)
+        session = Session()
+        teams = session.query(Team).all()
+    except:
+        which_db = "xml"
+        engine = create_engine('sqlite:///basketball_xml.db', echo=False)
+        Session = sessionmaker(bind=engine)
+        session = Session()
+        teams = session.query(Team).all()
+
+    if which_db == "json" and len(teams) == 0:
+            which_db = "xml"
+            engine = create_engine('sqlite:///basketball_xml.db', echo=False)
+            Session = sessionmaker(bind=engine)
+            session = Session()
+            teams = session.query(Team).all()
+
     result = []
     for team in teams:
         team_obj = {"id": team.team_id, "text": team.name}
         result.append(team_obj)
 
     return json.dumps(result)
-'''
-    return [{"id" : 1502, "text" : "Cornell University"},
-                {"id" : 1603, "text" : "Dartmouth College"},
-                {"id" : 1902, "text" : "Princeton University"},
-                {"id" : 1807, "text" : "Harvard University"},
-                {"id" : 1697, "text" : "Yale University"}]
-'''
 
-'''
-Retrieve all players for the team of the given id.
-'''
 
 def getAllPlayers(teamId):
-    engine = create_engine('sqlite:///basketball.db', echo=False)
+    """
+    Retrieve all players for the team of the given id.
+    """
+    if teamId == "COR":
+        engine = create_engine('sqlite:///basketball_xml.db', echo=False)
+    else:
+        engine = create_engine('sqlite:///basketball_json.db', echo=False)
+
     Session = sessionmaker(bind=engine)
     session = Session()
-    # team = session.query(Team).filter_by(teamId=teamId).first()
     players = session.query(Player).filter_by(team=teamId).all()
     result = []
 
@@ -49,25 +64,21 @@ def getAllPlayers(teamId):
             result.append({"id": player.id, "text": player.name})
 
     return json.dumps(result)
-'''
-  return [{"id" : 1502, "name" : "Cornell University"},
-                {"id" : 1603, "name" : "Dartmouth College"},
-                {"id" : 1902, "name" : "Princeton University"},
-                {"id" : 1807, "name" : "Harvard University"},
-                {"id" : 1697, "name" : "Yale University"}]
-'''
 
 
 def masterQuery(json_form):
     data = json.loads(json.dumps(json_form))
-
-    engine = create_engine('sqlite:///basketball.db', echo=False)
-    Session = sessionmaker(bind=engine)
-    session = Session()
     teamIds = data["team"]
     oppIds = data["opponent"]
-    # player_query = session.query(Player).filter(or_(team= t_id for t_id in teamIds))
-    # The player_query now has all the players for all the teams, though I'm not sure if we really need this
+
+    # Pick what DB you're using based on the search criteria
+    if (len(teamIds) == 1 and teamIds[0] == "COR") or (len(oppIds) == 1 and oppIds[0] == "COR"):
+        engine = create_engine('sqlite:///basketball_xml.db', echo=False)
+    else:
+        engine = create_engine('sqlite:///basketball_json.db', echo=False)
+
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
     # Games query selects all games where teams in team play against teams in opponent
     if oppIds:
@@ -102,13 +113,12 @@ def masterQuery(json_form):
                 conds.append(and_(Game.date>d[0], Game.date< d[1]))
             games_query = games_query.filter(or_(*conds)) # Pray that this works
 
+    # If there are date filters, use them to restrict the set of filtered games
     if "dates" in data:
         dates = data["dates"]
         start = datetime.datetime.fromtimestamp(dates["start"]/1000.0)
         end = datetime.datetime.fromtimestamp(dates["end"]/1000.0)
         games_query = games_query.filter(and_(Game.date >= start, Game.date <= end))
-
-    # So at this point we should only be looking at games within the seasons selected
 
     # Filter out games based on wins/losses
     outcome = data["outcome"]
@@ -128,21 +138,14 @@ def masterQuery(json_form):
     if loc["away"] is False:
         games_query = games_query.filter(Game.home.in_(teamIds))
 
-    # At the very end, filter the plays by who's in and who's out
-
     # Get all the game ids of the valid games we've looked at
     selected_game_ids = [game.id for game in games_query.all()]
 
+    # Get all the plays for this game
     plays_query = session.query(Play).filter(Play.game_id.in_(selected_game_ids))
 
-    # At this point, we're looking at all the plays in all the games selected by filters
-
-
-
-
-
-    # TODO: Once we have overtime ranges, we can just do the calculations to add all the appropriate
-    # TODO: OT ranges into time_periods, and scrap the above filtering
+    # Filter by time periods in regulation time and then OT
+    # We begin by collecting the set of times we want to filter by
     time_periods = []
     sec_start = data["gametime"]["slider"]["start"]["sec"]
     sec_end = data["gametime"]["slider"]["end"]["sec"]
@@ -158,32 +161,31 @@ def masterQuery(json_form):
         overtimes = data["overtime"]
         if overtimes["onlyQueryOT"] is True:
             plays_query = plays_query.filter(Play.period > 2)
-        valid_OT_periods = []
+        valid_ot_periods = []
         for key in overtimes:
             if key != "onlyQueryOT" or key != "otSlider":
                 if overtimes[key] is True:
-                    valid_OT_periods.append(key[2:])
-        if valid_OT_periods:
-            for period in valid_OT_periods:
+                    valid_ot_periods.append(key[2:])
+        if valid_ot_periods:
+            for period in valid_ot_periods:
                 start = overtimes["otSlider"]["start"]["sec"] + (period - 3) * 300
                 end = overtimes["otSlider"]["end"]["sec"] + + (period - 3) * 300
                 time_periods.append([start, end])
-            # # If the user is filtering to show overtimes
-            # plays_query = plays_query.filter(Play.period.in_(valid_OT_periods))
 
-    # Now apply timing filters
+    # Now we apply filters based on the set of times generated above
     time_period_conds = []
     for time in time_periods:
         time_period_conds.append(and_(Play.time_converted >= time[0], Play.time_converted <= time[1]))
     if time_period_conds:
         plays_query = plays_query.filter(or_(*time_period_conds))  # Pray that this works
 
-
+    # Obtain the actual plays so that we can use python list filtering rather than database querying
+    # TODO: Doing this could decrease efficiency
     plays = plays_query.all()
-    # Lastly, filter the plays based on players in/out
+
+    # Filter the plays based on players in/out
     players_in = data["in"]
     players_out = data["out"]
-    # plays = plays_query.all()
 
     def player_in(play, players):
         if play.h1 in players or \
@@ -202,6 +204,7 @@ def masterQuery(json_form):
 
     # Position filter: Only include players with the given positions - expected value is int list
     if positions:
+        positions = list(map(lambda p: int(p), positions))
         plays = list(filter(lambda p: session.query(Player).filter_by(id=p.player_id).first().position in positions, plays))
 
     # Lineup filters: Filter by players in/out of the game
@@ -211,7 +214,7 @@ def masterQuery(json_form):
 
     if players_out:
         players_out = list(map(lambda p: int(p), players_out))
-        plays = list(filter(lambda p: not player_in(p, players_in), plays))
+        plays = list(filter(lambda p: not player_in(p, players_out), plays)) # TODO: Verify logic in this line
 
     # Score filters: Filter by point differentials
     up_or_down = data["upOrDown"]
@@ -222,8 +225,6 @@ def masterQuery(json_form):
             plays = list(filter(lambda p: p.away_score - p.home_score >= up_or_down[1], plays))
         elif up_or_down == "up":
             plays = list(filter(lambda p: p.home_score - p.away_score >= up_or_down[1], plays))
-
-
 
     def generate_box_score(plays):
         """

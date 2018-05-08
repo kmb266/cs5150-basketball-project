@@ -10,7 +10,7 @@ import datetime
 from sqlalchemy import create_engine, desc
 
 
-engine = create_engine('sqlite:///basketball.db', echo=False)
+engine = create_engine('sqlite:///basketball_xml.db', echo=False)
 
 from sqlalchemy.orm import sessionmaker
 
@@ -319,43 +319,6 @@ def fill_all_xml():
         if filename.endswith(".xml"):
             xml_to_database(filename)  # TODO: filename should be a relative path
     pass
-#
-# xml_to_database("MBK_0105.xml")
-# print("FILE 1 DONE")
-# xml_to_database("MBK_0112.xml")
-# print("FILE 2 DONE")
-# xml_to_database("MBK_0113.xml")
-# print("FILE 3 DONE")
-# xml_to_database("MBK_0120.xml")
-# print("FILE 4 DONE")
-# xml_to_database("MBK_0127.xml")
-# print("FILE 5 DONE")
-# xml_to_database("MBK_1110.xml")
-# print("FILE 6 DONE")
-# xml_to_database("MBK_1113.xml")
-# print("FILE 7 DONE")
-# xml_to_database("MBK_1117.xml")
-# print("FILE 8 DONE")
-# xml_to_database("MBK_1119.xml")
-# print("FILE 9 DONE")
-# xml_to_database("MBK_1124.xml")
-# print("FILE 10 DONE")
-# xml_to_database("MBK_1127.xml")
-# print("FILE 11 DONE")
-# xml_to_database("MBK_1202.xml")
-# print("FILE 12 DONE")
-# xml_to_database("MBK_1216.xml")
-# print("FILE 13 DONE")
-# xml_to_database("MBK_1220.xml")
-# print("FILE 14 DONE")
-# xml_to_database("MBK_1223.xml")
-# print("FILE 15 DONE")
-# xml_to_database("MBK_1228.xml")
-# print("FILE 16 DONE")
-# xml_to_database("MBK_1230.xml")
-# print("FILE 17 DONE")
-
-
 
 
 def json_to_database(json_file):
