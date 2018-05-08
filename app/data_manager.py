@@ -4,72 +4,74 @@ from stats_results import stats_calculation
 
 def sampleForm():
     form = {
-  "page": "players",
-  "position": [],
-  "team": [],
-  "opponent": [],
-  "in": [],
-  "out": [],
-  "upOrDown": [
-    "withIn",
-    None
-  ],
-  "gametime": {
-    "slider": {
-      "start": {
-        "clock": "20:00",
-        "sec": -2400
+      "page": "players",
+      "position": [],
+      "team": [
+        "COR"
+      ],
+      "opponent": [],
+      "in": [],
+      "out": [],
+      "upOrDown": [
+        "withIn",
+        None
+      ],
+      "gametime": {
+        "slider": {
+          "start": {
+            "clock": "20:00",
+            "sec": -2400
+          },
+          "end": {
+            "clock": "00:00",
+            "sec": 0
+          }
+        },
+        "sliderExtra": {
+          "start": {
+            "clock": "20:00",
+            "sec": -2400
+          },
+          "end": {
+            "clock": "00:00",
+            "sec": 0
+          }
+        },
+        "multipleTimeFrames": False
       },
-      "end": {
-        "clock": "00:00",
-        "sec": 0
-      }
-    },
-    "sliderExtra": {
-      "start": {
-        "clock": "20:00",
-        "sec": -2400
+      "location": {
+        "home": True,
+        "away": True,
+        "neutral": True
       },
-      "end": {
-        "clock": "00:00",
-        "sec": 0
-      }
-    },
-    "multipleTimeFrames": False
-  },
-  "location": {
-    "home": True,
-    "away": True,
-    "neutral": True
-  },
-  "outcome": {
-    "wins": True,
-    "losses": True
-  },
-  "overtime": {
-    "otSlider": {
-      "start": {
-        "clock": "5:00",
-        "sec": -300
+      "outcome": {
+        "wins": True,
+        "losses": True
       },
-      "end": {
-        "clock": "0:00",
-        "sec": 0
+      "overtime": {
+        "otSlider": {
+          "start": {
+            "clock": "5:00",
+            "sec": -300
+          },
+          "end": {
+            "clock": "0:00",
+            "sec": 0
+          }
+        },
+        "ot1": True,
+        "ot2": True,
+        "ot3": True,
+        "ot4": True,
+        "ot5": True,
+        "ot6": True,
+        "onlyQueryOT": False
+      },
+      "dates": {
+        "start": 1509508800000,
+        "end": 1525665600000
       }
-    },
-    "ot1": True,
-    "ot2": True,
-    "ot3": True,
-    "ot4": True,
-    "ot5": True,
-    "ot6": True,
-    "onlyQueryOT": False
-  },
-  "dates": {
-    "start": 1509508800000,
-    "end": 1525665600000
-  }
-}
+    }
     return form
 
 def getAverages(players_score, team_score):
@@ -157,8 +159,8 @@ def getForm():
     return json.loads(lines[0])
 
 def main():
-    # form = getForm()
-    form = sampleForm()
+    form = getForm()
+    # form = sampleForm()
 
     form = tidyForm(form)
     data = retrieveData(form)
