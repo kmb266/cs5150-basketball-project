@@ -1144,6 +1144,7 @@ def BLK_perc(BLK,TmMIN,MIN,OppFGA,Opp3PA):
     level: 1
 
     """
+    try:
         return float(100*(BLK*(TmMIN/5))/(MIN*(OppFGA-Opp3PA)))
     except:
         return 99999999
