@@ -7,6 +7,7 @@ import json
 import parse_json
 
 import datetime
+
 from sqlalchemy import create_engine, desc
 
 
@@ -234,131 +235,52 @@ def xml_to_database(xml_file):
             session.add(this_play)
     session.commit()
 
-    # TODO: loop through all the substitution plays, ordering by first the time and then the sub == out,
-    # TODO: and then change the columns for the players in the game accordingly. Next, loop through again
-    # TODO: now looking at all the non--sub plays, and assign them the same players as the last play
-    # Now handle all substitutions, working backwards because sub outs are listed first
-    # plays_of_interest = session.query(Play).filter_by(game_id=g.id).order_by(Play.period)\
-    #     .order_by(desc(Play.time)).order_by(desc(Play.type)).all()
-    #
-    # out_ids = []
-    # for play in plays_of_interest:
-    #     if play.action == "SUB":
-    #         print("PLAY INFORMATION", play.period, play.time, play.type)
-    #         if play.type == "OUT":
-    #             out_ids.append(play.player_id)
-    #             # Find the player in the active players list, remove them
-    #             if play.h1 == play.player_id:
-    #                 play.h1 = -1
-    #             if play.h2 == play.player_id:
-    #                 play.h2 = -1
-    #             if play.h3 == play.player_id:
-    #                 play.h3 = -1
-    #             if play.h4 == play.player_id:
-    #                 play.h4 = -1
-    #             if play.h5 == play.player_id:
-    #                 play.h5 = -1
-    #             if play.v1 == play.player_id:
-    #                 play.v1 = -1
-    #             if play.v2 == play.player_id:
-    #                 play.v2 = -1
-    #             if play.v3 == play.player_id:
-    #                 play.v3 = -1
-    #             if play.v4 == play.player_id:
-    #                 play.v4 = -1
-    #             if play.v5 == play.player_id:
-    #                 play.v5 = -1
-    #         if play.type == "IN":
-    #             # Find the first open slot
-    #             # TODO: will this make issues  with playera from team 1 subbing out and player b from team2 subbing in?
-    #             if play.h1 in out_ids:
-    #                 out_ids.remove(play.h1)
-    #                 play.h1 = play.player_id
-    #             elif play.h2 in out_ids:
-    #                 out_ids.remove(play.h2)
-    #                 play.h2 = play.player_id
-    #             elif play.h3 in out_ids:
-    #                 out_ids.remove(play.h3)
-    #                 play.h3 = play.player_id
-    #             elif play.h4 in out_ids:
-    #                 out_ids.remove(play.h4)
-    #                 play.h4 = play.player_id
-    #             elif play.h5 in out_ids:
-    #                 out_ids.remove(play.h5)
-    #                 play.h5 = play.player_id
-    #             elif play.v1 in out_ids:
-    #                 out_ids.remove(play.v1)
-    #                 play.v1 = play.player_id
-    #             elif play.v2 in out_ids:
-    #                 out_ids.remove(play.v2)
-    #                 play.v2 = play.player_id
-    #             elif play.v3 in out_ids:
-    #                 out_ids.remove(play.v3)
-    #                 play.v3 = play.player_id
-    #             elif play.v4 in out_ids:
-    #                 out_ids.remove(play.v4)
-    #                 play.v4 = play.player_id
-    #             elif play.v5 in out_ids:
-    #                 out_ids.remove(play.v5)
-    #                 play.v5 = play.player_id
-    #         session.add(play)
-    #         session.commit()
-
 
 def fill_all_xml():
     """
-    Obtains all the XML files in the MBKB 2017-2018 XML directory and
+    Obtains all the XML files in the xml_data directory and
     populates the database with game information.
     :return: None, database is updated
     """
-    # TODO: Get directory path
-    path = None
-    directory = os.fsencode(path)
-    for file in os.listdir(directory):
-        filename = os.fsdecode(file)
-        if filename.endswith(".xml"):
-            xml_to_database(filename)  # TODO: filename should be a relative path
-    pass
+    # This loops populates the database using all the xml files
+    for dir in os.listdir("../xml_data"):
+        for filename in os.listdir("../xml_data/{}".format(dir)):
+            if filename.endswith(".xml"):
+                fl = "../xml_data/{}/{}".format(dir, filename)
+                try:
+                    xml_to_database(fl)
+                except AttributeError:
+                    print("ERROR: AttributeError in file {}".format(fl))
+                except Exception as ex:
+                    print("ERROR: {} in file {} | Arguments: {}".format(type(ex).__name__, fl, ex.args))
 
 
 def json_to_database(json_file):
     with open(json_file) as data_file:
         data = json.load(data_file)
 
-    # skip files that do not have box score data
+    # Skip files that do not have box score data
     if not data["gamepackageJSON"]["header"]["competitions"][0]["boxscoreAvailable"]:
         return
 
-    parse_json.parse_game(data, session)
-    parse_json.parse_teams(data, session)
-    parse_json.parse_players(data, session)
+    json_engine = create_engine('sqlite:///basketball_json.db', echo=False)
+    JsonSession = sessionmaker(bind=json_engine)
+    json_session = JsonSession()
+
+    parse_json.parse_game(data, json_session)
+    parse_json.parse_teams(data, json_session)
+    parse_json.parse_players(data, json_session)
     # parse_json.parse_plays(data, session)
 
-    session.commit()
+    json_session.commit()
 
 
-# xml_to_database("MBK_0105.xml")
-# json_to_database("../cached_json/ncb/playbyplay/400990128.json")
-# # global filename
-# for filename in os.listdir("../cached_json/ncb/playbyplay"):
-#     if filename == "400990128.json":
-#         continue
-#     json_to_database("../cached_json/ncb/playbyplay/" + filename)
+def fill_all_json():
+    for filename in os.listdir("../cached_json/ncb/playbyplay"):
+        if filename != "400990128.json": # TODO: @Dav, why do we have this? - Sarvar
+            json_to_database("../cached_json/ncb/playbyplay/" + filename)
 
 
-# This loops populates the database using all the xml files
-for dir in os.listdir("../xml_data"):
-    # print("In directory: {}\n----\n".format(dir))  # TODO: Comment out for production
-    for filename in os.listdir("../xml_data/{}".format(dir)):
-        if filename.endswith(".xml"):
-            fl = "../xml_data/{}/{}".format(dir, filename)
-            # print("Trying to populate data from {}".format(fl))
-            try:
-                xml_to_database(fl)
-            except AttributeError:
-                print("ERROR: AttributeError in file {}".format(fl))
-            except Exception as ex:
-                print("ERROR: {} in file {} | Arguments: {}".format(type(ex).__name__, fl, ex.args))
 
 
-            # print("Finished populating data from {}".format(fl)) # TODO: Comment out for production
+
