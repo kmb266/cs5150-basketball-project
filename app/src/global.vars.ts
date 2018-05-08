@@ -386,16 +386,11 @@ export const clearSliders = (that, sliderId) => {
     to: that.gametime[extra].end.sec
   });
 
-  try { //remove try statement once all tabs have ot
     // update OTslider to match the saved filters gametime
-    $("#"+ot).data('ionRangeSlider').update({
-      from: that.gametime[ot].start.sec,
-      to: that.gametime[ot].end.sec
-    });
-  }
-  catch(err) {
-
-  }
+  $("#"+ot).data('ionRangeSlider').update({
+    from: that.gametime[ot].start.sec,
+    to: that.gametime[ot].end.sec
+  });
 
 }
 

@@ -138,7 +138,8 @@ export class PlayersFilterComponent implements OnInit {
     }
 
     filters.overtime = {
-        otSlider: this.gametime.pgtSliderOT,
+        otSliderStart: this.gametime.pgtSliderOT.start.sec + 300,
+        otSliderEnd: this.gametime.pgtSliderOT.end.sec + 300,
         ot1: this.ot1,
         ot2: this.ot2,
         ot3: this.ot3,
