@@ -61,7 +61,6 @@ def getAllPlayers(teamId):
 def masterQuery(json_form):
     data = json.loads(json.dumps(json_form))
 
-    #print(data)
     engine = create_engine('sqlite:///basketball.db', echo=False)
     Session = sessionmaker(bind=engine)
     session = Session()
@@ -103,11 +102,11 @@ def masterQuery(json_form):
                 conds.append(and_(Game.date>d[0], Game.date< d[1]))
             games_query = games_query.filter(or_(*conds)) # Pray that this works
 
-        if "dates" in data:
-            dates = data["dates"]
-            start = datetime.datetime.fromtimestamp(dates["start"]/1000.0)
-            end = datetime.datetime.fromtimestamp(dates["end"]/1000.0)
-            games_query = games_query.filter(and_(Game.date >= start, Game.date <= end))
+    if "dates" in data:
+        dates = data["dates"]
+        start = datetime.datetime.fromtimestamp(dates["start"]/1000.0)
+        end = datetime.datetime.fromtimestamp(dates["end"]/1000.0)
+        games_query = games_query.filter(and_(Game.date >= start, Game.date <= end))
 
     # So at this point we should only be looking at games within the seasons selected
 
@@ -158,38 +157,13 @@ def masterQuery(json_form):
         time_periods.append([sec_start_2, sec_end_2])
 
 
-    def time_converted(period, time):
-        """
-        Converts a period & time representation of time into seconds
-        :param period:
-        :param time:
-        :return:
-        """
-        if period < 3:
-            result = -2400 + ((period-1) * 1200) # Period 1 -> 2400, period 2 -> 1200
-            mins_to_secs = 1200 - int(time[:2]) * 60 # 20 mins -> 0, 0 mins -> 1200
-            secs_to_secs = int(time[3:])
-            return result + mins_to_secs - secs_to_secs
-        else:
-            # TODO: Check if this works
-            result = (period - 3) * 5 * 60
-            mins_to_secs = 300 - int(time[:2]) * 60
-            secs_to_secs = int(time[3:])
-            return result + mins_to_secs - secs_to_secs
-
     # Now apply timing filters
-    # TODO: Implement this in the same way we did dates for seasons
     time_period_conds = []
     for time in time_periods:
         time_period_conds.append(and_(Play.time_converted >= time[0], Play.time_converted <= time[1]))
     if time_period_conds:
         plays_query = plays_query.filter(or_(*time_period_conds))  # Pray that this works
 
-    # # TODO: Try and fix this following filter, but because it's not working, for now we substitute with Python filter
-    # # plays_query.filter(and_(time_converted(Play.period, Play.time) >= sec_start, time_converted(Play.period, Play.time) <= sec_end))
-    # plays = plays_query.all()
-    #
-    # plays = list(filter(lambda p: time_converted(p.period, p.time) >= sec_start and time_converted(p.period, p.time) <= sec_end, plays))
 
     plays = plays_query.all()
     # Lastly, filter the plays based on players in/out
@@ -235,16 +209,13 @@ def masterQuery(json_form):
 
 
 
-
-
     def generate_box_score(plays):
         """
         Generates a box score for each player involved in the plays listed
         :param plays: The list of plays
         :return: A dict containing box scores for each player
+        TODO: this is horribly slow
         """
-        attributes = ["FG", "FGA3", "3PT", "FTA", "FT", "TP", "OREB",
-                "DREB", "REB", "AST", "STL", "BLK", "TO", "PF", "PTS"]
         players = {}
         teams = {}
 
@@ -266,7 +237,7 @@ def masterQuery(json_form):
                         "games" : {}
                     }
 
-            #Create game for the player if its not in the list
+            # Create game for the player if its not in the list
             game_id = play.game_id
 
             g = session.query(Game).filter_by(id=game_id).first()
@@ -322,23 +293,10 @@ def masterQuery(json_form):
                 players[player_id]["games"][game_id]["SEEN"] = True
                 if play.action == "SUB" and play.type == "OUT":
                     players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "OUT"
-                    players[player_id]["games"][game_id]["MIN"] = (sec_start - time_converted(play.period, play.time))/60
+                    players[player_id]["games"][game_id]["MIN"] = (sec_start - play.time_converted)/60
 
                 else:
                     players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "IN"
-                    # players[player_id]["games"][game_id]["last_time"] = time_converted(play.period, play.time)
-
-
-                # Player being seen in the game for the first time (includes sub in plays)
-            # elif players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "OUT":
-            #     players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "IN"
-            #     # Get the difference between the last sub in and add this to MINS
-            #     now = time_converted(play.period, play.time)
-            #     players[player_id]["games"][game_id]["LAST_IN_OR_OUT"]["MINS"] += \
-            #         players[player_id]["games"][game_id]["last_time"] - now
-            #     players[player_id]["games"][game_id]["last_time"] = now
-
-
 
             if play.type == "3PTR":
                 players[player_id]["games"][game_id]["FGA3"] += 1
@@ -352,9 +310,9 @@ def masterQuery(json_form):
                 if play.type == "IN":
                     players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "IN"
                     players[player_id]["games"][game_id]["SEEN"] = True
-                    players[player_id]["games"][game_id]["last_time"] = time_converted(play.period, play.time)
+                    players[player_id]["games"][game_id]["last_time"] = play.time_converted
                 elif play.type == "OUT":
-                    now = time_converted(play.period, play.time)
+                    now = play.time_converted
                     players[player_id]["games"][game_id]["MIN"] += \
                         (players[player_id]["games"][game_id]["last_time"] - now)/60
                     players[player_id]["games"][game_id]["last_time"] = now
@@ -385,9 +343,6 @@ def masterQuery(json_form):
             elif play.action == "TURNOVER":
                 players[player_id]["games"][game_id]["TO"] += 1
                 teams[team]["games"][game_id]["TO"] += 1
-            elif play.action == "STEAL":
-                players[player_id]["games"][game_id]["STL"] += 1
-                teams[team]["games"][game_id]["STL"] += 1
             elif play.type == "FT":
                 players[player_id]["games"][game_id]["FTA"] += 1
                 teams[team]["games"][game_id]["FTA"] += 1
@@ -411,37 +366,30 @@ def masterQuery(json_form):
                     players[player_id]["games"][game_id]["MIN"] += \
                         players[player_id]["games"][game_id]["last_time"] - sec_end # End of normal period game
 
-
-        return (players, teams)
+        return players, teams
 
     (box_score, teams) = generate_box_score(plays)
-    return (box_score.values(), teams)
+    return box_score.values(), teams
 
 
-#
+
+
 # print(masterQuery({
 #   "page": "players",
 #   "position": [],
-#   "team": [
-#     "COR"
-#   ],
-#   "opponent": [
-#       "CENTPENN"
-#   ],
-#   "in": [],  # Kyle's id is 1 right now
+#   "team": ["COR"],
+#   "opponent": [],
+#   "in": [],
 #   "out": [],
 #   "upOrDown": [
-#     "within",
-#     15
-#   ],
-#   "season": [
-#     "2018"
+#     "withIn",
+#     None
 #   ],
 #   "gametime": {
 #     "slider": {
 #       "start": {
 #         "clock": "20:00",
-#         "sec": -1200
+#         "sec": -2400
 #       },
 #       "end": {
 #         "clock": "00:00",
@@ -470,6 +418,16 @@ def masterQuery(json_form):
 #     "losses": True
 #   },
 #   "overtime": {
+#     "otSlider": {
+#       "start": {
+#         "clock": "5:00",
+#         "sec": -300
+#       },
+#       "end": {
+#         "clock": "0:00",
+#         "sec": 0
+#       }
+#     },
 #     "ot1": False,
 #     "ot2": False,
 #     "ot3": False,
@@ -477,5 +435,9 @@ def masterQuery(json_form):
 #     "ot5": False,
 #     "ot6": False,
 #     "onlyQueryOT": False
+#   },
+#   "dates": {
+#     "start": 1509508800000,
+#     "end": 1525665600000
 #   }
 # }))
