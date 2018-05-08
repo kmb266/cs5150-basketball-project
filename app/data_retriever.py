@@ -390,8 +390,6 @@ def masterQuery(json_form):
 
 
 
-
-#
 # print(masterQuery({
 #   "page": "players",
 #   "position": [],
