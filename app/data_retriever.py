@@ -192,9 +192,11 @@ def masterQuery(json_form):
 
     # Lineup filters: Filter by players in/out of the game
     if players_in:
+        players_in = list(map(lambda p: int(p), players_in))
         plays = list(filter(lambda p: player_in(p, players_in), plays))
 
     if players_out:
+        players_out = list(map(lambda p: int(p), players_in))
         plays = list(filter(lambda p: not player_in(p, players_in), plays))
 
     # Score filters: Filter by point differentials
@@ -379,7 +381,7 @@ print(masterQuery({
   "position": [],
   "team": ["COR"],
   "opponent": [],
-  "in": [],
+  "in": ["1"],
   "out": [],
   "upOrDown": [
     "withIn",
@@ -389,7 +391,7 @@ print(masterQuery({
     "slider": {
       "start": {
         "clock": "20:00",
-        "sec": -2400
+        "sec": -1200
       },
       "end": {
         "clock": "00:00",
@@ -399,7 +401,7 @@ print(masterQuery({
     "sliderExtra": {
       "start": {
         "clock": "20:00",
-        "sec": -2400
+        "sec": -1200
       },
       "end": {
         "clock": "00:00",
@@ -440,4 +442,4 @@ print(masterQuery({
     "start": 1510508800000,
     "end": 1525665600000
   }
-})[1])
+}))
