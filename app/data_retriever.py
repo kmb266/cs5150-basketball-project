@@ -229,12 +229,12 @@ def masterQuery(json_form):
                 players[player_id] = {
                     "name" : player.name,
                     "team" : player.team,
-                    "games" : {}
+                    "games": {}
                 }
 
                 if player.team not in teams:
                     teams[player.team] = {
-                        "games" : {}
+                        "games": {}
                     }
 
             # Create game for the player if its not in the list
@@ -265,11 +265,11 @@ def masterQuery(json_form):
                     "SEEN": False, # Used to keep track of whether the player has been seen yet
                     "last_time": sec_start,
                     "home": g.home,
-                    "away" : g.visitor
+                    "away": g.visitor
                 }
 
             team = players[player_id]["team"]
-            if game_id and team and game_id not in teams[team]["games"]:
+            if game_id not in teams[team]["games"]:
                 teams[team]["games"][game_id] = {
                     "FGA": 0.0,
                     "FG": 0.0,
@@ -373,7 +373,7 @@ def masterQuery(json_form):
 
 
 
-
+#
 # print(masterQuery({
 #   "page": "players",
 #   "position": [],
@@ -437,7 +437,7 @@ def masterQuery(json_form):
 #     "onlyQueryOT": False
 #   },
 #   "dates": {
-#     "start": 1509508800000,
+#     "start": 1519508800000,
 #     "end": 1525665600000
 #   }
 # }))
