@@ -34,7 +34,10 @@ def TmPoss(TmFGA,TmOREB,oppDREB,TmFTA,TmFGM,TmTOV):
     check status: Yes
     level: 1
     """
-    return float(TmFGA-(TmOREB/(TmOREB+oppDREB))*(TmFGA-TmFGM)*1.07+TmTOV + 0.4*TmFTA)
+    try:
+        return float(TmFGA-(TmOREB/(TmOREB+oppDREB))*(TmFGA-TmFGM)*1.07+TmTOV + 0.4*TmFTA)
+    except:
+        return 99999999
 
 
 
@@ -55,8 +58,10 @@ def OppPoss(OppFGA,OppOREB,TmDREB,OppFTA,OppFGM,OppTOV):
     level: 1
 
     """
-
-    return float(OppFGA-(OppOREB/(OppOREB+TmDREB))*(OppFGA-OppFGM)*1.07+OppTOV + 0.4*OppFTA)
+    try:
+        return float(OppFGA-(OppOREB/(OppOREB+TmDREB))*(OppFGA-OppFGM)*1.07+OppTOV + 0.4*OppFTA)
+    except:
+        return 99999999
 
 
 
@@ -73,9 +78,12 @@ def TmORTG (TmPoints, TmPoss):
     check status: Yes
     level: 2
     """
-    if TmPoss == 0:
-        return 0.0
-    return float(100*(TmPoints/TmPoss))
+    try:
+        if TmPoss == 0:
+            return 0.0
+        return float(100*(TmPoints/TmPoss))
+    except:
+        return 99999999
 
 
 def PProd(PProdFG, PProdAst,FTM,TmOREB,
@@ -98,9 +106,11 @@ def PProd(PProdFG, PProdAst,FTM,TmOREB,
     level: 5
 
     """
-    return float((PProdFG+PProdAst+FTM)*(1-(TmOREB/TmScorPoss)
+    try:
+        return float((PProdFG+PProdAst+FTM)*(1-(TmOREB/TmScorPoss)
                                          *TmOREBWgt*TmPlay_pect)+PProdOREB)
-
+    except:
+        return 99999999
 
 
 def PProdFG(FGM,PTS,FTM,FGA,qAST,FGM_3):
@@ -119,7 +129,10 @@ def PProdFG(FGM,PTS,FTM,FGA,qAST,FGM_3):
     check status: Yes (different results from excel sheet)
     level: 3
     """
-    return float(2*(FGM+0.5*FGM_3)*1-0.5*((PTS-FTM)/(2*FGA))*qAST)
+    try:
+        return float(2*(FGM+0.5*FGM_3)*1-0.5*((PTS-FTM)/(2*FGA))*qAST)
+    except:
+        return 99999999
 
 
 
@@ -144,9 +157,11 @@ def PProdAst(TmFGM, FGM, Tm3PM, TmPTS, TmFTM, PTS, FGA, AST, FGM_3,FTM, TmFGA):
     	level: 1
 
     	"""
-    return float(2*((TmFGM-FGM+0.5*(Tm3PM-FGM_3))/(TmFGM-FGM))*0.5
+    try:
+        return float(2*((TmFGM-FGM+0.5*(Tm3PM-FGM_3))/(TmFGM-FGM))*0.5
                  *(((TmPTS-TmFTM)-(PTS-FTM))/(2*(TmFGA-FGA) ))*AST)
-
+    except:
+        return 99999999
 
 
 def PProdOREB(ORB,TmOREBWgt,TmPlay_pect,TmPTS,
@@ -168,9 +183,11 @@ def PProdOREB(ORB,TmOREBWgt,TmPlay_pect,TmPTS,
     level: 4
 
     """
-    return float(ORB*TmOREBWgt*TmPlay_pect*(TmPTS/(TmFGM+(1-(1-(TmFTM/TmFTA))**2 )
+    try:
+        return float(ORB*TmOREBWgt*TmPlay_pect*(TmPTS/(TmFGM+(1-(1-(TmFTM/TmFTA))**2 )
                                                    *0.4*TmFTA)))
-
+    except:
+        return 99999999
 
 
 def TotPoss(ScPoss,FGmPoss,FTmPoss,TOV):
@@ -187,7 +204,10 @@ def TotPoss(ScPoss,FGmPoss,FTmPoss,TOV):
     check status: Yes
     level: 6
     """
-    return float(ScPoss+FGmPoss+FTmPoss+TOV)
+    try:
+        return float(ScPoss+FGmPoss+FTmPoss+TOV)
+    except:
+        return 99999999
 
 
 
@@ -210,8 +230,11 @@ def ScPoss(FGPart,ASTPart,FTPart,TmOREB,
     check status: Yes
     level: 5
     """
-    return float((FGPart+ASTPart+FTPart)*(1-(TmOREB/TmScorPoss)
+    try:
+        return float((FGPart+ASTPart+FTPart)*(1-(TmOREB/TmScorPoss)
                                           *TmOREBWgt*TmPlay_pect)+OREBPart)
+    except:
+        return 99999999
 
 
 
@@ -231,7 +254,10 @@ def FGPart(FGM,PTS,FTM,FGA,qAST):
     	level: 3
 
     """
-    return float(FGM*(1-0.5*(((PTS-FTM))/(2*FGA))*qAST))
+    try:
+        return float(FGM*(1-0.5*(((PTS-FTM))/(2*FGA))*qAST))
+    except:
+        return 99999999
 
 
 
@@ -249,9 +275,11 @@ def qAST(MIN,TmMIN,q_12,q_5):
         check status: Yes
         level: 2
     """
-
-    a1 = (MIN/TmMIN)/5
-    return a1*q_5 + ((1-a1)*q_12)
+    try:
+        a1 = (MIN/TmMIN)/5
+        return a1*q_5 + ((1-a1)*q_12)
+    except:
+        return 99999999
 
 
 
@@ -269,7 +297,10 @@ def q5(TmAST,AST,TmFGM):
         level: 1
 
     """
-    return float(1.14*((TmAST-AST)/TmFGM))
+    try:
+        return float(1.14*((TmAST-AST)/TmFGM))
+    except:
+        return 99999999
 
 
 
@@ -290,7 +321,10 @@ def q12(TmAST,TmMIN,MIN,AST,TmFGM,FGM):
         level: 1
 
     """
-    return float(((TmAST/TmMIN)*MIN*5-AST)/((TmFGM/TmMIN)*MIN*5-FGM))
+    try:
+        return float(((TmAST/TmMIN)*MIN*5-AST)/((TmFGM/TmMIN)*MIN*5-FGM))
+    except:
+        return 99999999
 
 
 
@@ -313,7 +347,10 @@ def ASTPart(TmPTS,TmFTM,PTS,FTM,TmFGA,FGA,AST):
         level: 1
 
     """
-    return 0.5*(((TmPTS-TmFTM)-(PTS-FTM))/(2*(TmFGA-FGA)))*AST
+    try:
+        return 0.5*(((TmPTS-TmFTM)-(PTS-FTM))/(2*(TmFGA-FGA)))*AST
+    except:
+        return 99999999
 
 
 
@@ -330,7 +367,10 @@ def FTPart(FTM,FTA):
         level: 1
 
     """
-    return float((1-(1-(FTM/FTA))**2 )*0.4*FTA)
+    try:
+        return float((1-(1-(FTM/FTA))**2 )*0.4*FTA)
+    except:
+        return 99999999
 
 
 
@@ -348,7 +388,10 @@ def TmScorPoss(TmFGM,TmFTM,TmFTA):
         level: 1
 
     """
-    return float(TmFGM+(1-(1-(TmFTM/TmFTA))**2)*TmFTA*0.4)
+    try:
+        return float(TmFGM+(1-(1-(TmFTM/TmFTA))**2)*TmFTA*0.4)
+    except:
+        return 99999999
 
 
 
@@ -365,9 +408,11 @@ def TmOREBWgt(TmOREB_pect,TmPlay_pect):
         level: 3
 
     """
-    return float(((1-TmOREB_pect)*TmPlay_pect)/((1-TmOREB_pect)
+    try:
+        return float(((1-TmOREB_pect)*TmPlay_pect)/((1-TmOREB_pect)
                                                 *TmPlay_pect+TmOREB_pect*(1-TmPlay_pect)))
-
+    except:
+        return 99999999
 
 
 def TmOREB_pect(TmOREB,OppTREB,OppDREB):
@@ -383,8 +428,10 @@ def TmOREB_pect(TmOREB,OppTREB,OppDREB):
         level: 1
 
     """
-    return float(TmOREB/(TmOREB+OppDREB))
-
+    try:
+        return float(TmOREB/(TmOREB+OppDREB))
+    except:
+        return 99999999
 
 
 def TmPlay(TmFGA,TmFTA,TmTOV):
@@ -401,9 +448,10 @@ def TmPlay(TmFGA,TmFTA,TmTOV):
         level: 1
 
     """
-
-    return float(TmFGA+TmFTA*0.4+TmTOV)
-
+    try:
+        return float(TmFGA+TmFTA*0.4+TmTOV)
+    except:
+        return 99999999
 
 def TmPlay_pect(TmScorPoss, TmFGA,TmFTA,TmTOV):
     """
@@ -420,8 +468,10 @@ def TmPlay_pect(TmScorPoss, TmFGA,TmFTA,TmTOV):
         level: 2
 
     """
-    return float(TmScorPoss/(TmFGA+TmFTA*0.4+TmTOV))
-
+    try:
+        return float(TmScorPoss/(TmFGA+TmFTA*0.4+TmTOV))
+    except:
+        return 99999999
 
 
 def OREBPart(OREB,TmOREBWgt,TmPlay_pect):
@@ -438,8 +488,10 @@ def OREBPart(OREB,TmOREBWgt,TmPlay_pect):
         level: 4
 
     """
-    return float(OREB*TmOREBWgt*TmPlay_pect)
-
+    try:
+        return float(OREB*TmOREBWgt*TmPlay_pect)
+    except:
+        return 99999999
 
 
 def FGmPoss(FGA,FGM,TmOREB_pect):
@@ -456,8 +508,10 @@ def FGmPoss(FGA,FGM,TmOREB_pect):
         level: 2
 
     """
-    return (FGA-FGM)*(1-1.07*TmOREB_pect)
-
+    try:
+        return (FGA-FGM)*(1-1.07*TmOREB_pect)
+    except:
+        return 99999999
 
 
 def FTmPoss(FTM,FTA):
@@ -473,8 +527,10 @@ def FTmPoss(FTM,FTA):
         level: 1
 
     """
-    return float(((1-(FTM/FTA))**2)*0.4*FTA)
-
+    try:
+        return float(((1-(FTM/FTA))**2)*0.4*FTA)
+    except:
+        return 99999999
 
 
 def Individual_Offensize_Rating(PProd, TotPoss):
@@ -490,11 +546,13 @@ def Individual_Offensize_Rating(PProd, TotPoss):
         level: 7
 
     """
-    if TotPoss == 0:
-        return 0.0
-    else:
-        return 100*(PProd/TotPoss)
-
+    try:
+        if TotPoss == 0:
+            return 0.0
+        else:
+            return 100*(PProd/TotPoss)
+    except:
+        return 99999999
 
 
 def Individual_Floor_Percentage(ScPoss,TotPoss):
@@ -510,11 +568,13 @@ def Individual_Floor_Percentage(ScPoss,TotPoss):
         level: 7
 
     """
-    if TotPoss == 0:
-        return 0.0
-    else:
-        return float(ScPoss/TotPoss)
-
+    try:
+        if TotPoss == 0:
+            return 0.0
+        else:
+            return float(ScPoss/TotPoss)
+    except:
+        return 99999999
 
 
 def Team_Floor_Percentage(TmScorPoss, TmPoss):
@@ -530,11 +590,13 @@ def Team_Floor_Percentage(TmScorPoss, TmPoss):
         level: 2
 
     """
-    if TmPoss == 0:
-        return 0.0
-    else:
-        return float(TmScorPoss/TmPoss)
-
+    try:
+        if TmPoss == 0:
+            return 0.0
+        else:
+            return float(TmScorPoss/TmPoss)
+    except:
+        return 99999999
 
 
 def TmDRTG(OppPTS,TmPoss):
@@ -550,11 +612,13 @@ def TmDRTG(OppPTS,TmPoss):
         level: 2
 
     """
-    if TmPoss == 0:
-        return 0.0
-    else:
-        return float(100*(OppPTS/TmPoss))
-
+    try:
+        if TmPoss == 0:
+            return 0.0
+        else:
+            return float(100*(OppPTS/TmPoss))
+    except:
+        return 99999999
 
 
 def DRTG(TmDRTG,OppPtsPScorPoss,Stop_perc):
@@ -571,8 +635,10 @@ def DRTG(TmDRTG,OppPtsPScorPoss,Stop_perc):
         level: 6
 
     """
-    return float(TmDRTG+0.2*(100*OppPtsPScorPoss*(1-Stop_perc)-TmDRTG))
-
+    try:
+        return float(TmDRTG+0.2*(100*OppPtsPScorPoss*(1-Stop_perc)-TmDRTG))
+    except:
+        return 99999999
 
 
 
@@ -591,8 +657,10 @@ def OppPtsPScorPoss(OppPTS,OppFGM,OppFTM,OppFTA):
         level: 1
 
     """
-    return float(OppPTS/(OppFGM+(1-(1-(OppFTM/OppFTA))**2 )*OppFTA*0.4))
-
+    try:
+        return float(OppPTS/(OppFGM+(1-(1-(OppFTM/OppFTA))**2 )*OppFTA*0.4))
+    except:
+        return 99999999
 
 
 def Stop_perc(Stops,OppMIN,TmPoss,MIN):
@@ -610,11 +678,13 @@ def Stop_perc(Stops,OppMIN,TmPoss,MIN):
         level: 5
 
     """
-    if(TmPoss*MIN == 0):
-        return 0.0;
-    else:
-        return float((Stops*OppMIN)/(TmPoss*MIN))
-
+    try:
+        if(TmPoss*MIN == 0):
+            return 0.0;
+        else:
+            return float((Stops*OppMIN)/(TmPoss*MIN))
+    except:
+        return 99999999
 
 
 def Stops(Stops_1,Stops_2):
@@ -630,8 +700,10 @@ def Stops(Stops_1,Stops_2):
         level: 4
 
     """
-    return float(Stops_1+Stops_2)
-
+    try:
+        return float(Stops_1+Stops_2)
+    except:
+        return 99999999
 
 
 def Stops_1(STL,BLK,FMwt,DOREB_perc,DREB):
@@ -650,8 +722,10 @@ def Stops_1(STL,BLK,FMwt,DOREB_perc,DREB):
         level: 3
 
     """
-    return float(STL+BLK*FMwt*(1-1.07*DOREB_perc)+DREB*(1-FMwt))
-
+    try:
+        return float(STL+BLK*FMwt*(1-1.07*DOREB_perc)+DREB*(1-FMwt))
+    except:
+        return 99999999
 
 
 def FMwt(DFG_perc,DOREB_perc):
@@ -667,9 +741,11 @@ def FMwt(DFG_perc,DOREB_perc):
         level: 2
 
     """
-    return float((DFG_perc*(1-DOREB_perc))/(DFG_perc
+    try:
+        return float((DFG_perc*(1-DOREB_perc))/(DFG_perc
                                             *(1-DOREB_perc)+(1-DFG_perc)*DOREB_perc))
-
+    except:
+        return 99999999
 
 
 def DOREB_perc(OppOREB,TmDREB):
@@ -686,8 +762,10 @@ def DOREB_perc(OppOREB,TmDREB):
 
 
     """
-    return float(OppOREB/(OppOREB+TmDREB))
-
+    try:
+        return float(OppOREB/(OppOREB+TmDREB))
+    except:
+        return 99999999
 
 
 def DFG_perc(OppFGM,OppFGA):
@@ -703,11 +781,13 @@ def DFG_perc(OppFGM,OppFGA):
         level: 1
 
     """
-    if OppFGA == 0:
-        return 0.0
-    else:
-        return float(OppFGM/OppFGA)
-
+    try:
+        if OppFGA == 0:
+            return 0.0
+        else:
+            return float(OppFGM/OppFGA)
+    except:
+        return 99999999
 
 
 def Stops_2(OppFGA,OppFGM,TmBLK,TmMIN,FMwt,DOREB_perc
@@ -735,10 +815,12 @@ def Stops_2(OppFGA,OppFGM,TmBLK,TmMIN,FMwt,DOREB_perc
         level: 3
 
     """
-    return  float((((OppFGA-OppFGM-TmBLK)/TmMIN)*FMwt*(1-1.07*DOREB_perc)
+    try:
+        return  float((((OppFGA-OppFGM-TmBLK)/TmMIN)*FMwt*(1-1.07*DOREB_perc)
                    +((OppTOV-TmSTL)/TmMIN))*MIN+(PF/TmPF)
                   *0.4*OppFTA*(1-(OppFTM/OppFTA))**2)
-
+    except:
+        return 99999999
 
 
 def eFG_perc(FGM,FGA,FGM_3):
@@ -755,8 +837,10 @@ def eFG_perc(FGM,FGA,FGM_3):
         level: 1
 
     """
-    return (FGM+0.5*FGM_3)/FGA
-
+    try:
+        return (FGM+0.5*FGM_3)/FGA
+    except:
+        return 99999999
 
 
 def Turnover_perc(TOV,FGA,FTA):
@@ -773,8 +857,10 @@ def Turnover_perc(TOV,FGA,FTA):
         level: 1
 
         """
-    return float(TOV/(FGA+0.4*FTA+TOV))
-
+    try:
+        return float(TOV/(FGA+0.4*FTA+TOV))
+    except:
+        return 99999999
 
 
 def FTr(FTA,FGA):
@@ -791,11 +877,13 @@ def FTr(FTA,FGA):
     level: 1
 
     """
-    if FGA == 0:
-        return 0.0
-    else:
-        return FTA/FGA
-
+    try:
+        if FGA == 0:
+            return 0.0
+        else:
+            return FTA/FGA
+    except:
+        return 99999999
 
 
 def FG_2_perc(FGM_2,FGA_2):
@@ -810,12 +898,13 @@ def FG_2_perc(FGM_2,FGA_2):
     check status: Yes
     level: 1
     """
-
-    if FGA_2 == 0:
-        return 0.0
-    else:
-        return FGM_2/FGA_2
-
+    try:
+        if FGA_2 == 0:
+            return 0.0
+        else:
+            return FGM_2/FGA_2
+    except:
+        return 99999999
 
 def FG_3_perc(FGM_3,FGA_3):
     """
@@ -830,11 +919,13 @@ def FG_3_perc(FGM_3,FGA_3):
     level: 1
 
     """
-    if FGA_3 == 0:
-        return 0.0
-    else:
-        return FGM_3/FGA_3
-
+    try:
+        if FGA_3 == 0:
+            return 0.0
+        else:
+            return FGM_3/FGA_3
+    except:
+        return 99999999
 
 
 def FGr_2(FGA_2,FGA):
@@ -850,11 +941,13 @@ def FGr_2(FGA_2,FGA):
     level: 1
 
     """
-    if FGA == 0:
-        return 0.0
-    else:
-        return float(FGA_2/FGA)
-
+    try:
+        if FGA == 0:
+            return 0.0
+        else:
+            return float(FGA_2/FGA)
+    except:
+        return 99999999
 
 
 def FGr_3(FGA_3,FGA):
@@ -870,11 +963,13 @@ def FGr_3(FGA_3,FGA):
     level: 1
 
     """
-    if FGA == 0:
-        return 0.0
-    else:
-        return float(FGA_3/FGA)
-
+    try:
+        if FGA == 0:
+            return 0.0
+        else:
+            return float(FGA_3/FGA)
+    except:
+        return 99999999
 
 
 
@@ -897,8 +992,10 @@ def Usage_Rate(FGA,FTA,TOV,TmMIN,MIN,TmFGA,TmFTA,TmTOV):
     level: 1
 
     """
-    return float(100*((FGA+0.4*FTA+TOV)*(TmMIN/5))/(MIN*(TmFGA+0.4*TmFTA+TmTOV)))
-
+    try:
+        return float(100*((FGA+0.4*FTA+TOV)*(TmMIN/5))/(MIN*(TmFGA+0.4*TmFTA+TmTOV)))
+    except:
+        return 99999999
 
 
 def AST_perc(AST,MIN,TmMIN,TmFGM,FGM):
@@ -917,8 +1014,10 @@ def AST_perc(AST,MIN,TmMIN,TmFGM,FGM):
     level: 1
 
     """
-    return float(100*AST/(((MIN/(TmMIN/5))*TmFGM)-FGM))
-
+    try:
+        return float(100*AST/(((MIN/(TmMIN/5))*TmFGM)-FGM))
+    except:
+        return 99999999
 
 
 def ASTr(AST,FGM):
@@ -934,11 +1033,13 @@ def ASTr(AST,FGM):
     	level: 1
 
     '''
-    if FGM == 0:
-        return 0.0
-    else:
-        return float(AST/FGM)
-
+    try:
+        if FGM == 0:
+            return 0.0
+        else:
+            return float(AST/FGM)
+    except:
+        return 99999999
 
 
 
@@ -957,8 +1058,10 @@ def AST_Ratio(AST,FGA,FTA,TOV):
     level: 1
 
     """
-    return float((100*AST)/(FGA+(FTA*0.4)+AST+TOV))
-
+    try:
+        return float((100*AST)/(FGA+(FTA*0.4)+AST+TOV))
+    except:
+        return 99999999
 
 
 def TS_perc(PTS,FGA,FTA):
@@ -975,8 +1078,10 @@ def TS_perc(PTS,FGA,FTA):
     level: 1
 
     """
-    return float(PTS/(2*(FGA+0.4*FTA)))
-
+    try:
+        return float(PTS/(2*(FGA+0.4*FTA)))
+    except:
+        return 99999999
 
 
 def Total_REB_pect (TREB,TmMIN,MIN,TmTREB,OppTREB):
@@ -995,7 +1100,10 @@ def Total_REB_pect (TREB,TmMIN,MIN,TmTREB,OppTREB):
     level: 1
 
     """
-    return 100*(TREB*(TmMIN/5))/(MIN*(TmTREB+OppTREB))
+    try:
+        return 100*(TREB*(TmMIN/5))/(MIN*(TmTREB+OppTREB))
+    except:
+        return 99999999
 
 
 
@@ -1014,8 +1122,10 @@ def STL_perc(STL,TmMIN,MIN,OppPoss):
     level: 2
 
     """
-    return float(100*(STL*(TmMIN/5))/(MIN*OppPoss))
-
+    try:
+        return float(100*(STL*(TmMIN/5))/(MIN*OppPoss))
+    except:
+        return 99999999
 
 
 def BLK_perc(BLK,TmMIN,MIN,OppFGA,Opp3PA):
@@ -1034,8 +1144,9 @@ def BLK_perc(BLK,TmMIN,MIN,OppFGA,Opp3PA):
     level: 1
 
     """
-    return float(100*(BLK*(TmMIN/5))/(MIN*(OppFGA-Opp3PA)))
-
+        return float(100*(BLK*(TmMIN/5))/(MIN*(OppFGA-Opp3PA)))
+    except:
+        return 99999999
 
 
 
@@ -1062,10 +1173,12 @@ def Game_Score(PTS,FGM,FGA,FTA,FTM,ORE,DREB,STL,AST,BLK,PF,TOV):
     	level: 1
 
     '''
-    return float(PTS+0.4*FGM-0.7*FGA-0.4
+    try:
+        return float(PTS+0.4*FGM-0.7*FGA-0.4
                  *(FTA-FTM)+0.7*ORE-0.3*DREB+STL
                  +0.7*AST+0.7*BLK-0.4*PF-TOV)
-
+    except:
+        return 99999999
 
 
 
@@ -1084,8 +1197,10 @@ def Pace(TmPoss,OppPoss,TmMIN):
     level: 2
 
     """
-    return float(40*((TmPoss+OppPoss)/(2*(TmMIN/5))))
-
+    try:
+        return float(40*((TmPoss+OppPoss)/(2*(TmMIN/5))))
+    except:
+        return 99999999
 
 
 def PIE(PTS,FGM,FTM,FGA,FTA,DREB,OREB,AST,STL,BLK
@@ -1125,7 +1240,9 @@ def PIE(PTS,FGM,FTM,FGA,FTA,DREB,OREB,AST,STL,BLK
     level: 1
 
     """
-    return (PTS+FGM+FTM-FGA-FTA+DREB+(0.5*OREB)+AST+STL
+    try:
+        return (PTS+FGM+FTM-FGA-FTA+DREB+(0.5*OREB)+AST+STL
             +(0.5*BLK)-PF-TO)/(GmPTS+GmFGM+GmFTM-GmFGA
                                -GmFTA+GmDREB+(0.5*GmOREB)+GmAST+GmSTL+(0.5*GmBLK)-GmPF-GmTO)
-
+    except:
+        return 99999999
