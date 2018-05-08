@@ -1,5 +1,5 @@
-import advanced_stat as function;
-import numpy;
+import advanced_stat as a_s
+import numpy
 
 
 def stats_calculation(data):
@@ -96,36 +96,36 @@ def stats_calculation(data):
 			GmTO = OppTOV + TmTOV
 
 				#first level calculation
-			TmPoss = function.TmPoss(TmFGA,TmOREB,OppDREB,TmFTA,TmFGM,TmTOV)
-			OppPoss = function.OppPoss(OppFGA,OppOREB,TmDREB,OppFTA,OppFGM,OppTOV)
-			PProdAst = function.PProdAst(TmFGM, FGM, Tm3PM, TmPTS, TmFTM, PTS, FGA, AST, FGM_3,FTM, TmFGA)
-			q5 = function.q5(TmAST,AST,TmFGM)
-			q12 = function.q12(TmAST,TmMIN,MIN,AST,TmFGM,FGM)
-			ASTPart =  function.ASTPart(TmPTS,TmFTM,PTS,FTM,TmFGA,FGA,AST)
-			FTPart = function.FTPart(FTM,FTA)
-			TmScorPoss = function.TmScorPoss(TmFGM,TmFTM,TmFTA)
-			TmOREB_pect = function.TmOREB_pect(TmOREB,OppTREB,OppDREB)
-			TmPlay = function.TmPlay(TmFGA,TmFTA,TmTOV)
-			FTmPoss = function.FTmPoss(FTM,FTA)
-			DOREB_perc = function.DOREB_perc(OppOREB,TmDREB)
-			DFG_perc = function.DFG_perc(OppFGM,OppFGA)
-			eFG_perc = function.eFG_perc(FGM,FGA,FGM_3)
-			Turnover_perc = function.Turnover_perc(TOV,FGA,FTA)
-			FTr = function.FTr(FTA,FGA)
-			FG_2_perc = function.FG_2_perc(FGM_2,FGA_2)
-			FG_3_perc = function.FG_3_perc(FGM_3,FGA_3)
-			FGr_2 = function.FGr_2(FGA_2,FGA)
-			FGr_3 = function.FGr_3(FGA_3,FGA)
-			Usage_Rate = function.Usage_Rate(FGA,FTA,TOV,TmMIN,MIN,TmFGA,TmFTA,TmTOV)
-			ASTPart = function.AST_perc(AST,MIN,TmMIN,TmFGM,FGM)
-			ASTr = function.ASTr(AST,FGM)
-			AST_Ratio = function.AST_Ratio(AST,FGA,FTA,TOV)
-			OppPtsPScorPoss = function.OppPtsPScorPoss(OppPTS,OppFGM,OppFTM,OppFTA)
-			TS_perc = function.TS_perc(PTS,FGA,FTA)
-			Total_REB_pect = function.Total_REB_pect (TREB,TmMIN,MIN,TmTREB,OppTREB)
-			BLK_perc = function.BLK_perc(BLK,TmMIN,MIN,OppFGA,Opp3PA)
-			Game_Score = function.Game_Score(PTS,FGM,FGA,FTA,FTM,OREB,DREB,STL,AST,BLK,PF,TOV)
-			PIE = function.PIE(PTS,FGM,FTM,FGA,FTA,DREB,OREB,AST,STL,BLK,PF,TOV,GmPTS,GmFGM,GmFTM,GmFGA,GmFTA,GmDREB,GmOREB,GmAST,GmSTL,GmBLK,GmPF,GmTO)
+			TmPoss = a_s.TmPoss(TmFGA,TmOREB,OppDREB,TmFTA,TmFGM,TmTOV)
+			OppPoss = a_s.OppPoss(OppFGA,OppOREB,TmDREB,OppFTA,OppFGM,OppTOV)
+			PProdAst = a_s.PProdAst(TmFGM, FGM, Tm3PM, TmPTS, TmFTM, PTS, FGA, AST, FGM_3,FTM, TmFGA)
+			q5 = a_s.q5(TmAST,AST,TmFGM)
+			q12 = a_s.q12(TmAST,TmMIN,MIN,AST,TmFGM,FGM)
+			ASTPart =  a_s.ASTPart(TmPTS,TmFTM,PTS,FTM,TmFGA,FGA,AST)
+			FTPart = a_s.FTPart(FTM,FTA)
+			TmScorPoss = a_s.TmScorPoss(TmFGM,TmFTM,TmFTA)
+			TmOREB_pect = a_s.TmOREB_pect(TmOREB,OppTREB,OppDREB)
+			TmPlay = a_s.TmPlay(TmFGA,TmFTA,TmTOV)
+			FTmPoss = a_s.FTmPoss(FTM,FTA)
+			DOREB_perc = a_s.DOREB_perc(OppOREB,TmDREB)
+			DFG_perc = a_s.DFG_perc(OppFGM,OppFGA)
+			eFG_perc = a_s.eFG_perc(FGM,FGA,FGM_3)
+			Turnover_perc = a_s.Turnover_perc(TOV,FGA,FTA)
+			FTr = a_s.FTr(FTA,FGA)
+			FG_2_perc = a_s.FG_2_perc(FGM_2,FGA_2)
+			FG_3_perc = a_s.FG_3_perc(FGM_3,FGA_3)
+			FGr_2 = a_s.FGr_2(FGA_2,FGA)
+			FGr_3 = a_s.FGr_3(FGA_3,FGA)
+			Usage_Rate = a_s.Usage_Rate(FGA,FTA,TOV,TmMIN,MIN,TmFGA,TmFTA,TmTOV)
+			ASTPart = a_s.AST_perc(AST,MIN,TmMIN,TmFGM,FGM)
+			ASTr = a_s.ASTr(AST,FGM)
+			AST_Ratio = a_s.AST_Ratio(AST,FGA,FTA,TOV)
+			OppPtsPScorPoss = a_s.OppPtsPScorPoss(OppPTS,OppFGM,OppFTM,OppFTA)
+			TS_perc = a_s.TS_perc(PTS,FGA,FTA)
+			Total_REB_pect = a_s.Total_REB_pect (TREB,TmMIN,MIN,TmTREB,OppTREB)
+			BLK_perc = a_s.BLK_perc(BLK,TmMIN,MIN,OppFGA,Opp3PA)
+			Game_Score = a_s.Game_Score(PTS,FGM,FGA,FTA,FTM,OREB,DREB,STL,AST,BLK,PF,TOV)
+			PIE = a_s.PIE(PTS,FGM,FTM,FGA,FTA,DREB,OREB,AST,STL,BLK,PF,TOV,GmPTS,GmFGM,GmFTM,GmFGA,GmFTA,GmDREB,GmOREB,GmAST,GmSTL,GmBLK,GmPF,GmTO)
 
 			#adding results to dictionary
 			#data["TmPoss"] = TmPoss
@@ -163,15 +163,15 @@ def stats_calculation(data):
 			#data["PIE"] = PIE
 
 			#second level calculation
-			TmORTG = function.TmORTG (TmPoints, TmPoss)
-			qAST = function.qAST(MIN,TmMIN,q12,q5)
-			TmPlay_pect = function.TmPlay_pect(TmScorPoss, TmFGA,TmFTA,TmTOV)
-			FGmPoss = function.FGmPoss(FGA,FGM,TmOREB_pect)
-			Team_Floor_Percentage = function.Team_Floor_Percentage(TmScorPoss, TmPoss)
-			TmDRTG = function.TmDRTG(OppPTS,TmPoss)
-			FMwt = function.FMwt(DFG_perc,DOREB_perc)
-			STL_perc = function.STL_perc(STL,TmMIN,MIN,OppPoss)
-			Pace = function.Pace(TmPoss,OppPoss,TmMIN)
+			TmORTG = a_s.TmORTG (TmPoints, TmPoss)
+			qAST = a_s.qAST(MIN,TmMIN,q12,q5)
+			TmPlay_pect = a_s.TmPlay_pect(TmScorPoss, TmFGA,TmFTA,TmTOV)
+			FGmPoss = a_s.FGmPoss(FGA,FGM,TmOREB_pect)
+			Team_Floor_Percentage = a_s.Team_Floor_Percentage(TmScorPoss, TmPoss)
+			TmDRTG = a_s.TmDRTG(OppPTS,TmPoss)
+			FMwt = a_s.FMwt(DFG_perc,DOREB_perc)
+			STL_perc = a_s.STL_perc(STL,TmMIN,MIN,OppPoss)
+			Pace = a_s.Pace(TmPoss,OppPoss,TmMIN)
 
 			#adding results to dictionary
 			#data["TmORTG"] = TmORTG
@@ -185,11 +185,11 @@ def stats_calculation(data):
 			#data["STL_perc"] = STL_perc
 
 			#third level calculation
-			PProdFG = function.PProdFG(FGM,PTS,FTM,FGA,qAST,FGM_3)
-			FGPart = function.FGPart(FGM,PTS,FTM,FGA,qAST)
-			TmOREBWgt = function.TmOREBWgt(TmOREB_pect,TmPlay_pect)
-			Stops_1 = function.Stops_1(STL,BLK,FMwt,DOREB_perc,DREB)
-			Stops_2 = function.Stops_2(OppFGA,OppFGM,TmBLK,TmMIN,FMwt,DOREB_perc,OppTOV,TmSTL,MIN,PF,TmPF,OppFTA,OppFTM)
+			PProdFG = a_s.PProdFG(FGM,PTS,FTM,FGA,qAST,FGM_3)
+			FGPart = a_s.FGPart(FGM,PTS,FTM,FGA,qAST)
+			TmOREBWgt = a_s.TmOREBWgt(TmOREB_pect,TmPlay_pect)
+			Stops_1 = a_s.Stops_1(STL,BLK,FMwt,DOREB_perc,DREB)
+			Stops_2 = a_s.Stops_2(OppFGA,OppFGM,TmBLK,TmMIN,FMwt,DOREB_perc,OppTOV,TmSTL,MIN,PF,TmPF,OppFTA,OppFTM)
 
 			#adding results to dictionary
 			#data["PProdFG"] = PProdFG
@@ -199,9 +199,9 @@ def stats_calculation(data):
 			#data["Stops_2"] = Stops_2
 
 			#forth level calculation
-			PProdOREB = function.PProdOREB(OREB,TmOREBWgt,TmPlay_pect,TmPTS,TmFGM,TmFTM,TmFTA)
-			OREBPart = function.OREBPart(OREB,TmOREBWgt,TmPlay_pect)
-			Stops = function.Stops(Stops_1,Stops_2)
+			PProdOREB = a_s.PProdOREB(OREB,TmOREBWgt,TmPlay_pect,TmPTS,TmFGM,TmFTM,TmFTA)
+			OREBPart = a_s.OREBPart(OREB,TmOREBWgt,TmPlay_pect)
+			Stops = a_s.Stops(Stops_1,Stops_2)
 
 			#adding results to dictionary
 			#data["PProdOREB"] = PProdOREB
@@ -209,9 +209,9 @@ def stats_calculation(data):
 			#data["Stops"] = Stops
 
 			#fifth level calculation
-			PProd = function.PProd(PProdFG, PProdAst,FTM,TmOREB,TmScorPoss,TmOREBWgt,TmPlay_pect,PProdOREB)
-			ScPoss = function.ScPoss(FGPart,ASTPart,FTPart,TmOREB,TmScorPoss,TmOREBWgt,TmPlay_pect,OREBPart)
-			Stop_perc = function.Stop_perc(Stops,OppMIN,TmPoss,MIN)
+			PProd = a_s.PProd(PProdFG, PProdAst,FTM,TmOREB,TmScorPoss,TmOREBWgt,TmPlay_pect,PProdOREB)
+			ScPoss = a_s.ScPoss(FGPart,ASTPart,FTPart,TmOREB,TmScorPoss,TmOREBWgt,TmPlay_pect,OREBPart)
+			Stop_perc = a_s.Stop_perc(Stops,OppMIN,TmPoss,MIN)
 
 			#adding results to dictionary
 			#data["PProd"] = PProd
@@ -219,16 +219,16 @@ def stats_calculation(data):
 			#data["Stop_perc"] = Stop_perc
 
 			#sixth level calculation
-			TotPoss = function.TotPoss(ScPoss,FGmPoss,FTmPoss,TOV)
-			DRTG = function.DRTG(TmDRTG,OppPtsPScorPoss,Stop_perc)
+			TotPoss = a_s.TotPoss(ScPoss,FGmPoss,FTmPoss,TOV)
+			DRTG = a_s.DRTG(TmDRTG,OppPtsPScorPoss,Stop_perc)
 
 			#adding results to dictinory
 			#data["TotPoss"] = TotPoss
 			#data["DRTG"] = DRTG
 
 			#seventh level calculation
-			Individual_Offensize_Rating = function.Individual_Offensize_Rating(PProd, TotPoss)
-			Individual_Floor_Percentage = function.Individual_Floor_Percentage(ScPoss,TotPoss)
+			Individual_Offensize_Rating = a_s.Individual_Offensize_Rating(PProd, TotPoss)
+			Individual_Floor_Percentage = a_s.Individual_Floor_Percentage(ScPoss,TotPoss)
 
 			#adding results to dictinory
 			#data["Individual_Offensize_Rating"] = Individual_Offensize_Rating
