@@ -73,45 +73,47 @@ def sampleForm():
     return form
 
 def getAverages(players_score, team_score):
-    attributes = ["FG", "FGA3", "3PT", "FTA", "FT", "TP", "OREB",
-                "DREB", "REB", "AST", "STL", "BLK", "TO", "PF", "PTS"]
-    advanced_attributes = ["Usage_Rate", "PIE", "Game_Score"]
-    players_boxscore = []
-    teams_boxscore = {}
+   attributes = ["FG", "FGA3", "3PT", "FTA", "FT", "TP", "OREB",
+               "DREB", "REB", "AST", "STL", "BLK", "TO", "PF", "PTS"]
+   advanced_attributes = ["Usage_Rate", "PIE", "Game_Score"]
+   players_boxscore = []
+   teams_boxscore = {}
 
-    for values in players_score:
-        games = values["games"]
-        player = {"name" : values["name"], "team" : values["team"]}
-        games_played = len(games)
+   for values in players_score:
+       games = values["games"]
+       player = {"name" : values["name"], "team" : values["team"]}
+       games_played = len(games)
 
-        for attribute in attributes + advanced_attributes:
-            for game, game_boxscore in games.items():
-                if attribute in game_boxscore:
-                    if attribute in player:
-                        player[attribute] += game_boxscore[attribute]
-                    else:
-                        player[attribute] = game_boxscore[attribute]
-                    player[attribute] = round(player[attribute] / games_played, 2)
+       for attribute in attributes + advanced_attributes:
+           for game, game_boxscore in games.items():
+               if attribute in game_boxscore:
+                   if attribute in player:
+                       player[attribute] += game_boxscore[attribute]
+                   else:
+                       player[attribute] = game_boxscore[attribute]
+           if attribute in player:
+               player[attribute] = round(player[attribute] / games_played, 2)
 
-        players_boxscore.append(player)
+       players_boxscore.append(player)
 
-    for team_id, values in team_score.items():
-        games = values["games"]
-        team = {"team_id" : team_id}
-        games_played = len(games)
+   for team_id, values in team_score.items():
+       games = values["games"]
+       team = {"team_id" : team_id}
+       games_played = len(games)
 
-        for attribute in attributes:
-            for game, game_boxscore in games.items():
-                if attribute in game_boxscore:
-                    if attribute in team:
-                        team[attribute] += game_boxscore[attribute]
-                    else:
-                        team[attribute] = game_boxscore[attribute]
-                    team[attribute] = round(team[attribute] / games_played, 2)
+       for attribute in attributes:
+           for game, game_boxscore in games.items():
+               if attribute in game_boxscore:
+                   if attribute in team:
+                       team[attribute] += game_boxscore[attribute]
+                   else:
+                       team[attribute] = game_boxscore[attribute]
+           if attribute in team:
+               team[attribute] = round(team[attribute] / games_played, 2)
 
-        teams_boxscore[team_id] = team
+       teams_boxscore[team_id] = team
 
-    return (players_boxscore, teams_boxscore)
+   return (players_boxscore, teams_boxscore)
 
 
 def filterResults(players_score, team_score, form):
