@@ -868,7 +868,10 @@ def Usage_Rate(FGA,FTA,TOV,TmMIN,MIN,TmFGA,TmFTA,TmTOV):
 
 
 def AST_perc(AST,MIN,TmMIN,TmFGM,FGM):
-	return float(100*AST/(((MIN/(TmMIN/5))*TmFGM)-FGM))
+	if(((MIN/(TmMIN/5))*TmFGM)-FGM) == 0:
+		return 0.0
+	else:
+		return float(100*AST/(((MIN/(TmMIN/5))*TmFGM)-FGM))
 	"""
 	Name: Assist Percentage (Individual)
 	Returns: the Assist Percentage based on parameters
