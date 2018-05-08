@@ -282,11 +282,12 @@ def fill_all_json():
             json_to_database("../cached_json/ncb/playbyplay/" + filename)
 
 
-print("Populating XML database...")
-fill_all_xml()
-print("XML database populated\n")
-
-print("Populating JSON database...")
-fill_all_json()
-print("JSON database populated..")
+# COMMENT THE BELOW LINES IN ON INITIAL DB LOAD
+# print("Populating XML database...")
+# fill_all_xml()
+# print("XML database populated\n")
+#
+# print("Populating JSON database...")
+# fill_all_json()
+# print("JSON database populated..")
 
