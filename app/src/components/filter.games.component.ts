@@ -148,7 +148,8 @@ export class GamesFilterComponent implements OnInit {
     }
 
     filters.overtime = {
-        otSlider: this.gametime.ggtSliderOT,
+        otSliderStart: this.gametime.ggtSliderOT.start.sec + 300,
+        otSliderEnd: this.gametime.ggtSliderOT.end.sec + 300,
         ot1: this.ot1,
         ot2: this.ot2,
         ot3: this.ot3,
