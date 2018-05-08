@@ -244,15 +244,16 @@ def fill_all_xml():
     """
     # This loops populates the database using all the xml files
     for dir in os.listdir("../xml_data"):
-        for filename in os.listdir("../xml_data/{}".format(dir)):
-            if filename.endswith(".xml"):
-                fl = "../xml_data/{}/{}".format(dir, filename)
-                try:
-                    xml_to_database(fl)
-                except AttributeError:
-                    print("ERROR: AttributeError in file {}".format(fl))
-                except Exception as ex:
-                    print("ERROR: {} in file {} | Arguments: {}".format(type(ex).__name__, fl, ex.args))
+        if os.path.isdir("../xml_data/{}".format(dir)):
+            for filename in os.listdir("../xml_data/{}".format(dir)):
+                if filename.endswith(".xml"):
+                    fl = "../xml_data/{}/{}".format(dir, filename)
+                    try:
+                        xml_to_database(fl)
+                    except AttributeError:
+                        print("ERROR: AttributeError in file {}".format(fl))
+                    except Exception as ex:
+                        print("ERROR: {} in file {} | Arguments: {}".format(type(ex).__name__, fl, ex.args))
 
 
 def json_to_database(json_file):
