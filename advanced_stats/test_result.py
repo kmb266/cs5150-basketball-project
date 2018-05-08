@@ -38,7 +38,10 @@ print Usage_Rate(1.0,2.0,1.0,200.0,4.0,52.0,26.0,15.0)
 
 
 def AST_perc(AST,MIN,TmMIN,TmFGM,FGM):
-  return float(100*AST/(((MIN/(TmMIN/5))*TmFGM)-FGM))
+    if(((MIN/(TmMIN/5))*TmFGM)-FGM) == 0:
+    return 0.0
+  else:
+    return float(100*AST/(((MIN/(TmMIN/5))*TmFGM)-FGM))
 
 x = AST_perc(747.0,3026.0,19730.0,3429.0,857.0)
 print(x)
