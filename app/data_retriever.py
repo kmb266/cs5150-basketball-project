@@ -119,6 +119,15 @@ def masterQuery(json_form):
         # Only show wins
         games_query = games_query.filter(Game.winner.in_(teamIds))
 
+    # Filter out games based on location
+    loc = data["location"]
+    if loc["home"] is False:
+        # TODO: no support for neutral
+        # Filter out any games where the selected team was a home team
+        games_query = games_query.filter(Game.home.in_(oppIds))
+    if loc["away"] is False:
+        games_query = games_query.filter(Game.home.in_(teamIds))
+
     # At the very end, filter the plays by who's in and who's out
 
     # Get all the game ids of the valid games we've looked at
@@ -128,19 +137,7 @@ def masterQuery(json_form):
 
     # At this point, we're looking at all the plays in all the games selected by filters
 
-    # Overtime filter
-    if "overtime" in data["overtime"]:
-        overtimes = data["overtime"]
-        if overtimes["onlyQueryOT"] is True:
-            plays_query = plays_query.filter(Play.period > 2)
-        valid_OT_periods = []
-        for key in overtimes:
-            if key != "onlyQueryOT":
-                if overtimes[key] is True:
-                    valid_OT_periods.append(key[2:])
-        if valid_OT_periods:
-            # If the user is filtering to show overtimes
-            plays_query = plays_query.filter(Play.period.in_(valid_OT_periods))
+
 
 
 
@@ -156,6 +153,23 @@ def masterQuery(json_form):
         sec_end_2 = data["gametime"]["sliderExtra"]["start"]["sec"]
         time_periods.append([sec_start_2, sec_end_2])
 
+    # Overtime filter
+    if "overtime" in data["overtime"]:
+        overtimes = data["overtime"]
+        if overtimes["onlyQueryOT"] is True:
+            plays_query = plays_query.filter(Play.period > 2)
+        valid_OT_periods = []
+        for key in overtimes:
+            if key != "onlyQueryOT" or key != "otSlider":
+                if overtimes[key] is True:
+                    valid_OT_periods.append(key[2:])
+        if valid_OT_periods:
+            for period in valid_OT_periods:
+                start = overtimes["otSlider"]["start"]["sec"] + (period - 3) * 300
+                end = overtimes["otSlider"]["end"]["sec"] + + (period - 3) * 300
+                time_periods.append([start, end])
+            # # If the user is filtering to show overtimes
+            # plays_query = plays_query.filter(Play.period.in_(valid_OT_periods))
 
     # Now apply timing filters
     time_period_conds = []
@@ -375,72 +389,72 @@ def masterQuery(json_form):
 
 
 
-#
-#
-# print(masterQuery({
-#   "page": "players",
-#   "position": [],
-#   "team": ["COR"],
-#   "opponent": [],
-#   "in": ["1"],
-#   "out": [],
-#   "upOrDown": [
-#     "withIn",
-#     None
-#   ],
-#   "gametime": {
-#     "slider": {
-#       "start": {
-#         "clock": "20:00",
-#         "sec": -1200
-#       },
-#       "end": {
-#         "clock": "00:00",
-#         "sec": 0
-#       }
-#     },
-#     "sliderExtra": {
-#       "start": {
-#         "clock": "20:00",
-#         "sec": -1200
-#       },
-#       "end": {
-#         "clock": "00:00",
-#         "sec": 0
-#       }
-#     },
-#     "multipleTimeFrames": False
-#   },
-#   "location": {
-#     "home": True,
-#     "away": True,
-#     "neutral": True
-#   },
-#   "outcome": {
-#     "wins": True,
-#     "losses": True
-#   },
-#   "overtime": {
-#     "otSlider": {
-#       "start": {
-#         "clock": "5:00",
-#         "sec": -300
-#       },
-#       "end": {
-#         "clock": "0:00",
-#         "sec": 0
-#       }
-#     },
-#     "ot1": False,
-#     "ot2": False,
-#     "ot3": False,
-#     "ot4": False,
-#     "ot5": False,
-#     "ot6": False,
-#     "onlyQueryOT": False
-#   },
-#   "dates": {
-#     "start": 1510508800000,
-#     "end": 1525665600000
-#   }
-# }))
+
+
+print(masterQuery({
+  "page": "players",
+  "position": [],
+  "team": ["COR"],
+  "opponent": [],
+  "in": ["1"],
+  "out": [],
+  "upOrDown": [
+    "withIn",
+    None
+  ],
+  "gametime": {
+    "slider": {
+      "start": {
+        "clock": "20:00",
+        "sec": -1200
+      },
+      "end": {
+        "clock": "00:00",
+        "sec": 0
+      }
+    },
+    "sliderExtra": {
+      "start": {
+        "clock": "20:00",
+        "sec": -1200
+      },
+      "end": {
+        "clock": "00:00",
+        "sec": 0
+      }
+    },
+    "multipleTimeFrames": False
+  },
+  "location": {
+    "home": True,
+    "away": True,
+    "neutral": True
+  },
+  "outcome": {
+    "wins": True,
+    "losses": True
+  },
+  "overtime": {
+    "otSlider": {
+      "start": {
+        "clock": "5:00",
+        "sec": 0
+      },
+      "end": {
+        "clock": "0:00",
+        "sec": 300
+      }
+    },
+    "ot1": False,
+    "ot2": False,
+    "ot3": False,
+    "ot4": False,
+    "ot5": False,
+    "ot6": False,
+    "onlyQueryOT": False
+  },
+  "dates": {
+    "start": 1510508800000,
+    "end": 1525665600000
+  }
+}))
