@@ -196,7 +196,7 @@ def masterQuery(json_form):
         plays = list(filter(lambda p: player_in(p, players_in), plays))
 
     if players_out:
-        players_out = list(map(lambda p: int(p), players_in))
+        players_out = list(map(lambda p: int(p), players_out))
         plays = list(filter(lambda p: not player_in(p, players_in), plays))
 
     # Score filters: Filter by point differentials
