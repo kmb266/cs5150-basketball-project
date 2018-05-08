@@ -136,7 +136,8 @@ export class TeamsFilterComponent implements OnInit {
     }
 
     filters.overtime = {
-        otSlider: this.gametime.tgtSliderOT,
+        otSliderStart: this.gametime.tgtSliderOT.start.sec + 300,
+        otSliderEnd: this.gametime.tgtSliderOT.end.sec + 300,
         ot1: this.ot1,
         ot2: this.ot2,
         ot3: this.ot3,
