@@ -277,7 +277,7 @@
   </div>
 
   <div class="nav-item apply-filters" >
-    <button class="btn btn-default" (click)="applyPlayerFilters()">Apply Filters</button>
+    <button class="btn btn-default" (click)="applyPlayerFilters()" id="players-apply-filters-btn">Apply Filters</button>
   </div>
 
 </nav>
@@ -306,3 +306,16 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<div id="players-spinner-wrapper" hidden>
+  <div class="spinner-wrapper">
+    <div class="spinner">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+    <div class="cancel-apply-filter">
+      <button type="button" class="btn btn-danger btn-lg" (click)="cancelFilterProcess()">Cancel</button>
+    </div>
+  </div>
+</div>
