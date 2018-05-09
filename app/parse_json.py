@@ -146,8 +146,8 @@ def parse_plays(data, session):
                 shooting_play=shooting_play,score_value=score_value,home_score=home_score,
                 away_score=away_score,text=text,action="ASSIST",player_id=assister)
 
-            Play.convert_time(p0)
-            Play.convert_time(p1)
+            p0.convert_time(period, time)
+            p1.convert_time(period, time)
             session.add(p0)
             session.add(p1)
 
@@ -184,7 +184,7 @@ def parse_plays(data, session):
                 shooting_play=shooting_play,score_value=score_value,home_score=home_score,
                 away_score=away_score,text=text,action=action,type=type_,player_id=player_id)
 
-            Play.convert_time(p)
+            p.convert_time(period, time)
             session.add(p)
 
 def parse_stats(stats):
