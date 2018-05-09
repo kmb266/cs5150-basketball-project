@@ -271,23 +271,23 @@ def json_to_database(json_file):
     parse_json.parse_game(data, json_session)
     parse_json.parse_teams(data, json_session)
     parse_json.parse_players(data, json_session)
-    # parse_json.parse_plays(data, session)
+    parse_json.parse_plays(data, session)
 
     json_session.commit()
 
 
 def fill_all_json():
     for filename in os.listdir("../cached_json/ncb/playbyplay"):
-        if filename != "400990128.json": # TODO: @Dav, why do we have this? - Sarvar
+        if filename != "400990128.json": # TODO: @Dav, why do we have this? (it was because the file has a player playing for both teams) - Sarvar
             json_to_database("../cached_json/ncb/playbyplay/" + filename)
 
 
 # COMMENT THE BELOW LINES IN ON INITIAL DB LOAD
-# print("Populating XML database...")
-# fill_all_xml()
-# print("XML database populated\n")
-#
-# print("Populating JSON database...")
-# fill_all_json()
-# print("JSON database populated..")
+print("Populating XML database...")
+fill_all_xml()
+print("XML database populated\n")
+
+print("Populating JSON database...")
+fill_all_json()
+print("JSON database populated..")
 
