@@ -5,16 +5,12 @@ from sqlalchemy import Column
 def parse_game(data, session):
     """
     adds an entry to the Game table
-    returns game_id
     """
     competitions = data["gamepackageJSON"]["header"]["competitions"][0]
 
-    # unique game ID provided by ESPN
-    game_id = data["gameId"]
-
     # date of the game in datetime format
     date = competitions["date"]
-    date = datetime.datetime.strptime("2017-11-26T19:00Z", '%Y-%m-%dT%H:%MZ') - datetime.timedelta(hours=4)
+    date = datetime.datetime.strptime(date, '%Y-%m-%dT%H:%MZ') - datetime.timedelta(hours=4)
 
     # the id's of the two teams playing
     team_0 = competitions["competitors"][0]["team"]["abbreviation"]
@@ -40,15 +36,11 @@ def parse_game(data, session):
     isLeague = competitions["conferenceCompetition"]
     # isPlayoff = data["gamepackageJSON"]["header"]["league"]["isTournament"]
 
-    g = Game(id=game_id,date=date,home=home,visitor=visitor,winner=winner,loser=loser,
-        home_score=home_score,visitor_score=visitor_score,isLeague=isLeague)
-
+    g = Game(id=data["gameId"],date=date,home=home,visitor=visitor,winner=winner,
+        loser=loser,home_score=home_score,visitor_score=visitor_score,isLeague=isLeague)
     session.add(g)
     # session.commit()
 
-
-import datetime
-from db import Game, Team, Player, PlayerIn, TeamIn, Play
 
 def parse_teams(data, session):
     game_id = data["gameId"]
@@ -73,9 +65,6 @@ def parse_teams(data, session):
 
     # session.commit()
 
-import datetime
-from db import Game, Team, Player, PlayerIn, TeamIn, Play
-
 def parse_players(data, session):
     game_id = data["gameId"]
     players = data["gamepackageJSON"]["boxscore"]["players"]
@@ -91,9 +80,9 @@ def parse_players(data, session):
             jersey_num = intf(athlete["athlete"]["jersey"])
 
             # only add player if they are not yet in db, and they played in the game
-            p = session.query(Player).filter_by(name=athlete_name, team=team_id).first()
+            p = session.query(Player).filter_by(id=athlete_id).first()
             if (not p) and (not athlete["didNotPlay"]):
-                p = Player(name=athlete_name, position=position, team=team_id)
+                p = Player(id=athlete_id,name=athlete_name, position=position, team=team_id)
                 session.add(p)
 
             # if they played in the game, add their game stats
@@ -109,58 +98,131 @@ def parse_players(data, session):
 
     # session.commit()
 
-import datetime
-from db import Game, Team, Player, PlayerIn, TeamIn, Play
-
 def parse_plays(data, session):
     game_id = data["gameId"]
     for play in data["gamepackageJSON"]["plays"]:
         play_id = intf(play["id"])
-        period = play["period"]["number"]
+        period = intf(play["period"]["number"])
         time = play["clock"]["displayValue"]
         scoring_play = play["scoringPlay"]
         shooting_play = play["shootingPlay"]
-        score_value = play["scoreValue"]
+        score_value = intf(play["scoreValue"])
         home_score = play["homeScore"]
         away_score = play["awayScore"]
         text = play["text"]
+        json_type = play["type"]["text"]
+        participants = play.get("participants")
 
-        p = Play(id=play_id,game_id=game_id,period=period,time=time,scoring_play=scoring_play,
-            shooting_play=shooting_play,score_value=score_value,home_score=home_score,
-            away_score=away_score,text=text)
-        session.add(p)
 
-    action = ""
-    type = ""
-    player_id = Column(Integer, ForeignKey('players.id'))
+        action = ""
+        type_ = ""
 
+        if shooting_play:
+            if scoring_play:
+                action = "GOOD"
+            else:
+                action = "MISS"
+            if score_value == 1:
+                type_ = "FT"
+            elif score_value == 2:
+                type_  = "JUMPER"
+            elif score_value == 3:
+                type_ = "3PTR"
+
+        if participants and len(participants) > 1:
+            # add two plays, one for shot and one for assist
+            player_id_0 = intf(participants[0]["athlete"]["id"])
+            player_id_1 = intf(participants[1]["athlete"]["id"])
+
+            #TODO: verify
+            shooter = player_id_0
+            assister = player_id_1
+
+            p0 = Play(game_id=game_id,period=period,time=time,scoring_play=scoring_play,
+                shooting_play=shooting_play,score_value=score_value,home_score=home_score,
+                away_score=away_score,text=text,action=action,type=type_,player_id=shooter)
+
+            p1 = Play(game_id=game_id,period=period,time=time,scoring_play=scoring_play,
+                shooting_play=shooting_play,score_value=score_value,home_score=home_score,
+                away_score=away_score,text=text,action="ASSIST",player_id=assister)
+
+            p0.convert_time(period, time)
+            p1.convert_time(period, time)
+            session.add(p0)
+            session.add(p1)
+
+        else:
+            # play has 0 or 1 participants
+            player_id = None
+            if participants:
+                player_id = intf(participants[0]["athlete"]["id"])
+
+            # parse action and type
+            if json_type == "Lost Ball Turnover":
+                action = "TURNOVER"
+            elif json_type == "Steal":
+                action = "STEAL"
+            elif json_type == "Dead Ball Rebound":
+                action = "REBOUND"
+                type_ = "DEADB"
+            elif json_type == "Offensive Rebound":
+                action = "REBOUND"
+                type_ = "OFF"
+            elif json_type == "Defensive Rebound":
+                action = "REBOUND"
+                type_ = "DEF"
+            elif json_type == "Block Shot":
+                action = "BLOCK"
+            elif json_type == "PersonalFoul":
+                action = "FOUL"
+            elif json_type == "Technical Foul":
+                action = "FOUL"
+                type_ = "TECH"
+
+
+            p = Play(game_id=game_id,period=period,time=time,scoring_play=scoring_play,
+                shooting_play=shooting_play,score_value=score_value,home_score=home_score,
+                away_score=away_score,text=text,action=action,type=type_,player_id=player_id)
+
+            p.convert_time(period, time)
+            session.add(p)
 
 def parse_stats(stats):
+
     fgm, fga = extract_made_attempted(stats[1])  # Field goals made / attempted
     fgm3, fga3 = extract_made_attempted(stats[2]) # Threes made / attempted
     ftm, fta = extract_made_attempted(stats[3]) # Free throws made / attempted
-    mins = intf(stats[0]) # Minutes played
-    tp = intf(stats[12])    # Total points
-    blk = intf(stats[9])     # Total blocks
-    stl = intf(stats[8])     # Total steals
-    ast = intf(stats[7])     # Total assists
-    oreb = intf(stats[4])    # Total offensive rebounds
-    dreb = intf(stats[5])    # Total defensive rebounds
-    treb = intf(stats[6])     # Total rebounds (offensive + defensive)
-    pf = intf(stats[11])    # Total personal fouls
-    to = intf(stats[10])    # Total turnovers
+    mins = intf(stats[0])              # Minutes played
+    tp = intf(stats[12])               # Total points
+    blk = intf(stats[9])               # Total blocks
+    stl = intf(stats[8])               # Total steals
+    ast = intf(stats[7])               # Total assists
+    oreb = intf(stats[4])              # Total offensive rebounds
+    dreb = intf(stats[5])              # Total defensive rebounds
+    treb = intf(stats[6])              # Total rebounds (offensive + defensive)
+    pf = intf(stats[11])               # Total personal fouls
+    to = intf(stats[10])               # Total turnovers
 
     return {"mins":mins,"fgm":fgm,"fga":fga,"fgm3":fgm3,"fga3":fga3,"ftm":ftm,
         "fta":fta,"tp":tp,"blk":blk,"stl":stl,"ast":ast,"oreb":oreb,"dreb":dreb,
         "treb":treb,"pf":pf,"to":to}
 
 def extract_made_attempted(stat_string):
+    """
+    Takes as input a string in the format "m-a" where m and a are integers
+    representing the number of made and attempted shots, respectively. Returns
+    a pair of ints in the form made, attempted.
+    """
     split_stats = stat_string.split("-")
     made = split_stats[0]
     attempted = split_stats[1]
     return made, attempted
 
 def intf(s):
+    """
+    Transforms a string into an int. If the built-in int() function raises an
+    error, return 0.
+    """
     try:
         num = int(s)
     except:
