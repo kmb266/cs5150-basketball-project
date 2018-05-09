@@ -271,7 +271,7 @@ def json_to_database(json_file):
     parse_json.parse_game(data, json_session)
     parse_json.parse_teams(data, json_session)
     parse_json.parse_players(data, json_session)
-    parse_json.parse_plays(data, session)
+    parse_json.parse_plays(data, json_session)
 
     json_session.commit()
 
@@ -290,4 +290,3 @@ print("XML database populated\n")
 print("Populating JSON database...")
 fill_all_json()
 print("JSON database populated..")
-
