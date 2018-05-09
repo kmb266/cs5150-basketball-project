@@ -177,7 +177,3 @@ create_db("basketball_xml")
 
 # Initialize json database
 create_db("basketball_json")
-
-
-
-
