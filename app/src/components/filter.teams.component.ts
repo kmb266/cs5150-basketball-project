@@ -284,6 +284,13 @@ export class TeamsFilterComponent implements OnInit {
     globals.applyFilters(this.currentPageName, filters, this.dataEvent);
   }
 
+  cancelFilterProcess() {
+    /*
+      Kills the currently running apply filters call on this page
+    */
+    globals.cancelFilterProcess(this.currentPageName)
+  }
+
   ngOnInit(): void {
 
     // Setup gametime slider as range slider

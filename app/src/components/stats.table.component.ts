@@ -15,6 +15,8 @@ export class StatsTableComponent {
   keyHeaders = ["name","FG","3PT","FT","OREB","DREB","REB","AST","STL","BLK","TO","PF","PTS", "Usage_Rate", "PIE", "Game_Score"];
   public init_data = [{'FT': 0, 'STL': 0, '3PT': 0, 'BLK': 0, 'FG': 0, 'REB': 0, 'DREB': 0, 'name': 'Player Name', 'AST': 0, 'OREB': 0, 'TO': 0, 'PF': 0, 'PTS': 0, 'jersey': '-'}];
 
+  @Input() pageName:string;
+
   // Lists of players and columns/headers to be displayed
   public passed_in_headers = [];
   public playerList = [];

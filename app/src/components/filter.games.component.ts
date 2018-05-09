@@ -306,12 +306,19 @@ export class GamesFilterComponent implements OnInit {
   applyPlayerFilters(){
     /*
       Get all of the filters as an object
-      Save them to be able to enable back and forward buttons
+      // TODO: Save them to be able to enable back and forward buttons
       and send them to the backend
     */
     var filters = this.getAllFilters();
     // this.saveFilters(filters);
     globals.applyFilters(this.currentPageName, filters, this.dataEvent);
+  }
+
+  cancelFilterProcess() {
+    /*
+      Kills the currently running apply filters call on this page
+    */
+    globals.cancelFilterProcess(this.currentPageName)
   }
 
   ngOnInit(): void {

@@ -28,10 +28,15 @@ export class PlayersFilterComponent implements OnInit {
     // if a real option has been selected that is not the null value
     if ($('#saved-filters').val() != -1 ) {
 
-      // apply the saved filters and send to middle stack
-      globals.applyFilters(this.currentPageName, savedFilterObj, this.dataEvent);
+      try {
+        // apply the saved filters and send to middle stack
+        globals.applyFilters(this.currentPageName, savedFilterObj, this.dataEvent);
 
-      this.updateFilters(savedFilterObj);
+        this.updateFilters(savedFilterObj);
+      }
+      catch(err) {
+        console.log(err)
+      }
 
     }
 
@@ -337,7 +342,9 @@ export class PlayersFilterComponent implements OnInit {
     globals.applyFilters(this.currentPageName, filters, this.dataEvent);
   }
   cancelFilterProcess() {
-    console.log('ending python call')
+    /*
+      Kills the currently running apply filters call on this page
+    */
     globals.cancelFilterProcess(this.currentPageName)
   }
 

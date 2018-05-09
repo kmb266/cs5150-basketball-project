@@ -203,7 +203,7 @@ export const applyFilters = (page, filters_data, emitter) => {
 
   //save the python process outside the function to be able to cancel if necessary
   active_child_processes[page] = py;
-  console.log(active_child_processes)
+  // console.log(active_child_processes)
 
   // retrieve the data from the data_manager.py
   py.stdout.on('data', function(data){
@@ -217,14 +217,22 @@ export const applyFilters = (page, filters_data, emitter) => {
       emitter.emit({})
     }
     else {
-      var data = JSON.parse(dataString);
-      // console.log(data);
-      // send data up to app component
-      emitter.emit(dataString.replace(/'/g, ' '));
+      try {
+        var data = JSON.parse(dataString);
+        // console.log(data);
+        // send data up to app component
+        emitter.emit(dataString.replace(/'/g, ' '));
+      }
+      catch(err) {
+        console.log(err)
+
+        // NOTE: UNCOMMENT THIS LINE TO ALLOW FOR ERROR USER ALERTING FOR ERROR
+        // alert('There was an unexpected error: \n\n'+err+'\n\nPlease try again.');
+      }
     }
 
     // stop loading gif
-    $('#'+page+'-spinner-wrapper').toggle();
+    $('#'+page+'-spinner-wrapper').hide();
 
     //enable apply filters button again
     $('#'+page+'-apply-filters-btn').prop('disabled', function(i, v) { return !v; });

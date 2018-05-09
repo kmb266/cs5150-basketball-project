@@ -9,7 +9,7 @@
   </div>
 
   <div class="content-wrapper" id="content-players" [style.height.px]="contentHeight">
-    <stats-table [data]="table_data.players"></stats-table>
+    <stats-table [data]="table_data.players" [pageName]="'players'"></stats-table>
   </div>
 
 </div>
@@ -21,7 +21,7 @@
   </div>
 
   <div class="content-wrapper" id="content-teams" [style.height.px]="contentHeight">
-    <stats-table [data]="table_data.teams"></stats-table>
+    <stats-table [data]="table_data.teams" [pageName]="'teams'"></stats-table>
   </div>
 
 </div>
@@ -33,7 +33,7 @@
   </div>
 
   <div class="content-wrapper" id="content-games" >
-    <stats-table [data]="table_data.games"></stats-table>
+    <stats-table [data]="table_data.games" [pageName]="'games'"></stats-table>
   </div>
 
 </div>
