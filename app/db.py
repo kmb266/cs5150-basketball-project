@@ -151,16 +151,17 @@ class Play(Base):
         :param time:
         :return:
         """
+        colon_idx = time.index(":")
         if period < 3:
             result = -2400 + ((period - 1) * 1200)  # Period 1 -> 2400, period 2 -> 1200
-            mins_to_secs = 1200 - int(time[:2]) * 60  # 20 mins -> 0, 0 mins -> 1200
-            secs_to_secs = int(time[3:])
+            mins_to_secs = 1200 - int(time[:colon_idx]) * 60  # 20 mins -> 0, 0 mins -> 1200
+            secs_to_secs = int(time[colon_idx + 1:])
             self.time_converted = result + mins_to_secs - secs_to_secs
         else:
             # TODO: Check if this works
             result = (period - 3) * 5 * 60
-            mins_to_secs = 300 - int(time[:2]) * 60
-            secs_to_secs = int(time[3:])
+            mins_to_secs = 300 - int(time[:colon_idx]) * 60
+            secs_to_secs = int(time[colon_idx + 1:])
             self.time_converted = result + mins_to_secs - secs_to_secs
 
 
