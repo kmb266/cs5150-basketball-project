@@ -240,13 +240,28 @@ def masterQuery(json_form):
     # Score filters: Filter by point differentials
     up_or_down = data["upOrDown"]
     if up_or_down[1] is not None:
+        def filter_plays_differential(p, up_or_down, amt):
+            g = session.query(Game).filter_by(id=p.game_id).first()
+            if g.home in teamIds:
+                # If the team we're looking for is home team this play, base calculations off that
+                if up_or_down == "up":
+                    return p.home_score - p.away_score > amt
+                elif up_or_down == "down":
+                    return p.home_score - p.away_score <= amt
+            else:
+                # Otherwise the team we're looking for is away team this play
+                if up_or_down == "up":
+                    return p.away_score - p.home_score > amt
+                elif up_or_down == "down":
+                    return p.away_score - p.home_score <= amt
+            return False
+
         if up_or_down[0] == "within":
             plays = list(filter(lambda p: abs(p.home_score - p.away_score) <= up_or_down[1], plays))
         elif up_or_down == "down":
-            # TODO: don't use home/away
-            plays = list(filter(lambda p: p.away_score - p.home_score >= up_or_down[1], plays))
+            plays = list(filter(lambda p: filter_plays_differential(p, "down", up_or_down[1]), plays))
         elif up_or_down == "up":
-            plays = list(filter(lambda p: p.home_score - p.away_score >= up_or_down[1], plays))
+            plays = list(filter(lambda p: filter_plays_differential(p, "up", up_or_down[1]), plays))
 
     def generate_box_score(plays):
         """
