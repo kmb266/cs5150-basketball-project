@@ -283,10 +283,10 @@ def fill_all_json():
 
 
 # COMMENT THE BELOW LINES IN ON INITIAL DB LOAD
-print("Populating XML database...")
-fill_all_xml()
-print("XML database populated\n")
-
-print("Populating JSON database...")
-fill_all_json()
-print("JSON database populated..")
+# print("Populating XML database...")
+# fill_all_xml()
+# print("XML database populated\n")
+#
+# print("Populating JSON database...")
+# fill_all_json()
+# print("JSON database populated..")

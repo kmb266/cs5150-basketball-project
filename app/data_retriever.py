@@ -389,13 +389,13 @@ def masterQuery(json_form):
     return box_score.values(), teams
 
 
-# 
+
 # print(masterQuery({
 #   "page": "players",
 #   "position": [],
 #   "team": ["DUKE"],
 #   "opponent": [],
-#   "in": ["1"],
+#   "in": [],
 #   "out": [],
 #   "upOrDown": [
 #     "withIn",
