@@ -82,12 +82,20 @@ def masterQuery(json_form):
 
     # Games query selects all games where teams in team play against teams in opponent
     if oppIds:
-        games_query = session.query(Game).filter(
-            or_(
-                (and_(Game.home.in_(teamIds), Game.visitor.in_(oppIds))),
-                (and_(Game.visitor.in_(teamIds), Game.home.in_(oppIds)))
+        db_contains_opp = True
+        for opp in oppIds:
+            o = session.query(Team).filter_by(team_id=opp).first()
+            if not o:
+                db_contains_opp = False
+                return {}, {}
+
+        if db_contains_opp:
+            games_query = session.query(Game).filter(
+                or_(
+                    (and_(Game.home.in_(teamIds), Game.visitor.in_(oppIds))),
+                    (and_(Game.visitor.in_(teamIds), Game.home.in_(oppIds)))
+                )
             )
-        )
     else:
         games_query = session.query(Game).filter(
             or_(
@@ -199,6 +207,20 @@ def masterQuery(json_form):
                 play.v5 in players:
                 return True
 
+    def player_out(play, players):
+        if play.h1 not in players and \
+            play.h2 not in players and \
+            play.h3 not in players and \
+            play.h4 not in players and \
+            play.h5 not in players and \
+            play.v1 not in players and \
+            play.v2 not in players and \
+            play.v3 not in players and \
+            play.v4 not in players and \
+                play.v5 in players:
+                return True
+
+
     positions = data["position"]
 
     # Position filter: Only include players with the given positions - expected value is int list
@@ -213,7 +235,7 @@ def masterQuery(json_form):
 
     if players_out:
         players_out = list(map(lambda p: int(p), players_out))
-        plays = list(filter(lambda p: not player_in(p, players_out), plays)) # TODO: Verify logic in this line
+        plays = list(filter(lambda p: player_out(p, players_out), plays)) # TODO: Verify logic in this line
 
     # Score filters: Filter by point differentials
     up_or_down = data["upOrDown"]
@@ -221,6 +243,7 @@ def masterQuery(json_form):
         if up_or_down[0] == "within":
             plays = list(filter(lambda p: abs(p.home_score - p.away_score) <= up_or_down[1], plays))
         elif up_or_down == "down":
+            # TODO: don't use home/away
             plays = list(filter(lambda p: p.away_score - p.home_score >= up_or_down[1], plays))
         elif up_or_down == "up":
             plays = list(filter(lambda p: p.home_score - p.away_score >= up_or_down[1], plays))
@@ -390,70 +413,70 @@ def masterQuery(json_form):
 
 
 
-# print(masterQuery({
-#   "page": "players",
-#   "position": [],
-#   "team": ["DUKE"],
-#   "opponent": [],
-#   "in": [],
-#   "out": [],
-#   "upOrDown": [
-#     "withIn",
-#     None
-#   ],
-#   "gametime": {
-#     "slider": {
-#       "start": {
-#         "clock": "20:00",
-#         "sec": -1200
-#       },
-#       "end": {
-#         "clock": "00:00",
-#         "sec": 0
-#       }
-#     },
-#     "sliderExtra": {
-#       "start": {
-#         "clock": "20:00",
-#         "sec": -1200
-#       },
-#       "end": {
-#         "clock": "00:00",
-#         "sec": 0
-#       }
-#     },
-#     "multipleTimeFrames": False
-#   },
-#   "location": {
-#     "home": True,
-#     "away": True,
-#     "neutral": True
-#   },
-#   "outcome": {
-#     "wins": True,
-#     "losses": True
-#   },
-#   "overtime": {
-#     "otSlider": {
-#       "start": {
-#         "clock": "5:00",
-#         "sec": 0
-#       },
-#       "end": {
-#         "clock": "0:00",
-#         "sec": 300
-#       }
-#     },
-#     "ot1": False,
-#     "ot2": False,
-#     "ot3": False,
-#     "ot4": False,
-#     "ot5": False,
-#     "ot6": False,
-#     "onlyQueryOT": False
-#   },
-#   "dates": {
-#     "start": 1510508800000,
-#     "end": 1525665600000
-#   }
-# }))
+print(masterQuery({
+  "page": "players",
+  "position": [],
+  "team": ["COR"],
+  "opponent": [],
+  "in": [1],
+  "out": [9, 11],
+  "upOrDown": [
+    "withIn",
+    None
+  ],
+  "gametime": {
+    "slider": {
+      "start": {
+        "clock": "20:00",
+        "sec": -1200
+      },
+      "end": {
+        "clock": "00:00",
+        "sec": 0
+      }
+    },
+    "sliderExtra": {
+      "start": {
+        "clock": "20:00",
+        "sec": -1200
+      },
+      "end": {
+        "clock": "00:00",
+        "sec": 0
+      }
+    },
+    "multipleTimeFrames": False
+  },
+  "location": {
+    "home": True,
+    "away": True,
+    "neutral": True
+  },
+  "outcome": {
+    "wins": True,
+    "losses": True
+  },
+  "overtime": {
+    "otSlider": {
+      "start": {
+        "clock": "5:00",
+        "sec": 0
+      },
+      "end": {
+        "clock": "0:00",
+        "sec": 300
+      }
+    },
+    "ot1": False,
+    "ot2": False,
+    "ot3": False,
+    "ot4": False,
+    "ot5": False,
+    "ot6": False,
+    "onlyQueryOT": False
+  },
+  "dates": {
+    "start": 1510508800000,
+    "end": 1525665600000
+  }
+}))
