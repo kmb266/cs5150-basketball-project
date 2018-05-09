@@ -336,6 +336,10 @@ export class PlayersFilterComponent implements OnInit {
     // this.saveFilters(filters);
     globals.applyFilters(this.currentPageName, filters, this.dataEvent);
   }
+  cancelFilterProcess() {
+    console.log('ending python call')
+    globals.cancelFilterProcess(this.currentPageName)
+  }
 
   ngOnInit(): void {
 

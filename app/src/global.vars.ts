@@ -175,6 +175,9 @@ export const getUpOrDown = () => {
   return data;
 }
 
+
+var active_child_processes = {};
+
 export const applyFilters = (page, filters_data, emitter) => {
   // initial a child process
 
@@ -186,29 +189,58 @@ export const applyFilters = (page, filters_data, emitter) => {
   //     path_to_exe = path.join(__dirname, 'python', 'dist', 'data_manager','data_manager'),
   //     py = require('child_process').execFile(path_to_exe),
 
+  // Start loading gif
+  $('#'+page+'-spinner-wrapper').toggle();
+  // disable apply filters button until done loading data
+  $('#'+page+'-apply-filters-btn').prop('disabled', function(i, v) { return !v; });
+  // hide the table until loaded
+  $('#content-'+page).first().hide()
+
   var spawn = require('child_process').spawn,
       py = spawn('python', ['./data_manager.py']),
       data = filters_data,
       dataString = '';
 
-  //console.log(filters_data)
+  //save the python process outside the function to be able to cancel if necessary
+  active_child_processes[page] = py;
+  console.log(active_child_processes)
+
   // retrieve the data from the data_manager.py
   py.stdout.on('data', function(data){
     dataString += data.toString();
+    console.log(dataString);
   });
 
   // print the data when the child process ends
   py.stdout.on('end', function(){
-    var data = JSON.parse(dataString);
-    console.log(data)
-    emitter.emit(dataString.replace(/'/g, ' '));
+    if (py.killed) {
+      emitter.emit({})
+    }
+    else {
+      var data = JSON.parse(dataString);
+      // console.log(data);
+      // send data up to app component
+      emitter.emit(dataString.replace(/'/g, ' '));
+    }
 
-    //console.log("Data string: " + dataString)
+    // stop loading gif
+    $('#'+page+'-spinner-wrapper').toggle();
+
+    //enable apply filters button again
+    $('#'+page+'-apply-filters-btn').prop('disabled', function(i, v) { return !v; });
+
+    // show table after data loaded
+    $('#content-'+page).first().show()
+
+    // remove current process from list of active processes as it is finished
+    delete active_child_processes[page]
+
   });
 
   // if there is an error, print it out
   py.on('error', function(err) {
     console.log("Failed to start child. " + err);
+    $('#'+page+'-apply-filters-btn').prop('disabled', function(i, v) { return !v; });
   });
 
   py.stdin.write(JSON.stringify(data));
@@ -227,6 +259,15 @@ export const applyFilters = (page, filters_data, emitter) => {
   */
 }
 
+export const cancelFilterProcess = (page) => {
+  /*
+    Cancels the backend python process for specific page this means
+    that only one apply filters process can be run for each page (or tab)
+  */
+  var py_process = active_child_processes[page]
+  console.log('killing active process for '+page);
+  py_process.kill()
+}
 export const validateFilterName = (filterName) => {
   /*
     Check if the filter name is valid.
