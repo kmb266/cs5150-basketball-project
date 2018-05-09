@@ -428,70 +428,70 @@ def masterQuery(json_form):
 
 
 
-print(masterQuery({
-  "page": "players",
-  "position": [],
-  "team": ["COR"],
-  "opponent": [],
-  "in": [1],
-  "out": [9, 11],
-  "upOrDown": [
-    "withIn",
-    None
-  ],
-  "gametime": {
-    "slider": {
-      "start": {
-        "clock": "20:00",
-        "sec": -1200
-      },
-      "end": {
-        "clock": "00:00",
-        "sec": 0
-      }
-    },
-    "sliderExtra": {
-      "start": {
-        "clock": "20:00",
-        "sec": -1200
-      },
-      "end": {
-        "clock": "00:00",
-        "sec": 0
-      }
-    },
-    "multipleTimeFrames": False
-  },
-  "location": {
-    "home": True,
-    "away": True,
-    "neutral": True
-  },
-  "outcome": {
-    "wins": True,
-    "losses": True
-  },
-  "overtime": {
-    "otSlider": {
-      "start": {
-        "clock": "5:00",
-        "sec": 0
-      },
-      "end": {
-        "clock": "0:00",
-        "sec": 300
-      }
-    },
-    "ot1": False,
-    "ot2": False,
-    "ot3": False,
-    "ot4": False,
-    "ot5": False,
-    "ot6": False,
-    "onlyQueryOT": False
-  },
-  "dates": {
-    "start": 1510508800000,
-    "end": 1525665600000
-  }
-}))
+# print(masterQuery({
+#   "page": "players",
+#   "position": [],
+#   "team": ["COR"],
+#   "opponent": [],
+#   "in": [1],
+#   "out": [9, 11],
+#   "upOrDown": [
+#     "withIn",
+#     None
+#   ],
+#   "gametime": {
+#     "slider": {
+#       "start": {
+#         "clock": "20:00",
+#         "sec": -1200
+#       },
+#       "end": {
+#         "clock": "00:00",
+#         "sec": 0
+#       }
+#     },
+#     "sliderExtra": {
+#       "start": {
+#         "clock": "20:00",
+#         "sec": -1200
+#       },
+#       "end": {
+#         "clock": "00:00",
+#         "sec": 0
+#       }
+#     },
+#     "multipleTimeFrames": False
+#   },
+#   "location": {
+#     "home": True,
+#     "away": True,
+#     "neutral": True
+#   },
+#   "outcome": {
+#     "wins": True,
+#     "losses": True
+#   },
+#   "overtime": {
+#     "otSlider": {
+#       "start": {
+#         "clock": "5:00",
+#         "sec": 0
+#       },
+#       "end": {
+#         "clock": "0:00",
+#         "sec": 300
+#       }
+#     },
+#     "ot1": False,
+#     "ot2": False,
+#     "ot3": False,
+#     "ot4": False,
+#     "ot5": False,
+#     "ot6": False,
+#     "onlyQueryOT": False
+#   },
+#   "dates": {
+#     "start": 1510508800000,
+#     "end": 1525665600000
+#   }
+# }))
