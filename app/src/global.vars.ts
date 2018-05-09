@@ -208,7 +208,7 @@ export const applyFilters = (page, filters_data, emitter) => {
   // retrieve the data from the data_manager.py
   py.stdout.on('data', function(data){
     dataString += data.toString();
-    console.log(dataString);
+    // console.log(dataString);
   });
 
   // print the data when the child process ends
@@ -506,8 +506,10 @@ export const updateDatesFromSavedFilter = (filters) => {
   Inputs:
     filters: Object that contains all of the filter data
   */
-  $("#"+filters.page+"-start-date").datepicker('update', filters.dates.start);
-  $("#"+filters.page+"-end-date").datepicker('update', filters.dates.end);
+  var startDate = new Date(filters.dates.start);
+  var endDate = new Date(filters.dates.end);
+  $("#"+filters.page+"-start-date").datepicker('update', startDate);
+  $("#"+filters.page+"-end-date").datepicker('update', endDate);
 
 }
 export const getTeams = (page) => {
