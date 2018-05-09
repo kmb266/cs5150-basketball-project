@@ -179,7 +179,6 @@ def parse_plays(data, session):
                 action = "FOUL"
                 type_ = "TECH"
 
-
             p = Play(game_id=game_id,period=period,time=time,scoring_play=scoring_play,
                 shooting_play=shooting_play,score_value=score_value,home_score=home_score,
                 away_score=away_score,text=text,action=action,type=type_,player_id=player_id)
