@@ -86,8 +86,18 @@ def masterQuery(json_form):
         for opp in oppIds:
             o = session.query(Team).filter_by(team_id=opp).first()
             if not o:
-                db_contains_opp = False
-                return {}, {}
+                j_engine = create_engine('sqlite:///basketball_json.db', echo=False)
+                JSession = sessionmaker(bind=j_engine)
+                j_session = JSession()
+                team_name = j_session.query(Team).filter_by(team_id=opp).first().name
+                translated = session.query(Team).filter_by(name=team_name).first()
+                if not translated:
+                    # There is no XML data for that team
+                    db_contains_opp = False
+                    return {}, {}
+                oppIds.remove(opp)
+                oppIds.append(translated.team_id)
+
 
         if db_contains_opp:
             games_query = session.query(Game).filter(
@@ -433,8 +443,8 @@ def masterQuery(json_form):
 #   "position": [],
 #   "team": ["COR"],
 #   "opponent": [],
-#   "in": [1],
-#   "out": [9, 11],
+#   "in": [],
+#   "out": [],
 #   "upOrDown": [
 #     "withIn",
 #     None
@@ -464,12 +474,12 @@ def masterQuery(json_form):
 #   },
 #   "location": {
 #     "home": True,
-#     "away": True,
+#     "away": False,
 #     "neutral": True
 #   },
 #   "outcome": {
 #     "wins": True,
-#     "losses": True
+#     "losses": False
 #   },
 #   "overtime": {
 #     "otSlider": {
@@ -494,4 +504,72 @@ def masterQuery(json_form):
 #     "start": 1510508800000,
 #     "end": 1525665600000
 #   }
-# }))
+# })[0])
+
+print(masterQuery({
+  "page": "players",
+  "position": [],
+  "team": ["COR"],
+  "opponent": ["CLMB"],
+  "in": [],
+  "out": [],
+  "upOrDown": [
+    "withIn",
+    None
+  ],
+  "gametime": {
+    "slider": {
+      "start": {
+        "clock": "20:00",
+        "sec": -1200
+      },
+      "end": {
+        "clock": "00:00",
+        "sec": 0
+      }
+    },
+    "sliderExtra": {
+      "start": {
+        "clock": "20:00",
+        "sec": -1200
+      },
+      "end": {
+        "clock": "00:00",
+        "sec": 0
+      }
+    },
+    "multipleTimeFrames": False
+  },
+  "location": {
+    "home": True,
+    "away": True,
+    "neutral": True
+  },
+  "outcome": {
+    "wins": True,
+    "losses": False
+  },
+  "overtime": {
+    "otSlider": {
+      "start": {
+        "clock": "5:00",
+        "sec": 0
+      },
+      "end": {
+        "clock": "0:00",
+        "sec": 300
+      }
+    },
+    "ot1": False,
+    "ot2": False,
+    "ot3": False,
+    "ot4": False,
+    "ot5": False,
+    "ot6": False,
+    "onlyQueryOT": False
+  },
+  "dates": {
+    "start": 1510508800000,
+    "end": 1525665600000
+  }
+}))
