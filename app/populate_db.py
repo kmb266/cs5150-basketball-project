@@ -97,19 +97,11 @@ def xml_to_database(xml_file):
         g.visitor_score = team1['stats']['score']
 
     if team1['stats']['score'] > team2['stats']['score']:
-        if team1['special']['vh'] == 'H':
-            g.winner = team1['id']
-            g.loser = team2['id']
-        else:
-            g.winner = team2['id']
-            g.loser = team1['id']
+        g.winner = team1['id']
+        g.loser = team2['id']
     else:
-        if team1['special']['vh'] == 'H':
-            g.winner = team2['id']
-            g.loser = team1['id']
-        else:
-            g.winner = team1['id']
-            g.loser = team2['id']
+        g.winner = team2['id']
+        g.loser = team1['id']
 
     session.add(g)
     session.commit()
@@ -283,10 +275,10 @@ def fill_all_json():
 
 
 # COMMENT THE BELOW LINES IN ON INITIAL DB LOAD
-# print("Populating XML database...")
-# fill_all_xml()
-# print("XML database populated\n")
-#
+print("Populating XML database...")
+fill_all_xml()
+print("XML database populated\n")
+
 # print("Populating JSON database...")
 # fill_all_json()
 # print("JSON database populated..")
