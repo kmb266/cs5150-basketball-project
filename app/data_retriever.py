@@ -244,7 +244,7 @@ def masterQuery(json_form):
         and ot_stuff["otSlider"]["end"]["sec"] == 300:
             # print("calling query full length")
             return query_full_length(selected_game_ids, session)
-            pass
+            # pass
 
 
     # Get all the plays for this game

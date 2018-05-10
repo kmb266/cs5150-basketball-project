@@ -52,11 +52,11 @@ def sampleForm():
         "otSlider": {
           "start": {
             "clock": "5:00",
-            "sec": -300
+            "sec": 0
           },
           "end": {
             "clock": "0:00",
-            "sec": 0
+            "sec": 300
           }
         },
         "ot1": True,
@@ -196,7 +196,7 @@ def getForm():
 
 def main():
     form = getForm()
-    #form = sampleForm()
+    # form = sampleForm()
 
     form = tidyForm(form)
     data = retrieveData(form)
