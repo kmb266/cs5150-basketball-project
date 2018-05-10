@@ -439,7 +439,9 @@ def masterQuery(json_form):
                     "BLK": 0.0,
                     "TO": 0.0,
                     "PF": 0.0,
-                    "PTS": 0.0
+                    "PTS": 0.0,
+                    "home": g.home,
+                    "away": g.visitor
                 }
 
             if not players[player_id]["games"][game_id]["SEEN"]:
@@ -525,6 +527,7 @@ def masterQuery(json_form):
     (box_score, teams) = generate_box_score(plays)
     return box_score.values(), teams
 
+'''
 # Test full length games
 import time
 start_time = time.time()
@@ -596,4 +599,4 @@ print(masterQuery({
   }
 })[1])
 print("--- %s seconds ---" % (time.time() - start_time))
-
+'''

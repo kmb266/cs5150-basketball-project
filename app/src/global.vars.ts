@@ -208,7 +208,6 @@ export const applyFilters = (page, filters_data, emitter) => {
   // retrieve the data from the data_manager.py
   py.stdout.on('data', function(data){
     dataString += data.toString();
-    // console.log(dataString);
   });
 
   // print the data when the child process ends
