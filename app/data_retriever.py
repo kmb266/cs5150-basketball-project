@@ -103,7 +103,9 @@ def query_full_length(game_ids, sess):
                 "BLK": teamstat.blk,
                 "TO": teamstat.to,
                 "PF": teamstat.pf,
-                "PTS": score
+                "PTS": score,
+                "home" : game.home,
+                "away" : game.visitor
             }
 
     for player in playerstats:
@@ -113,6 +115,7 @@ def query_full_length(game_ids, sess):
             player_dict[player.player]["name"] = p.name
             player_dict[player.player]["team"] = p.team
             player_dict[player.player]["games"] = {}
+        game = sess.query(Game).filter_by(id=player.game).first()
         player_dict[player.player]["games"][player.game] = {
             "FGA": player.fga,
             "FG": player.fgm,
@@ -129,6 +132,8 @@ def query_full_length(game_ids, sess):
             "BLK": player.blk,
             "TO": player.to,
             "PF": player.pf,
+            "home" : game.home,
+            "away" : game.visitor,
             "PTS": player.ftm + (player.fgm - player.fgm3) * 2 + player.fgm3 * 3, # TODO: Check this calculation
             "MIN": player.mins or 0, # TODO: Populate db with player minutes
         }
@@ -240,13 +245,15 @@ def masterQuery(json_form):
         and data["gametime"]["multipleTimeFrames"] is False and data["gametime"]["slider"]["start"]["sec"] == -2400 and \
             data["gametime"]["slider"]["end"]["sec"] == 0 \
         and len(data["in"]) == 0 and len(data["out"]) == 0 and data["upOrDown"][1] is None \
-        and len(data["position"]) == 0 and ot_stuff["otSlider"]["start"]["sec"] == 0 \
-        and ot_stuff["otSlider"]["end"]["sec"] == 300:
-            # print("calling query full length")
+        and len(data["position"]) == 0 and ot_stuff["otSliderStart"] == 0 \
+        and ot_stuff["otSliderEnd"] == 300:
+        #and len(data["position"]) == 0 and ot_stuff["otSlider"]["start"]["sec"] == 0 \
+        #and ot_stuff["otSlider"]["end"]["sec"] == 300:
+            #print("calling query full length")
             return query_full_length(selected_game_ids, session)
             pass
 
-
+    #print("play query")
     # Get all the plays for this game
     plays_query = session.query(Play).filter(Play.game_id.in_(selected_game_ids))
 

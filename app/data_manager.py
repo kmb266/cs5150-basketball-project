@@ -4,7 +4,7 @@ from stats_results import stats_calculation
 
 def sampleForm():
     form = {
-        "page": "teams",
+        "page": "players",
         "position": [],
         "team": [
         "COR"
@@ -15,8 +15,7 @@ def sampleForm():
         "in": [],
         "out": [],
         "upOrDown": [
-            "withIn",
-            None
+            "withIn", None
         ],
         "gametime": {
             "slider": {
@@ -54,11 +53,11 @@ def sampleForm():
             "otSlider": {
               "start": {
                 "clock": "5:00",
-                "sec": -300
+                "sec": 0
               },
               "end": {
                 "clock": "0:00",
-                "sec": 0
+                "sec": 300
               }
             },
             "ot1": True,
@@ -189,7 +188,7 @@ def getAverageForTeam(team_score):
         average_box_score[team_id] = team
 
     game_data_list = []
-    #print game_data
+
     for game_id, game_boxscores in game_data.items():
         home = game_boxscores["home"]
         away = game_boxscores["away"]
@@ -230,8 +229,8 @@ def retrieveData(form):
 
     (players_score, team_score) = masterQuery(form)
 
-    final = {}
-    #try:
+    #final = {"dataTab" : "players", "data" : players_score, "teamOverall" : team_score}
+
     if page == "players":
         final = {"dataTab" : "players", "data" : players_score, "teamOverall" : team_score}
         stats_calculation(final)
@@ -241,8 +240,6 @@ def retrieveData(form):
     elif page == "teams":
         game_data = getAverageForTeam(team_score)
         final = {"dataTab" : "teams", "data" : game_data}
-    #except:
-    #    final = {"error" : "some error"}
 
     final = json.dumps(final)
     return final
@@ -272,7 +269,11 @@ def main():
     #form = sampleForm()
 
     form = tidyForm(form)
-    data = retrieveData(form)
+    try:
+        data = retrieveData(form)
+    except Exception as e:
+        data = {"error" : e.message, "doc" : e.__doc__}
+        data = json.dumps(data)
 
     #return what we get
     print(data)

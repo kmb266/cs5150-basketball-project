@@ -29,6 +29,7 @@ def stats_calculation(data):
 			FTM = box_score["FT"]
 			MIN = abs(box_score["MIN"])
 			if MIN == 0:
+				#print("minute is 0 continuing")
 				continue
 			OREB = box_score["OREB"]
 			PF = box_score["PF"]
@@ -40,11 +41,11 @@ def stats_calculation(data):
 			OREB_perc = 1
 
 			opponent_id = box_score["away"]
-			if team_id == opponent_id:
+			if team_id == box_score["away"]:
 				opponent_id = box_score["home"]
 
 			# Team values
-			team_boxscore = data["teamOverall"][opponent_id]["games"][game_id]
+			team_boxscore = data["teamOverall"][team_id]["games"][game_id]
 			TmAST = team_boxscore["AST"]
 			TmPoints = team_boxscore["PTS"]
 			TmPTS = TmPoints
