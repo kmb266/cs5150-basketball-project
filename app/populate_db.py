@@ -62,7 +62,7 @@ def xml_to_database(xml_file):
                                 pts_ch2=spec['pts_ch2'], pts_fastb=spec['pts_fastb'], pts_bench=spec['pts_bench'],
                                 ties=spec['ties'], leads=spec['leads'], poss_count=spec['poss_count'],
                                 poss_time=spec['poss_time'], score_count=spec['score_count'],
-                                score_time=spec['score_time'])
+                                score_time=spec['score_time'], mins=stats["min"])
 
     session.add(plays_in_team_one)
 
@@ -82,7 +82,7 @@ def xml_to_database(xml_file):
                                pts_ch2=spec['pts_ch2'], pts_fastb=spec['pts_fastb'], pts_bench=spec['pts_bench'],
                                ties=spec['ties'], leads=spec['leads'], poss_count=spec['poss_count'],
                                poss_time=spec['poss_time'], score_count=spec['score_count'],
-                               score_time=spec['score_time'])
+                               score_time=spec['score_time'], mins=stats["min"])
 
     session.add(plays_in_team_two)
     session.commit()

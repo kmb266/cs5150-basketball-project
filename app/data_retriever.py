@@ -64,6 +64,81 @@ def getAllPlayers(teamId):
     return json.dumps(result)
 
 
+def query_full_length(game_ids, sess):
+    """
+    If the information requested is for full length games (with no additional filters), we query the teamstats and
+    playersin tables rather than getting all the relevant plays.
+    :param data: The dictionary representation of the provided json data
+    :param sess: The database session to use
+    :return: Box scores in the same format as master_query
+    """
+    # Get all the team data for the selected games
+    teamstats = sess.query(TeamIn).filter(TeamIn.game.in_(game_ids)).all()
+    playerstats = sess.query(PlayerIn).filter(PlayerIn.game.in_(game_ids)).all()
+    team_dict = {}
+    player_dict = {}
+    for teamstat in teamstats:
+        if teamstat.team not in team_dict:
+            team_dict[teamstat.team] = {}
+            team_dict[teamstat.team]["games"] = {}
+        if teamstat.game not in team_dict[teamstat.team]["games"]:
+            game = sess.query(Game).filter_by(id=teamstat.game).first()
+            if game.home == teamstat.team:
+                score = game.home_score
+            else:
+                score = game.visitor_score
+            team_dict[teamstat.team]["games"][teamstat.game] = {
+                "FGA": teamstat.fga,
+                "FG": teamstat.fgm,
+                "FGA3": teamstat.fga3,
+                "3PT": teamstat.fgm3,
+                "FTA": teamstat.fta,
+                "FT": teamstat.ftm,
+                "TP": teamstat.tp,
+                "OREB": teamstat.oreb,
+                "DREB": teamstat.dreb,
+                "REB": teamstat.treb,
+                "AST": teamstat.ast,
+                "STL": teamstat.stl,
+                "BLK": teamstat.blk,
+                "TO": teamstat.to,
+                "PF": teamstat.pf,
+                "PTS": score
+            }
+
+    for player in playerstats:
+        if player.player not in player_dict:
+            p = sess.query(Player).filter_by(id=player.player).first()
+            player_dict[player.player] = {}
+            player_dict[player.player]["name"] = p.name
+            player_dict[player.player]["team"] = p.team
+            player_dict[player.player]["games"] = {}
+        player_dict[player.player]["games"][player.game] = {
+            "FGA": player.fga,
+            "FG": player.fgm,
+            "FGA3": player.fga3,
+            "3PT": player.fgm3,
+            "FTA": player.fta,
+            "FT": player.ftm,
+            "TP": player.tp,
+            "OREB": player.oreb,
+            "DREB": player.dreb,
+            "REB": player.treb,
+            "AST": player.ast,
+            "STL": player.stl,
+            "BLK": player.blk,
+            "TO": player.to,
+            "PF": player.pf,
+            "PTS": player.ftm + (player.fgm - player.fgm3) * 2 + player.fgm3 * 3, # TODO: Check this calculation
+            "MIN": player.mins or 0, # TODO: Populate db with player minutes
+        }
+
+    return player_dict.values(), team_dict
+
+
+
+
+
 def masterQuery(json_form):
     data = json.loads(json.dumps(json_form))
     teamIds = data["team"]
@@ -153,8 +228,24 @@ def masterQuery(json_form):
     if loc["away"] is False:
         games_query = games_query.filter(Game.home.in_(teamIds))
 
+
+
     # Get all the game ids of the valid games we've looked at
     selected_game_ids = [game.id for game in games_query.all()]
+
+    # Make the call to query_full_length here if we need it
+    ot_stuff = data["overtime"]
+    if ot_stuff["onlyQueryOT"] is False and ot_stuff["ot1"] is True and ot_stuff["ot2"] is True \
+        and ot_stuff["ot3"] is True and ot_stuff["ot4"] is True and ot_stuff["ot5"] is True and ot_stuff["ot6"] is True \
+        and data["gametime"]["multipleTimeFrames"] is False and data["gametime"]["slider"]["start"]["sec"] == -2400 and \
+            data["gametime"]["slider"]["end"]["sec"] == 0 \
+        and len(data["in"]) == 0 and len(data["out"]) == 0 and data["upOrDown"][1] is None \
+        and len(data["position"]) == 0 and ot_stuff["otSlider"]["start"]["sec"] == 0 \
+        and ot_stuff["otSlider"]["end"]["sec"] == 300:
+            # print("calling query full length")
+            return query_full_length(selected_game_ids, session)
+            pass
+
 
     # Get all the plays for this game
     plays_query = session.query(Play).filter(Play.game_id.in_(selected_game_ids))
@@ -434,140 +525,75 @@ def masterQuery(json_form):
     (box_score, teams) = generate_box_score(plays)
     return box_score.values(), teams
 
+# Test full length games
+import time
+start_time = time.time()
+print(masterQuery({
+  "page": "players",
+  "position": [],
+  "team": ["COR"],
+  "opponent": [],
+  "in": [],
+  "out": [],
+  "upOrDown": [
+    "withIn",
+    None
+  ],
+  "gametime": {
+    "slider": {
+      "start": {
+        "clock": "20:00",
+        "sec": -2400
+      },
+      "end": {
+        "clock": "00:00",
+        "sec": 0
+      }
+    },
+    "sliderExtra": {
+      "start": {
+        "clock": "20:00",
+        "sec": -2400
+      },
+      "end": {
+        "clock": "00:00",
+        "sec": 0
+      }
+    },
+    "multipleTimeFrames": False
+  },
+  "location": {
+    "home": True,
+    "away": True,
+    "neutral": True
+  },
+  "outcome": {
+    "wins": True,
+    "losses": False
+  },
+  "overtime": {
+    "otSlider": {
+      "start": {
+        "clock": "5:00",
+        "sec": 0
+      },
+      "end": {
+        "clock": "0:00",
+        "sec": 300
+      }
+    },
+    "ot1": True,
+    "ot2": True,
+    "ot3": True,
+    "ot4": True,
+    "ot5": True,
+    "ot6": True,
+    "onlyQueryOT": False
+  },
+  "dates": {
+    "start": 1510508800000,
+    "end": 1525665600000
+  }
+})[1])
+print("--- %s seconds ---" % (time.time() - start_time))
 
-
-# print(masterQuery({
-#   "page": "players",
-#   "position": [],
-#   "team": ["COR"],
-#   "opponent": [],
-#   "in": [],
-#   "out": [],
-#   "upOrDown": [
-#     "withIn",
-#     None
-#   ],
-#   "gametime": {
-#     "slider": {
-#       "start": {
-#         "clock": "20:00",
-#         "sec": -1200
-#       },
-#       "end": {
-#         "clock": "00:00",
-#         "sec": 0
-#       }
-#     },
-#     "sliderExtra": {
-#       "start": {
-#         "clock": "20:00",
-#         "sec": -1200
-#       },
-#       "end": {
-#         "clock": "00:00",
-#         "sec": 0
-#       }
-#     },
-#     "multipleTimeFrames": False
-#   },
-#   "location": {
-#     "home": True,
-#     "away": False,
-#     "neutral": True
-#   },
-#   "outcome": {
-#     "wins": True,
-#     "losses": False
-#   },
-#   "overtime": {
-#     "otSlider": {
-#       "start": {
-#         "clock": "5:00",
-#         "sec": 0
-#       },
-#       "end": {
-#         "clock": "0:00",
-#         "sec": 300
-#       }
-#     },
-#     "ot1": False,
-#     "ot2": False,
-#     "ot3": False,
-#     "ot4": False,
-#     "ot5": False,
-#     "ot6": False,
-#     "onlyQueryOT": False
-#   },
-#   "dates": {
-#     "start": 1510508800000,
-#     "end": 1525665600000
-#   }
-# })[0])
-
-# print(masterQuery({
-#   "page": "players",
-#   "position": [],
-#   "team": ["COR"],
-#   "opponent": ["ADST"],
-#   "in": [],
-#   "out": [],
-#   "upOrDown": [
-#     "withIn",
-#     None
-#   ],
-#   "gametime": {
-#     "slider": {
-#       "start": {
-#         "clock": "20:00",
-#         "sec": -1200
-#       },
-#       "end": {
-#         "clock": "00:00",
-#         "sec": 0
-#       }
-#     },
-#     "sliderExtra": {
-#       "start": {
-#         "clock": "20:00",
-#         "sec": -1200
-#       },
-#       "end": {
-#         "clock": "00:00",
-#         "sec": 0
-#       }
-#     },
-#     "multipleTimeFrames": False
-#   },
-#   "location": {
-#     "home": True,
-#     "away": True,
-#     "neutral": True
-#   },
-#   "outcome": {
-#     "wins": True,
-#     "losses": False
-#   },
-#   "overtime": {
-#     "otSlider": {
-#       "start": {
-#         "clock": "5:00",
-#         "sec": 0
-#       },
-#       "end": {
-#         "clock": "0:00",
-#         "sec": 300
-#       }
-#     },
-#     "ot1": False,
-#     "ot2": False,
-#     "ot3": False,
-#     "ot4": False,
-#     "ot5": False,
-#     "ot6": False,
-#     "onlyQueryOT": False
-#   },
-#   "dates": {
-#     "start": 1510508800000,
-#     "end": 1525665600000
-#   }
-# }))
