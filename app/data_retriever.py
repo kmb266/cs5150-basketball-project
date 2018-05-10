@@ -357,7 +357,7 @@ def masterQuery(json_form):
                 players[player_id]["games"][game_id]["SEEN"] = True
                 if play.action == "SUB" and play.type == "OUT":
                     players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "OUT"
-                    players[player_id]["games"][game_id]["MIN"] = (sec_start - play.time_converted)/60
+                    players[player_id]["games"][game_id]["MIN"] = (play.time_converted - sec_start)/60
 
                 else:
                     players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "IN"
@@ -428,7 +428,7 @@ def masterQuery(json_form):
                 if players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "IN":
                     players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "OUT"
                     players[player_id]["games"][game_id]["MIN"] += \
-                        players[player_id]["games"][game_id]["last_time"] - sec_end # End of normal period game
+                        sec_end - players[player_id]["games"][game_id]["last_time"] # End of normal period game
 
         return players, teams
 
