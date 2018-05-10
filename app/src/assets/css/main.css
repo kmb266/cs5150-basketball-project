@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Inconsolata;
+  src: url(fonts/Inconsolata-Regular.ttf);
+}
+
 body {
   overflow-y: hidden;
   line-height: 1em;
@@ -113,6 +118,14 @@ span.filter-label {
   top: 50px;
   right: 0px;
   overflow-x: scroll;
+  font-family: Inconsolata;
+
+
+}
+
+td {
+  text-align: center;
+  white-space: nowrap;
 }
 #game-time {
   width:100%;
@@ -167,7 +180,6 @@ span.filter-label {
 .select2-selection__clear {
   color: #bbb;
 }
-
 
 .form-group {
   margin-bottom: 0px !important;
