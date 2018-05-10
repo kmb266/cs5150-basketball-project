@@ -176,4 +176,4 @@ def create_db(db_name):
 create_db("basketball_xml")
 
 # Initialize json database
-create_db("basketball_json")
+# create_db("basketball_json")

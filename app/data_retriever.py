@@ -8,12 +8,10 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import or_, and_, between
 
 
-
-
 def getAllTeams():
-    '''
+    """
     Retrieve all the team names and ids. Should return a list of teams with the id and the name of each team.
-    '''
+    """
     which_db = "json"
     # To fetch all team names, we try and use the json database. If this does not exist, default to XML
 
@@ -510,7 +508,7 @@ def masterQuery(json_form):
 #   "page": "players",
 #   "position": [],
 #   "team": ["COR"],
-#   "opponent": ["CLMB"],
+#   "opponent": ["ADST"],
 #   "in": [],
 #   "out": [],
 #   "upOrDown": [

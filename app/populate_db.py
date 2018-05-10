@@ -109,10 +109,14 @@ def xml_to_database(xml_file):
     # Loop through Players and add them to the database if they don't already exist, repeat for team2
     starters_team_1 = []
     for player in team1['players']:
-        p = session.query(Player).filter_by(name=player["checkname"], team=team1["id"]).first()
+        name_formatted = player["checkname"].title()
+        if player["checkname"] != "TEAM":
+            comma = name_formatted.index(",")
+            name_formatted = name_formatted[:comma + 1] + " " + name_formatted[comma + 1:]
+        p = session.query(Player).filter_by(name=name_formatted.title(), team=team1["id"]).first()
         if not p:
             # If the player's not already in the database add him
-            p = Player(name=player["checkname"], team=team1["id"])
+            p = Player(name=name_formatted, team=team1["id"])
             session.add(p)
             session.commit()
         # Some players don't have stats for the game - we ignore those by checking arbitrarily for the fgm stat to exist
@@ -133,10 +137,14 @@ def xml_to_database(xml_file):
     # Now do the same thing for team2
     starters_team_2 = []
     for player in team2['players']:
-        p = session.query(Player).filter_by(name=player["checkname"], team=team2["id"]).first()
+        name_formatted = player["checkname"].title()
+        if player["checkname"] != "TEAM":
+            comma = name_formatted.index(",")
+            name_formatted = name_formatted[:comma + 1] + " " + name_formatted[comma + 1:]
+        p = session.query(Player).filter_by(name=name_formatted, team=team2["id"]).first()
         if not p:
             # If the player's not already in the database add him
-            p = Player(name=player["checkname"], team=team2["id"])
+            p = Player(name=name_formatted, team=team2["id"])
             session.add(p)
             session.commit()
         # Some players don't have stats for the game - we ignore those by checking arbitrarily for the fgm stat to exist
@@ -180,7 +188,11 @@ def xml_to_database(xml_file):
     for period in plays:
         for play in plays[period]:
             # print(play)
-            player_id = session.query(Player).filter_by(name=play["checkname"], team=play["team"]).first().id # This is breaking on file GAME16 in 2014-2015 database
+            name_formatted = play["checkname"].title()
+            if play["checkname"] != "TEAM":
+                comma = name_formatted.index(",")
+                name_formatted = name_formatted[:comma + 1] + " " + name_formatted[comma + 1:]
+            player_id = session.query(Player).filter_by(name=name_formatted, team=play["team"]).first().id
             # Update home_on_court and away_on_court as necessary
             if play["action"] == "SUB":
                 if play["type"] == "OUT":
