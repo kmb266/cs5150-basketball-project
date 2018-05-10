@@ -4,19 +4,19 @@ from stats_results import stats_calculation
 
 def sampleForm():
     form = {
-      "page": "players",
-      "position": [],
-      "team": [
+        "page": "players",
+        "position": [],
+        "team": [
         "COR"
-      ],
-      "opponent": [],
-      "in": [],
-      "out": [],
-      "upOrDown": [
+        ],
+        "opponent": [],
+        "in": [],
+        "out": [],
+        "upOrDown": [
         "withIn",
         None
-      ],
-      "gametime": {
+        ],
+        "gametime": {
         "slider": {
           "start": {
             "clock": "20:00",
@@ -38,17 +38,17 @@ def sampleForm():
           }
         },
         "multipleTimeFrames": False
-      },
-      "location": {
+        },
+        "location": {
         "home": True,
         "away": True,
         "neutral": True
-      },
-      "outcome": {
+        },
+        "outcome": {
         "wins": True,
         "losses": True
-      },
-      "overtime": {
+        },
+        "overtime": {
         "otSlider": {
           "start": {
             "clock": "5:00",
@@ -66,56 +66,92 @@ def sampleForm():
         "ot5": True,
         "ot6": True,
         "onlyQueryOT": False
-      },
-      "dates": {
+        },
+        "dates": {
         "start": 1509508800000,
         "end": 1525665600000
-      }
+        }
     }
     return form
 
 def getAverages(players_score, team_score):
-   attributes = ["FG", "FGA3", "3PT", "FTA", "FT", "TP", "OREB",
-               "DREB", "REB", "AST", "STL", "BLK", "TO", "PF", "PTS"]
-   advanced_attributes = ["Usage_Rate", "PIE", "Game_Score"]
-   players_boxscore = []
-   teams_boxscore = {}
+    """
+    Name: getAverages
+    Returns: the average box score for each player
+    Arguments:
+    players_score: box score for each player in each game
+    team_score: box score for the team in each game
+    """
+    #TODO : MIN, FG%, 3PT%, FT%
+    attributes = ["FG", "FGA", "3PT", "FGA3", "FT", "FTA", "OREB", "DREB", "REB", 
+    "PF", "AST", "TO", "BLK", "STL", "TP", "PTS", "MIN"]    
+    advanced_attributes = ["Usage_Rate", "PIE", "Game_Score"]
+    players_boxscore = []
+    teams_boxscore = {}
 
-   for values in players_score:
-       games = values["games"]
-       player = {"name" : values["name"], "team" : values["team"]}
-       games_played = len(games)
+    for values in players_score:
+        games = values["games"]
+        player = {"name" : values["name"], "team" : values["team"]}
+        games_played = len(games)
 
-       for attribute in attributes + advanced_attributes:
-           for game, game_boxscore in games.items():
-               if attribute in game_boxscore:
-                   if attribute in player:
-                       player[attribute] += game_boxscore[attribute]
-                   else:
-                       player[attribute] = game_boxscore[attribute]
-           if attribute in player:
-               player[attribute] = round(player[attribute] / games_played, 2)
+        for attribute in attributes + advanced_attributes:
+            for game, game_boxscore in games.items():
+                if attribute in game_boxscore:
+                    if attribute in player:
+                        player[attribute] += game_boxscore[attribute]
+                    else:
+                        player[attribute] = game_boxscore[attribute]
+            
+            if attribute in player:
+                player[attribute] = round(player[attribute] / games_played, 2)
 
-       players_boxscore.append(player)
+        # FG% FT% 3PT%
+        if "FG" in player and "FGA" in player and player["FGA"] != 0:
+            player["FGPerc"] = round(player["FG"] / player["FGA"], 3)
+        else:
+            player["FGPerc"] = 0
+        if "3PT" in player and "FGA" in player and player["FGA3"] != 0:
+            player["FG3Perc"] = round(player["3PT"] / player["FGA3"], 3)
+        else:
+            player["FG3Perc"] = 0
+        if "FT" in player and "FTA" in player and player["FTA"] != 0:
+            player["FTPerc"] = round(player["FT"] / player["FTA"], 3)
+        else:
+            player["FTPerc"] = 0
 
-   for team_id, values in team_score.items():
-       games = values["games"]
-       team = {"team_id" : team_id}
-       games_played = len(games)
+        players_boxscore.append(player)
 
-       for attribute in attributes:
-           for game, game_boxscore in games.items():
-               if attribute in game_boxscore:
-                   if attribute in team:
-                       team[attribute] += game_boxscore[attribute]
-                   else:
-                       team[attribute] = game_boxscore[attribute]
-           if attribute in team:
-               team[attribute] = round(team[attribute] / games_played, 2)
+    for team_id, values in team_score.items():
+        games = values["games"]
+        team = {"team_id" : team_id}
+        games_played = len(games)
 
-       teams_boxscore[team_id] = team
+        for attribute in attributes:
+            for game, game_boxscore in games.items():
+                if attribute in game_boxscore:
+                    if attribute in team:
+                        team[attribute] += game_boxscore[attribute]
+                    else:
+                        team[attribute] = game_boxscore[attribute]
+            if attribute in team:
+                team[attribute] = round(team[attribute] / games_played, 2)
+        # FG% FT% 3PT%
+        if "FG" in team and "FGA" in team and team["FGA"] != 0:
+            team["FGPerc"] = round(team["FG"] / team["FGA"], 3)
+        else:
+            team["FGPerc"] = 0
+        if "3PT" in team and "FGA" in team and team["FGA3"] != 0:
+            team["FG3Perc"] = round(team["3PT"] / team["FGA3"], 3)
+        else:
+            team["FG3Perc"] = 0
+        if "FT" in team and "FTA" in team and team["FTA"] != 0:
+            team["FTPerc"] = round(team["FT"] / team["FTA"], 3)
+        else:
+            team["FTPerc"] = 0
+        team["MIN"] = 200
+        teams_boxscore[team_id] = team
 
-   return (players_boxscore, teams_boxscore)
+    return (players_boxscore, teams_boxscore)
 
 
 def filterResults(players_score, team_score, form):
@@ -160,7 +196,7 @@ def getForm():
 
 def main():
     form = getForm()
-    # form = sampleForm()
+    #form = sampleForm()
 
     form = tidyForm(form)
     data = retrieveData(form)
