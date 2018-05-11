@@ -62,7 +62,7 @@ def xml_to_database(xml_file):
                                 pts_ch2=spec['pts_ch2'], pts_fastb=spec['pts_fastb'], pts_bench=spec['pts_bench'],
                                 ties=spec['ties'], leads=spec['leads'], poss_count=spec['poss_count'],
                                 poss_time=spec['poss_time'], score_count=spec['score_count'],
-                                score_time=spec['score_time'], mins=stats["min"])
+                                score_time=spec['score_time'])
 
     session.add(plays_in_team_one)
 
@@ -82,7 +82,7 @@ def xml_to_database(xml_file):
                                pts_ch2=spec['pts_ch2'], pts_fastb=spec['pts_fastb'], pts_bench=spec['pts_bench'],
                                ties=spec['ties'], leads=spec['leads'], poss_count=spec['poss_count'],
                                poss_time=spec['poss_time'], score_count=spec['score_count'],
-                               score_time=spec['score_time'], mins=stats["min"])
+                               score_time=spec['score_time'])
 
     session.add(plays_in_team_two)
     session.commit()
@@ -185,7 +185,14 @@ def xml_to_database(xml_file):
     plays = game_info["plays"]
     last_v_score = 0
     last_h_score = 0
+    # TODO: add a dummy play to the start of the second period
     for period in plays:
+        if team1["id"] == home:
+            home_on_court = starters_team_1
+            away_on_court = starters_team_2
+        else:
+            home_on_court = starters_team_2
+            away_on_court = starters_team_1
         for play in plays[period]:
             # print(play)
             name_formatted = play["checkname"].title()
