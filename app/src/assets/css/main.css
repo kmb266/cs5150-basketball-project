@@ -185,3 +185,14 @@ td {
 .form-group {
   margin-bottom: 0px !important;
 }
+
+
+/* get rid of bootstrap .table padding to make table more likely to fit on one page */
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+  padding: 4px;
+}
+
+
+.col-0 {
+  text-align: left;
+}

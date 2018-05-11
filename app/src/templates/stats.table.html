@@ -3,6 +3,6 @@
     <th *ngFor="let key of headers">{{key}}</th>
   </tr>
   <tr *ngFor="let player of playerList">
-    <td *ngFor="let key of passed_in_headers">{{player[key]}}</td>
+    <td *ngFor="let key of passed_in_headers; let in = index" [class]="'col-'+in" >{{player[key]}}</td>
   </tr>
 </table>
