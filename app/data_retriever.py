@@ -553,7 +553,7 @@ print(masterQuery({
     "slider": {
       "start": {
         "clock": "20:00",
-        "sec": -2400
+        "sec": -2399
       },
       "end": {
         "clock": "00:00",
@@ -604,6 +604,6 @@ print(masterQuery({
     "start": 1510508800000,
     "end": 1525665600000
   }
-})[1])
+})[0])
 print("--- %s seconds ---" % (time.time() - start_time))
 '''
