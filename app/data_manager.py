@@ -50,16 +50,8 @@ def sampleForm():
             "losses": True
         },
         "overtime": {
-            "otSlider": {
-                "start": {
-                    "clock": "5:00",
-                    "sec": 0
-                },
-                "end": {
-                    "clock": "0:00",
-                    "sec": 300
-                }
-            },
+            "otSliderStart": 0,
+            "otSliderEnd": 300,
             "ot1": True,
             "ot2": True,
             "ot3": True,

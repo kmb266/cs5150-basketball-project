@@ -1,12 +1,13 @@
 'use strict';
 
 const fs = require('fs');
+const path = require('path');
 
 import * as jquery from 'jquery';
 window['$'] = jquery;
 window['jQuery'] = jquery;
 
-export const saved_filters_file = './saved_filters.json';
+export const saved_filters_file = path.join(__dirname, 'assets', 'saved_filters.json');
 export const navHeight: number = 50;
 export const pages: Array<string> = ["players", "teams","games"];
 export const numPages: number = pages.length;
@@ -185,9 +186,10 @@ export const applyFilters = (page, filters_data, emitter) => {
   // and then put the dist directory in the python folder and the files will run
   // uncomment the next 3 lines to replace spawn and py vars below
   // got ideas from https://github.com/fyears/electron-python-example
-  // var path = require('path'),
-  //     path_to_exe = path.join(__dirname, 'python', 'dist', 'data_manager','data_manager'),
+  // var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'dist', 'data_manager','data_manager'),
   //     py = require('child_process').execFile(path_to_exe),
+  //     data = filters_data,
+  //     dataString = '';
 
   // Start loading gif
   $('#'+page+'-spinner-wrapper').toggle();
@@ -524,6 +526,13 @@ export const getTeams = (page) => {
     Middle stack:
       Program runs python auto_complete.py and sets the select2s with the id
   */
+
+  // uncomment below to package app after pyinstalling auto_complete
+  // var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'dist', 'data_manager','auto_complete'),
+  //     py = require('child_process').execFile(path_to_exe),
+  //     data = {'field': 0},
+  //     dataString = '';
+
   var spawn = require('child_process').spawn,
   py = spawn('python', ['./auto_complete.py']),
   data = {'field': 0},
@@ -592,12 +601,18 @@ export const getPlayers = (page) => {
     Middle stack:
       Program runs python auto_complete.py and sets the select2s with the id
   */
+  // uncomment below to package app after pyinstalling auto_complete
+  // var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'dist', 'data_manager','auto_complete'),
+  //     py = require('child_process').execFile(path_to_exe),
+  //     data = {'field': 1},
+  //     dataString = '';
+
   var spawn = require('child_process').spawn,
   py = spawn('python', ['./auto_complete.py']),
   data = {"field": 1},
   dataString = '';
 
-  // retrieve the data from the data_manager.py
+  // retrieve the data from the auto_complete.py
   py.stdout.on('data', function(data){
     dataString += data.toString();
   });

@@ -33,6 +33,9 @@ const createWindow = async () => {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
+
+  require("./assets/js/mainmenu");
+  
 };
 
 // This method will be called when Electron has finished
@@ -56,8 +59,6 @@ app.on('activate', () => {
     createWindow();
   }
 
-  require("./assets/js/mainmenu.js");
-  
 });
 
 // In this file you can include the rest of your app's specific main process
