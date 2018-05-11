@@ -55,6 +55,9 @@ app.on('activate', () => {
   if (mainWindow === null) {
     createWindow();
   }
+
+  require("./assets/js/mainmenu.js");
+  
 });
 
 // In this file you can include the rest of your app's specific main process
