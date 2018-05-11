@@ -127,7 +127,7 @@ def xml_to_database(xml_file):
                                   fta=player["fta"], tp=player["tp"], blk=player["blk"], stl=player["stl"],
                                   ast=player["ast"], oreb=player["oreb"], dreb=player["dreb"],
                                   treb=player["treb"], pf=player["pf"], tf=player["tf"], to=player["to"],
-                                  dq=player["dq"], number=player["uni"])
+                                  dq=player["dq"], number=player["uni"], mins=player["min"])
             session.add(game_stats)
             if "gs" in player:
                 starters_team_1.append(p.id)
@@ -155,7 +155,7 @@ def xml_to_database(xml_file):
                                   fta=player["fta"], tp=player["tp"], blk=player["blk"], stl=player["stl"],
                                   ast=player["ast"], oreb=player["oreb"], dreb=player["dreb"],
                                   treb=player["treb"], pf=player["pf"], tf=player["tf"], to=player["to"],
-                                  dq=player["dq"], number=player["uni"])
+                                  dq=player["dq"], number=player["uni"], mins=player["min"])
             if "gs" in player:
                 starters_team_2.append(p.id)
             session.add(game_stats)
