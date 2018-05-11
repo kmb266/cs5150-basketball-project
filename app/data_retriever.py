@@ -9,8 +9,12 @@ from sqlalchemy import or_, and_, between
 
 database_directory = os.path.dirname(os.path.abspath(__file__))
 
-sqlite_xml = 'sqlite:///basketball_xml.db'
-sqlite_json = 'sqlite:///basketball_json.db'
+db_path_xml = os.path.join(BASE_DIR, "basketball_xml.db")
+db_path_json = os.path.join(BASE_DIR, "basketball_json.db")
+
+sqlite_xml = 'sqlite:///{}'.format(db_path_xml)
+sqlite_json = 'sqlite:///{}'.format(db_path_json)
+
 
 def getAllTeams():
     """
