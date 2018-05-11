@@ -1,12 +1,16 @@
 from sqlalchemy import create_engine, desc
 from db import Game, Team, Player, PlayerIn, TeamIn, Play
-import json
+import json, os
 import datetime
 
 import parse_json
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import or_, and_, between
 
+database_directory = os.path.dirname(os.path.abspath(__file__))
+
+sqlite_xml = 'sqlite:///basketball_xml.db'
+sqlite_json = 'sqlite:///basketball_json.db'
 
 def getAllTeams():
     """
@@ -16,20 +20,20 @@ def getAllTeams():
     # To fetch all team names, we try and use the json database. If this does not exist, default to XML
 
     try:
-        engine = create_engine('sqlite:///basketball_json.db', echo=False)
+        engine = create_engine(sqlite_json, echo=False)
         Session = sessionmaker(bind=engine)
         session = Session()
         teams = session.query(Team).all()
     except:
         which_db = "xml"
-        engine = create_engine('sqlite:///basketball_xml.db', echo=False)
+        engine = create_engine(sqlite_xml, echo=False)
         Session = sessionmaker(bind=engine)
         session = Session()
         teams = session.query(Team).all()
 
     if which_db == "json" and len(teams) == 0:
             which_db = "xml"
-            engine = create_engine('sqlite:///basketball_xml.db', echo=False)
+            engine = create_engine(sqlite_xml, echo=False)
             Session = sessionmaker(bind=engine)
             session = Session()
             teams = session.query(Team).all()
@@ -47,9 +51,9 @@ def getAllPlayers(teamId):
     Retrieve all players for the team of the given id.
     """
     if teamId == "COR":
-        engine = create_engine('sqlite:///basketball_xml.db', echo=False)
+        engine = create_engine(sqlite_xml, echo=False)
     else:
-        engine = create_engine('sqlite:///basketball_json.db', echo=False)
+        engine = create_engine(sqlite_json, echo=False)
 
     Session = sessionmaker(bind=engine)
     session = Session()
@@ -62,7 +66,6 @@ def getAllPlayers(teamId):
             result.append({"id": player.id, "text": player.name})
 
     return json.dumps(result)
-
 
 def query_full_length(game_ids, sess):
     """

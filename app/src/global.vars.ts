@@ -186,10 +186,10 @@ export const applyFilters = (page, filters_data, emitter) => {
   // and then put the dist directory in the python folder and the files will run
   // uncomment the next 3 lines to replace spawn and py vars below
   // got ideas from https://github.com/fyears/electron-python-example
-  // var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'dist', 'data_manager','data_manager'),
-  //     py = require('child_process').execFile(path_to_exe),
-  //     data = filters_data,
-  //     dataString = '';
+  var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'dist', 'data_manager','data_manager'),
+      py = require('child_process').execFile(path_to_exe),
+      data = filters_data,
+      dataString = '';
 
   // Start loading gif
   $('#'+page+'-spinner-wrapper').toggle();
@@ -198,10 +198,10 @@ export const applyFilters = (page, filters_data, emitter) => {
   // hide the table until loaded
   $('#content-'+page).first().hide()
 
-  var spawn = require('child_process').spawn,
-      py = spawn('python', ['./data_manager.py']),
-      data = filters_data,
-      dataString = '';
+  // var spawn = require('child_process').spawn,
+  //     py = spawn('python', ['./data_manager.py']),
+  //     data = filters_data,
+  //     dataString = '';
 
   //save the python process outside the function to be able to cancel if necessary
   active_child_processes[page] = py;
@@ -528,15 +528,15 @@ export const getTeams = (page) => {
   */
 
   // uncomment below to package app after pyinstalling auto_complete
-  // var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'dist', 'data_manager','auto_complete'),
-  //     py = require('child_process').execFile(path_to_exe),
-  //     data = {'field': 0},
-  //     dataString = '';
+  var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'dist', 'auto_complete','auto_complete'),
+      py = require('child_process').execFile(path_to_exe),
+      data = {'field': 0},
+      dataString = '';
 
-  var spawn = require('child_process').spawn,
-  py = spawn('python', ['./auto_complete.py']),
-  data = {'field': 0},
-  dataString = '';
+  // var spawn = require('child_process').spawn,
+  // py = spawn('python', ['./auto_complete.py']),
+  // data = {'field': 0},
+  // dataString = '';
 
   // retrieve the data from the data_manager.py
   py.stdout.on('data', function(data){
@@ -550,6 +550,7 @@ export const getTeams = (page) => {
     //console.log("Finished calling get Teams!");
     //console.log(dataString)
     var teams = JSON.parse(dataString)//.replace(/'/g, '"'));
+    console.log(teams)
     var placeholder = 'Select Team(s)';
 
     $('#'+page+'-opponent').select2({
@@ -602,15 +603,15 @@ export const getPlayers = (page) => {
       Program runs python auto_complete.py and sets the select2s with the id
   */
   // uncomment below to package app after pyinstalling auto_complete
-  // var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'dist', 'data_manager','auto_complete'),
-  //     py = require('child_process').execFile(path_to_exe),
-  //     data = {'field': 1},
-  //     dataString = '';
+  var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'dist', 'auto_complete','auto_complete'),
+      py = require('child_process').execFile(path_to_exe),
+      data = {'field': 1},
+      dataString = '';
 
-  var spawn = require('child_process').spawn,
-  py = spawn('python', ['./auto_complete.py']),
-  data = {"field": 1},
-  dataString = '';
+  // var spawn = require('child_process').spawn,
+  // py = spawn('python', ['./auto_complete.py']),
+  // data = {"field": 1},
+  // dataString = '';
 
   // retrieve the data from the auto_complete.py
   py.stdout.on('data', function(data){

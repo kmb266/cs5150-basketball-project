@@ -33,9 +33,14 @@ def getForm():
     return json.loads(lines[0])
 
 def main():
-    form = getForm()
-    #form = {"field" : 1}
-    data = retrieveData(form)
+    try:
+        form = getForm()
+        #form = {"field" : 1}
+        data = retrieveData(form)
+    except Exception as e:
+        data = {"error" : e.message, "doc" : e.__doc__}
+        data = json.dumps(data)
+
     #return what we get
     print(data)
     sys.stdout.flush()
