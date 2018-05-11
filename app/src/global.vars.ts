@@ -528,15 +528,15 @@ export const getTeams = (page) => {
   */
 
   // uncomment below to package app after pyinstalling auto_complete
-  // var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'dist', 'data_manager','auto_complete'),
-  //     py = require('child_process').execFile(path_to_exe),
-  //     data = {'field': 0},
-  //     dataString = '';
+  var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'dist', 'data_manager','auto_complete'),
+      py = require('child_process').execFile(path_to_exe),
+      data = {'field': 0},
+      dataString = '';
 
-  var spawn = require('child_process').spawn,
-  py = spawn('python', ['./auto_complete.py']),
-  data = {'field': 0},
-  dataString = '';
+  // var spawn = require('child_process').spawn,
+  // py = spawn('python', ['./auto_complete.py']),
+  // data = {'field': 0},
+  // dataString = '';
 
   // retrieve the data from the data_manager.py
   py.stdout.on('data', function(data){
@@ -602,15 +602,15 @@ export const getPlayers = (page) => {
       Program runs python auto_complete.py and sets the select2s with the id
   */
   // uncomment below to package app after pyinstalling auto_complete
-  // var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'dist', 'data_manager','auto_complete'),
-  //     py = require('child_process').execFile(path_to_exe),
-  //     data = {'field': 1},
-  //     dataString = '';
+  var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'dist', 'data_manager','auto_complete'),
+      py = require('child_process').execFile(path_to_exe),
+      data = {'field': 1},
+      dataString = '';
 
-  var spawn = require('child_process').spawn,
-  py = spawn('python', ['./auto_complete.py']),
-  data = {"field": 1},
-  dataString = '';
+  // var spawn = require('child_process').spawn,
+  // py = spawn('python', ['./auto_complete.py']),
+  // data = {"field": 1},
+  // dataString = '';
 
   // retrieve the data from the auto_complete.py
   py.stdout.on('data', function(data){
