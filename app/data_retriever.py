@@ -18,6 +18,9 @@ db_path_json = os.path.join(BASE_DIR, "basketball_json.db")
 sqlite_xml = 'sqlite:////{}'.format(db_path_xml)
 sqlite_json = 'sqlite:////{}'.format(db_path_json)
 
+# FOR TESTING:
+# sqlite_xml = 'sqlite:///{}'.format("basketball_xml.db")
+# sqlite_json = 'sqlite:///{}'.format("basketball_json.db")
 
 def getAllTeams():
     """
@@ -149,7 +152,7 @@ def query_full_length(game_ids, sess):
         }
 
     return player_dict.values(), team_dict
-
+    # return player_dict, team_dict
 
 
 
@@ -280,7 +283,7 @@ def masterQuery(json_form):
         time_periods.append([sec_start_2, sec_end_2])
 
     # Overtime filter
-    if "overtime" in data["overtime"]:
+    if "overtime" in data:
         overtimes = data["overtime"]
         if overtimes["onlyQueryOT"] is True:
             plays_query = plays_query.filter(Play.period > 2)
@@ -291,8 +294,8 @@ def masterQuery(json_form):
                     valid_ot_periods.append(key[2:])
         if valid_ot_periods:
             for period in valid_ot_periods:
-                start = overtimes["otSlider"]["start"]["sec"] + (period - 3) * 300
-                end = overtimes["otSlider"]["end"]["sec"] + + (period - 3) * 300
+                start = ot_stuff["otSliderStart"] + (int(period) - 1) * 300
+                end = ot_stuff["otSliderEnd"] + (int(period) - 1) * 300
                 time_periods.append([start, end])
 
     # Now we apply filters based on the set of times generated above
@@ -473,10 +476,14 @@ def masterQuery(json_form):
             if play.type == "3PTR":
                 players[player_id]["games"][game_id]["FGA3"] += 1
                 teams[team]["games"][game_id]["FGA3"] += 1
+                players[player_id]["games"][game_id]["FGA"] += 1
+                teams[team]["games"][game_id]["FGA"] += 1
                 if play.action == "GOOD":
                     players[player_id]["games"][game_id]["3PT"] += 1
-                    players[player_id]["games"][game_id]["PTS"] += 3
                     teams[team]["games"][game_id]["3PT"] += 1
+                    players[player_id]["games"][game_id]["FG"] += 1
+                    teams[team]["games"][game_id]["FG"] += 1
+                    players[player_id]["games"][game_id]["PTS"] += 3
                     teams[team]["games"][game_id]["PTS"] += 3
             elif play.action == "SUB":
                 if play.type == "IN":
@@ -543,12 +550,13 @@ def masterQuery(json_form):
 
     (box_score, teams) = generate_box_score(plays)
     return box_score.values(), teams
+    # return box_score, teams
 
 '''
 # Test full length games
 import time
 start_time = time.time()
-print(masterQuery({
+data = masterQuery({
   "page": "players",
   "position": [],
   "team": ["COR"],
@@ -589,31 +597,35 @@ print(masterQuery({
   },
   "outcome": {
     "wins": True,
-    "losses": False
+    "losses": True
   },
-  "overtime": {
-    "otSlider": {
-      "start": {
-        "clock": "5:00",
-        "sec": 0
-      },
-      "end": {
-        "clock": "0:00",
-        "sec": 300
-      }
+    "overtime": {
+        "otSliderStart": 0,
+        "otSliderEnd": 300,
+        "ot1": True,
+        "ot2": True,
+        "ot3": True,
+        "ot4": True,
+        "ot5": True,
+        "ot6": True,
+        "onlyQueryOT": False
     },
-    "ot1": True,
-    "ot2": True,
-    "ot3": True,
-    "ot4": True,
-    "ot5": True,
-    "ot6": True,
-    "onlyQueryOT": False
-  },
   "dates": {
     "start": 1510508800000,
     "end": 1525665600000
   }
-})[0])
+})[0]
 print("--- %s seconds ---" % (time.time() - start_time))
 '''
+# import pprint
+# pprint.pprint(data, width=1)
+
+# for player_id in data:
+#     sum = 0
+#     for game in data[player_id]["games"]:
+#         sum += data[player_id]["games"][game]["FG"]
+#     if player_id == 6:
+#         print(player_id, sum)
+#         print("AVERAGE:", sum/len(data[player_id]["games"]))
+#
+

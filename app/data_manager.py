@@ -1,3 +1,4 @@
+from __future__ import division
 import sys, json
 from data_retriever import masterQuery
 from stats_results import stats_calculation
