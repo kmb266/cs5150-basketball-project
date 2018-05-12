@@ -1,6 +1,7 @@
 '''
 This code was originally from the github repo found here https://github.com/andr3w321/espn_scraper
 I made some modifications to better suit our needs / things I thought made a little more sense
+ - Kyle Brown (kmb266)
 '''
 
 import json
@@ -35,7 +36,7 @@ def get_new_json(url, headers={}):
         return {"error_code": res.status_code, "error_msg": "URL Error"}
 
 def get_new_html_soup(url, headers={}):
-    print(url)
+    # print(url)
     res = retry_request(url, headers)
     if res.status_code == 200:
         return get_soup(res)
@@ -276,7 +277,7 @@ def get_cached(filename):
 def get_teams(league):
     """ Returns a list of teams with ids and names """
     url = BASE_URL + "/" + league + "/teams"
-    print(url)
+    # print(url)
     soup = get_soup(retry_request(url))
     if league == "wnba":
         selector = "b a"
@@ -292,7 +293,7 @@ def get_standings(league, season_year, college_division=None):
     standings = {"conferences": {}}
     if league in ["nhl"]:
         url = "{}/{}/standings/_/year/{}".format(BASE_URL, league, season_year)
-        print(url)
+        # print(url)
         soup = get_soup(retry_request(url))
         standings = {"conferences": {}}
         # espn has malformed html where they forgot to include closing </table> tags so have to parse by table rows instead of by tables
@@ -317,7 +318,7 @@ def get_standings(league, season_year, college_division=None):
                 standings["conferences"][conference_name]["divisions"][division]["teams"].append(team)
     elif league in ["ncb","ncw"]:
         url = "{}/{}/standings/_/year/{}".format(BASE_URL, league, season_year)
-        print(url)
+        # print(url)
         soup = get_soup(retry_request(url))
         standings = {"conferences": {}}
         conference_name = "i"
@@ -346,7 +347,7 @@ def get_standings(league, season_year, college_division=None):
             url = "{}/{}/standings/_/season/{}/group/conference".format(BASE_URL, league, season_year)
         else:
             url = "{}/{}/standings/_/season/{}/group/division".format(BASE_URL, league, season_year)
-        print(url)
+        # print(url)
         soup = get_soup(retry_request(url))
         conference_names = [x.text for x in soup.find_all("span", class_="long-caption")]
         tables = soup.find_all("table", class_="standings")
@@ -404,9 +405,16 @@ def get_cached_url(url, league, data_type, cached_path, headers={}, game_id=None
             if cached_path and "error_code" not in data:
                 with open(filename, 'w') as f:
                     json.dump(data, f, ensure_ascii=False, indent=2, sort_keys=True)
+            if cached_path == None:
+                pass
+                # TODO: ADD code here to add data obj to json.db
+
         elif ext == "html":
             data = get_new_html_soup(url, headers)
             if cached_path and "error_code" not in data:
                 with open(filename, 'w') as f:
                     f.write(data.prettify())
+            if cached_path == None:
+                # i do not think we ever get html for ncb league
+                pass
     return data
