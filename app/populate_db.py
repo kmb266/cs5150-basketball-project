@@ -1,7 +1,7 @@
 from db import Game, Team, Player, PlayerIn, TeamIn, Play
 
 from parser import parse_game_file
-import os
+import os, sys
 import json
 
 import parse_json
@@ -10,8 +10,25 @@ import datetime
 
 from sqlalchemy import create_engine, desc
 
+# for prod use 
+# file_dir = sys.argv[0].split('/')[:-1]
+# BASE_DIR = os.path.join(*file_dir)
+# # print(BASE_DIR)
+# db_path_xml = os.path.join(BASE_DIR, "basketball_xml.db")
+# db_path_json = os.path.join(BASE_DIR, "basketball_json.db")
+# # print(db_path_xml, db_path_json)
+# sqlite_xml = 'sqlite:////{}'.format(db_path_xml)
+# sqlite_json = 'sqlite:////{}'.format(db_path_json)
 
-engine = create_engine('sqlite:///basketball_xml.db', echo=False)
+BASE_DIR = os.getcwd()
+print(BASE_DIR)
+db_path_xml = os.path.join(BASE_DIR, 'app/src/python/backend', "basketball_xml.db")
+db_path_json = os.path.join(BASE_DIR, 'app/src/python/backend', "basketball_json.db")
+print(db_path_xml, db_path_json)
+sqlite_xml = 'sqlite:///{}'.format(db_path_xml)
+sqlite_json = 'sqlite:///{}'.format(db_path_json)
+
+engine = create_engine(sqlite_xml, echo=False)
 
 from sqlalchemy.orm import sessionmaker
 
@@ -267,15 +284,16 @@ def fill_all_xml():
                         print("ERROR: {} in file {} | Arguments: {}".format(type(ex).__name__, fl, ex.args))
 
 
-def json_to_database(json_file):
-    with open(json_file) as data_file:
-        data = json.load(data_file)
+def json_to_database(json_file, data=None):
+    if data == None:
+        with open(json_file) as data_file:
+            data = json.load(data_file)
 
     # Skip files that do not have box score data
     if not data["gamepackageJSON"]["header"]["competitions"][0]["boxscoreAvailable"]:
         return
 
-    json_engine = create_engine('sqlite:///basketball_json.db', echo=False)
+    json_engine = create_engine(sqlite_json, echo=False)
     JsonSession = sessionmaker(bind=json_engine)
     json_session = JsonSession()
 
@@ -294,9 +312,9 @@ def fill_all_json():
 
 
 # COMMENT THE BELOW LINES IN ON INITIAL DB LOAD
-print("Populating XML database...")
-fill_all_xml()
-print("XML database populated\n")
+# print("Populating XML database...")
+# fill_all_xml()
+# print("XML database populated\n")
 
 # print("Populating JSON database...")
 # fill_all_json()

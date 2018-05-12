@@ -1,6 +1,8 @@
-import json, datetime, glob
+import json, datetime, glob, sys
 import espn_scraper as espn
-from progress_bar import printProgressBar
+
+sys.path.insert(0, '/Users/Kyle/Desktop/cs5150/cs5150-basketball-project/app')
+import populate_db
 
 # constants
 cached_json = None
@@ -17,14 +19,20 @@ def getStartYr():
 def getLastScrapeDate():
     """returns the latest date of games that are stored in the basketball_json.db"""
     # TODO: add logic here to get the latest date of a game scraped in the db
-    # for now hard code in 3/1/2018
-    return datetime.datetime(year=2018, month=3, day=1)
+    # for now hard code in 4/1/2018 to make only 1 game come in
+    return datetime.datetime(year=2018, month=4, day=1)
 
 def ppjson(data):
     ''' Pretty print json helper '''
     print(json.dumps(data, indent=2, sort_keys=True))
 
 def url_is_before_today(url):
+    """
+    Checks to see if a url is for a game in the past
+    (espn scoreboards are also for future)
+    * Helper function to remove future scoreboard games
+    Returns: boolean
+    """
     date_string = url[url.rfind('/') + 1: url.rfind('?')]
     year = int(date_string[:4])
     month = int(date_string[4:6])
@@ -32,55 +40,67 @@ def url_is_before_today(url):
     return datetime.datetime(year,month,day).date() < datetime.datetime.now().date()
 
 def url_is_after_last_scrape(url, last_scrape_date):
+    """
+    Checks to see if a url is for a game is after the last time data was scraped
+    * Helper function to avoid duplicating db data from past scoreboard games
+    Returns: boolean
+    """
     date_string = url[url.rfind('/') + 1: url.rfind('?')]
     year = int(date_string[:4])
     month = int(date_string[4:6])
     day = int(date_string[-2:])
-    return datetime.datetime(year,month,day).date() > last_scrape_date
+    return datetime.datetime(year,month,day).date() > last_scrape_date.date()
 
 def filter_scoreboards_before_today(scoreboard_url_list, last_scrape_date):
+    """
+    Takes a list of scoreboard urls which will include all of the scoreboards
+    for the NCAA and eliminates urls that are in the future and that have already
+    been scraped; returnin the resulting list of urls
+    Returns: list of strings
+    """
     today = datetime.datetime.today().date()
     return [url for url in scoreboard_url_list if url_is_before_today(url) and url_is_after_last_scrape(url, last_scrape_date)]
 
-
-def scrape_espn_scoreboards(withProgress, filtered_scoreboards, start_yr):
-    if withProgress: printProgressBar(0, len(filtered_scoreboards), prefix = '{} Scoreboard Progress:'.format(start_yr), suffix = 'Complete', length = 50)
+def scrape_espn_game_ids(withProgress, filtered_scoreboards, start_yr):
+    """
+    Gets the game ids for the games played in a list of espn scoreboards
+    Returns: list of strings
+    """
+    game_ids = []
     for i, scoreboard_url in enumerate(filtered_scoreboards):
-        if withProgress: printProgressBar(i+1 , len(filtered_scoreboards), prefix = '{} Scoreboard Progress:'.format(start_yr), suffix = 'Complete', length = 50)
         data = espn.get_url(scoreboard_url, cached_path=cached_json)
         for event in data['content']['sbData']['events']:
             game_id = event['competitions'][0]['id']
             game_ids.append(game_id)
+    return game_ids
 
 def scrape_espn_play_by_plays(withProgress, game_ids, start_yr):
-    if withProgress: printProgressBar(0, len(game_ids), prefix = '{} PlayByPlay Progress:'.format(start_yr), suffix = 'Complete', length = 50)
+    """
+    Gets play by play data from ESPN API for the games who's ids are in game_ids
+    Returns a list of json objects (containing play-by-plays for each game)
+    """
+    data = []
     for i,game_id in enumerate(game_ids):
         pbp_url = espn.get_game_url("playbyplay", league, game_id)
         pbp_json = espn.get_url(pbp_url, cached_path=cached_json, game_id=game_id)
-        if withProgress: printProgressBar(i+1, len(game_ids), prefix = '{} PlayByPlay Progress:'.format(start_yr), suffix = 'Complete', length = 50)
+        data.append(pbp_json)
+    return data
 
 def main():
     start_yr = getStartYr()
     last_scrape_date = getLastScrapeDate()
-    game_ids = []
 
     scoreboard_urls = espn.get_all_scoreboard_urls(league, start_yr)
 
-    filtered_scoreboards = filter_scoreboards_before_today(scoreboard_urls)
+    filtered_scoreboards = filter_scoreboards_before_today(scoreboard_urls, last_scrape_date)
 
-    scrape_espn_scoreboards(False, filtered_scoreboards, start_yr)
+    game_ids = scrape_espn_game_ids(False, filtered_scoreboards, start_yr)
 
-    scrape_espn_play_by_plays(False, game_ids, start_yr)
+    all_json_data = scrape_espn_play_by_plays(False, game_ids, start_yr)
+
+    for game_json in all_json_data:
+        populate_db.json_to_database(None, game_json)
 
 #start process
 if __name__ == '__main__':
-    main()
-
-
-
-# print(event['season']['year'],
-#       event['competitions'][0]['competitors'][0]['team']['abbreviation'],
-#       event['competitions'][0]['competitors'][0]['score'],
-#       event['competitions'][0]['competitors'][1]['team']['abbreviation'],
-#       event['competitions'][0]['competitors'][1]['score'])
-#  5585 files in PlayByPlay
+   main()

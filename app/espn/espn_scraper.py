@@ -405,16 +405,11 @@ def get_cached_url(url, league, data_type, cached_path, headers={}, game_id=None
             if cached_path and "error_code" not in data:
                 with open(filename, 'w') as f:
                     json.dump(data, f, ensure_ascii=False, indent=2, sort_keys=True)
-            if cached_path == None:
-                pass
-                # TODO: ADD code here to add data obj to json.db
 
         elif ext == "html":
             data = get_new_html_soup(url, headers)
             if cached_path and "error_code" not in data:
                 with open(filename, 'w') as f:
                     f.write(data.prettify())
-            if cached_path == None:
-                # i do not think we ever get html for ncb league
-                pass
+
     return data
