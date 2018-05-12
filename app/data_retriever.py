@@ -552,80 +552,80 @@ def masterQuery(json_form):
     return box_score.values(), teams
     # return box_score, teams
 
-'''
+
 # Test full length games
-import time
-start_time = time.time()
-data = masterQuery({
-  "page": "players",
-  "position": [],
-  "team": ["COR"],
-  "opponent": [],
-  "in": [],
-  "out": [],
-  "upOrDown": [
-    "withIn",
-    None
-  ],
-  "gametime": {
-    "slider": {
-      "start": {
-        "clock": "20:00",
-        "sec": -2399
-      },
-      "end": {
-        "clock": "00:00",
-        "sec": 0
-      }
-    },
-    "sliderExtra": {
-      "start": {
-        "clock": "20:00",
-        "sec": -2400
-      },
-      "end": {
-        "clock": "00:00",
-        "sec": 0
-      }
-    },
-    "multipleTimeFrames": False
-  },
-  "location": {
-    "home": True,
-    "away": True,
-    "neutral": True
-  },
-  "outcome": {
-    "wins": True,
-    "losses": True
-  },
-    "overtime": {
-        "otSliderStart": 0,
-        "otSliderEnd": 300,
-        "ot1": True,
-        "ot2": True,
-        "ot3": True,
-        "ot4": True,
-        "ot5": True,
-        "ot6": True,
-        "onlyQueryOT": False
-    },
-  "dates": {
-    "start": 1510508800000,
-    "end": 1525665600000
-  }
-})[0]
-print("--- %s seconds ---" % (time.time() - start_time))
-'''
+# import time
+# start_time = time.time()
+# data = masterQuery({
+#   "page": "players",
+#   "position": [],
+#   "team": ["COR"],
+#   "opponent": [],
+#   "in": [],
+#   "out": [],
+#   "upOrDown": [
+#     "withIn",
+#     None
+#   ],
+#   "gametime": {
+#     "slider": {
+#       "start": {
+#         "clock": "20:00",
+#         "sec": -2385
+#       },
+#       "end": {
+#         "clock": "00:00",
+#         "sec": 0
+#       }
+#     },
+#     "sliderExtra": {
+#       "start": {
+#         "clock": "20:00",
+#         "sec": -2400
+#       },
+#       "end": {
+#         "clock": "00:00",
+#         "sec": 0
+#       }
+#     },
+#     "multipleTimeFrames": False
+#   },
+#   "location": {
+#     "home": True,
+#     "away": True,
+#     "neutral": True
+#   },
+#   "outcome": {
+#     "wins": True,
+#     "losses": True
+#   },
+#     "overtime": {
+#         "otSliderStart": 0,
+#         "otSliderEnd": 300,
+#         "ot1": True,
+#         "ot2": True,
+#         "ot3": True,
+#         "ot4": True,
+#         "ot5": True,
+#         "ot6": True,
+#         "onlyQueryOT": False
+#     },
+#   "dates": {
+#     "start": 1510508800000,
+#     "end": 1525665600000
+#   }
+# })[0]
+# print("--- %s seconds ---" % (time.time() - start_time))
+
 # import pprint
 # pprint.pprint(data, width=1)
-
+#
 # for player_id in data:
 #     sum = 0
 #     for game in data[player_id]["games"]:
-#         sum += data[player_id]["games"][game]["FG"]
+#         sum += data[player_id]["games"][game]["FGA"]
 #     if player_id == 6:
 #         print(player_id, sum)
 #         print("AVERAGE:", sum/len(data[player_id]["games"]))
-#
+
 
