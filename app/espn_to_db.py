@@ -2,22 +2,9 @@ import json, datetime, glob, sys
 import espn_scraper as espn
 
 import populate_db
-from db import Game
-import os
-
-from sqlalchemy import create_engine, desc
-from sqlalchemy.orm import sessionmaker
 
 
-file_dir = sys.argv[0].split('/')[:-2] # go up one directory to backend
-BASE_DIR = os.path.join(*file_dir)
-# print(BASE_DIR)
-db_path_json = os.path.join(BASE_DIR, "basketball_json.db")
-sqlite_json = 'sqlite:////{}'.format(db_path_json)
 
-engine = create_engine(sqlite_json, echo=False)
-Session = sessionmaker(bind=engine)
-session = Session()
 
 
 
@@ -34,12 +21,12 @@ def getStartYr():
         return now.year
     return now.year - 1
 
-def getLastScrapeDate():
-    """returns the latest date of games that are stored in the basketball_json.db"""
-    # TODO: add logic here to get the latest date of a game scraped in the db
-    date = session.query(Game).order_by(desc(Game.date)).first()
-    return date
-    # return datetime.datetime(year=2018, month=3, day=10)
+# def getLastScrapeDate():
+#     """returns the latest date of games that are stored in the basketball_json.db"""
+#     # TODO: add logic here to get the latest date of a game scraped in the db
+#     date = session.query(Game).order_by(desc(Game.date)).first()
+#     return date
+#     # return datetime.datetime(year=2018, month=3, day=10)
 
 def ppjson(data):
     ''' Pretty print json helper '''
