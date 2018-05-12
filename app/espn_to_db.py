@@ -1,8 +1,9 @@
 import json, datetime, glob, sys
 import espn_scraper as espn
 
-sys.path.insert(0, '/Users/Kyle/Desktop/cs5150/cs5150-basketball-project/app')
 import populate_db
+
+from sqlalchemy import order_by
 
 # constants
 cached_json = None
@@ -16,11 +17,11 @@ def getStartYr():
     if datetime.datetime(year=now.year,month=11,day=1) < now:
         return now.year
     return now.year - 1
+
 def getLastScrapeDate():
     """returns the latest date of games that are stored in the basketball_json.db"""
     # TODO: add logic here to get the latest date of a game scraped in the db
-    # for now hard code in 4/1/2018 to make only 1 game come in
-    return datetime.datetime(year=2018, month=4, day=1)
+    return datetime.datetime(year=2018, month=3, day=10)
 
 def ppjson(data):
     ''' Pretty print json helper '''
