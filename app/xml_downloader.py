@@ -28,17 +28,18 @@ def fetch_new_xml():
     xml_file_list = drive.ListFile({'q': "'{}' in parents and trashed=false".format(xml_folder_id)}).GetList()
     new_files = False
     for dir in xml_file_list:
-        print('--title: {}, id: {}'.format(dir['title'], dir['id']))
+        # print('--title: {}, id: {}'.format(dir['title'], dir['id']))
         for data_file in drive.ListFile({'q': "'{}' in parents and trashed=false".format(dir["id"])}).GetList():
-            print('----title: {}, id: {}'.format(data_file['title'], data_file['id']))
+            # print('----title: {}, id: {}'.format(data_file['title'], data_file['id']))
             # Download this file in the appropriate directory if it isn't already there
             filename = "../xml_data/{}/{}".format(dir['title'], data_file['title'])
-            # TODO: If the directory 20XX-XX+1 doesn't exist, create it
             if not os.path.isfile(filename):
                 new_files = True
-                print("------File doesn't exist, adding to database")
+                # print("------File doesn't exist, adding to database")
                 # Only download the file if it's not already in the data
                 file_obj = drive.CreateFile({'id': data_file["id"]})
+                if not os.path.exists("../xml_data/{}".format(dir['title'])):
+                    os.makedirs("../xml_data/{}".format(dir['title']))
                 file_obj.GetContentFile(filename)  # Download file to proper directory
 
     if new_files:
