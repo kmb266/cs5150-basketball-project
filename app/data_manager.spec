@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['data_manager.py'],
-             pathex=['/Users/Kyle/Desktop/cs5150/cs5150-basketball-project/app'],
+             pathex=['/Users/sarvar/PycharmProjects/cs5150-basketball-project/app'],
              binaries=[],
              datas=[],
              hiddenimports=[],

@@ -323,7 +323,8 @@ def masterQuery(json_form):
             play.v2 in players or \
             play.v3 in players or \
             play.v4 in players or \
-                play.v5 in players:
+            play.v5 in players or \
+            play.player_id in players:
                 return True
 
     def player_out(play, players):
@@ -336,7 +337,8 @@ def masterQuery(json_form):
             play.v2 not in players and \
             play.v3 not in players and \
             play.v4 not in players and \
-                play.v5 in players:
+            play.v5 not in players and \
+            play.player_id not in players:
                 return True
 
 
