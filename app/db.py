@@ -173,7 +173,7 @@ def create_db(db_name):
 
 
 # Initialize xml database
-create_db("basketball_xml")
+# create_db("basketball_xml")
 
 # Initialize json database
 # create_db("basketball_json")

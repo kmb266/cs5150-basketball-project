@@ -186,7 +186,7 @@ export const applyFilters = (page, filters_data, emitter) => {
   // and then put the dist directory in the python folder and the files will run
   // uncomment the next 3 lines to replace spawn and py vars below
   // got ideas from https://github.com/fyears/electron-python-example
-  var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'data_manager','data_manager'),
+  var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'data_manager'),
       py = require('child_process').execFile(path_to_exe),
       data = filters_data,
       dataString = '';
@@ -528,11 +528,11 @@ export const getTeams = (page) => {
   */
 
   // uncomment below to package app after pyinstalling auto_complete
-  var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'auto_complete','auto_complete'),
+  var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'auto_complete'),
       py = require('child_process').execFile(path_to_exe),
       data = {'field': 0},
       dataString = '';
-  console.log(path_to_exe)
+
   // var spawn = require('child_process').spawn,
   // py = spawn('python', ['./auto_complete.py']),
   // data = {'field': 0},
@@ -541,16 +541,13 @@ export const getTeams = (page) => {
   // retrieve the data from the data_manager.py
   py.stdout.on('data', function(data){
     dataString += data.toString();
-    //console.log("Hello");
   });
 
-  //console.log("Calling getTeams!");
   // print the data when the child process ends
   py.stdout.on('end', function(){
     //console.log("Finished calling get Teams!");
-    console.log(dataString)
-    var teams = JSON.parse(dataString)//.replace(/'/g, '"'));
-    console.log(teams)
+    // console.log(dataString)
+    var teams = JSON.parse(dataString)
     var placeholder = 'Select Team(s)';
 
     $('#'+page+'-opponent').select2({
@@ -603,12 +600,12 @@ export const getPlayers = (page) => {
       Program runs python auto_complete.py and sets the select2s with the id
   */
   // uncomment below to package app after pyinstalling auto_complete
-  var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'auto_complete','auto_complete'),
+  var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'auto_complete'),
       py = require('child_process').execFile(path_to_exe),
       data = {'field': 1},
       dataString = '';
-  console.log(path_to_exe);
-  console.log(fs.existsSync(path_to_exe));
+  // console.log(path_to_exe);
+  // console.log(fs.existsSync(path_to_exe));
 
   // var spawn = require('child_process').spawn,
   // py = spawn('python', ['./auto_complete.py']),
@@ -623,7 +620,7 @@ export const getPlayers = (page) => {
   // print the data when the child process ends
   py.stdout.on('end', function(){
     //console.log(typeof(dataString), dataString.replace(/'/g, '"'));
-    console.log("Players: " + dataString)
+    // console.log("Players: " + dataString)
     var players = JSON.parse(dataString)//.replace(/'/g, '"'))
     var placeholder = 'Select Team(s)';
 
@@ -651,8 +648,7 @@ export const getPlayers = (page) => {
   py.on('error', function(err) {
     console.log("Failed to start child. " + err);
   });
-  var json_data = JSON.stringify(data);
-  console.log(typeof(json_data), json_data);
-  py.stdin.write(json_data);
+
+  py.stdin.write(JSON.stringify(data));
   py.stdin.end();
 }

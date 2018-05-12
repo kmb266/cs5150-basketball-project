@@ -1,25 +1,13 @@
 import Constants
 from data_retriever import getAllTeams, getAllPlayers
 import sys, json, os
-import syslog
-# print("script: sys.argv[0] is", repr(sys.argv[0]))
-
-# # log to mac console
-# root = logging.getLogger()
-# root.setLevel(logging.DEBUG)
-#
-# ch = logging.StreamHandler(sys.stdout)
-# ch.setLevel(logging.DEBUG)
-# formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-# ch.setFormatter(formatter)
-# root.addHandler(ch)
 
 def getErrorForm(code, msg):
     data = {"error" : {"code" : code, "message" : msg}}
     return data
 
 def retrieveData(form):
-    #print(type(form))
+    # print(type(form))
     target = form["field"]
     if target is None:
         return getErrorForm(Constants.FormMissingElement, "Missing value for the key 'field'")
@@ -41,21 +29,15 @@ def retrieveData(form):
 
 def getForm():
     lines = sys.stdin.readlines()
-    #Since our input would only be having one line, parse our JSON data from that
+    # Since our input would only be having one line, parse our JSON data from that
     return json.loads(lines[0])
 
 def main():
     try:
         form = getForm()
-        #form = {"field" : 1}
+        # form = {"field" : 1}
         data = retrieveData(form)
     except Exception as e:
-
-        # Define identifier
-        syslog.openlog("CU_MBBALL_APP-main")
-        # Record a message
-        syslog.syslog(syslog.LOG_ALERT, e.message)
-
         data = {"error" : e.message, "doc" : e.__doc__, "dir": sys.argv[0]}
         data = json.dumps(data)
 

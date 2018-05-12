@@ -8,7 +8,8 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import or_, and_, between
 
 
-file_dir = sys.argv[0].split('/')[:-1]
+file_dir = sys.argv[0].split('/')[:-2]
+file_dir += ['backend']
 BASE_DIR = os.path.join(*file_dir)
 # print(BASE_DIR)
 db_path_xml = os.path.join(BASE_DIR, "basketball_xml.db")
