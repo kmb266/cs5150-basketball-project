@@ -1,4 +1,4 @@
-import sys, json
+import sys, json, syslog
 from data_retriever import masterQuery
 from stats_results import stats_calculation
 
@@ -258,13 +258,18 @@ def getForm():
     return json.loads(lines[0])
 
 def main():
-    form = getForm()
-    # form = sampleForm()
+    # form = getForm()
+    form = sampleForm()
 
     form = tidyForm(form)
     try:
         data = retrieveData(form)
     except Exception as e:
+        # Define identifier
+        syslog.openlog("CU_MBBALL_APP")
+        # Record a message
+        syslog.syslog(syslog.LOG_ALERT, e.message)
+
         data = {"error" : e.message, "doc" : e.__doc__}
         data = json.dumps(data)
 

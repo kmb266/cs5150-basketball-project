@@ -1,19 +1,21 @@
 from sqlalchemy import create_engine, desc
 from db import Game, Team, Player, PlayerIn, TeamIn, Play
-import json, os
+import json, os, sys
 import datetime
 
 import parse_json
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import or_, and_, between
 
-database_directory = os.path.dirname(os.path.abspath(__file__))
 
+file_dir = sys.argv[0].split('/')[:-1]
+BASE_DIR = os.path.join(*file_dir)
+# print(BASE_DIR)
 db_path_xml = os.path.join(BASE_DIR, "basketball_xml.db")
 db_path_json = os.path.join(BASE_DIR, "basketball_json.db")
-
-sqlite_xml = 'sqlite:///{}'.format(db_path_xml)
-sqlite_json = 'sqlite:///{}'.format(db_path_json)
+# print(db_path_xml, db_path_json)
+sqlite_xml = 'sqlite:////{}'.format(db_path_xml)
+sqlite_json = 'sqlite:////{}'.format(db_path_json)
 
 
 def getAllTeams():
@@ -158,9 +160,9 @@ def masterQuery(json_form):
 
     # Pick what DB you're using based on the search criteria
     if (len(teamIds) == 1 and teamIds[0] == "COR") or (len(oppIds) == 1 and oppIds[0] == "COR"):
-        engine = create_engine('sqlite:///basketball_xml.db', echo=False)
+        engine = create_engine(sqlite_xml, echo=False)
     else:
-        engine = create_engine('sqlite:///basketball_json.db', echo=False)
+        engine = create_engine(sqlite_json, echo=False)
 
     Session = sessionmaker(bind=engine)
     session = Session()
@@ -171,7 +173,7 @@ def masterQuery(json_form):
         for opp in oppIds:
             o = session.query(Team).filter_by(team_id=opp).first()
             if not o:
-                j_engine = create_engine('sqlite:///basketball_json.db', echo=False)
+                j_engine = create_engine(sqlite_json, echo=False)
                 JSession = sessionmaker(bind=j_engine)
                 j_session = JSession()
                 team_name = j_session.query(Team).filter_by(team_id=opp).first().name
