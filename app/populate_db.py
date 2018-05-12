@@ -312,6 +312,15 @@ def fill_all_json():
             json_to_database("../cached_json/ncb/playbyplay/" + filename)
 
 
+def get_last_scrape_date():
+    json_engine = create_engine(sqlite_json, echo=False)
+    JsonSession = sessionmaker(bind=json_engine)
+    json_session = JsonSession()
+    date = json_session.query(Game).order_by(desc(Game.date)).first()
+    return date
+
+
+
 # COMMENT THE BELOW LINES IN ON INITIAL DB LOAD
 # print("Populating XML database...")
 # fill_all_xml()
