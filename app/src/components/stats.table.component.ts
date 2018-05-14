@@ -43,13 +43,10 @@ export class StatsTableComponent {
     $('.content-wrapper').scroll(function(){
       $('.col-0').css({ 'left': $(this).scrollLeft() });
     });
-    // help with styling
-    var maxNameWidth = Math.max.apply(Math, $('.col-0').map(function(){ return $(this).width(); }).get());
-    $('.col-0').change(function() {
-      console.log('changing')
-    })
-    $('.col-1').css({ 'padding-left': maxNameWidth + 4 + 'px' });
-    $('.col-0').width(maxNameWidth);
+    // help with styling -- doesnt work yet
+    // var maxNameWidth = Math.max.apply(Math, $('.col-0').map(function(){ return $(this).width(); }).get());
+    // $('.col-1').css({ 'padding-left': maxNameWidth + 4 + 'px' });
+    // $('.col-0').width(maxNameWidth);
   }
 }
 
