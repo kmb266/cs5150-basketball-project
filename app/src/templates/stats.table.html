@@ -1,6 +1,6 @@
 <table class="table table-striped table-bordered">
   <tr>
-    <th *ngFor="let key of headers">{{key}}</th>
+    <th *ngFor="let key of headers; let in = index" [class]="'col-'+in">{{key}}</th>
   </tr>
   <tr *ngFor="let player of playerList">
     <td *ngFor="let key of passed_in_headers; let in = index" [class]="'col-'+in" >{{player[key]}}</td>
