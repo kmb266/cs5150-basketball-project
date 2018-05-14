@@ -10,24 +10,26 @@ import datetime
 
 from sqlalchemy import create_engine, desc
 
-# for prod use -- comment out for testing
-file_dir = sys.argv[0].split('/')[:-2] # go up one directory to backend
-BASE_DIR = os.path.join(*file_dir)
-# print(BASE_DIR)
-db_path_xml = os.path.join(BASE_DIR, "basketball_xml.db")
-db_path_json = os.path.join(BASE_DIR, "basketball_json.db")
-# print(db_path_xml, db_path_json)
-sqlite_xml = 'sqlite:////{}'.format(db_path_xml)
-sqlite_json = 'sqlite:////{}'.format(db_path_json)
-
-# uncomment for testing
-# BASE_DIR = os.getcwd()
-# print(BASE_DIR)
-# db_path_xml = os.path.join(BASE_DIR, 'app/src/python/backend', "basketball_xml.db")
-# db_path_json = os.path.join(BASE_DIR, 'app/src/python/backend', "basketball_json.db")
-# print(db_path_xml, db_path_json)
-# sqlite_xml = 'sqlite:///{}'.format(db_path_xml)
-# sqlite_json = 'sqlite:///{}'.format(db_path_json)
+prod = False
+if prod:
+    # for prod use -- comment out for testing
+    file_dir = sys.argv[0].split('/')[:-2] # go up one directory to backend
+    BASE_DIR = os.path.join(*file_dir)
+    # print(BASE_DIR)
+    db_path_xml = os.path.join(BASE_DIR, "basketball_xml.db")
+    db_path_json = os.path.join(BASE_DIR, "basketball_json.db")
+    # print(db_path_xml, db_path_json)
+    sqlite_xml = 'sqlite:////{}'.format(db_path_xml)
+    sqlite_json = 'sqlite:////{}'.format(db_path_json)
+else:
+    # uncomment for testing
+    BASE_DIR = os.getcwd()
+    # print(BASE_DIR)
+    db_path_xml = os.path.join(BASE_DIR, 'src/python/backend', "basketball_xml.db")
+    db_path_json = os.path.join(BASE_DIR, 'src/python/backend', "basketball_json.db")
+    # print(db_path_xml, db_path_json)
+    sqlite_xml = 'sqlite:///{}'.format(db_path_xml)
+    sqlite_json = 'sqlite:///{}'.format(db_path_json)
 
 engine = create_engine(sqlite_xml, echo=False)
 

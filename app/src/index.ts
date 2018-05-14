@@ -34,8 +34,10 @@ const createWindow = async () => {
     mainWindow = null;
   });
 
+  var shouldUpdate = require("./assets/js/update_json_db");
+  console.log(shouldUpdate);
   require("./assets/js/mainmenu");
-  
+
 };
 
 // This method will be called when Electron has finished
