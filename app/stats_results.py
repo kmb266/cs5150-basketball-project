@@ -3,41 +3,65 @@ import numpy
 
 
 def stats_calculation(data):
+	'''
+	Name: getAdvancedData
+    Returns: the advanced data for each player and each team
+    Arguments:
+    FGM : field goal made
+	FGA : field goal attempted
+	FGM_3 : 3 pointers made
+	FGA_3 : 3 pointers attempted
+	FGM_2 : 2 pointers made
+	FGA_2 : 2 pointers Attempted
+	FTM : free throw made
+	FTA : free throw attempted
+	OREB : offensive rebound
+	DREB : deffensive rebound
+	TREB : total rebound
+	PF : personal foul
+	AST : assist
+	TOV : turnover
+	BLK : block
+	STL : steal
+	PTS : points
+	Tm : Team
+	Opp : Opponent
+	'''
 	#print("Number of players: " + str(len(data["data"])))
 	#print("Calculating advanced stats:")
+	advanced_data = []
 	for player in data["data"]:
 		#print("--Calculating stats for " + player["name"])
 		games = player["games"]
 		team_id = player["team"]
+
+		player_advanced = {}
+		player_advanced["name"] = player["name"]
+		player_advanced["team"] = player["team"]
 		for game_id, box_score in games.items():
 			#print("----Calculating game " + str(game_id))
 			# Player values
-			AST = box_score["AST"]
-			BLK = box_score["BLK"]
-			DREB = box_score["DREB"]
-			FGM_2 = box_score["FG"]
-			FGA_2 = box_score["FGA"]
+			FGM = box_score["FG"]
+			FGA = box_score["FGA"]
 			FGM_3 = box_score["3PT"]
 			FGA_3 = box_score["FGA3"]
-			FGA = FGA_2 + FGA_3
-			if FGA == 0:
-				FGA = 1
-			FGM = FGM_2 + FGM_3
-			FTA = box_score["FTA"]
-			if FTA == 0:
-				FTA = 1
+			FGM_2 = FGM - FGM_3
+			FGA_2 = FGA - FGM_3
 			FTM = box_score["FT"]
-			MIN = abs(box_score["MIN"])
-			if MIN == 0:
-				#print("minute is 0 continuing")
-				continue
+			FTA = box_score["FTA"]
 			OREB = box_score["OREB"]
-			PF = box_score["PF"]
-			PTS = box_score["PTS"]
-			STL = box_score["STL"]
-			TOV = box_score["TO"]
+			DREB = box_score["DREB"]
 			TREB = box_score["REB"]
+			PF = box_score["PF"]
+			AST = box_score["AST"]
+			TOV = box_score["TO"]
+			BLK = box_score["BLK"]
+			STL = box_score["STL"]
+			PTS = box_score["PTS"]
+			# TODO : MIN for player
+			MIN = abs(box_score["MIN"])
 
+			# TODO : Don't know what is this data
 			OREB_perc = 1
 
 			opponent_id = box_score["away"]
@@ -46,44 +70,50 @@ def stats_calculation(data):
 
 			# Team values
 			team_boxscore = data["teamOverall"][team_id]["games"][game_id]
-			TmAST = team_boxscore["AST"]
-			TmPoints = team_boxscore["PTS"]
-			TmPTS = TmPoints
-			TmFGA = team_boxscore["FGA"]
-			TmOREB = team_boxscore["OREB"]
-			TmDREB = team_boxscore["DREB"]
-			TmFTA  = team_boxscore["FTA"]
-			TmSTL = team_boxscore["STL"]
-			TmFTM = team_boxscore["FT"]
 			TmFGM = team_boxscore["FG"]
 			TmFGA = team_boxscore["FGA"]
-			TmTOV = team_boxscore["TO"]
-			Tm3PM = team_boxscore["3PT"]
-			TmMIN = 200 #team_boxscore["MIN"]
-			TmPF = team_boxscore["PF"]
+			TmFGM_3 = team_boxscore["3PT"]
+			TmFGA_3 = team_boxscore["FGA3"]
+			TmFGM_2 = TmFGM - TmFGM_3
+			TmFGA_2 = TmFGA - TmFGM_3
+			TmFTM = team_boxscore["FT"]
+			TmFTA = team_boxscore["FTA"]
+			TmOREB = team_boxscore["OREB"]
+			TmDREB = team_boxscore["DREB"]
 			TmTREB = team_boxscore["REB"]
+			TmPF = team_boxscore["PF"]
+			TmAST = team_boxscore["AST"]
+			TmTOV = team_boxscore["TO"]
 			TmBLK = team_boxscore["BLK"]
+			TmSTL = team_boxscore["STL"]
+			TmPTS = team_boxscore["PTS"]
+
+			# TODO : TmMIN 
+			TmMIN = 200 #team_boxscore["MIN"]
 
 			# Opponent team values
 			opponent_boxscore = data["teamOverall"][opponent_id]["games"][game_id]
-			OppPTS = opponent_boxscore["PTS"]
-			OppDREB = opponent_boxscore["DREB"]
-			OppTREB = opponent_boxscore["REB"]
-			OppOREB = opponent_boxscore["OREB"]
 			OppFGM = opponent_boxscore["FG"]
 			OppFGA = opponent_boxscore["FGA"]
-			OppFTA = opponent_boxscore["FTA"]
-			OppPTS = opponent_boxscore["PTS"]
+			OppFGM_3 = opponent_boxscore["3PT"]
+			OppFGA_3 = opponent_boxscore["FGA3"]
+			OppFGM_2 = OppFGM - OppFGM_3
+			OppFGA_2 = OppFGA - OppFGM_3
 			OppFTM = opponent_boxscore["FT"]
-			OppTOV = opponent_boxscore["TO"]
-			Opp3PA = opponent_boxscore["3PT"]
-			OppSTL = opponent_boxscore["STL"]
-			OppAST = opponent_boxscore["AST"]
-			OppBLK = opponent_boxscore["BLK"]
+			OppFTA = opponent_boxscore["FTA"]
+			OppOREB = opponent_boxscore["OREB"]
+			OppDREB = opponent_boxscore["DREB"]
+			OppTREB = opponent_boxscore["REB"]
 			OppPF = opponent_boxscore["PF"]
+			OppAST = opponent_boxscore["AST"]
+			OppTOV = opponent_boxscore["TO"]
+			OppBLK = opponent_boxscore["BLK"]
+			OppSTL = opponent_boxscore["STL"]
+			OppPTS = opponent_boxscore["PTS"]
+
 			OppMIN = 200
 
-			GmPTS = OppPTS + TmPoints
+			GmPTS = OppPTS + TmPTS
 			GmFGM = OppFGM + TmFGM
 			GmFTM = OppFTM + TmFTM
 			GmFGA = OppFGA + TmFGA
@@ -96,10 +126,10 @@ def stats_calculation(data):
 			GmPF = OppPF + TmPF
 			GmTO = OppTOV + TmTOV
 
-				#first level calculation
+			#first level calculation
 			TmPoss = a_s.TmPoss(TmFGA,TmOREB,OppDREB,TmFTA,TmFGM,TmTOV)
 			OppPoss = a_s.OppPoss(OppFGA,OppOREB,TmDREB,OppFTA,OppFGM,OppTOV)
-			PProdAst = a_s.PProdAst(TmFGM, FGM, Tm3PM, TmPTS, TmFTM, PTS, FGA, AST, FGM_3,FTM, TmFGA)
+			PProdAst = a_s.PProdAst(TmFGM, FGM, TmFGM_3, TmPTS, TmFTM, PTS, FGA, AST, FGM_3,FTM, TmFGA)
 			q5 = a_s.q5(TmAST,AST,TmFGM)
 			q12 = a_s.q12(TmAST,TmMIN,MIN,AST,TmFGM,FGM)
 			ASTPart =  a_s.ASTPart(TmPTS,TmFTM,PTS,FTM,TmFGA,FGA,AST)
@@ -124,47 +154,45 @@ def stats_calculation(data):
 			OppPtsPScorPoss = a_s.OppPtsPScorPoss(OppPTS,OppFGM,OppFTM,OppFTA)
 			TS_perc = a_s.TS_perc(PTS,FGA,FTA)
 			Total_REB_pect = a_s.Total_REB_pect (TREB,TmMIN,MIN,TmTREB,OppTREB)
-			BLK_perc = a_s.BLK_perc(BLK,TmMIN,MIN,OppFGA,Opp3PA)
+			BLK_perc = a_s.BLK_perc(BLK,TmMIN,MIN,OppFGA,OppFGA_3)
 			Game_Score = a_s.Game_Score(PTS,FGM,FGA,FTA,FTM,OREB,DREB,STL,AST,BLK,PF,TOV)
 			PIE = a_s.PIE(PTS,FGM,FTM,FGA,FTA,DREB,OREB,AST,STL,BLK,PF,TOV,GmPTS,GmFGM,GmFTM,GmFGA,GmFTA,GmDREB,GmOREB,GmAST,GmSTL,GmBLK,GmPF,GmTO)
 
-			#adding results to dictionary
-			#data["TmPoss"] = TmPoss
-			#data["OppPoss"] = OppPoss
-			#data["PProdAst"] = PProdAst
-			#data["q5"] = q5
-			#data["q12"] = q12
-			#data["ASTPart"] = ASTPart
-			#data["FTPart"] = FTPart
-			#data["TmScorPoss"] = TmScorPoss
-			#data["TmOREB_pect"] = TmOREB_pect
-			#data["TmPlay"] = TmPlay
-			#data["FTmPoss"] = FTmPoss
-			#data["DOREB_perc"] = DOREB_perc
-			#data["DFG_perc"] = DFG_perc
-			#data["eFG_perc"] = eFG_perc
-			#data["Turnover_perc"] = Turnover_perc
-			#data["FTr"] = FTr
-			#data["FG_2_perc"] = FG_2_perc
-			#data["FG_3_perc"] = FG_3_perc
-			#data["FGr_2"] = FGr_2
-			#data["FGr_3"] = FGr_3
-
-			box_score["Usage_Rate"] = Usage_Rate
-			box_score["PIE"] = PIE
-			box_score["Game_Score"] = Game_Score
-			#data["ASTPart"] = ASTPart
-			#data["ASTr"] = ASTr
-			#data["AST_Ratio"] = AST_Ratio
-			#data["OppPtsPScorPoss"] = OppPtsPScorPoss
-			#data["TS_perc"] = TS_perc
-			#data["Total_REB_pect"] = Total_REB_pect
-			#data["BLK_perc"] = BLK_perc
-			#data["Game_Score"] = Game_Score
-			#data["PIE"] = PIE
+			# adding results to dictionary
+			game_advanced_box_score = {}
+			game_advanced_box_score["TmPoss"] = TmPoss
+			game_advanced_box_score["OppPoss"] = OppPoss
+			game_advanced_box_score["PProdAst"] = PProdAst
+			game_advanced_box_score["q5"] = q5
+			game_advanced_box_score["q12"] = q12
+			game_advanced_box_score["ASTPart"] = ASTPart
+			game_advanced_box_score["FTPart"] = FTPart
+			game_advanced_box_score["TmScorPoss"] = TmScorPoss
+			game_advanced_box_score["TmOREB_pect"] = TmOREB_pect
+			game_advanced_box_score["TmPlay"] = TmPlay
+			game_advanced_box_score["FTmPoss"] = FTmPoss
+			game_advanced_box_score["DOREB_perc"] = DOREB_perc
+			game_advanced_box_score["DFG_perc"] = DFG_perc
+			game_advanced_box_score["eFG_perc"] = eFG_perc
+			game_advanced_box_score["Turnover_perc"] = Turnover_perc
+			game_advanced_box_score["FTr"] = FTr
+			game_advanced_box_score["FG_2_perc"] = FG_2_perc
+			game_advanced_box_score["FG_3_perc"] = FG_3_perc
+			game_advanced_box_score["FGr_2"] = FGr_2
+			game_advanced_box_score["FGr_3"] = FGr_3
+			game_advanced_box_score["Usage_Rate"] = Usage_Rate
+			game_advanced_box_score["ASTPart"] = ASTPart
+			game_advanced_box_score["ASTr"] = ASTr
+			game_advanced_box_score["AST_Ratio"] = AST_Ratio
+			game_advanced_box_score["OppPtsPScorPoss"] = OppPtsPScorPoss
+			game_advanced_box_score["TS_perc"] = TS_perc
+			game_advanced_box_score["Total_REB_pect"] = Total_REB_pect
+			game_advanced_box_score["BLK_perc"] = BLK_perc
+			game_advanced_box_score["Game_Score"] = Game_Score
+			game_advanced_box_score["PIE"] = PIE
 
 			#second level calculation
-			TmORTG = a_s.TmORTG (TmPoints, TmPoss)
+			TmORTG = a_s.TmORTG (TmPTS, TmPoss)
 			qAST = a_s.qAST(MIN,TmMIN,q12,q5)
 			TmPlay_pect = a_s.TmPlay_pect(TmScorPoss, TmFGA,TmFTA,TmTOV)
 			FGmPoss = a_s.FGmPoss(FGA,FGM,TmOREB_pect)
@@ -175,15 +203,15 @@ def stats_calculation(data):
 			Pace = a_s.Pace(TmPoss,OppPoss,TmMIN)
 
 			#adding results to dictionary
-			#data["TmORTG"] = TmORTG
-			#data["qAST"] = qAST
-			#data["TmPlay_pect"] = TmPlay_pect
-			#data["FGmPoss"] = FGmPoss
-			#data["Team_Floor_Percentage"] = Team_Floor_Percentage
-			#data["TmDRTG"] = TmDRTG
-			#data["FMwt"] = FMwt
-			#data["Pace"] = Pace
-			#data["STL_perc"] = STL_perc
+			game_advanced_box_score["TmORTG"] = TmORTG
+			game_advanced_box_score["qAST"] = qAST
+			game_advanced_box_score["TmPlay_pect"] = TmPlay_pect
+			game_advanced_box_score["FGmPoss"] = FGmPoss
+			game_advanced_box_score["Team_Floor_Percentage"] = Team_Floor_Percentage
+			game_advanced_box_score["TmDRTG"] = TmDRTG
+			game_advanced_box_score["FMwt"] = FMwt
+			game_advanced_box_score["Pace"] = Pace
+			game_advanced_box_score["STL_perc"] = STL_perc
 
 			#third level calculation
 			PProdFG = a_s.PProdFG(FGM,PTS,FTM,FGA,qAST,FGM_3)
@@ -193,11 +221,11 @@ def stats_calculation(data):
 			Stops_2 = a_s.Stops_2(OppFGA,OppFGM,TmBLK,TmMIN,FMwt,DOREB_perc,OppTOV,TmSTL,MIN,PF,TmPF,OppFTA,OppFTM)
 
 			#adding results to dictionary
-			#data["PProdFG"] = PProdFG
-			#data["FGPart"] = FGPart
-			#data["TmOREBWgt"] = TmOREBWgt
-			#data["Stops_1"] = Stops_1
-			#data["Stops_2"] = Stops_2
+			game_advanced_box_score["PProdFG"] = PProdFG
+			game_advanced_box_score["FGPart"] = FGPart
+			game_advanced_box_score["TmOREBWgt"] = TmOREBWgt
+			game_advanced_box_score["Stops_1"] = Stops_1
+			game_advanced_box_score["Stops_2"] = Stops_2
 
 			#forth level calculation
 			PProdOREB = a_s.PProdOREB(OREB,TmOREBWgt,TmPlay_pect,TmPTS,TmFGM,TmFTM,TmFTA)
@@ -205,9 +233,9 @@ def stats_calculation(data):
 			Stops = a_s.Stops(Stops_1,Stops_2)
 
 			#adding results to dictionary
-			#data["PProdOREB"] = PProdOREB
-			#data["OREBPart"] = OREBPart
-			#data["Stops"] = Stops
+			game_advanced_box_score["PProdOREB"] = PProdOREB
+			game_advanced_box_score["OREBPart"] = OREBPart
+			game_advanced_box_score["Stops"] = Stops
 
 			#fifth level calculation
 			PProd = a_s.PProd(PProdFG, PProdAst,FTM,TmOREB,TmScorPoss,TmOREBWgt,TmPlay_pect,PProdOREB)
@@ -215,24 +243,29 @@ def stats_calculation(data):
 			Stop_perc = a_s.Stop_perc(Stops,OppMIN,TmPoss,MIN)
 
 			#adding results to dictionary
-			#data["PProd"] = PProd
-			#data["ScPoss"] = ScPoss
-			#data["Stop_perc"] = Stop_perc
+			game_advanced_box_score["PProd"] = PProd
+			game_advanced_box_score["ScPoss"] = ScPoss
+			game_advanced_box_score["Stop_perc"] = Stop_perc
 
 			#sixth level calculation
 			TotPoss = a_s.TotPoss(ScPoss,FGmPoss,FTmPoss,TOV)
 			DRTG = a_s.DRTG(TmDRTG,OppPtsPScorPoss,Stop_perc)
 
 			#adding results to dictinory
-			#data["TotPoss"] = TotPoss
-			#data["DRTG"] = DRTG
+			game_advanced_box_score["TotPoss"] = TotPoss
+			game_advanced_box_score["DRTG"] = DRTG
 
 			#seventh level calculation
 			Individual_Offensize_Rating = a_s.Individual_Offensize_Rating(PProd, TotPoss)
 			Individual_Floor_Percentage = a_s.Individual_Floor_Percentage(ScPoss,TotPoss)
 
 			#adding results to dictinory
-			#data["Individual_Offensize_Rating"] = Individual_Offensize_Rating
-			#data["Individual_Floor_Percentage"] = Individual_Floor_Percentage
+			game_advanced_box_score["Individual_Offensize_Rating"] = Individual_Offensize_Rating
+			game_advanced_box_score["Individual_Floor_Percentage"] = Individual_Floor_Percentage
 
-	return data
+			games_advanced = {game_id : game_advanced_box_score}
+
+		player_advanced["games"] = games_advanced
+		advanced_data.append(player_advanced)
+
+	return advanced_data
