@@ -132,6 +132,7 @@ def getAverages(players_score, team_score):
                         team[attribute] = game_boxscore[attribute]
             if attribute in team:
                 team[attribute] = round(team[attribute] / games_played, 2)
+        team["GAMES"] = games_played
         calculatePercentages(team)
         team["MIN"] = 200
 
