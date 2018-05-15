@@ -34,8 +34,7 @@ const createWindow = async () => {
     mainWindow = null;
   });
 
-  var shouldUpdate = require("./assets/js/update_json_db");
-  console.log(shouldUpdate);
+  require("./assets/js/update_json_db");
   require("./assets/js/mainmenu");
 
 };

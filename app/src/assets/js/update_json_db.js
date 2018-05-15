@@ -2,6 +2,8 @@
 const Store = require('electron-store');
 const store = new Store();
 
+const PROD = false;
+
 const IN_PROGRESS = 'in-progress';
 const DONE = 'done';
 const FAILURE = 'failure';
@@ -27,18 +29,20 @@ function updateJsonDB(today, callback) {
   store.set('update.json.success', false);
 
   // uncomment here if in prod
-  // var path_to_exe = path.join(__dirname, 'python', 'backend', 'espn_to_db'),
-  //     py = require('child_process').execFile(path_to_exe),
-  //     data = {'lastOpen': date},
-  //     dataString = '';
-  // console.log(path_to_exe);
-  // console.log(fs.existsSync(path_to_exe));
-
-  // comment out below if in prod
-  var spawn = require('child_process').spawn,
-      py = spawn('python', ['./espn_to_db.py']),
-      // data = {'lastOpen': oldDate.getTime()},
-      dataString = '';
+  if (PROD) {
+    var path_to_exe = path.join(__dirname, 'python', 'backend', 'espn_to_db'),
+        py = require('child_process').execFile(path_to_exe),
+        data = {'lastOpen': date},
+        dataString = '';
+    console.log(path_to_exe);
+    console.log(fs.existsSync(path_to_exe));
+  }
+  else {
+    var spawn = require('child_process').spawn,
+        py = spawn('python', ['./espn_to_db.py']),
+        // data = {'lastOpen': oldDate.getTime()},
+        dataString = '';
+  }
 
   // retrieve the data from the auto_complete.py
   py.stdout.on('data', function(data){
@@ -75,17 +79,22 @@ function updateJsonDB(today, callback) {
 }
 
 function finshedJsonDbBUpdate(stdout) {
+  console.log(stdout);
   // set json updating status to complete and update other data
   var end_date = new Date();
-  store.delete('update.json.end_date', end_date);
+  store.set('update.json.end_date', end_date);
   store.set('update.json.status', DONE);
   store.set('update.json.success', true);
+  console.log(store.store);
 }
 
+console.log(store.store);
 if (store.get('update.json.status') == 'in-progress') {
   console.log('The ESPN data is currently being updated.');
 }
-else if (last_updated_start != undefined && last_updated_start.toLocaleDateString() == date.toLocaleDateString() && last_update_did_succeed) {
+else if (last_updated_start != undefined
+          && last_updated_start.toLocaleDateString() == date.toLocaleDateString()
+          && last_update_did_succeed) {
   console.log("Your ESPN data should be up to date!");
 }
 else {
