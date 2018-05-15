@@ -10,10 +10,11 @@ import datetime
 
 from sqlalchemy import create_engine, desc
 
-prod = False
+prod = True
 if prod:
     # for prod use -- comment out for testing
     file_dir = sys.argv[0].split('/')[:-2] # go up one directory to backend
+    file_dir += ['backend']
     BASE_DIR = os.path.join(*file_dir)
     # print(BASE_DIR)
     db_path_xml = os.path.join(BASE_DIR, "basketball_xml.db")
