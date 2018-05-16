@@ -27,7 +27,9 @@ function createUpdateDbWindow() {
     frame: false,
     backgroundColor: '#fff',
     minWidth: 500,
-    minHeight: 400
+    minHeight: 400,
+    x: 0,
+    y: 0
   });
   win.on('close', () => { win = null });
   // win.setAlwaysOnTop(true, "floating", 1);

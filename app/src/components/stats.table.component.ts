@@ -12,7 +12,7 @@ window['jQuery'] = jquery;
 
 export class StatsTableComponent {
   public readonly header = 'h1';
-  public readonly headers = ["Player", "MIN", "GAMES", "FGM", "FGA", "FG%", "3FGM", "3FGA","3PT%", "FTM", "FTA","FT%", "OREB","DREB","TREB","FOUL", "AST", "TO","BLK","STL", "PTS"];
+  public readonly headers = ["Player", "MIN", "GP", "FGM", "FGA", "FG%", "3FGM", "3FGA","3PT%", "FTM", "FTA","FT%", "OREB","DREB","TREB","FOUL", "AST", "TO","BLK","STL", "PTS"];
 
   //list of headers/columns to display in tables *** CHANGE DO GET LIST PASSED IN FROM DB ***
   keyHeaders = ["name","MIN","GAMES", "FG","FGA","FGPerc", "3PT", "FGA3", "FG3Perc", "FT", "FTA", "FTPerc", "OREB", "DREB", "REB", "PF", "AST","TO","BLK","STL", "PTS"];
