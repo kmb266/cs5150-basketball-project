@@ -146,12 +146,13 @@ export class MainNavComponent {
     var elem = document.getElementById("stats-table");
     var res = doc.autoTableHtmlToJson(elem);
     doc.autoTable(res.columns, res.data, {
-      startY: 20,
-      tableWidth: 'wrap',
-      styles: {overflow: 'linebreak', columnWidth: 'wrap', fontSize: 10}
-    });
+       startY: 20,
+       tableWidth: 'wrap',
+       styles: {overflow: 'linebreak', columnWidth: 'wrap', fontSize: 10},
+       margin: {left: 10}
+     });
 
-    var filters = globals.filters;   
+    var filters = globals.filters;
 
     // Add filter to PDF if there is one
     if (filters != null) {
@@ -345,15 +346,15 @@ export class MainNavComponent {
       }
       else {
         periods = "Overtime Periods: ";
-        if (filters.overtime.ot1) { periods = periods + "OT1, "; } 
-        if (filters.overtime.ot2) { periods = periods + "OT2, "; } 
-        if (filters.overtime.ot3) { periods = periods + "OT3, "; } 
-        if (filters.overtime.ot4) { periods = periods + "OT4, "; } 
-        if (filters.overtime.ot5) { periods = periods + "OT5, "; } 
-        if (filters.overtime.ot6) { periods = periods + "OT6+, "; } 
+        if (filters.overtime.ot1) { periods = periods + "OT1, "; }
+        if (filters.overtime.ot2) { periods = periods + "OT2, "; }
+        if (filters.overtime.ot3) { periods = periods + "OT3, "; }
+        if (filters.overtime.ot4) { periods = periods + "OT4, "; }
+        if (filters.overtime.ot5) { periods = periods + "OT5, "; }
+        if (filters.overtime.ot6) { periods = periods + "OT6+, "; }
         periods = periods.slice(0, -2);
       }
-      if (otSlider) { 
+      if (otSlider) {
         filterStrings.push(otSlider);
         filterStrings.push(periods);
       }
