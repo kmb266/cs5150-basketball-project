@@ -1,7 +1,6 @@
 import { NgModule, Component, Input, OnInit, OnChanges, SimpleChanges, SimpleChange} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-
 @Component({
   selector: 'stats-table',
   templateUrl: 'templates/stats.table.html'
