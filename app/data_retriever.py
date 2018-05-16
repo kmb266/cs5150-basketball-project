@@ -119,6 +119,9 @@ def query_full_length(game_ids, sess):
             player_dict[player.player]["team"] = p.team
             player_dict[player.player]["games"] = {}
         game = sess.query(Game).filter_by(id=player.game).first()
+        fgm = player.fgm or 0
+        ftm = player.ftm or 0
+        fgm3 = player.fgm3 or 0
         player_dict[player.player]["games"][player.game] = {
             "FGA": player.fga,
             "FG": player.fgm,
@@ -137,8 +140,8 @@ def query_full_length(game_ids, sess):
             "PF": player.pf,
             "home" : game.home,
             "away" : game.visitor,
-            "PTS": player.ftm + (player.fgm - player.fgm3) * 2 + player.fgm3 * 3, # TODO: Check this calculation
-            "MIN": player.mins or 0, # TODO: Populate db with player minutes
+            "PTS": ftm + (fgm - fgm3) * 2 + fgm3 * 3, # TODO: Check this calculation
+            "MIN": player.mins or 0 # TODO: Populate db with player minutes
         }
 
     return player_dict.values(), team_dict
@@ -540,6 +543,8 @@ def masterQuery(json_form):
         return players, teams
 
     (box_score, teams) = generate_box_score(plays)
+    # for key in teams:
+    #     print(key)
     return box_score.values(), teams
     # return box_score, teams
 
@@ -550,7 +555,7 @@ def masterQuery(json_form):
 # data = masterQuery({
 #   "page": "players",
 #   "position": [],
-#   "team": ["COR"],
+#   "team": ["SYR"],
 #   "opponent": [],
 #   "in": [],
 #   "out": [],
@@ -562,7 +567,7 @@ def masterQuery(json_form):
 #     "slider": {
 #       "start": {
 #         "clock": "20:00",
-#         "sec": -2385
+#         "sec": -2400
 #       },
 #       "end": {
 #         "clock": "00:00",
@@ -605,9 +610,9 @@ def masterQuery(json_form):
 #     "start": 1510508800000,
 #     "end": 1525665600000
 #   }
-# })[0]
+# })[1]
 # print("--- %s seconds ---" % (time.time() - start_time))
-
+#
 # import pprint
 # pprint.pprint(data, width=1)
 #
