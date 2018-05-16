@@ -92,9 +92,8 @@ def getAverages(players_score, team_score):
     players_score: box score for each player in each game
     team_score: box score for the team in each game
     """
-    #TODO : MIN, FG%, 3PT%, FT%
     attributes = ["FG", "FGA", "3PT", "FGA3", "FT", "FTA", "OREB", "DREB", "REB",
-    "PF", "AST", "TO", "BLK", "STL", "TP", "PTS", "MIN"]
+    "PF", "AST", "TO", "BLK", "STL", "TP", "PTS", "MIN", "GAMES"]
     advanced_attributes = ["Usage_Rate", "PIE", "Game_Score"]
     players_boxscore = []
     teams_boxscore = {}
@@ -115,6 +114,7 @@ def getAverages(players_score, team_score):
             if attribute in player:
                 player[attribute] = round(player[attribute] / games_played, 2)
 
+        player["GAMES"] = games_played
         calculatePercentages(player)
         players_boxscore.append(player)
 
@@ -132,6 +132,7 @@ def getAverages(players_score, team_score):
                         team[attribute] = game_boxscore[attribute]
             if attribute in team:
                 team[attribute] = round(team[attribute] / games_played, 2)
+        team["GAMES"] = games_played
         calculatePercentages(team)
         team["MIN"] = 200
 
@@ -141,6 +142,7 @@ def getAverages(players_score, team_score):
 
 
 def getAverageForTeam(team_score):
+    # TODO : if wanted to add dates to each game
     attributes = ["FG", "FGA", "3PT", "FGA3", "FT", "FTA", "OREB", "DREB", "REB",
     "PF", "AST", "TO", "BLK", "STL", "TP", "PTS", "MIN"]
 
@@ -186,8 +188,8 @@ def getAverageForTeam(team_score):
     for game_id, game_boxscores in game_data.items():
         home = game_boxscores["home"]
         away = game_boxscores["away"]
-        home["name"] = home["team_id"] + " - Game " + str(game_id)
-        away["name"] = away["team_id"] + " - Game " + str(game_id)
+        home["name"] = home["team_id"] #+ " - Game " + str(game_id)
+        away["name"] = away["team_id"] #+ " - Game " + str(game_id)
 
         game_data_list.append(home)
         game_data_list.append(away)
@@ -213,6 +215,22 @@ def filterResults(players_score, team_score, form):
                 data.append(player)
     return data
 
+def filterTeams(game_data, form):
+    """
+    name : filterTeams
+    Returns: the box score of the only team without opponent
+    Arguments:
+    game_data: box score for both team and opponent
+    form : the request form from the front end 
+    """
+    teamIds = form["team"]
+    data = []
+    for team_id in teamIds:
+        for games in game_data:
+            if games["team_id"] == team_id:
+                data.append(games)
+    return data
+
 '''
 retrieve the data from the backend
 '''
@@ -227,16 +245,48 @@ def retrieveData(form):
 
     if page == "players":
         final = {"dataTab" : "players", "data" : players_score, "teamOverall" : team_score}
-        stats_calculation(final)
         (players_score, team_score) = getAverages(players_score, team_score)
         players_score = filterResults(players_score, team_score, form)
         final = {"dataTab" : "players", "data" : players_score, "teamOverall" : team_score}
     elif page == "teams":
         game_data = getAverageForTeam(team_score)
         final = {"dataTab" : "teams", "data" : game_data}
+    elif page == "games":
+        game_data = getAverageForTeam(team_score)
+        data = filterTeams(game_data, form)
+        final = {"dataTab" : "teams", "data" : data}
 
     final = json.dumps(final)
     return final
+
+'''
+retrieve the data from the backend
+'''
+def retrieveAdvancedData(form):
+    """
+    Name: getAdvancedData
+    Returns: the advanced data for each player and each team
+    Arguments:
+    form : filter form from the frontend
+    """
+    page = "players"
+    if "page" in form:
+        page = form["page"]
+
+    (players_score, team_score) = masterQuery(form)
+
+    #final = {"dataTab" : "players", "data" : players_score, "teamOverall" : team_score}
+
+    if page == "players":
+        final = {"dataTab" : "players", "data" : players_score, "teamOverall" : team_score}
+        advanced_stats = stats_calculation(final)
+    elif page == "teams":
+        final = {"dataTab" : "players", "data" : players_score, "teamOverall" : team_score}
+        advanced_stats = stats_calculation(final)
+
+    advanced_stats = json.dumps(advanced_stats)
+    return advanced_stats
+
 
 def tidyForm(form):
     if ('season' in form) == False:
