@@ -12,6 +12,8 @@ export const navHeight: number = 50;
 export const pages: Array<string> = ["players", "teams","games"];
 export const numPages: number = pages.length;
 
+const PROD = false;
+
 export const getSeason = () => {
   /*
     Returns object with the default start and end of current season
@@ -176,32 +178,37 @@ export const getUpOrDown = () => {
   return data;
 }
 
+export const filters = null;
 
 var active_child_processes = {};
 
 export const applyFilters = (page, filters_data, emitter) => {
   // initial a child process
 
+  this.filters = filters_data;
+
   // When packaging the app, use pyinstaller to package all of the python files
   // and then put the dist directory in the python folder and the files will run
   // uncomment the next 3 lines to replace spawn and py vars below
   // got ideas from https://github.com/fyears/electron-python-example
-  var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'data_manager'),
-      py = require('child_process').execFile(path_to_exe),
-      data = filters_data,
-      dataString = '';
-
+  if (PROD) {
+    var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'data_manager'),
+        py = require('child_process').execFile(path_to_exe),
+        data = filters_data,
+        dataString = '';
+  }
+  else {
+    var spawn = require('child_process').spawn,
+        py = spawn('python', ['./data_manager.py']),
+        data = filters_data,
+        dataString = '';
+  }
   // Start loading gif
   $('#'+page+'-spinner-wrapper').toggle();
   // disable apply filters button until done loading data
   $('#'+page+'-apply-filters-btn').prop('disabled', function(i, v) { return !v; });
   // hide the table until loaded
-  $('#content-'+page).first().hide()
-
-  // var spawn = require('child_process').spawn,
-  //     py = spawn('python', ['./data_manager.py']),
-  //     data = filters_data,
-  //     dataString = '';
+  $('#content-'+page).first().hide();
 
   //save the python process outside the function to be able to cancel if necessary
   active_child_processes[page] = py;

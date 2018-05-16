@@ -3,11 +3,6 @@ import espn_scraper as espn
 
 import populate_db
 
-
-
-
-
-
 # constants
 cached_json = None
 league = 'ncb'
@@ -20,13 +15,6 @@ def getStartYr():
     if datetime.datetime(year=now.year,month=11,day=1) < now:
         return now.year
     return now.year - 1
-
-# def getLastScrapeDate():
-#     """returns the latest date of games that are stored in the basketball_json.db"""
-#     # TODO: add logic here to get the latest date of a game scraped in the db
-#     date = session.query(Game).order_by(desc(Game.date)).first()
-#     return date
-#     # return datetime.datetime(year=2018, month=3, day=10)
 
 def ppjson(data):
     ''' Pretty print json helper '''
@@ -64,7 +52,6 @@ def filter_scoreboards_before_today(scoreboard_url_list, last_scrape_date):
     been scraped; returnin the resulting list of urls
     Returns: list of strings
     """
-    today = datetime.datetime.today().date()
     return [url for url in scoreboard_url_list if url_is_before_today(url) and url_is_after_last_scrape(url, last_scrape_date)]
 
 def scrape_espn_game_ids(withProgress, filtered_scoreboards, start_yr):
@@ -93,19 +80,27 @@ def scrape_espn_play_by_plays(withProgress, game_ids, start_yr):
     return data
 
 def main():
-    # start_yr = getStartYr()
-    last_scrape_date = getLastScrapeDate()
+    # just in case we need the last time the app was opened
+    # lines = sys.stdin.readlines()
+    # data = json.loads(lines[0])
+    # ui_last_open = datetime.datetime.fromtimestamp( int(data['lastOpen']) / 1e3)
+
+    start_yr = getStartYr()
+    last_scraped_game_date = populate_db.get_last_scrape_date().date
+    print(start_yr, last_scraped_game_date.date())
 
     scoreboard_urls = espn.get_all_scoreboard_urls(league, start_yr)
 
-    filtered_scoreboards = filter_scoreboards_before_today(scoreboard_urls, last_scrape_date)
-
+    filtered_scoreboards = filter_scoreboards_before_today(scoreboard_urls, last_scraped_game_date)
+    print('finished filtered scoreboards')
     game_ids = scrape_espn_game_ids(False, filtered_scoreboards, start_yr)
-
+    print('finished game_ids')
     all_json_data = scrape_espn_play_by_plays(False, game_ids, start_yr)
+    print('finished all_json_data')
 
     for game_json in all_json_data:
         populate_db.json_to_database(None, game_json)
+    sys.stdout.flush()
 
 #start process
 if __name__ == '__main__':

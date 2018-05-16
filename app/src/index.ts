@@ -34,8 +34,9 @@ const createWindow = async () => {
     mainWindow = null;
   });
 
+  require("./assets/js/update_json_db");
   require("./assets/js/mainmenu");
-  
+
 };
 
 // This method will be called when Electron has finished
@@ -52,11 +53,26 @@ app.on('window-all-closed', () => {
   }
 });
 
+app.on('before-quit', () => {
+
+  const IN_PROGRESS = 'in-progress';
+  const FAILURE = 'failure';
+
+  const Store = require('electron-store');
+  const store = new Store();
+
+  if (!store.get('update.json.success') || store.get('update.json.status') == IN_PROGRESS) {
+    store.set('update.json.status', FAILURE);
+  }
+  console.log(store.store);
+});
+
 app.on('activate', () => {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) {
     createWindow();
+    require("./assets/js/update_json_db");
   }
 
 });
