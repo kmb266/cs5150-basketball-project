@@ -155,7 +155,7 @@ export class MainNavComponent {
 
     // Add filter to PDF if there is one
     if (filters != null) {
-      doc.setFontSize(15);
+      doc.setFontSize(12);
       doc.text("Filters Applied:", 14, doc.autoTable.previous.finalY + 10);
 
       var filterStrings = [];
@@ -367,7 +367,7 @@ export class MainNavComponent {
       var date = "Dates: " + startString + " - " + endString;
       filterStrings.push(date);
 
-      doc.setFontSize(11);
+      doc.setFontSize(10);
       for (var i = 0; i < filterStrings.length; i++) {
         var string = filterStrings[i];
         doc.text(doc.splitTextToSize(string, doc.internal.pageSize.width - 35, {}), 14, doc.autoTable.previous.finalY + 10 + 5*(i+1));
