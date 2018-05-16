@@ -462,11 +462,11 @@ def masterQuery(json_form):
             if not players[player_id]["games"][game_id]["SEEN"]:
                 players[player_id]["games"][game_id]["SEEN"] = True
                 if play.action == "SUB" and play.type == "OUT":
-                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "OUT"
-                    players[player_id]["games"][game_id]["MIN"] = abs((play.time_converted - sec_start)/60)
+                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] = "OUT"
+                    players[player_id]["games"][game_id]["MIN"] += abs((play.time_converted - sec_start)/60)
 
                 else:
-                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "IN"
+                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] = "IN"
 
             if play.type == "3PTR":
                 players[player_id]["games"][game_id]["FGA3"] += 1
@@ -482,7 +482,9 @@ def masterQuery(json_form):
                     teams[team]["games"][game_id]["PTS"] += 3
             elif play.action == "SUB":
                 if play.type == "IN":
-                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "IN"
+                    if player_id == 7:
+                        print("Subbing in MCBRIDE at {}".format(play.time_converted))
+                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] = "IN"
                     players[player_id]["games"][game_id]["SEEN"] = True
                     players[player_id]["games"][game_id]["last_time"] = play.time_converted
                 elif play.type == "OUT":
@@ -490,7 +492,7 @@ def masterQuery(json_form):
                     players[player_id]["games"][game_id]["MIN"] += \
                         abs((now - players[player_id]["games"][game_id]["last_time"])/60)
                     players[player_id]["games"][game_id]["last_time"] = now
-                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "OUT"
+                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] = "OUT"
             elif play.type == "JUMPER" or play.type == "LAYUP" or play.type == "DUNK":
                 players[player_id]["games"][game_id]["FGA"] += 1
                 teams[team]["games"][game_id]["FGA"] += 1
@@ -536,9 +538,9 @@ def masterQuery(json_form):
         for player_id in players:
             for game_id in players[player_id]["games"]:
                 if players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "IN":
-                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "OUT"
+                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] = "OUT"
                     players[player_id]["games"][game_id]["MIN"] += \
-                        abs(sec_end - players[player_id]["games"][game_id]["last_time"]) # End of normal period game
+                        abs((sec_end - players[player_id]["games"][game_id]["last_time"])/60) # End of normal period game
 
         return players, teams
 
@@ -555,9 +557,9 @@ def masterQuery(json_form):
 # data = masterQuery({
 #   "page": "players",
 #   "position": [],
-#   "team": ["SYR"],
+#   "team": ["COR"],
 #   "opponent": [],
-#   "in": [],
+#   "in": [7],
 #   "out": [],
 #   "upOrDown": [
 #     "withIn",
@@ -607,10 +609,10 @@ def masterQuery(json_form):
 #         "onlyQueryOT": False
 #     },
 #   "dates": {
-#     "start": 1510508800000,
-#     "end": 1525665600000
+#     "start": 1518128364000,
+#     "end": 1518301164000
 #   }
-# })[1]
+# })[0]
 # print("--- %s seconds ---" % (time.time() - start_time))
 #
 # import pprint
