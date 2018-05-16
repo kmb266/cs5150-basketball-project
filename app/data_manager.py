@@ -8,10 +8,9 @@ def sampleForm():
         "page": "players",
         "position": [],
         "team": [
-            "COR"
+            "SYR"
         ],
         "opponent": [
-            "BRWN"
         ],
         "in": [],
         "out": [],
@@ -106,10 +105,12 @@ def getAverages(players_score, team_score):
         for attribute in attributes + advanced_attributes:
             for game, game_boxscore in games.items():
                 if attribute in game_boxscore:
+                    val = game_boxscore[attribute] or 0
+                    val = int (val)
                     if attribute in player:
-                        player[attribute] += game_boxscore[attribute]
+                        player[attribute] += val
                     else:
-                        player[attribute] = game_boxscore[attribute]
+                        player[attribute] = val
 
             if attribute in player:
                 player[attribute] = round(player[attribute] / games_played, 2)
