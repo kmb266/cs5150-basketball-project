@@ -1,41 +1,20 @@
 from db import Game, Team, Player, PlayerIn, TeamIn, Play
 
 from parser import parse_game_file
-import os, sys
+import os
 import json
 
 import parse_json
 
-import datetime
-
+# sqlalchemy imports used to interact with the database
 from sqlalchemy import create_engine, desc
-
-prod = True
-if prod:
-    # for prod use -- comment out for testing
-    file_dir = sys.argv[0].split('/')[:-2] # go up one directory to backend
-    file_dir += ['backend']
-    BASE_DIR = os.path.join(*file_dir)
-    # print(BASE_DIR)
-    db_path_xml = os.path.join(BASE_DIR, "basketball_xml.db")
-    db_path_json = os.path.join(BASE_DIR, "basketball_json.db")
-    # print(db_path_xml, db_path_json)
-    sqlite_xml = 'sqlite:////{}'.format(db_path_xml)
-    sqlite_json = 'sqlite:////{}'.format(db_path_json)
-else:
-    # uncomment for testing
-    BASE_DIR = os.getcwd()
-    # print(BASE_DIR)
-    db_path_xml = os.path.join(BASE_DIR, 'src/python/backend', "basketball_xml.db")
-    db_path_json = os.path.join(BASE_DIR, 'src/python/backend', "basketball_json.db")
-    # print(db_path_xml, db_path_json)
-    sqlite_xml = 'sqlite:///{}'.format(db_path_xml)
-    sqlite_json = 'sqlite:///{}'.format(db_path_json)
-
-engine = create_engine(sqlite_xml, echo=False)
-
 from sqlalchemy.orm import sessionmaker
 
+# Get the paths to the databases based on whether we're in debug mode or production mode
+from Constants import sqlite_json, sqlite_xml
+
+# Initialize a session with the xml database
+engine = create_engine(sqlite_xml, echo=False)
 Session = sessionmaker(bind=engine)
 session = Session()
 
@@ -326,7 +305,7 @@ def get_last_scrape_date():
 
 # COMMENT THE BELOW LINES IN ON INITIAL DB LOAD
 # print("Populating XML database...")
-# fill_all_xml()
+fill_all_xml()
 # print("XML database populated\n")
 
 # print("Populating JSON database...")

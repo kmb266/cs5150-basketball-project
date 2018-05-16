@@ -1,40 +1,29 @@
-from sqlalchemy import create_engine, desc
+from sqlalchemy import create_engine
 from db import Game, Team, Player, PlayerIn, TeamIn, Play
-import json, os, sys
+import json
 import datetime
 
-import parse_json
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import or_, and_, between
 
 
-file_dir = sys.argv[0].split('/')[:-2]
-file_dir += ['backend']
-BASE_DIR = os.path.join(*file_dir)
-# print(BASE_DIR)
-db_path_xml = os.path.join(BASE_DIR, "basketball_xml.db")
-db_path_json = os.path.join(BASE_DIR, "basketball_json.db")
-# print(db_path_xml, db_path_json)
-sqlite_xml = 'sqlite:////{}'.format(db_path_xml)
-sqlite_json = 'sqlite:////{}'.format(db_path_json)
-
-# FOR TESTING:
-# sqlite_xml = 'sqlite:///{}'.format("basketball_xml.db")
-# sqlite_json = 'sqlite:///{}'.format("basketball_json.db")
+from Constants import sqlite_json, sqlite_xml
 
 def getAllTeams():
     """
     Retrieve all the team names and ids. Should return a list of teams with the id and the name of each team.
     """
     which_db = "json"
-    # To fetch all team names, we try and use the json database. If this does not exist, default to XML
+    # To fetch all team names, we try and use the JSON database. If this does not exist, default to XML
 
     try:
+        # Attempt to connect to the JSON db, which has many more team names than the XML when fully populated
         engine = create_engine(sqlite_json, echo=False)
         Session = sessionmaker(bind=engine)
         session = Session()
         teams = session.query(Team).all()
     except:
+        # In the case the JSON db does not exist, default to using the XML db
         which_db = "xml"
         engine = create_engine(sqlite_xml, echo=False)
         Session = sessionmaker(bind=engine)
@@ -42,12 +31,13 @@ def getAllTeams():
         teams = session.query(Team).all()
 
     if which_db == "json" and len(teams) == 0:
-            which_db = "xml"
+        # If the JSON db exists but is empty, default to using the XML db
             engine = create_engine(sqlite_xml, echo=False)
             Session = sessionmaker(bind=engine)
             session = Session()
             teams = session.query(Team).all()
 
+    # Obtain list of team names and ids
     result = []
     for team in teams:
         team_obj = {"id": team.team_id, "text": team.name}
@@ -548,7 +538,6 @@ def masterQuery(json_form):
                         abs(sec_end - players[player_id]["games"][game_id]["last_time"]) # End of normal period game
 
         return players, teams
-
 
     (box_score, teams) = generate_box_score(plays)
     return box_score.values(), teams

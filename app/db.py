@@ -1,8 +1,5 @@
-import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
-from sqlalchemy.orm import relationship
-from datetime import datetime
 
 # Used to keep track of classes and tables
 from sqlalchemy.ext.declarative import declarative_base
@@ -10,6 +7,7 @@ from sqlalchemy.ext.declarative import declarative_base
 # Initialize the base
 Base = declarative_base()
 
+from Constants import sqlite_json, sqlite_xml
 
 # Define database tables
 class Game(Base):
@@ -173,7 +171,7 @@ def create_db(db_name):
 
 
 # Initialize xml database
-# create_db("basketball_xml")
+# create_db(sqlite_xml)
 
 # Initialize json database
-# create_db("basketball_json")
+# create_db(sqlite_json)
