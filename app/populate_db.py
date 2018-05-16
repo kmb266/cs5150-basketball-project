@@ -26,7 +26,7 @@ sqlite_json = 'sqlite:////{}'.format(db_path_json)
 # db_path_xml = os.path.join(BASE_DIR, 'app/src/python/backend', "basketball_xml.db")
 # db_path_json = os.path.join(BASE_DIR, 'app/src/python/backend', "basketball_json.db")
 # print(db_path_xml, db_path_json)
-# sqlite_xml = 'sqlite:///{}'.format(db_path_xml)
+# sqlite_xml = 'sqlite:///{}'.format("basketball_xml.db")
 # sqlite_json = 'sqlite:///{}'.format(db_path_json)
 
 engine = create_engine(sqlite_xml, echo=False)
@@ -323,7 +323,7 @@ def get_last_scrape_date():
 
 # COMMENT THE BELOW LINES IN ON INITIAL DB LOAD
 # print("Populating XML database...")
-# fill_all_xml()
+fill_all_xml()
 # print("XML database populated\n")
 
 # print("Populating JSON database...")
