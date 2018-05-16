@@ -10,7 +10,7 @@ import datetime
 
 from sqlalchemy import create_engine, desc
 
-prod = True
+prod = False
 if prod:
     # for prod use -- comment out for testing
     file_dir = sys.argv[0].split('/')[:-2] # go up one directory to backend
