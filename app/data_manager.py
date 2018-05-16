@@ -209,7 +209,7 @@ def filterResults(players_score, team_score, form):
     data = []
     for team_id in teamIds:
         team_boxscore = team_score[team_id]
-        team_boxscore["name"] = "TEAM OVERALL"
+        team_boxscore["name"] = team_id
         data.append(team_boxscore)
         for player in players_score:
             if player["team"] == team_id:
