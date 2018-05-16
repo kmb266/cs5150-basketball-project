@@ -1,6 +1,6 @@
 import Constants
 from data_retriever import getAllTeams, getAllPlayers
-import sys, json, os
+import sys, json
 
 def getErrorForm(code, msg):
     data = {"error" : {"code" : code, "message" : msg}}
