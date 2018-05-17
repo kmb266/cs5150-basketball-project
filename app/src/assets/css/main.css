@@ -193,6 +193,7 @@ span.filter-label {
   text-align: left;
   width: 150px;
   position: absolute !important;
+  overflow-x: hidden;
 }
 .table>tbody>tr>th:first-child{
   margin-top: -1px;

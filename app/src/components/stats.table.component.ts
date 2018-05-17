@@ -35,6 +35,58 @@ export class StatsTableComponent {
 
   // Creates the list of players/teams to display
   public generatePlayerList(new_data) {
+
+    var team_end = 'zzzz';
+
+    // sort the data by player Name
+    if (new_data != undefined) {
+      var is_json = false;
+      // see if the data includes json data
+      for (let i in new_data){
+        var player = new_data[i];
+        if (player.name == player.team_id) continue;
+        if (player.name.indexOf(',') == -1) is_json = true;
+      }
+      if (is_json) {
+        for (let i in new_data){
+          // put last name first and add a comma
+          var player = new_data[i];
+          if (player.name != player.team_id) {
+            player.name = player.name.split(' ')[1] + ', ' + player.name.split(' ')[0];
+          }
+          // small hack to make the players still separated into teams
+          if (player.name == player.team_id || player.name == player.team) {
+            player.name = player.name + team_end;
+          }
+          else player.name = player.team + player.name;
+        }
+      }
+      else {
+        for (let i in new_data){
+          var player = new_data[i]
+          // small hack to make the players still separated into teams
+          if (player.name == player.team_id || player.name == player.team) {
+            player.name = player.name + team_end;
+          }
+          else player.name = player.team + player.name;
+        }
+      }
+      // sort the data based on the players last name
+      new_data = new_data.sort(function(a, b){
+        var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
+        if (nameA < nameB) //sort string ascending
+            return -1
+        if (nameA > nameB)
+            return 1
+        return 0 //default return value (no sorting)
+      });
+
+      for (let i in new_data){
+        var player = new_data[i];
+        if (player.team != undefined) player.name = player.name.slice(player.team.length);
+        else player.name = player.name.slice(0,player.team_id.length);
+      }
+    }
     this.playerList = new_data;
   }
 

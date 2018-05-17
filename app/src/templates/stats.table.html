@@ -1,8 +1,8 @@
 <table class="table table-striped table-bordered" id="stats-table">
   <tr>
-    <th *ngFor="let key of headers; let in = index" [class]="'col-'+in">{{key}}</th>
+    <th *ngFor="let key of headers; let in = index" [class]="'col-'+in">{{key+'\t'}}</th>
   </tr>
   <tr *ngFor="let player of playerList">
-    <td *ngFor="let key of passed_in_headers; let in = index" [class]="'col-'+in" >{{player[key]}}</td>
+    <td *ngFor="let key of passed_in_headers; let in = index" [class]="'col-'+in" >{{player[key]+'\t'}}</td>
   </tr>
 </table>
