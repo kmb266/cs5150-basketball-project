@@ -6,7 +6,7 @@
 body {
   overflow-y: hidden;
   line-height: 1em;
-  font-family: Inconsolata;
+  /* font-family: Inconsolata; */
 }
 
 #nav-logo {
@@ -193,6 +193,7 @@ span.filter-label {
   text-align: left;
   width: 150px;
   position: absolute !important;
+  overflow-x: hidden;
 }
 .table>tbody>tr>th:first-child{
   margin-top: -1px;
@@ -211,4 +212,15 @@ span.filter-label {
 .table, th {
   text-align: center;
   white-space: nowrap;
+}
+
+/* style the teams tab */
+#teams-table > tbody > tr:nth-child(2n+1) > td  {
+  border-bottom-color: black !important;
+}
+#teams-table > tbody > tr:nth-child(2n) .col-0 {
+  border-top-color: black !important;
+}
+#teams-table > tbody > tr:nth-child(2) .col-0 {
+  border-top-color: inherit !important;
 }

@@ -34,7 +34,7 @@ const createWindow = async () => {
     mainWindow = null;
   });
 
-  require("./assets/js/update_json_db");
+  require("./assets/js/online_status");
   require("./assets/js/mainmenu");
 
 };

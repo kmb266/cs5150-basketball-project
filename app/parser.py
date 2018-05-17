@@ -1,36 +1,5 @@
 import xml.etree.ElementTree as ET
-import datetime, sys, os
-
-from sqlalchemy import create_engine
-
-prod = True
-if prod:
-    # for prod use -- comment out for testing
-    file_dir = sys.argv[0].split('/')[:-2] # go up one directory to python
-    file_dir += ['backend'] # go into backend directory
-    BASE_DIR = os.path.join(*file_dir)
-    # print(BASE_DIR)
-    db_path_xml = os.path.join(BASE_DIR, "basketball_xml.db")
-    db_path_json = os.path.join(BASE_DIR, "basketball_json.db")
-    # print(db_path_xml, db_path_json)
-    sqlite_xml = 'sqlite:////{}'.format(db_path_xml)
-    sqlite_json = 'sqlite:////{}'.format(db_path_json)
-else:
-    # uncomment for testing
-    BASE_DIR = os.getcwd()
-    # print(BASE_DIR)
-    db_path_xml = os.path.join(BASE_DIR, 'src/python/backend', "basketball_xml.db")
-    db_path_json = os.path.join(BASE_DIR, 'src/python/backend', "basketball_json.db")
-    # print(db_path_xml, db_path_json)
-    sqlite_xml = 'sqlite:///{}'.format(db_path_xml)
-    sqlite_json = 'sqlite:///{}'.format(db_path_json)
-
-engine = create_engine(sqlite_json, echo=False)
-from sqlalchemy.orm import sessionmaker
-
-Session = sessionmaker(bind=engine)
-session = Session()
-from db import Game
+import datetime
 
 
 def parse_venue_info(root_node, dict):
@@ -159,7 +128,6 @@ def get_play_info(root_node, dict):
                 this_play[attrName] = attrValue
             plays[period.attrib['number']].append(this_play)
     dict['plays'] = plays
-    # return plays_list
     return dict
 
 
@@ -176,39 +144,3 @@ def parse_game_file(filename):
     game_dict = get_play_info(root, game_dict)
 
     return game_dict
-
-
-# For testing
-# game_info = parse_game_file("MBK_0105.xml")
-# print(game_info)
-
-
-"""
-The general mapping of the python game data dictionary is as follows:
-
-{
-    'venue': { Contains general information about the venue
-        'vis_id': Visiting team's identification code [string]
-        'home_id': Home team's identification code [string]
-        'is_league': Whether the game is a league game [boolean]
-        'is_playoff': Whether the game is a playoff game [boolean]
-        'date': Date and time of the game [python datetime object]
-    }
-    't1': { Contains detailed information about the team and players
-        'p1_score': Number of points scored in the first period
-        'p2_score': Number of points scored in the second period
-        'special': { Contains special statistics
-            'pt2s_ch2': points scored between arc and paint
-            'pts_paint': points scored in the paint
-            'pts_fastb': points scored on the fast break
-            'vh': whether visiting or home
-            'pts_to': points scored off of turnovers
-            'poss_count': number of possessions the team had
-            'pts_bench': number of points scored by the bench
-        }
-        'stats':
-    }
-
-}
-
-"""

@@ -1,40 +1,29 @@
-from sqlalchemy import create_engine, desc
+from sqlalchemy import create_engine
 from db import Game, Team, Player, PlayerIn, TeamIn, Play
-import json, os, sys
+import json
 import datetime
 
-import parse_json
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import or_, and_, between
 
 
-file_dir = sys.argv[0].split('/')[:-2]
-file_dir += ['backend']
-BASE_DIR = os.path.join(*file_dir)
-# print(BASE_DIR)
-db_path_xml = os.path.join(BASE_DIR, "basketball_xml.db")
-db_path_json = os.path.join(BASE_DIR, "basketball_json.db")
-# print(db_path_xml, db_path_json)
-sqlite_xml = 'sqlite:////{}'.format(db_path_xml)
-sqlite_json = 'sqlite:////{}'.format(db_path_json)
-
-# FOR TESTING:
-# sqlite_xml = 'sqlite:///{}'.format("basketball_xml.db")
-# sqlite_json = 'sqlite:///{}'.format("basketball_json.db")
+from Constants import sqlite_json, sqlite_xml
 
 def getAllTeams():
     """
     Retrieve all the team names and ids. Should return a list of teams with the id and the name of each team.
     """
     which_db = "json"
-    # To fetch all team names, we try and use the json database. If this does not exist, default to XML
+    # To fetch all team names, we try and use the JSON database. If this does not exist, default to XML
 
     try:
+        # Attempt to connect to the JSON db, which has many more team names than the XML when fully populated
         engine = create_engine(sqlite_json, echo=False)
         Session = sessionmaker(bind=engine)
         session = Session()
         teams = session.query(Team).all()
     except:
+        # In the case the JSON db does not exist, default to using the XML db
         which_db = "xml"
         engine = create_engine(sqlite_xml, echo=False)
         Session = sessionmaker(bind=engine)
@@ -42,12 +31,13 @@ def getAllTeams():
         teams = session.query(Team).all()
 
     if which_db == "json" and len(teams) == 0:
-            which_db = "xml"
+        # If the JSON db exists but is empty, default to using the XML db
             engine = create_engine(sqlite_xml, echo=False)
             Session = sessionmaker(bind=engine)
             session = Session()
             teams = session.query(Team).all()
 
+    # Obtain list of team names and ids
     result = []
     for team in teams:
         team_obj = {"id": team.team_id, "text": team.name}
@@ -129,6 +119,9 @@ def query_full_length(game_ids, sess):
             player_dict[player.player]["team"] = p.team
             player_dict[player.player]["games"] = {}
         game = sess.query(Game).filter_by(id=player.game).first()
+        fgm = player.fgm or 0
+        ftm = player.ftm or 0
+        fgm3 = player.fgm3 or 0
         player_dict[player.player]["games"][player.game] = {
             "FGA": player.fga,
             "FG": player.fgm,
@@ -147,8 +140,8 @@ def query_full_length(game_ids, sess):
             "PF": player.pf,
             "home" : game.home,
             "away" : game.visitor,
-            "PTS": player.ftm + (player.fgm - player.fgm3) * 2 + player.fgm3 * 3, # TODO: Check this calculation
-            "MIN": player.mins or 0, # TODO: Populate db with player minutes
+            "PTS": ftm + (fgm - fgm3) * 2 + fgm3 * 3, # TODO: Check this calculation
+            "MIN": player.mins or 0 # TODO: Populate db with player minutes
         }
 
     return player_dict.values(), team_dict
@@ -469,11 +462,11 @@ def masterQuery(json_form):
             if not players[player_id]["games"][game_id]["SEEN"]:
                 players[player_id]["games"][game_id]["SEEN"] = True
                 if play.action == "SUB" and play.type == "OUT":
-                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "OUT"
-                    players[player_id]["games"][game_id]["MIN"] = abs((play.time_converted - sec_start)/60)
+                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] = "OUT"
+                    players[player_id]["games"][game_id]["MIN"] += abs((play.time_converted - sec_start)/60)
 
                 else:
-                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "IN"
+                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] = "IN"
 
             if play.type == "3PTR":
                 players[player_id]["games"][game_id]["FGA3"] += 1
@@ -489,7 +482,9 @@ def masterQuery(json_form):
                     teams[team]["games"][game_id]["PTS"] += 3
             elif play.action == "SUB":
                 if play.type == "IN":
-                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "IN"
+                    # if player_id == 7:
+                        # print("Subbing in MCBRIDE at {}".format(play.time_converted))
+                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] = "IN"
                     players[player_id]["games"][game_id]["SEEN"] = True
                     players[player_id]["games"][game_id]["last_time"] = play.time_converted
                 elif play.type == "OUT":
@@ -497,7 +492,7 @@ def masterQuery(json_form):
                     players[player_id]["games"][game_id]["MIN"] += \
                         abs((now - players[player_id]["games"][game_id]["last_time"])/60)
                     players[player_id]["games"][game_id]["last_time"] = now
-                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "OUT"
+                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] = "OUT"
             elif play.type == "JUMPER" or play.type == "LAYUP" or play.type == "DUNK":
                 players[player_id]["games"][game_id]["FGA"] += 1
                 teams[team]["games"][game_id]["FGA"] += 1
@@ -543,14 +538,15 @@ def masterQuery(json_form):
         for player_id in players:
             for game_id in players[player_id]["games"]:
                 if players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "IN":
-                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] == "OUT"
+                    players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] = "OUT"
                     players[player_id]["games"][game_id]["MIN"] += \
-                        abs(sec_end - players[player_id]["games"][game_id]["last_time"]) # End of normal period game
+                        abs((sec_end - players[player_id]["games"][game_id]["last_time"])/60) # End of normal period game
 
         return players, teams
 
-
     (box_score, teams) = generate_box_score(plays)
+    # for key in teams:
+    #     print(key)
     return box_score.values(), teams
     # return box_score, teams
 
@@ -563,7 +559,7 @@ def masterQuery(json_form):
 #   "position": [],
 #   "team": ["COR"],
 #   "opponent": [],
-#   "in": [],
+#   "in": [7],
 #   "out": [],
 #   "upOrDown": [
 #     "withIn",
@@ -573,7 +569,7 @@ def masterQuery(json_form):
 #     "slider": {
 #       "start": {
 #         "clock": "20:00",
-#         "sec": -2385
+#         "sec": -2400
 #       },
 #       "end": {
 #         "clock": "00:00",
@@ -613,12 +609,12 @@ def masterQuery(json_form):
 #         "onlyQueryOT": False
 #     },
 #   "dates": {
-#     "start": 1510508800000,
-#     "end": 1525665600000
+#     "start": 1518128364000,
+#     "end": 1518301164000
 #   }
 # })[0]
 # print("--- %s seconds ---" % (time.time() - start_time))
-
+#
 # import pprint
 # pprint.pprint(data, width=1)
 #
@@ -629,5 +625,3 @@ def masterQuery(json_form):
 #     if player_id == 6:
 #         print(player_id, sum)
 #         print("AVERAGE:", sum/len(data[player_id]["games"]))
-
-

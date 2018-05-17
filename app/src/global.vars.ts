@@ -178,11 +178,14 @@ export const getUpOrDown = () => {
   return data;
 }
 
+export const filters = null;
 
 var active_child_processes = {};
 
 export const applyFilters = (page, filters_data, emitter) => {
   // initial a child process
+
+  this.filters = filters_data;
 
   // When packaging the app, use pyinstaller to package all of the python files
   // and then put the dist directory in the python folder and the files will run
