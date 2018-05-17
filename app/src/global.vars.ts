@@ -181,7 +181,86 @@ export const getUpOrDown = () => {
 export const filters = null;
 
 var active_child_processes = {};
+export var adv_data = {};
 
+var callAdvancedStats = (page, filters_data) => {
+  /*
+    activate a call to get the advanced stats
+  */
+  console.log('calling advanced_stats')
+  filters_data.advanced_stats = true;
+  if (PROD) {
+    var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'data_manager'),
+        py = require('child_process').execFile(path_to_exe),
+        data = filters_data,
+        dataString = '';
+  }
+  else {
+    var spawn = require('child_process').spawn,
+        py = spawn('python', ['./data_manager.py']),
+        data = filters_data,
+        dataString = '';
+  }
+  // Start adv stat loading gif
+  $('#'+page+'adv-stat-spinner-wrapper').show();
+
+  //save the python process outside the function to be able to cancel if necessary
+  active_child_processes['adv-stats-'+page] = py;
+  // console.log(active_child_processes)
+
+  // retrieve the data from the data_manager.py
+  py.stdout.on('data', function(data){
+    dataString += data.toString();
+  });
+
+  // print the data when the child process ends
+  py.stdout.on('end', function(){
+    if (py.killed) {
+      // emitter.emit({})
+      console.log('dead py')
+    }
+    else {
+      try {
+        var data = JSON.parse(dataString);
+        console.log(data);
+        // show table after data loaded -- THIS IS DIFFERENT THAN BEFORE DUE TO TIME CONSTRAINTS
+        adv_data[page] = data;
+        // for (let i in data) {
+        //   var player = data[i]
+        //   var tr = $('<tr></tr>');
+        //   for (let stat in player){
+        //     tr.append(`<td>${player[stat]}</td>`)
+        //   }
+        //   $('#'+page+"adv-table").append(tr);
+        // }
+
+      }
+      catch(err) {
+        console.log(err)
+
+        // NOTE: UNCOMMENT THIS LINE TO ALLOW FOR ERROR USER ALERTING FOR ERROR
+        alert('There was an unexpected error: \n\n'+err+'\n\nPlease try again.');
+      }
+    }
+
+    // stop loading gif
+    $('#'+page+'adv-stat-spinner-wrapper').hide();
+
+    // remove current process from list of active processes as it is finished
+    delete active_child_processes['adv-stats-'+page]
+
+  });
+
+  // if there is an error, print it out
+  py.on('error', function(err) {
+    console.log("Failed to start child. " + err);
+    $('#'+page+'-apply-filters-btn').prop('disabled', function(i, v) { return !v; });
+    delete active_child_processes['adv-stats-'+page]
+  });
+
+  py.stdin.write(JSON.stringify(data));
+  py.stdin.end();
+}
 export const applyFilters = (page, filters_data, emitter) => {
   // initial a child process
 
@@ -230,12 +309,15 @@ export const applyFilters = (page, filters_data, emitter) => {
         // console.log(data);
         // send data up to app component
         emitter.emit(dataString.replace(/'/g, ' '));
+        //call the advanced stats function
+        callAdvancedStats(page, filters_data)
       }
       catch(err) {
         console.log(err)
 
         // NOTE: UNCOMMENT THIS LINE TO ALLOW FOR ERROR USER ALERTING FOR ERROR
-        // alert('There was an unexpected error: \n\n'+err+'\n\nPlease try again.');
+        alert('There was an unexpected error while calculating the advanced statistics:\
+         \n\n'+err+'\n\nPlease try again.');
       }
     }
 
@@ -257,6 +339,7 @@ export const applyFilters = (page, filters_data, emitter) => {
   py.on('error', function(err) {
     console.log("Failed to start child. " + err);
     $('#'+page+'-apply-filters-btn').prop('disabled', function(i, v) { return !v; });
+    delete active_child_processes[page]
   });
 
   py.stdin.write(JSON.stringify(data));

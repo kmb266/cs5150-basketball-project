@@ -322,7 +322,10 @@ def main():
 
     form = tidyForm(form)
     try:
-        data = retrieveData(form)
+        if ('advanced_stats' in form):
+            data = retrieveAdvancedData(form)
+        else:
+            data = retrieveData(form)
     except Exception as e:
 
         data = {"error" : e.message, "doc" : e.__doc__}
