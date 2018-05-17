@@ -143,7 +143,7 @@ export class MainNavComponent {
   printPage(event) {
     // Create PDF and add table
     var doc = new jsPDF('l');
-    var elem = document.getElementById("stats-table");
+    var elem = document.getElementById(this.currentPage+"-table");
     var res = doc.autoTableHtmlToJson(elem);
     doc.autoTable(res.columns, res.data, {
        startY: 20,
