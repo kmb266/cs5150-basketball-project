@@ -19,7 +19,7 @@ import Constants
 # print(Constants.BACKEND_DIR)
 
 secrets = os.path.join(Constants.BACKEND_DIR, "client_secrets.json")
-creds = os.path.join(Constants.BACKEND_DIR, "mycreds.txt")
+creds = os.path.join(Constants.BACKEND_DIR, "mycreds.json")
 xml_path = os.path.join(Constants.BACKEND_DIR, "xml_data/")
 secrets = '/' + secrets
 creds = '/' + creds
