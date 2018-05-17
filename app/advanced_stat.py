@@ -38,7 +38,7 @@ def TmPoss(TmFGA,TmOREB,oppDREB,TmFTA,TmFGM,TmTOV):
         return float(TmFGA*(TmFGA-TmFGM)*1.07+TmTOV + 0.4*TmFTA)
     else:
         return float(TmFGA-(TmOREB/(TmOREB+oppDREB))*(TmFGA-TmFGM)*1.07+TmTOV + 0.4*TmFTA)
-   
+
 
 
 
@@ -63,7 +63,7 @@ def OppPoss(OppFGA,OppOREB,TmDREB,OppFTA,OppFGM,OppTOV):
         return float(OppFGA*(OppFGA-OppFGM)*1.07+OppTOV + 0.4*OppFTA)
     else:
         return float(OppFGA-(OppOREB/(OppOREB+TmDREB))*(OppFGA-OppFGM)*1.07+OppTOV + 0.4*OppFTA)
-   
+
 
 
 
@@ -80,10 +80,10 @@ def TmORTG (TmPoints, TmPoss):
     check status: Yes
     level: 2
     """
-        if TmPoss == 0:
-            return 0.0
-        return float(100*(TmPoints/TmPoss))
-    
+    if TmPoss == 0:
+        return 0.0
+    return float(100*(TmPoints/TmPoss))
+
 
 
 def PProd(PProdFG, PProdAst,FTM,TmOREB,
@@ -108,10 +108,10 @@ def PProd(PProdFG, PProdAst,FTM,TmOREB,
     """
     if TmScorPoss == 0:
         return float((PProdFG+PProdAst+FTM)*(1*TmOREBWgt*TmPlay_pect)+PProdOREB)
-    else: 
+    else:
         return float((PProdFG+PProdAst+FTM)*(1-(TmOREB/TmScorPoss)
                                          *TmOREBWgt*TmPlay_pect)+PProdOREB)
-   
+
 
 def PProdFG(FGM,PTS,FTM,FGA,qAST,FGM_3):
     """
@@ -133,7 +133,7 @@ def PProdFG(FGM,PTS,FTM,FGA,qAST,FGM_3):
         return float(2*(FGM+0.5*FGM_3)*1-0.5*0.0*qAST)
     else:
         return float(2*(FGM+0.5*FGM_3)*1-0.5*((PTS-FTM)/(2*FGA))*qAST)
-    
+
 
 
 
@@ -237,7 +237,7 @@ def ScPoss(FGPart,ASTPart,FTPart,TmOREB,
     else:
         return float((FGPart+ASTPart+FTPart)*(1-(TmOREB/TmScorPoss)
                                           *TmOREBWgt*TmPlay_pect)+OREBPart)
-   
+
 
 
 
@@ -259,9 +259,9 @@ def FGPart(FGM,PTS,FTM,FGA,qAST):
     """
     if FGA == 0:
         return float(FGM*(1-0.5*0.0*qAST))
-    else:  
+    else:
         return float(FGM*(1-0.5*((PTS-FTM)/(2*FGA))*qAST))
-  
+
 
 
 
@@ -305,7 +305,7 @@ def q5(TmAST,AST,TmFGM):
         return float(1.14*0.0)
     else:
         return float(1.14*((TmAST-AST)/TmFGM))
-   
+
 
 
 
@@ -330,7 +330,6 @@ def q12(TmAST,TmMIN,MIN,AST,TmFGM,FGM):
         return float (AST/FGM)
     else:
         return float(((TmAST/TmMIN)*MIN*5-AST)/((TmFGM/TmMIN)*MIN*5-FGM))
-    except: 0.0
 
 
 
@@ -394,7 +393,7 @@ def TmScorPoss(TmFGM,TmFTM,TmFTA):
         level: 1
 
     """
-    if TmFTA == 0: 
+    if TmFTA == 0:
         return float(TmFGM+0.0*TmFTA*0.4)
     else:
         return float(TmFGM+(1-(1-(TmFTM/TmFTA))**2)*TmFTA*0.4)
