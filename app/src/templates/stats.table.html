@@ -1,4 +1,4 @@
-<table class="table table-striped table-bordered" id="stats-table">
+<table class="table table-striped table-bordered" class="stats-table" [id]="pageName + '-table'">
   <tr>
     <th *ngFor="let key of headers; let in = index" [class]="'col-'+in">{{key+'\t'}}</th>
   </tr>
