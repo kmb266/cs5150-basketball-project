@@ -8,6 +8,8 @@ as they become available.
 
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
+import google_auth_oauthlib.flow
+
 
 # Authorizes the app with Google - requires user interaction
 
@@ -18,15 +20,30 @@ print(Constants.BACKEND_DIR)
 
 secrets = os.path.join(Constants.BACKEND_DIR, "client_secrets.json")
 creds = os.path.join(Constants.BACKEND_DIR, "mycreds.txt")
-xml_path = os.path.join(Constants.BACKEND_DIR, "xml_data")
+xml_path = os.path.join(Constants.BACKEND_DIR, "xml_data/")
 secrets = '/' + secrets
 creds = '/' + creds
 xml_path = '/' + xml_path
+
 print(secrets)
 print(creds)
 print(xml_path)
 
-GoogleAuth.DEFAULT_SETTINGS['client_config_file'] = secrets
+# GoogleAuth.DEFAULT_SETTINGS['client_config_file'] = secrets
+#
+# flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
+#     secrets,
+#     scopes=['https://www.googleapis.com/auth/drive.metadata.readonly'])
+#
+# flow.redirect_uri = 'https://www.example.com/oauth2callback'
+
+#
+# authorization_url, state = flow.authorization_url(
+#     # Enable offline access so that you can refresh an access token without
+#     # re-prompting the user for permission. Recommended for web server apps.
+#     access_type='offline',
+#     # Enable incremental authorization. Recommended as a best practice.
+#     include_granted_scopes='true')
 
 gauth = GoogleAuth()
 # Try to load saved client credentials

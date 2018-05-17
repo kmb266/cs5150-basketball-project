@@ -122,7 +122,6 @@ else {
   console.log('starting jsonDB update');
   createUpdateDbWindow();
   updateJsonDB(date, finshedJsonDbBUpdate);
-
 }
 
 console.log('Trying to update xml files')

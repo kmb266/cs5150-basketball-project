@@ -256,11 +256,11 @@ def fill_all_xml():
     import Constants
 
     # This loops populates the database using all the xml files
-    for dir in os.listdir("{}/xml_data".format(Constants.BACKEND_DIR)):
-        if os.path.isdir("{}/xml_data/{}".format(Constants.BACKEND_DIR, dir)):
-            for filename in os.listdir("{}/xml_data/{}".format(Constants.BACKEND_DIR, dir)):
+    for dir in os.listdir("/{}/xml_data".format(Constants.BACKEND_DIR)):
+        if os.path.isdir("/{}/xml_data/{}".format(Constants.BACKEND_DIR, dir)):
+            for filename in os.listdir("/{}/xml_data/{}".format(Constants.BACKEND_DIR, dir)):
                 if filename.endswith(".xml"):
-                    fl = "{}/xml_data/{}/{}".format(Constants.BACKEND_DIR, dir, filename)
+                    fl = "/{}/xml_data/{}/{}".format(Constants.BACKEND_DIR, dir, filename)
                     try:
                         xml_to_database(fl)
                     except AttributeError:
@@ -269,7 +269,7 @@ def fill_all_xml():
                         print("ERROR: {} in file {} | Arguments: {}".format(type(ex).__name__, fl, ex.args))
 
 
-def json_to_database(json_file, data=None):
+def json_to_database(json_file,y data=None):
     if data == None:
         with open(json_file) as data_file:
             data = json.load(data_file)
