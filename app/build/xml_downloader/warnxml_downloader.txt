@@ -1,0 +1,86 @@
+missing module named 'multiprocessing.forking' - imported by /Users/sarvar/PycharmProjects/cs5150-basketball-project/basketball/lib/python3.6/site-packages/PyInstaller/loader/rthooks/pyi_rth_multiprocessing.py
+missing module named multiprocessing.get_context - imported by multiprocessing, multiprocessing.pool, multiprocessing.managers, multiprocessing.sharedctypes
+missing module named multiprocessing.TimeoutError - imported by multiprocessing, multiprocessing.pool
+missing module named multiprocessing.BufferTooShort - imported by multiprocessing, multiprocessing.connection
+missing module named multiprocessing.AuthenticationError - imported by multiprocessing, multiprocessing.connection
+missing module named multiprocessing.set_start_method - imported by multiprocessing, multiprocessing.spawn
+missing module named multiprocessing.get_start_method - imported by multiprocessing, multiprocessing.spawn
+missing module named pyimod03_importers - imported by /Users/sarvar/PycharmProjects/cs5150-basketball-project/basketball/lib/python3.6/site-packages/PyInstaller/loader/rthooks/pyi_rth_pkgres.py
+missing module named 'pkg_resources.extern.pyparsing' - imported by pkg_resources._vendor.packaging.requirements, pkg_resources._vendor.packaging.markers
+missing module named netbios - imported by uuid
+missing module named win32wnet - imported by uuid
+missing module named __builtin__ - imported by pkg_resources._vendor.pyparsing
+missing module named ordereddict - imported by pkg_resources._vendor.pyparsing
+missing module named 'win32com.shell' - imported by pkg_resources._vendor.appdirs
+missing module named 'com.sun' - imported by pkg_resources._vendor.appdirs
+missing module named win32api - imported by pkg_resources._vendor.appdirs
+missing module named win32com - imported by pkg_resources._vendor.appdirs
+missing module named StringIO - imported by six, sqlalchemy.util.compat, pkg_resources._vendor.six
+missing module named __main__ - imported by pkg_resources
+missing module named pkg_resources.extern.packaging - imported by pkg_resources.extern, pkg_resources
+missing module named pkg_resources.extern.appdirs - imported by pkg_resources.extern, pkg_resources
+missing module named 'pkg_resources.extern.six.moves' - imported by pkg_resources, pkg_resources._vendor.packaging.requirements
+missing module named pkg_resources.extern.six - imported by pkg_resources.extern, pkg_resources
+missing module named nt - imported by os, shutil, ntpath, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py
+missing module named org - imported by pickle, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py
+excluded module named _frozen_importlib - imported by importlib, importlib.abc, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py
+missing module named _frozen_importlib_external - imported by importlib._bootstrap, importlib, importlib.abc, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py
+missing module named _winreg - imported by platform, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py, pkg_resources._vendor.appdirs
+missing module named java - imported by platform, unittest.mock, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py
+missing module named 'java.lang' - imported by platform, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py, xml.sax._exceptions
+missing module named vms_lib - imported by platform, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py
+missing module named winreg - imported by platform, mimetypes, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py, urllib.request
+missing module named urllib.unquote - imported by urllib, sqlalchemy.util.compat
+missing module named urllib.quote - imported by urllib, sqlalchemy.util.compat
+missing module named urllib.unquote_plus - imported by urllib, sqlalchemy.util.compat
+missing module named urllib.quote_plus - imported by urllib, sqlalchemy.util.compat
+missing module named msvcrt - imported by subprocess, multiprocessing.spawn, multiprocessing.popen_spawn_win32, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py, getpass
+missing module named _winapi - imported by subprocess, multiprocessing.reduction, multiprocessing.connection, multiprocessing.heap, multiprocessing.popen_spawn_win32, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py
+missing module named _dummy_threading - imported by dummy_threading, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py
+missing module named 'org.python' - imported by copy, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py, xml.sax
+missing module named cStringIO - imported by cPickle, sqlalchemy.util.compat
+missing module named copy_reg - imported by cPickle, cStringIO
+missing module named ConfigParser - imported by sqlalchemy.util.compat
+missing module named urlparse - imported by sqlalchemy.util.compat
+missing module named cPickle - imported by sqlalchemy.util.compat, sqlalchemy.testing.util
+missing module named Sybase - imported by sqlalchemy.dialects.sybase.pysybase
+missing module named pysqlcipher3 - imported by sqlalchemy.dialects.sqlite.pysqlcipher
+missing module named pysqlcipher - imported by sqlalchemy.dialects.sqlite.pysqlcipher
+missing module named 'com.ziclix' - imported by sqlalchemy.dialects.postgresql.zxjdbc, sqlalchemy.dialects.oracle.zxjdbc
+missing module named com - imported by sqlalchemy.connectors.zxJDBC
+missing module named pgdb - imported by sqlalchemy.dialects.postgresql.pygresql
+missing module named postgresql - imported by sqlalchemy.dialects.postgresql.pypostgresql
+missing module named 'java.sql' - imported by sqlalchemy.dialects.oracle.zxjdbc
+missing module named cx_Oracle - imported by sqlalchemy.dialects.oracle.cx_oracle
+missing module named 'google.storage' - imported by sqlalchemy.dialects.mysql.gaerdbms
+missing module named 'google.appengine' - imported by oauth2client.client, oauth2client.contrib.appengine, oauth2client.contrib._appengine_ndb, googleapiclient.discovery_cache, googleapiclient.discovery_cache.appengine_memcache, sqlalchemy.dialects.mysql.gaerdbms
+missing module named 'mysql.connector' - imported by sqlalchemy.dialects.mysql.mysqlconnector
+missing module named mysql - imported by sqlalchemy.dialects.mysql.mysqlconnector
+missing module named 'mx.ODBC' - imported by sqlalchemy.connectors.mxodbc
+missing module named mx - imported by sqlalchemy.connectors.mxodbc
+missing module named adodbapi - imported by sqlalchemy.dialects.mssql.adodbapi
+missing module named psycopg2 - imported by sqlalchemy.dialects.postgresql.psycopg2, sqlalchemy
+missing module named pysqlite2 - imported by sqlalchemy.dialects.sqlite.pysqlite, sqlalchemy
+missing module named 'apiclient.http' - imported by pydrive.files
+missing module named 'six.moves.urllib' - imported by 'six.moves.urllib'
+runtime module named six.moves - imported by pydrive.auth, googleapiclient._helpers, googleapiclient.discovery, 'six.moves.urllib', oauth2client.client, oauth2client._helpers, oauth2client.transport, oauth2client.contrib.gce, oauth2client.contrib._metadata, googleapiclient.http, oauth2client.tools
+missing module named six.moves.BaseHTTPServer - imported by six.moves, oauth2client.tools
+missing module named six.moves.range - imported by six.moves, googleapiclient.http
+missing module named six.moves.zip - imported by six.moves, googleapiclient.discovery
+missing module named six.moves.input - imported by six.moves, pydrive.auth, oauth2client.tools
+missing module named webapp2 - imported by oauth2client.contrib.appengine
+missing module named 'Crypto.Util' - imported by oauth2client._pycrypto_crypt
+missing module named 'Crypto.Signature' - imported by oauth2client._pycrypto_crypt
+missing module named 'Crypto.PublicKey' - imported by oauth2client._pycrypto_crypt
+missing module named Crypto - imported by oauth2client._pycrypto_crypt
+missing module named OpenSSL - imported by oauth2client._openssl_crypt
+missing module named psyco - imported by rsa.transform
+missing module named socks - imported by httplib2
+missing module named "'six.moves.urllib'.parse" - imported by googleapiclient.discovery, googleapiclient.http, googleapiclient.model
+missing module named google_auth_httplib2 - imported by googleapiclient._auth
+missing module named 'google.auth' - imported by googleapiclient._auth
+missing module named google - imported by googleapiclient._auth
+missing module named 'oauth2client.locked_file' - imported by googleapiclient.discovery_cache.file_cache
+missing module named 'oauth2client.contrib.locked_file' - imported by googleapiclient.discovery_cache.file_cache
+missing module named _yaml - imported by yaml.cyaml
+missing module named 'apiclient.discovery' - imported by pydrive.auth

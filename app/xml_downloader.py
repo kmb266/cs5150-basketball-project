@@ -13,7 +13,7 @@ from pydrive.drive import GoogleDrive
 
 gauth = GoogleAuth()
 # Try to load saved client credentials
-gauth.LoadCredentialsFile("mycreds.txt")
+gauth.LoadCredentialsFile("../../mycreds.txt")
 if gauth.credentials is None:
     # Authenticate if they're not there
     gauth.LocalWebserverAuth()
@@ -24,7 +24,7 @@ else:
     # Initialize the saved creds
     gauth.Authorize()
 # Save the current credentials to a file
-gauth.SaveCredentialsFile("mycreds.txt")
+gauth.SaveCredentialsFile("../../mycreds.txt")
 
 drive = GoogleDrive(gauth)
 # root_file_list = drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
@@ -45,20 +45,28 @@ def fetch_new_xml():
         for data_file in drive.ListFile({'q': "'{}' in parents and trashed=false".format(dir["id"])}).GetList():
             # print('----title: {}, id: {}'.format(data_file['title'], data_file['id']))
             # Download this file in the appropriate directory if it isn't already there
-            filename = "../xml_data/{}/{}".format(dir['title'], data_file['title'])
+            filename = "../../../xml_data/{}/{}".format(dir['title'], data_file['title'])
             if not os.path.isfile(filename):
                 new_files = True
                 # print("------File doesn't exist, adding to database")
                 # Only download the file if it's not already in the data
                 file_obj = drive.CreateFile({'id': data_file["id"]})
-                if not os.path.exists("../xml_data/{}".format(dir['title'])):
-                    os.makedirs("../xml_data/{}".format(dir['title']))
+                if not os.path.exists("../../../xml_data/{}".format(dir['title'])):
+                    os.makedirs("../../../xml_data/{}".format(dir['title']))
                 file_obj.GetContentFile(filename)  # Download file to proper directory
 
     if new_files:
         fill_all_xml()
 
 
-fetch_new_xml()
+def main():
+    fetch_new_xml()
+
+
+if __name__ == '__main__':
+    print('called xml_downloader')
+    main()
+
+
 
 

@@ -122,4 +122,12 @@ else {
   console.log('starting jsonDB update');
   createUpdateDbWindow();
   updateJsonDB(date, finshedJsonDbBUpdate);
+
 }
+
+console.log('Trying to update xml files')
+var path_to_exe = path.join(__dirname, '../../python', 'middle_stack', 'xml_downloader'),
+    py = require('child_process').execFile(path_to_exe)
+console.log('Finished updating XML files')
+
+
