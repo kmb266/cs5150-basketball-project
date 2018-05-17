@@ -40,10 +40,10 @@ def parse_game(data, session):
     isLeague = competitions["conferenceCompetition"]
 
     g = session.query(Game).filter_by(date=date,home=home).first()
-        if not g:
-            g = Game(id=data["gameId"],date=date,home=home,visitor=visitor,winner=winner,
-            loser=loser,home_score=home_score,visitor_score=visitor_score,isLeague=isLeague)
-            session.add(g)
+    if not g:
+        g = Game(id=data["gameId"],date=date,home=home,visitor=visitor,winner=winner,
+        loser=loser,home_score=home_score,visitor_score=visitor_score,isLeague=isLeague)
+        session.add(g)
     # session.commit()
 
 
