@@ -23,21 +23,22 @@ def TmPoss(TmFGA,TmOREB,oppDREB,TmFTA,TmFGM,TmTOV):
     Name: Total Team Possesion
     Returns: the total team possession based on parameters
     Arguments:
-    	FGA: field goals attemped
-    	TmOREB: Team Total Offensive Rebounds (double check)
-    	oppDREB:  Opponent Total Defensive Rebounds (double check)
-    	FTA: free throw attemped
-    	FGM: field goals made
+        FGA: field goals attemped
+        TmOREB: Team Total Offensive Rebounds (double check)
+        oppDREB:  Opponent Total Defensive Rebounds (double check)
+        FTA: free throw attemped
+        FGM: field goals made
 
 
     Depend? No
     check status: Yes
     level: 1
     """
-    try:
+    if(TmOREB+oppDREB) == 0:
+        return float(TmFGA*(TmFGA-TmFGM)*1.07+TmTOV + 0.4*TmFTA)
+    else:
         return float(TmFGA-(TmOREB/(TmOREB+oppDREB))*(TmFGA-TmFGM)*1.07+TmTOV + 0.4*TmFTA)
-    except:
-        return 99999999
+   
 
 
 
@@ -46,11 +47,11 @@ def OppPoss(OppFGA,OppOREB,TmDREB,OppFTA,OppFGM,OppTOV):
     Name: Opponent Total Team Possesion
     Returns: the total opponent possession based on parameters
     Arguments:
-    	OppFGA: opponent field goals attemped
-    	OppOREB: opponent team Total Offensive Rebounds (double check)
-    	TmDREB:  Total Defensive Rebounds (double check)
-    	OppFTA: opponent free throw attemped
-    	OppFGM: opponent field goals made
+        OppFGA: opponent field goals attemped
+        OppOREB: opponent team Total Offensive Rebounds (double check)
+        TmDREB:  Total Defensive Rebounds (double check)
+        OppFTA: opponent free throw attemped
+        OppFGM: opponent field goals made
 
 
     Depend? No
@@ -58,10 +59,11 @@ def OppPoss(OppFGA,OppOREB,TmDREB,OppFTA,OppFGM,OppTOV):
     level: 1
 
     """
-    try:
+    if(OppOREB+TmDREB) == 0:
+        return float(OppFGA*(OppFGA-OppFGM)*1.07+OppTOV + 0.4*OppFTA)
+    else:
         return float(OppFGA-(OppOREB/(OppOREB+TmDREB))*(OppFGA-OppFGM)*1.07+OppTOV + 0.4*OppFTA)
-    except:
-        return 99999999
+   
 
 
 
@@ -71,19 +73,17 @@ def TmORTG (TmPoints, TmPoss):
     Name: Team Offensive Rating
     Returns: the team offensice rating based on parameters
     Arguments:
-    	TmPoints: total points by team
-    	TmPoss: total team possestion
+        TmPoints: total points by team
+        TmPoss: total team possestion
 
     Depend? Yes
     check status: Yes
     level: 2
     """
-    try:
         if TmPoss == 0:
             return 0.0
         return float(100*(TmPoints/TmPoss))
-    except:
-        return 99999999
+    
 
 
 def PProd(PProdFG, PProdAst,FTM,TmOREB,
@@ -92,76 +92,77 @@ def PProd(PProdFG, PProdAst,FTM,TmOREB,
     Name: Individual Points Produced
     Returns: the individual points produced based on parameters
     Arguments:
-    	PProdFG: points produced FG part
-    	PProdAst: points produced AST part
-    	FTM: free throw made
-    	TmOREB: Team Total Offensive Rebounds(double check)
-    	TMScorPoss:  Team score poss
-    	TmOREBWgt: team OREB weight
-    	TmPlay: team play
-    	PProdOREB: points produced OREB part
+        PProdFG: points produced FG part
+        PProdAst: points produced AST part
+        FTM: free throw made
+        TmOREB: Team Total Offensive Rebounds(double check)
+        TmScorPoss:  Team score poss
+        TmOREBWgt: team OREB weight
+        TmPlay: team play
+        PProdOREB: points produced OREB part
 
     Depend? Yes
     check status: Yes
     level: 5
 
     """
-    try:
+    if TmScorPoss == 0:
+        return float((PProdFG+PProdAst+FTM)*(1*TmOREBWgt*TmPlay_pect)+PProdOREB)
+    else: 
         return float((PProdFG+PProdAst+FTM)*(1-(TmOREB/TmScorPoss)
                                          *TmOREBWgt*TmPlay_pect)+PProdOREB)
-    except:
-        return 99999999
-
+   
 
 def PProdFG(FGM,PTS,FTM,FGA,qAST,FGM_3):
     """
     Name: Points Produced Field Goal Part
     Returns: the Points Produced Field Goal Part based on parameters
     Arguments:
-    	FGM: field goals made
-    	PTS: points (double check)
-    	FTM: free throws made
-    	FGA: field goals attemped
-    	qAST: q AST
-    	FGM_3: 3 poitns field goal made
+        FGM: field goals made
+        PTS: points (double check)
+        FTM: free throws made
+        FGA: field goals attemped
+        qAST: q AST
+        FGM_3: 3 poitns field goal made
 
     Depend? Yes
     check status: Yes (different results from excel sheet)
     level: 3
     """
-    try:
+    if FGA == 0:
+        return float(2*(FGM+0.5*FGM_3)*1-0.5*0.0*qAST)
+    else:
         return float(2*(FGM+0.5*FGM_3)*1-0.5*((PTS-FTM)/(2*FGA))*qAST)
-    except:
-        return 99999999
+    
 
 
 
 def PProdAst(TmFGM, FGM, Tm3PM, TmPTS, TmFTM, PTS, FGA, AST, FGM_3,FTM, TmFGA):
     """
-    	Name: Points Produced Assist Part
-    	Returns: the Points Produced Assist Part based on parameters
-    	Arguments:
-    		TmFGM: team field goal made
-    		FGM: field goal made
-    		Tm3PM: team 3 points
-    		TmPTS: team points
-    		TmFTM: team free throw made
-    		PTS: points
-    		FGA: field goal made
-    		AST: assist
-    		FGM_3: 3 point shot makes
-    		FTM: free throw made
+        Name: Points Produced Assist Part
+        Returns: the Points Produced Assist Part based on parameters
+        Arguments:
+            TmFGM: team field goal made
+            FGM: field goal made
+            Tm3PM: team 3 points
+            TmPTS: team points
+            TmFTM: team free throw made
+            PTS: points
+            FGA: field goal made
+            AST: assist
+            FGM_3: 3 point shot makes
+            FTM: free throw made
 
-    	Depend? No
-    	check status: Yes
-    	level: 1
+        Depend? No
+        check status: Yes
+        level: 1
 
-    	"""
+        """
     try:
         return float(2*((TmFGM-FGM+0.5*(Tm3PM-FGM_3))/(TmFGM-FGM))*0.5
                  *(((TmPTS-TmFTM)-(PTS-FTM))/(2*(TmFGA-FGA) ))*AST)
     except:
-        return 99999999
+        return 0.0
 
 
 def PProdOREB(ORB,TmOREBWgt,TmPlay_pect,TmPTS,
@@ -170,13 +171,13 @@ def PProdOREB(ORB,TmOREBWgt,TmPlay_pect,TmPTS,
     Name: Points Produced Total Offensive Rebounds Part
     Returns: the Points Produced Total Offensive Rebounds Part based on parameters
     Arguments:
-    	ORB: Rebounds
-    	TmOREBWgt: team OREB weight
-    	TmPlay: team play
-    	TmPTS: team points
-    	TmFGM: team field goal made
-    	TmFTM: team free throw made
-    	TmFTA: team free theow attemped
+        ORB: Rebounds
+        TmOREBWgt: team OREB weight
+        TmPlay: team play
+        TmPTS: team points
+        TmFGM: team field goal made
+        TmFTM: team free throw made
+        TmFTA: team free theow attemped
 
     Depend? Yes
     check status: Yes
@@ -187,7 +188,7 @@ def PProdOREB(ORB,TmOREBWgt,TmPlay_pect,TmPTS,
         return float(ORB*TmOREBWgt*TmPlay_pect*(TmPTS/(TmFGM+(1-(1-(TmFTM/TmFTA))**2 )
                                                    *0.4*TmFTA)))
     except:
-        return 99999999
+        return 0.0
 
 
 def TotPoss(ScPoss,FGmPoss,FTmPoss,TOV):
@@ -195,10 +196,10 @@ def TotPoss(ScPoss,FGmPoss,FTmPoss,TOV):
     Name: Individual Total Possession
     Returns: the Individual Total Possession based on parameters
     Arguments:
-    	ScPoss: Scoring Possessions
-    	FGmPoss: Field Goal Missed Possessions
-    	FTmPoss: Free Throw Missed Possessions
-    	TOV: trunovers (available since the 1977-78 season in the NBA)
+        ScPoss: Scoring Possessions
+        FGmPoss: Field Goal Missed Possessions
+        FTmPoss: Free Throw Missed Possessions
+        TOV: trunovers (available since the 1977-78 season in the NBA)
 
     Depend? Yes
     check status: Yes
@@ -207,7 +208,7 @@ def TotPoss(ScPoss,FGmPoss,FTmPoss,TOV):
     try:
         return float(ScPoss+FGmPoss+FTmPoss+TOV)
     except:
-        return 99999999
+        return 0.0
 
 
 
@@ -217,24 +218,26 @@ def ScPoss(FGPart,ASTPart,FTPart,TmOREB,
     Name: Scoring Possessions
     Returns: the Scoring Possessions based on parameters
     Arguments:
-    	FGPart: field goal part (double check)
-    	ASTPart: assist part (double check)
-    	FTPart: free throw part (double check)
-    	TmOREB: team Total Offensive Rebounds
-    	TmScorPoss: team scoring sossessions
-    	TmOREBWgt: team Total Offensive Rebounds weight
-    	TmPlay: team play
-    	OREBPart: Total Offensive Rebounds part
+        FGPart: field goal part (double check)
+        ASTPart: assist part (double check)
+        FTPart: free throw part (double check)
+        TmOREB: team Total Offensive Rebounds
+        TmScorPoss: team scoring sossessions
+        TmOREBWgt: team Total Offensive Rebounds weight
+        TmPlay: team play
+        OREBPart: Total Offensive Rebounds part
 
     Depend? Yes
     check status: Yes
     level: 5
     """
-    try:
+    if TmScorPoss == 0:
+        return float((FGPart+ASTPart+FTPart)*(1
+                                          *TmOREBWgt*TmPlay_pect)+OREBPart)
+    else:
         return float((FGPart+ASTPart+FTPart)*(1-(TmOREB/TmScorPoss)
                                           *TmOREBWgt*TmPlay_pect)+OREBPart)
-    except:
-        return 99999999
+   
 
 
 
@@ -243,21 +246,22 @@ def FGPart(FGM,PTS,FTM,FGA,qAST):
     Name: Field Goal Part
     Returns: the Field Goal Part based on parameters
     Arguments:
-    	FGM: Fieldgoals made
-    	PTS: points
-    	FTM: free throw made
-    	FGA: field goal made
-    	qAST: qAST
+        FGM: Fieldgoals made
+        PTS: points
+        FTM: free throw made
+        FGA: field goal made
+        qAST: qAST
 
-    	Depend? Yes
-    	check status: Yes
-    	level: 3
+        Depend? Yes
+        check status: Yes
+        level: 3
 
     """
-    try:
-        return float(FGM*(1-0.5*(((PTS-FTM))/(2*FGA))*qAST))
-    except:
-        return 99999999
+    if FGA == 0:
+        return float(FGM*(1-0.5*0.0*qAST))
+    else:  
+        return float(FGM*(1-0.5*((PTS-FTM)/(2*FGA))*qAST))
+  
 
 
 
@@ -279,7 +283,7 @@ def qAST(MIN,TmMIN,q_12,q_5):
         a1 = (MIN/TmMIN)/5
         return a1*q_5 + ((1-a1)*q_12)
     except:
-        return 99999999
+        return 0.0
 
 
 
@@ -297,10 +301,11 @@ def q5(TmAST,AST,TmFGM):
         level: 1
 
     """
-    try:
+    if(TmFGM == 0):
+        return float(1.14*0.0)
+    else:
         return float(1.14*((TmAST-AST)/TmFGM))
-    except:
-        return 99999999
+   
 
 
 
@@ -321,10 +326,11 @@ def q12(TmAST,TmMIN,MIN,AST,TmFGM,FGM):
         level: 1
 
     """
-    try:
+    if(TmMIN == 0):
+        return float (AST/FGM)
+    else:
         return float(((TmAST/TmMIN)*MIN*5-AST)/((TmFGM/TmMIN)*MIN*5-FGM))
-    except:
-        return 99999999
+    except: 0.0
 
 
 
@@ -347,10 +353,10 @@ def ASTPart(TmPTS,TmFTM,PTS,FTM,TmFGA,FGA,AST):
         level: 1
 
     """
-    try:
+    if(TmFGA - FGA) == 0:
+        return 0.0
+    else:
         return 0.5*(((TmPTS-TmFTM)-(PTS-FTM))/(2*(TmFGA-FGA)))*AST
-    except:
-        return 99999999
 
 
 
@@ -367,10 +373,10 @@ def FTPart(FTM,FTA):
         level: 1
 
     """
-    try:
+    if FTA == 0:
+        return 0.0
+    else:
         return float((1-(1-(FTM/FTA))**2 )*0.4*FTA)
-    except:
-        return 99999999
 
 
 
@@ -388,10 +394,10 @@ def TmScorPoss(TmFGM,TmFTM,TmFTA):
         level: 1
 
     """
-    try:
+    if TmFTA == 0: 
+        return float(TmFGM+0.0*TmFTA*0.4)
+    else:
         return float(TmFGM+(1-(1-(TmFTM/TmFTA))**2)*TmFTA*0.4)
-    except:
-        return 99999999
 
 
 
@@ -412,7 +418,7 @@ def TmOREBWgt(TmOREB_pect,TmPlay_pect):
         return float(((1-TmOREB_pect)*TmPlay_pect)/((1-TmOREB_pect)
                                                 *TmPlay_pect+TmOREB_pect*(1-TmPlay_pect)))
     except:
-        return 99999999
+        return 0.0
 
 
 def TmOREB_pect(TmOREB,OppTREB,OppDREB):
@@ -431,7 +437,7 @@ def TmOREB_pect(TmOREB,OppTREB,OppDREB):
     try:
         return float(TmOREB/(TmOREB+OppDREB))
     except:
-        return 99999999
+        return 0.0
 
 
 def TmPlay(TmFGA,TmFTA,TmTOV):
@@ -451,7 +457,7 @@ def TmPlay(TmFGA,TmFTA,TmTOV):
     try:
         return float(TmFGA+TmFTA*0.4+TmTOV)
     except:
-        return 99999999
+        return 0.0
 
 def TmPlay_pect(TmScorPoss, TmFGA,TmFTA,TmTOV):
     """
@@ -471,7 +477,7 @@ def TmPlay_pect(TmScorPoss, TmFGA,TmFTA,TmTOV):
     try:
         return float(TmScorPoss/(TmFGA+TmFTA*0.4+TmTOV))
     except:
-        return 99999999
+        return 0.0
 
 
 def OREBPart(OREB,TmOREBWgt,TmPlay_pect):
@@ -491,7 +497,7 @@ def OREBPart(OREB,TmOREBWgt,TmPlay_pect):
     try:
         return float(OREB*TmOREBWgt*TmPlay_pect)
     except:
-        return 99999999
+        return 0.0
 
 
 def FGmPoss(FGA,FGM,TmOREB_pect):
@@ -511,7 +517,7 @@ def FGmPoss(FGA,FGM,TmOREB_pect):
     try:
         return (FGA-FGM)*(1-1.07*TmOREB_pect)
     except:
-        return 99999999
+        return 0.0
 
 
 def FTmPoss(FTM,FTA):
@@ -530,7 +536,7 @@ def FTmPoss(FTM,FTA):
     try:
         return float(((1-(FTM/FTA))**2)*0.4*FTA)
     except:
-        return 99999999
+        return 0.0
 
 
 def Individual_Offensize_Rating(PProd, TotPoss):
@@ -552,7 +558,7 @@ def Individual_Offensize_Rating(PProd, TotPoss):
         else:
             return 100*(PProd/TotPoss)
     except:
-        return 99999999
+        return 0.0
 
 
 def Individual_Floor_Percentage(ScPoss,TotPoss):
@@ -574,7 +580,7 @@ def Individual_Floor_Percentage(ScPoss,TotPoss):
         else:
             return float(ScPoss/TotPoss)
     except:
-        return 99999999
+        return 0.0
 
 
 def Team_Floor_Percentage(TmScorPoss, TmPoss):
@@ -596,7 +602,7 @@ def Team_Floor_Percentage(TmScorPoss, TmPoss):
         else:
             return float(TmScorPoss/TmPoss)
     except:
-        return 99999999
+        return 0.0
 
 
 def TmDRTG(OppPTS,TmPoss):
@@ -618,7 +624,7 @@ def TmDRTG(OppPTS,TmPoss):
         else:
             return float(100*(OppPTS/TmPoss))
     except:
-        return 99999999
+        return 0.0
 
 
 def DRTG(TmDRTG,OppPtsPScorPoss,Stop_perc):
@@ -638,7 +644,7 @@ def DRTG(TmDRTG,OppPtsPScorPoss,Stop_perc):
     try:
         return float(TmDRTG+0.2*(100*OppPtsPScorPoss*(1-Stop_perc)-TmDRTG))
     except:
-        return 99999999
+        return 0.0
 
 
 
@@ -660,7 +666,7 @@ def OppPtsPScorPoss(OppPTS,OppFGM,OppFTM,OppFTA):
     try:
         return float(OppPTS/(OppFGM+(1-(1-(OppFTM/OppFTA))**2 )*OppFTA*0.4))
     except:
-        return 99999999
+        return 0.0
 
 
 def Stop_perc(Stops,OppMIN,TmPoss,MIN):
@@ -684,7 +690,7 @@ def Stop_perc(Stops,OppMIN,TmPoss,MIN):
         else:
             return float((Stops*OppMIN)/(TmPoss*MIN))
     except:
-        return 99999999
+        return 0.0
 
 
 def Stops(Stops_1,Stops_2):
@@ -703,7 +709,7 @@ def Stops(Stops_1,Stops_2):
     try:
         return float(Stops_1+Stops_2)
     except:
-        return 99999999
+        return 0.0
 
 
 def Stops_1(STL,BLK,FMwt,DOREB_perc,DREB):
@@ -725,7 +731,7 @@ def Stops_1(STL,BLK,FMwt,DOREB_perc,DREB):
     try:
         return float(STL+BLK*FMwt*(1-1.07*DOREB_perc)+DREB*(1-FMwt))
     except:
-        return 99999999
+        return 0.0
 
 
 def FMwt(DFG_perc,DOREB_perc):
@@ -745,7 +751,7 @@ def FMwt(DFG_perc,DOREB_perc):
         return float((DFG_perc*(1-DOREB_perc))/(DFG_perc
                                             *(1-DOREB_perc)+(1-DFG_perc)*DOREB_perc))
     except:
-        return 99999999
+        return 0.0
 
 
 def DOREB_perc(OppOREB,TmDREB):
@@ -765,7 +771,7 @@ def DOREB_perc(OppOREB,TmDREB):
     try:
         return float(OppOREB/(OppOREB+TmDREB))
     except:
-        return 99999999
+        return 0.0
 
 
 def DFG_perc(OppFGM,OppFGA):
@@ -787,7 +793,7 @@ def DFG_perc(OppFGM,OppFGA):
         else:
             return float(OppFGM/OppFGA)
     except:
-        return 99999999
+        return 0.0
 
 
 def Stops_2(OppFGA,OppFGM,TmBLK,TmMIN,FMwt,DOREB_perc
@@ -820,7 +826,7 @@ def Stops_2(OppFGA,OppFGM,TmBLK,TmMIN,FMwt,DOREB_perc
                    +((OppTOV-TmSTL)/TmMIN))*MIN+(PF/TmPF)
                   *0.4*OppFTA*(1-(OppFTM/OppFTA))**2)
     except:
-        return 99999999
+        return 0.0
 
 
 def eFG_perc(FGM,FGA,FGM_3):
@@ -840,7 +846,7 @@ def eFG_perc(FGM,FGA,FGM_3):
     try:
         return (FGM+0.5*FGM_3)/FGA
     except:
-        return 99999999
+        return 0.0
 
 
 def Turnover_perc(TOV,FGA,FTA):
@@ -860,7 +866,7 @@ def Turnover_perc(TOV,FGA,FTA):
     try:
         return float(TOV/(FGA+0.4*FTA+TOV))
     except:
-        return 99999999
+        return 0.0
 
 
 def FTr(FTA,FGA):
@@ -883,7 +889,7 @@ def FTr(FTA,FGA):
         else:
             return FTA/FGA
     except:
-        return 99999999
+        return 0.0
 
 
 def FG_2_perc(FGM_2,FGA_2):
@@ -904,7 +910,7 @@ def FG_2_perc(FGM_2,FGA_2):
         else:
             return FGM_2/FGA_2
     except:
-        return 99999999
+        return 0.0
 
 def FG_3_perc(FGM_3,FGA_3):
     """
@@ -925,7 +931,7 @@ def FG_3_perc(FGM_3,FGA_3):
         else:
             return FGM_3/FGA_3
     except:
-        return 99999999
+        return 0.0
 
 
 def FGr_2(FGA_2,FGA):
@@ -947,7 +953,7 @@ def FGr_2(FGA_2,FGA):
         else:
             return float(FGA_2/FGA)
     except:
-        return 99999999
+        return 0.0
 
 
 def FGr_3(FGA_3,FGA):
@@ -969,7 +975,7 @@ def FGr_3(FGA_3,FGA):
         else:
             return float(FGA_3/FGA)
     except:
-        return 99999999
+        return 0.0
 
 
 
@@ -995,7 +1001,7 @@ def Usage_Rate(FGA,FTA,TOV,TmMIN,MIN,TmFGA,TmFTA,TmTOV):
     try:
         return float(100*((FGA+0.4*FTA+TOV)*(TmMIN/5))/(MIN*(TmFGA+0.4*TmFTA+TmTOV)))
     except:
-        return 99999999
+        return 0.0
 
 
 def AST_perc(AST,MIN,TmMIN,TmFGM,FGM):
@@ -1017,20 +1023,20 @@ def AST_perc(AST,MIN,TmMIN,TmFGM,FGM):
     try:
         return float(100*AST/(((MIN/(TmMIN/5))*TmFGM)-FGM))
     except:
-        return 99999999
+        return 0.0
 
 
 def ASTr(AST,FGM):
     '''
-    	Name: Assists Rate
-    	Returns: the assists rate based on parameters
-    	Arguments:
-    		AST: assists
-    		FGM: filed goals made
+        Name: Assists Rate
+        Returns: the assists rate based on parameters
+        Arguments:
+            AST: assists
+            FGM: filed goals made
 
-    	Depend? No
-    	check status: Yes (cannot find in excel)
-    	level: 1
+        Depend? No
+        check status: Yes (cannot find in excel)
+        level: 1
 
     '''
     try:
@@ -1039,7 +1045,7 @@ def ASTr(AST,FGM):
         else:
             return float(AST/FGM)
     except:
-        return 99999999
+        return 0.0
 
 
 
@@ -1061,7 +1067,7 @@ def AST_Ratio(AST,FGA,FTA,TOV):
     try:
         return float((100*AST)/(FGA+(FTA*0.4)+AST+TOV))
     except:
-        return 99999999
+        return 0.0
 
 
 def TS_perc(PTS,FGA,FTA):
@@ -1081,7 +1087,7 @@ def TS_perc(PTS,FGA,FTA):
     try:
         return float(PTS/(2*(FGA+0.4*FTA)))
     except:
-        return 99999999
+        return 0.0
 
 
 def Total_REB_pect (TREB,TmMIN,MIN,TmTREB,OppTREB):
@@ -1103,7 +1109,7 @@ def Total_REB_pect (TREB,TmMIN,MIN,TmTREB,OppTREB):
     try:
         return 100*(TREB*(TmMIN/5))/(MIN*(TmTREB+OppTREB))
     except:
-        return 99999999
+        return 0.0
 
 
 
@@ -1125,7 +1131,7 @@ def STL_perc(STL,TmMIN,MIN,OppPoss):
     try:
         return float(100*(STL*(TmMIN/5))/(MIN*OppPoss))
     except:
-        return 99999999
+        return 0.0
 
 
 def BLK_perc(BLK,TmMIN,MIN,OppFGA,Opp3PA):
@@ -1147,31 +1153,31 @@ def BLK_perc(BLK,TmMIN,MIN,OppFGA,Opp3PA):
     try:
         return float(100*(BLK*(TmMIN/5))/(MIN*(OppFGA-Opp3PA)))
     except:
-        return 99999999
+        return 0.0
 
 
 
 def Game_Score(PTS,FGM,FGA,FTA,FTM,ORE,DREB,STL,AST,BLK,PF,TOV):
     '''
-    	Name: Game Score (individual)
-    	Returns: the game score based on parameters
-    	Arguments:
-    		PTS: Points
-    		FGM: field goal made
-    		FGA: field goal attemped
-    		FTA: free throw attemped
-    		FTM: free throw made
-    		ORE: Offensive Rebounds
-    		DREB: Total Offensive Rebounds
-    		STL: total steals
-    		AST: assist
-    		BLK: total blocks
-    		PF: total personal fouls
-    		TOV: turnover
+        Name: Game Score (individual)
+        Returns: the game score based on parameters
+        Arguments:
+            PTS: Points
+            FGM: field goal made
+            FGA: field goal attemped
+            FTA: free throw attemped
+            FTM: free throw made
+            ORE: Offensive Rebounds
+            DREB: Total Offensive Rebounds
+            STL: total steals
+            AST: assist
+            BLK: total blocks
+            PF: total personal fouls
+            TOV: turnover
 
-    	Depend? No
-    	check status: Yes (cannot find in excel sheet)
-    	level: 1
+        Depend? No
+        check status: Yes (cannot find in excel sheet)
+        level: 1
 
     '''
     try:
@@ -1179,7 +1185,7 @@ def Game_Score(PTS,FGM,FGA,FTA,FTM,ORE,DREB,STL,AST,BLK,PF,TOV):
                  *(FTA-FTM)+0.7*ORE-0.3*DREB+STL
                  +0.7*AST+0.7*BLK-0.4*PF-TOV)
     except:
-        return 99999999
+        return 0.0
 
 
 
@@ -1188,9 +1194,9 @@ def Pace(TmPoss,OppPoss,TmMIN):
     Name: Pace
     Returns: the pace based on parameters
     Arguments:
-    	TmPoss: Total Team Possesion
-    	OppPoss: Opponent Possesion (check!) need calculation??-> use the same calculations as TmPoss
-    	TmMIN: team MIN
+        TmPoss: Total Team Possesion
+        OppPoss: Opponent Possesion (check!) need calculation??-> use the same calculations as TmPoss
+        TmMIN: team MIN
 
 
     Depend? Yes
@@ -1201,7 +1207,7 @@ def Pace(TmPoss,OppPoss,TmMIN):
     try:
         return float(40*((TmPoss+OppPoss)/(2*(TmMIN/5))))
     except:
-        return 99999999
+        return 0.0
 
 
 def PIE(PTS,FGM,FTM,FGA,FTA,DREB,OREB,AST,STL,BLK
@@ -1211,24 +1217,24 @@ def PIE(PTS,FGM,FTM,FGA,FTA,DREB,OREB,AST,STL,BLK
     Name: Player Impact Rate
     Returns: the Player Impact Rate based on parameters
     Arguments:
-    	PTS: points
-    	FGM: field goal made
-    	FTM: free throw made
-    	FGA: field goal attemped
-    	FTA: free throw attemped
-    	DREB: Total defensive rebounds
-    	OREB: Total offensive rebounds
-    	AST: assist
-    	STL: total steals
-    	BLK: total blocks
-    	PF: total personal fouls
-    	TO: total turnovers
-    	GmPTS: game points
-    	GmFGM: game field goal made
-    	GmFTM: game free throw made
-    	GmFGA: game field goal attemped
-    	GmFTA: game free throw attemped
-    	GmDREB: game Total defensive rebounds
+        PTS: points
+        FGM: field goal made
+        FTM: free throw made
+        FGA: field goal attemped
+        FTA: free throw attemped
+        DREB: Total defensive rebounds
+        OREB: Total offensive rebounds
+        AST: assist
+        STL: total steals
+        BLK: total blocks
+        PF: total personal fouls
+        TO: total turnovers
+        GmPTS: game points
+        GmFGM: game field goal made
+        GmFTM: game free throw made
+        GmFGA: game field goal attemped
+        GmFTA: game free throw attemped
+        GmDREB: game Total defensive rebounds
         GmOREB: game Total offensive rebounds
         GmAST: game assist
         GmSTL: game total steals
@@ -1246,4 +1252,4 @@ def PIE(PTS,FGM,FTM,FGA,FTA,DREB,OREB,AST,STL,BLK
             +(0.5*BLK)-PF-TO)/(GmPTS+GmFGM+GmFTM-GmFGA
                                -GmFTA+GmDREB+(0.5*GmOREB)+GmAST+GmSTL+(0.5*GmBLK)-GmPF-GmTO)
     except:
-        return 99999999
+        return 0.0
