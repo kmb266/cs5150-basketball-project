@@ -15,8 +15,8 @@ import google_auth_oauthlib.flow
 
 import sys, os
 import Constants
-print(Constants.BASE_DIR)
-print(Constants.BACKEND_DIR)
+# print(Constants.BASE_DIR)
+# print(Constants.BACKEND_DIR)
 
 secrets = os.path.join(Constants.BACKEND_DIR, "client_secrets.json")
 creds = os.path.join(Constants.BACKEND_DIR, "mycreds.txt")
@@ -25,9 +25,9 @@ secrets = '/' + secrets
 creds = '/' + creds
 xml_path = '/' + xml_path
 
-print(secrets)
-print(creds)
-print(xml_path)
+# print(secrets)
+# print(creds)
+# print(xml_path)
 
 # GoogleAuth.DEFAULT_SETTINGS['client_config_file'] = secrets
 #
@@ -70,7 +70,6 @@ import os
 from populate_db import fill_all_xml
 
 def fetch_new_xml():
-   print("Fetching new XML data")
    xml_folder_id = "10XzxPdk6z5kF4-0fp-XSh_LEO6kzh1kE"
    xml_file_list = drive.ListFile({'q': "'{}' in parents and trashed=false".format(xml_folder_id)}).GetList()
    new_files = False
@@ -98,5 +97,4 @@ def main():
 
 
 if __name__ == '__main__':
-   print('called xml_downloader')
    main()

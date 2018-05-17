@@ -6,23 +6,22 @@ missing module named multiprocessing.AuthenticationError - imported by multiproc
 missing module named multiprocessing.set_start_method - imported by multiprocessing, multiprocessing.spawn
 missing module named multiprocessing.get_start_method - imported by multiprocessing, multiprocessing.spawn
 missing module named pyimod03_importers - imported by /Users/sarvar/PycharmProjects/cs5150-basketball-project/basketball/lib/python3.6/site-packages/PyInstaller/loader/rthooks/pyi_rth_pkgres.py
+missing module named StringIO - imported by six, urllib3.packages.six, requests.compat, sqlalchemy.util.compat, pkg_resources._vendor.six
 missing module named 'win32com.shell' - imported by pkg_resources._vendor.appdirs
 missing module named 'com.sun' - imported by pkg_resources._vendor.appdirs
 missing module named win32api - imported by pkg_resources._vendor.appdirs
 missing module named win32com - imported by pkg_resources._vendor.appdirs
-missing module named 'pkg_resources.extern.pyparsing' - imported by pkg_resources._vendor.packaging.requirements, pkg_resources._vendor.packaging.markers
+missing module named 'pkg_resources.extern.pyparsing' - imported by pkg_resources._vendor.packaging.markers, pkg_resources._vendor.packaging.requirements
 missing module named netbios - imported by uuid
 missing module named win32wnet - imported by uuid
 missing module named __builtin__ - imported by pkg_resources._vendor.pyparsing
 missing module named ordereddict - imported by pkg_resources._vendor.pyparsing
-missing module named StringIO - imported by six, urllib3.packages.six, requests.compat, sqlalchemy.util.compat, pkg_resources._vendor.six
 missing module named __main__ - imported by pkg_resources
 missing module named pkg_resources.extern.packaging - imported by pkg_resources.extern, pkg_resources
 missing module named pkg_resources.extern.appdirs - imported by pkg_resources.extern, pkg_resources
 missing module named 'pkg_resources.extern.six.moves' - imported by pkg_resources, pkg_resources._vendor.packaging.requirements
 missing module named pkg_resources.extern.six - imported by pkg_resources.extern, pkg_resources
-missing module named nt - imported by os, ntpath, shutil, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py
-missing module named 'org.python' - imported by pickle, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py, xml.sax
+missing module named org - imported by pickle, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py
 excluded module named _frozen_importlib - imported by importlib, importlib.abc, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py
 missing module named _frozen_importlib_external - imported by importlib._bootstrap, importlib, importlib.abc, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py
 missing module named _winreg - imported by platform, requests.utils, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py, pkg_resources._vendor.appdirs
@@ -39,10 +38,11 @@ missing module named urllib.unquote_plus - imported by urllib, requests.compat, 
 missing module named urllib.quote_plus - imported by urllib, requests.compat, sqlalchemy.util.compat
 missing module named urllib.unquote - imported by urllib, requests.compat, oauthlib.common, sqlalchemy.util.compat
 missing module named urllib.quote - imported by urllib, requests.compat, oauthlib.common, oauthlib.oauth2.rfc6749.utils, sqlalchemy.util.compat
+missing module named nt - imported by os, ntpath, shutil, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py
 missing module named msvcrt - imported by subprocess, multiprocessing.spawn, multiprocessing.popen_spawn_win32, getpass, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py
 missing module named _winapi - imported by subprocess, multiprocessing.reduction, multiprocessing.connection, multiprocessing.heap, multiprocessing.popen_spawn_win32, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py
 missing module named _dummy_threading - imported by dummy_threading, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py
-missing module named org - imported by copy, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py
+missing module named 'org.python' - imported by copy, /Users/sarvar/PycharmProjects/cs5150-basketball-project/app/xml_downloader.py, xml.sax
 missing module named cStringIO - imported by cPickle, sqlalchemy.util.compat
 missing module named copy_reg - imported by cPickle, cStringIO
 missing module named ConfigParser - imported by sqlalchemy.util.compat

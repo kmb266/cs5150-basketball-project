@@ -13,6 +13,9 @@ from sqlalchemy.orm import sessionmaker
 # Get the paths to the databases based on whether we're in debug mode or production mode
 from Constants import sqlite_json, sqlite_xml, BACKEND_DIR
 
+sqlite_xml = sqlite_xml[:7] + '/' + sqlite_xml[7:]
+sqlite_json = sqlite_json[:7] + '/' + sqlite_json[7:]
+
 # Initialize a session with the xml database
 engine = create_engine(sqlite_xml, echo=False)
 Session = sessionmaker(bind=engine)
@@ -21,7 +24,6 @@ session = Session()
 
 def xml_to_database(xml_file):
     game_info = parse_game_file(xml_file)
-
     # Extract information for the Game table
     venue = game_info['venue']
     home = venue["home_id"]
