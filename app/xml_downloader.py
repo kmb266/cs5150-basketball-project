@@ -12,24 +12,19 @@ from pydrive.drive import GoogleDrive
 # Authorizes the app with Google - requires user interaction
 
 import sys, os
+import Constants
+print(Constants.BASE_DIR)
+print(Constants.BACKEND_DIR)
 
-application_path = sys.argv[0].split('/')[:-4]  # go up one directory to backend
-BASE_DIR = os.path.join(*application_path)
-
-application_path = BASE_DIR
-
-
-print(application_path)
-print("done")
-
-file_dir = sys.argv[0].split('/')[:-2]  # go up one directory to backend
-file_dir += ['backend']
-BASE_DIR = os.path.join(*file_dir)
-print(os.getcwd())
-secrets = os.path.join(BASE_DIR, "client_secrets.json")
-creds = os.path.join(BASE_DIR, "mycreds.text")
+secrets = os.path.join(Constants.BACKEND_DIR, "client_secrets.json")
+creds = os.path.join(Constants.BACKEND_DIR, "mycreds.txt")
+xml_path = os.path.join(Constants.BACKEND_DIR, "xml_data")
+secrets = '/' + secrets
+creds = '/' + creds
+xml_path = '/' + xml_path
 print(secrets)
 print(creds)
+print(xml_path)
 
 GoogleAuth.DEFAULT_SETTINGS['client_config_file'] = secrets
 
@@ -46,7 +41,7 @@ else:
     # Initialize the saved creds
     gauth.Authorize()
 # Save the current credentials to a file
-gauth.SaveCredentialsFile("{}/mycreds.txt".format(application_path))
+gauth.SaveCredentialsFile(creds)
 
 drive = GoogleDrive(gauth)
 # root_file_list = drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
@@ -58,37 +53,33 @@ import os
 from populate_db import fill_all_xml
 
 def fetch_new_xml():
-    print("Fetching new XML data")
-    xml_folder_id = "10XzxPdk6z5kF4-0fp-XSh_LEO6kzh1kE"
-    xml_file_list = drive.ListFile({'q': "'{}' in parents and trashed=false".format(xml_folder_id)}).GetList()
-    new_files = False
-    for dir in xml_file_list:
-        # print('--title: {}, id: {}'.format(dir['title'], dir['id']))
-        for data_file in drive.ListFile({'q': "'{}' in parents and trashed=false".format(dir["id"])}).GetList():
-            # print('----title: {}, id: {}'.format(data_file['title'], data_file['id']))
-            # Download this file in the appropriate directory if it isn't already there
-            filename = "{}/xml_data/{}/{}".format(application_path, dir['title'], data_file['title'])
-            if not os.path.isfile(filename):
-                new_files = True
-                # print("------File doesn't exist, adding to database")
-                # Only download the file if it's not already in the data
-                file_obj = drive.CreateFile({'id': data_file["id"]})
-                if not os.path.exists("{}/xml_data/{}".format(application_path, dir['title'])):
-                    os.makedirs("{}/xml_data/{}".format(application_path, dir['title']))
-                file_obj.GetContentFile(filename)  # Download file to proper directory
+   print("Fetching new XML data")
+   xml_folder_id = "10XzxPdk6z5kF4-0fp-XSh_LEO6kzh1kE"
+   xml_file_list = drive.ListFile({'q': "'{}' in parents and trashed=false".format(xml_folder_id)}).GetList()
+   new_files = False
+   for dir in xml_file_list:
+       # print('--title: {}, id: {}'.format(dir['title'], dir['id']))
+       for data_file in drive.ListFile({'q': "'{}' in parents and trashed=false".format(dir["id"])}).GetList():
+           # print('----title: {}, id: {}'.format(data_file['title'], data_file['id']))
+           # Download this file in the appropriate directory if it isn't already there
+           filename = "{}/{}/{}".format(xml_path, dir['title'], data_file['title'])
+           if not os.path.isfile(filename):
+               new_files = True
+               # print("------File doesn't exist, adding to database")
+               # Only download the file if it's not already in the data
+               file_obj = drive.CreateFile({'id': data_file["id"]})
+               if not os.path.exists("{}/{}".format(xml_path, dir['title'])):
+                   os.makedirs("{}/{}".format(xml_path, dir['title']))
+               file_obj.GetContentFile(filename)  # Download file to proper directory
 
-    if new_files:
-        fill_all_xml()
+   if new_files:
+       fill_all_xml()
 
 
 def main():
-    fetch_new_xml()
+   fetch_new_xml()
 
 
 if __name__ == '__main__':
-    print('called xml_downloader')
-    main()
-
-
-
-
+   print('called xml_downloader')
+   main()

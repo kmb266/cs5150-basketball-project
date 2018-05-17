@@ -171,7 +171,7 @@ def create_db(db_name):
 
 
 # Initialize xml database
-create_db(sqlite_xml)
+# create_db(sqlite_xml)
 
 # Initialize json database
 # create_db(sqlite_json)

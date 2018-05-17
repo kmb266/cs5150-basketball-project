@@ -253,12 +253,14 @@ def fill_all_xml():
     populates the database with game information.
     :return: None, database is updated
     """
+    import Constants
+
     # This loops populates the database using all the xml files
-    for dir in os.listdir("../xml_data"):
-        if os.path.isdir("../xml_data/{}".format(dir)):
-            for filename in os.listdir("../xml_data/{}".format(dir)):
+    for dir in os.listdir("{}/xml_data".format(Constants.BACKEND_DIR)):
+        if os.path.isdir("{}/xml_data/{}".format(Constants.BACKEND_DIR, dir)):
+            for filename in os.listdir("{}/xml_data/{}".format(Constants.BACKEND_DIR, dir)):
                 if filename.endswith(".xml"):
-                    fl = "../xml_data/{}/{}".format(dir, filename)
+                    fl = "{}/xml_data/{}/{}".format(Constants.BACKEND_DIR, dir, filename)
                     try:
                         xml_to_database(fl)
                     except AttributeError:
