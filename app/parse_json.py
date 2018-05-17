@@ -2,6 +2,11 @@ import datetime
 from db import Game, Team, Player, PlayerIn, TeamIn, Play
 from sqlalchemy import Column
 
+"""
+This file is used to populate the JSON database given JSON data scraped from ESPN
+"""
+
+
 def parse_game(data, session):
     """
     adds an entry to the Game table
@@ -32,17 +37,20 @@ def parse_game(data, session):
     else:
         winner, loser = team_1, team_0
 
-    # TODO: isPlayoff the same as isTournament?
     isLeague = competitions["conferenceCompetition"]
-    # isPlayoff = data["gamepackageJSON"]["header"]["league"]["isTournament"]
 
-    g = Game(id=data["gameId"],date=date,home=home,visitor=visitor,winner=winner,
-        loser=loser,home_score=home_score,visitor_score=visitor_score,isLeague=isLeague)
-    session.add(g)
+    g = session.query(Game).filter_by(date=date,home=home).first()
+        if not g:
+            g = Game(id=data["gameId"],date=date,home=home,visitor=visitor,winner=winner,
+            loser=loser,home_score=home_score,visitor_score=visitor_score,isLeague=isLeague)
+            session.add(g)
     # session.commit()
 
 
 def parse_teams(data, session):
+    """
+    Adds new teams to the Teams table and stats to the Teamstats table
+    """
     game_id = data["gameId"]
 
     for team in data["gamepackageJSON"]["boxscore"]["players"]:
@@ -66,6 +74,10 @@ def parse_teams(data, session):
     # session.commit()
 
 def parse_players(data, session):
+    """
+    Adds new players to the Players table and one entry per player to
+    the Playerstats table
+    """
     game_id = data["gameId"]
     players = data["gamepackageJSON"]["boxscore"]["players"]
 
@@ -100,6 +112,8 @@ def parse_players(data, session):
 
 def parse_plays(data, session):
     game_id = data["gameId"]
+
+    # for every play in the game, extract relevant data
     for play in data["gamepackageJSON"]["plays"]:
         play_id = intf(play["id"])
         period = intf(play["period"]["number"])
@@ -129,12 +143,12 @@ def parse_plays(data, session):
             elif score_value == 3:
                 type_ = "3PTR"
 
+        # assisted shots have two plays embedded in one JSON play
         if participants and len(participants) > 1:
             # add two plays, one for shot and one for assist
             player_id_0 = intf(participants[0]["athlete"]["id"])
             player_id_1 = intf(participants[1]["athlete"]["id"])
 
-            #TODO: verify
             shooter = player_id_0
             assister = player_id_1
 
@@ -187,7 +201,9 @@ def parse_plays(data, session):
             session.add(p)
 
 def parse_stats(stats):
-
+    """
+    ESPN provides stats in the same format for teams and players, parse that info
+    """
     fgm, fga = extract_made_attempted(stats[1])  # Field goals made / attempted
     fgm3, fga3 = extract_made_attempted(stats[2]) # Threes made / attempted
     ftm, fta = extract_made_attempted(stats[3]) # Free throws made / attempted
