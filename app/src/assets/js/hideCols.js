@@ -17,7 +17,7 @@ function hideCol(el) {
     thisElem.innerHTML = "-";
     thisElem.style.color = "red";
     thisHeader.style.width = "inherit";
-    thisHeader.style.padding = "8px";
+    // thisHeader.style.padding = "8px";
   }
   else {
     for (var i = 0; i < classes.length; i++) {
@@ -26,8 +26,8 @@ function hideCol(el) {
     thisElem.innerHTML = "+";
     thisElem.style.color = "green";
     thisHeader.style.width = "5px";
-    thisHeader.style.padding = "0px";
-    thisHeader.style.paddingTop = "8px";
+    // thisHeader.style.padding = "0px";
+    // thisHeader.style.paddingTop = "8px";
   }
 
   //hide all data in cols

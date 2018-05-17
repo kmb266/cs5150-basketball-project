@@ -224,3 +224,7 @@ span.filter-label {
 #teams-table > tbody > tr:nth-child(2) .col-0 {
   border-top-color: inherit !important;
 }
+
+div .minimize {
+  color: red;
+}
