@@ -10,11 +10,23 @@ from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 
 # Authorizes the app with Google - requires user interaction
+
 gauth = GoogleAuth()
-gauth.LocalWebserverAuth() # Creates local webserver and auto handles authentication.
+# Try to load saved client credentials
+gauth.LoadCredentialsFile("mycreds.txt")
+if gauth.credentials is None:
+    # Authenticate if they're not there
+    gauth.LocalWebserverAuth()
+elif gauth.access_token_expired:
+# Refresh them if expired
+    gauth.Refresh()
+else:
+    # Initialize the saved creds
+    gauth.Authorize()
+# Save the current credentials to a file
+gauth.SaveCredentialsFile("mycreds.txt")
 
 drive = GoogleDrive(gauth)
-
 # root_file_list = drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
 # for obj in file_list:
 #     print('title: %s, id: %s' % (file1['title'], file1['id']))
@@ -24,6 +36,7 @@ import os
 from populate_db import fill_all_xml
 
 def fetch_new_xml():
+    print("Fetching new XML data")
     xml_folder_id = "10XzxPdk6z5kF4-0fp-XSh_LEO6kzh1kE"
     xml_file_list = drive.ListFile({'q': "'{}' in parents and trashed=false".format(xml_folder_id)}).GetList()
     new_files = False
