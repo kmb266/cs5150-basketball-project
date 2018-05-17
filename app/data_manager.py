@@ -93,7 +93,7 @@ def getAverages(players_score, team_score):
     team_score: box score for the team in each game
     """
     attributes = ["FG", "FGA", "3PT", "FGA3", "FT", "FTA", "OREB", "DREB", "REB",
-    "PF", "AST", "TO", "BLK", "STL", "TP", "PTS", "MIN", "GAMES"]
+    "PF", "AST", "TO", "BLK", "STL", "TP", "PTS", "MIN", "GAMES",]
     advanced_attributes = ["Usage_Rate", "PIE", "Game_Score"]
     players_boxscore = []
     teams_boxscore = {}
@@ -217,7 +217,7 @@ def filterResults(players_score, team_score, form):
 
 def filterTeams(game_data, form):
     """
-    name : filterTeams
+    name : filterTeams for games page 
     Returns: the box score of the only team without opponent
     Arguments:
     game_data: box score for both team and opponent
@@ -228,6 +228,13 @@ def filterTeams(game_data, form):
     for team_id in teamIds:
         for games in game_data:
             if games["team_id"] == team_id:
+                # change the name to the opponent team name
+                if "Average" not in games["name"]:
+                    if games["home"] == team_id:
+                        games["name"] = games["away"]
+                    if games["away"] == team_id:
+                        games["name"] = games["home"]
+
                 data.append(games)
     return data
 
@@ -254,7 +261,7 @@ def retrieveData(form):
     elif page == "games":
         game_data = getAverageForTeam(team_score)
         data = filterTeams(game_data, form)
-        final = {"dataTab" : "teams", "data" : data}
+        final = {"dataTab" : "games", "data" : data}
 
     final = json.dumps(final)
     return final
