@@ -11,7 +11,10 @@ from sqlalchemy import create_engine, desc
 from sqlalchemy.orm import sessionmaker
 
 # Get the paths to the databases based on whether we're in debug mode or production mode
-from Constants import sqlite_json, sqlite_xml
+from Constants import sqlite_json, sqlite_xml, BACKEND_DIR
+
+sqlite_xml = sqlite_xml[:7] + '/' + sqlite_xml[7:]
+sqlite_json = sqlite_json[:7] + '/' + sqlite_json[7:]
 
 # Initialize a session with the xml database
 engine = create_engine(sqlite_xml, echo=False)
@@ -21,7 +24,6 @@ session = Session()
 
 def xml_to_database(xml_file):
     game_info = parse_game_file(xml_file)
-
     # Extract information for the Game table
     venue = game_info['venue']
     home = venue["home_id"]
@@ -254,11 +256,11 @@ def fill_all_xml():
     :return: None, database is updated
     """
     # This loops populates the database using all the xml files
-    for dir in os.listdir("../xml_data"):
-        if os.path.isdir("../xml_data/{}".format(dir)):
-            for filename in os.listdir("../xml_data/{}".format(dir)):
+    for dir in os.listdir("/{}/xml_data".format(BACKEND_DIR)):
+        if os.path.isdir("/{}/xml_data/{}".format(BACKEND_DIR, dir)):
+            for filename in os.listdir("/{}/xml_data/{}".format(BACKEND_DIR, dir)):
                 if filename.endswith(".xml"):
-                    fl = "../xml_data/{}/{}".format(dir, filename)
+                    fl = "/{}/xml_data/{}/{}".format(BACKEND_DIR, dir, filename)
                     try:
                         xml_to_database(fl)
                     except AttributeError:
@@ -267,7 +269,7 @@ def fill_all_xml():
                         print("ERROR: {} in file {} | Arguments: {}".format(type(ex).__name__, fl, ex.args))
 
 
-def json_to_database(json_file, data=None):
+def json_to_database(json_file,data=None):
     if data == None:
         with open(json_file) as data_file:
             data = json.load(data_file)
@@ -305,7 +307,7 @@ def get_last_scrape_date():
 
 # COMMENT THE BELOW LINES IN ON INITIAL DB LOAD
 # print("Populating XML database...")
-fill_all_xml()
+# fill_all_xml()
 # print("XML database populated\n")
 
 # print("Populating JSON database...")

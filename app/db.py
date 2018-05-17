@@ -166,7 +166,7 @@ class Play(Base):
 def create_db(db_name):
     # During initial development, use a sqlite DB held in memory for easy setup/teardown
 
-    engine = create_engine('sqlite:///{}.db'.format(db_name), echo=False)
+    engine = create_engine('{}'.format(db_name), echo=False)
     Base.metadata.create_all(engine)
 
 
