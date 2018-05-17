@@ -218,11 +218,11 @@ def filterResults(players_score, team_score, form):
 
 def filterTeams(game_data, form):
     """
-    name : filterTeams for games page 
+    name : filterTeams for games page
     Returns: the box score of the only team without opponent
     Arguments:
     game_data: box score for both team and opponent
-    form : the request form from the front end 
+    form : the request form from the front end
     """
     teamIds = form["team"]
     data = []
