@@ -9,7 +9,7 @@
 
 <table class="table table-striped table-bordered" class="stats-table" [id]="pageName + '-table'">
  <tr>
-   <th *ngFor="let key of headers; let in = index" [class]="'col-'+in" id="{{key}}_header"><div class="minimize" id="{{key}}" onclick="hideCol(this)">-</div><p class="{{key}}">{{key+'\t'}}</p></th>
+   <th *ngFor="let key of headers; let in = index" [class]="'col-'+in" id="{{passed_in_headers[in]}}_header"><div class="minimize" id="{{passed_in_headers[in]}}" onclick="hideCol(this)">-</div><p class="{{passed_in_headers[in]}}">{{key+'\t'}}</p></th>
  </tr>
  <tr *ngFor="let player of playerList">
    <td *ngFor="let key of passed_in_headers; let in = index" [class]="'col-'+in" ><p class="{{key}}">{{player[key]+'\t'}}</p></td>
