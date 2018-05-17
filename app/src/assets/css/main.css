@@ -213,3 +213,14 @@ span.filter-label {
   text-align: center;
   white-space: nowrap;
 }
+
+/* style the teams tab */
+#teams-table > tbody > tr:nth-child(2n+1) > td  {
+  border-bottom-color: black !important;
+}
+#teams-table > tbody > tr:nth-child(2n) .col-0 {
+  border-top-color: black !important;
+}
+#teams-table > tbody > tr:nth-child(2) .col-0 {
+  border-top-color: inherit !important;
+}

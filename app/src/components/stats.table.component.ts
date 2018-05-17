@@ -94,9 +94,11 @@ export class StatsTableComponent {
 
   ngOnInit() {
     // remvoe the games played from the displayed data as it does not make sense in the teams tab
-    if (this.pageName == 'teams') {
+    if (this.pageName != 'players') {
       this.keyHeaders.splice(2,1);
       this.headers.splice(2,1);
+
+      this.headers[0] = "Team";
     }
     this.generatePlayerList();
     $('.content-wrapper').scroll(function(){
