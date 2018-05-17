@@ -482,8 +482,8 @@ def masterQuery(json_form):
                     teams[team]["games"][game_id]["PTS"] += 3
             elif play.action == "SUB":
                 if play.type == "IN":
-                    if player_id == 7:
-                        print("Subbing in MCBRIDE at {}".format(play.time_converted))
+                    # if player_id == 7:
+                        # print("Subbing in MCBRIDE at {}".format(play.time_converted))
                     players[player_id]["games"][game_id]["LAST_IN_OR_OUT"] = "IN"
                     players[player_id]["games"][game_id]["SEEN"] = True
                     players[player_id]["games"][game_id]["last_time"] = play.time_converted
@@ -625,5 +625,3 @@ def masterQuery(json_form):
 #     if player_id == 6:
 #         print(player_id, sum)
 #         print("AVERAGE:", sum/len(data[player_id]["games"]))
-
-
