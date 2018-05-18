@@ -72,14 +72,14 @@ export class GamesFilterComponent implements OnInit {
   wins:boolean = false;
   losses:boolean = false;
   upOrDown:string;
-  ot1:boolean = false;
-  ot2:boolean = false;
-  ot3:boolean = false;
-  ot4:boolean = false;
-  ot5:boolean = false;
-  ot6:boolean = false;
-  otAll:boolean = false;
-  otNone:boolean = true;
+  ot1:boolean = true;
+  ot2:boolean = true;
+  ot3:boolean = true;
+  ot4:boolean = true;
+  ot5:boolean = true;
+  ot6:boolean = true;
+  otAll:boolean = true;
+  otNone:boolean = false;
   onlyOT:boolean = false;
 
   oldFilters = [];
