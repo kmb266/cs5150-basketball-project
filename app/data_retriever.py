@@ -178,9 +178,26 @@ def masterQuery(json_form):
                 if not translated:
                     # There is no XML data for that team
                     db_contains_opp = False
-                    return {}, {}
+                    return {}.values(), {}
                 oppIds.remove(opp)
                 oppIds.append(translated.team_id)
+
+    if teamIds:
+        db_contains_team = True
+        for team in teamIds:
+            t = session.query(Team).filter_by(team_id=team).first()
+            if not t:
+                j_engine = create_engine(sqlite_json, echo=False)
+                JSession = sessionmaker(bind=j_engine)
+                j_session = JSession()
+                team_name = j_session.query(Team).filter_by(team_id=team).first().name
+                translated = session.query(Team).filter_by(name=team_name).first()
+                if not translated:
+                    # There is no XML data for that team
+                    db_contains_opp = False
+                    return {}.values, {}
+                teamIds.remove(team)
+                teamIds.append(translated.team_id)
 
 
         if db_contains_opp:
@@ -558,8 +575,8 @@ def masterQuery(json_form):
 #   "page": "players",
 #   "position": [],
 #   "team": ["COR"],
-#   "opponent": [],
-#   "in": [7],
+#   "opponent": ["DUKE"],
+#   "in": [],
 #   "out": [],
 #   "upOrDown": [
 #     "withIn",
@@ -609,8 +626,8 @@ def masterQuery(json_form):
 #         "onlyQueryOT": False
 #     },
 #   "dates": {
-#     "start": 1518128364000,
-#     "end": 1518301164000
+#      "start": 1509508800000,
+#     "end": 1525665600000
 #   }
 # })[0]
 # print("--- %s seconds ---" % (time.time() - start_time))

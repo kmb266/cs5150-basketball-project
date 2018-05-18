@@ -20,7 +20,7 @@ export const getSeason = () => {
     if in season and most recent season if in offseason
   */
   var today = new Date();
-  var year = today.getFullYear()
+  var year = today.getFullYear();
   var startSeason = new Date('11/1/'+ year);
   if (startSeason > today) {
     year = year - 1;
