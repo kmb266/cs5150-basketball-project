@@ -32,7 +32,7 @@
     <filter-games (dataEvent)="receiveData($event)" (dataEvent_adv)="receiveAdvData($event)" [savedFilter]="filter_data.games"></filter-games>
   </div>
 
-  <div class="content-wrapper" id="content-games" >
+  <div class="content-wrapper" id="content-games" [style.height.px]="contentHeight">
     <stats-table [data]="table_data.games" [data_adv]="table_data_adv.games" [pageName]="'games'"></stats-table>
   </div>
 
