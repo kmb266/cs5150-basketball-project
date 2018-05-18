@@ -12,7 +12,7 @@ export const navHeight: number = 50;
 export const pages: Array<string> = ["players", "teams","games"];
 export const numPages: number = pages.length;
 
-const PROD = false;
+const PROD = true;
 
 export const getSeason = () => {
   /*
@@ -20,7 +20,7 @@ export const getSeason = () => {
     if in season and most recent season if in offseason
   */
   var today = new Date();
-  var year = today.getFullYear()
+  var year = today.getFullYear();
   var startSeason = new Date('11/1/'+ year);
   if (startSeason > today) {
     year = year - 1;
