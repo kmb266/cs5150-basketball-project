@@ -29,7 +29,7 @@ xml_path = '/' + xml_path
 # print(creds)
 # print(xml_path)
 
-# GoogleAuth.DEFAULT_SETTINGS['client_config_file'] = secrets
+GoogleAuth.DEFAULT_SETTINGS['client_config_file'] = secrets
 #
 # flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
 #     secrets,

@@ -22,6 +22,11 @@ export class AppComponent implements OnInit {
     teams: {},
     games: {}
   };
+  table_data_adv = {
+    players: {},
+    teams: {},
+    games: {}
+  }
 
   filter_data = {
     players: "loading players saved filter...",
@@ -35,6 +40,10 @@ export class AppComponent implements OnInit {
 
   receiveData(event) {
     this.table_data[this.currentPage] = event;
+    console.log(event);
+  }
+  receiveAdvData(event) {
+    this.table_data_adv[this.currentPage] = event;
     console.log(event);
   }
 
