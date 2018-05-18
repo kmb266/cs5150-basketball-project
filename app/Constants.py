@@ -26,7 +26,7 @@ Debug Constants
 If DEBUG == False, you can run the application via npm start. If DEBUG == True, you can compile the application
 into a desktop executable.
 """
-DEBUG = True   # Always set DEBUG to false before compiling the application
+DEBUG = False   # Always set DEBUG to false before compiling the application
 if DEBUG:
     BASE_DIR = os.getcwd()
     BACKEND_DIR = os.path.join(BASE_DIR, 'src/python/backend')
