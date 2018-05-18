@@ -269,7 +269,7 @@ def masterQuery(json_form):
     if loc["home"] is False:
         # TODO: no support for neutral
         # Filter out any games where the selected team was a home team
-        games_query = games_query.filter(Game.home.in_(oppIds))
+        games_query = games_query.filter(Game.visitor.in_(teamIds))
     if loc["away"] is False:
         games_query = games_query.filter(Game.home.in_(teamIds))
 
