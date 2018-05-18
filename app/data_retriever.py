@@ -178,7 +178,7 @@ def masterQuery(json_form):
                 if not translated:
                     # There is no XML data for that team
                     db_contains_opp = False
-                    return {}.values, {}
+                    return {}.values(), {}
                 oppIds.remove(opp)
                 oppIds.append(translated.team_id)
 
@@ -569,71 +569,71 @@ def masterQuery(json_form):
 
 
 # Test full length games
-import time
-start_time = time.time()
-data = masterQuery({
-  "page": "players",
-  "position": [],
-  "team": ["SYR"],
-  "opponent": ["COR"],
-  "in": [],
-  "out": [],
-  "upOrDown": [
-    "withIn",
-    None
-  ],
-  "gametime": {
-    "slider": {
-      "start": {
-        "clock": "20:00",
-        "sec": -2400
-      },
-      "end": {
-        "clock": "00:00",
-        "sec": 0
-      }
-    },
-    "sliderExtra": {
-      "start": {
-        "clock": "20:00",
-        "sec": -2400
-      },
-      "end": {
-        "clock": "00:00",
-        "sec": 0
-      }
-    },
-    "multipleTimeFrames": False
-  },
-  "location": {
-    "home": True,
-    "away": True,
-    "neutral": True
-  },
-  "outcome": {
-    "wins": True,
-    "losses": True
-  },
-    "overtime": {
-        "otSliderStart": 0,
-        "otSliderEnd": 300,
-        "ot1": True,
-        "ot2": True,
-        "ot3": True,
-        "ot4": True,
-        "ot5": True,
-        "ot6": True,
-        "onlyQueryOT": False
-    },
-  "dates": {
-     "start": 1509508800000,
-    "end": 1525665600000
-  }
-})[0]
-print("--- %s seconds ---" % (time.time() - start_time))
-
-import pprint
-pprint.pprint(data, width=1)
+# import time
+# start_time = time.time()
+# data = masterQuery({
+#   "page": "players",
+#   "position": [],
+#   "team": ["COR"],
+#   "opponent": ["DUKE"],
+#   "in": [],
+#   "out": [],
+#   "upOrDown": [
+#     "withIn",
+#     None
+#   ],
+#   "gametime": {
+#     "slider": {
+#       "start": {
+#         "clock": "20:00",
+#         "sec": -2400
+#       },
+#       "end": {
+#         "clock": "00:00",
+#         "sec": 0
+#       }
+#     },
+#     "sliderExtra": {
+#       "start": {
+#         "clock": "20:00",
+#         "sec": -2400
+#       },
+#       "end": {
+#         "clock": "00:00",
+#         "sec": 0
+#       }
+#     },
+#     "multipleTimeFrames": False
+#   },
+#   "location": {
+#     "home": True,
+#     "away": True,
+#     "neutral": True
+#   },
+#   "outcome": {
+#     "wins": True,
+#     "losses": True
+#   },
+#     "overtime": {
+#         "otSliderStart": 0,
+#         "otSliderEnd": 300,
+#         "ot1": True,
+#         "ot2": True,
+#         "ot3": True,
+#         "ot4": True,
+#         "ot5": True,
+#         "ot6": True,
+#         "onlyQueryOT": False
+#     },
+#   "dates": {
+#      "start": 1509508800000,
+#     "end": 1525665600000
+#   }
+# })[0]
+# print("--- %s seconds ---" % (time.time() - start_time))
+#
+# import pprint
+# pprint.pprint(data, width=1)
 #
 # for player_id in data:
 #     sum = 0
