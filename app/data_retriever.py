@@ -226,7 +226,7 @@ def masterQuery(json_form):
                 mappings[team] = translated.team_id
 
         if db_contains_team:
-            games_query = session.query(Game).filter(
+                games_query = games_query.filter(
                 or_(
                     (and_(Game.home.in_(teamIds))),
                     (and_(Game.visitor.in_(teamIds)))
