@@ -404,11 +404,11 @@ def masterQuery(json_form):
                     return p.away_score - p.home_score <= amt
             return False
 
-        if up_or_down[0] == "within":
+        if up_or_down[0] == "withIn":
             plays = list(filter(lambda p: abs(p.home_score - p.away_score) <= up_or_down[1], plays))
-        elif up_or_down == "down":
+        elif up_or_down[0] == "down":
             plays = list(filter(lambda p: filter_plays_differential(p, "down", up_or_down[1]), plays))
-        elif up_or_down == "up":
+        elif up_or_down[0] == "up":
             plays = list(filter(lambda p: filter_plays_differential(p, "up", up_or_down[1]), plays))
 
     def generate_box_score(plays):
@@ -596,8 +596,8 @@ def masterQuery(json_form):
 #   "in": [],
 #   "out": [],
 #   "upOrDown": [
-#     "withIn",
-#     None
+#     "up",
+#     10
 #   ],
 #   "gametime": {
 #     "slider": {
@@ -648,7 +648,7 @@ def masterQuery(json_form):
 #   }
 # })[1]
 # print("--- %s seconds ---" % (time.time() - start_time))
-
+#
 # import pprint
 # pprint.pprint(data, width=1)
 #
