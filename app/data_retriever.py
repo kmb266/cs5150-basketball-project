@@ -178,9 +178,25 @@ def masterQuery(json_form):
                 if not translated:
                     # There is no XML data for that team
                     db_contains_opp = False
-                    return {}.values(), {}
+                    return {}, {}
                 oppIds.remove(opp)
                 oppIds.append(translated.team_id)
+
+        if db_contains_opp:
+            games_query = session.query(Game).filter(
+                or_(
+                    (and_(Game.home.in_(teamIds), Game.visitor.in_(oppIds))),
+                    (and_(Game.visitor.in_(teamIds), Game.home.in_(oppIds)))
+                )
+            )
+
+    else:
+        games_query = session.query(Game).filter(
+            or_(
+                Game.home.in_(teamIds),
+                Game.visitor.in_(teamIds)
+            )
+     )
 
     if teamIds:
         db_contains_team = True
@@ -195,25 +211,20 @@ def masterQuery(json_form):
                 if not translated:
                     # There is no XML data for that team
                     db_contains_opp = False
-                    return {}.values, {}
+                    return {}, {}
                 teamIds.remove(team)
                 teamIds.append(translated.team_id)
 
-
-        if db_contains_opp:
+        if db_contains_team:
             games_query = session.query(Game).filter(
                 or_(
-                    (and_(Game.home.in_(teamIds), Game.visitor.in_(oppIds))),
-                    (and_(Game.visitor.in_(teamIds), Game.home.in_(oppIds)))
+                    (and_(Game.home.in_(teamIds))),
+                    (and_(Game.visitor.in_(teamIds)))
                 )
             )
-    else:
-        games_query = session.query(Game).filter(
-            or_(
-                Game.home.in_(teamIds),
-                Game.visitor.in_(teamIds)
-            )
-     )
+
+
+
     # If there's a season, get all games within that season
     if "season" in data:
         seasons = data["season"]
@@ -575,7 +586,7 @@ def masterQuery(json_form):
 #   "page": "players",
 #   "position": [],
 #   "team": ["COR"],
-#   "opponent": ["DUKE"],
+#   "opponent": [],
 #   "in": [],
 #   "out": [],
 #   "upOrDown": [
@@ -629,7 +640,7 @@ def masterQuery(json_form):
 #      "start": 1509508800000,
 #     "end": 1525665600000
 #   }
-# })[0]
+# })[1]
 # print("--- %s seconds ---" % (time.time() - start_time))
 #
 # import pprint
