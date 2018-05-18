@@ -8,10 +8,10 @@ def sampleForm():
         "page": "players",
         "position": [],
         "team": [
-            "COR"
+            "SYR"
         ],
         "opponent": [
-            "YALE"
+            "DUKE"
         ],
         "in": [],
         "out": [],

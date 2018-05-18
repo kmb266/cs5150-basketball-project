@@ -158,8 +158,10 @@ def masterQuery(json_form):
     # Pick what DB you're using based on the search criteria
     if (len(teamIds) == 1 and teamIds[0] == "COR") or (len(oppIds) == 1 and oppIds[0] == "COR"):
         engine = create_engine(sqlite_xml, echo=False)
+        # print("xml engine")
     else:
         engine = create_engine(sqlite_json, echo=False)
+        # print("json engine")
 
     Session = sessionmaker(bind=engine)
     session = Session()
@@ -172,6 +174,32 @@ def masterQuery(json_form):
         mappings[opp] = opp
 
     # print(mappings)
+
+    if teamIds:
+        db_contains_team = True
+        for team in teamIds:
+            t = session.query(Team).filter_by(team_id=team).first()
+            if not t:
+                j_engine = create_engine(sqlite_json, echo=False)
+                JSession = sessionmaker(bind=j_engine)
+                j_session = JSession()
+                team_name = j_session.query(Team).filter_by(team_id=team).first().name
+                translated = session.query(Team).filter_by(name=team_name).first()
+                if not translated:
+                    # There is no XML data for that team
+                    db_contains_opp = False
+                    return {}, {}, mappings
+                teamIds.remove(team)
+                teamIds.append(translated.team_id)
+                mappings[team] = translated.team_id
+
+
+    games_query = session.query(Game).filter(
+    or_(
+        Game.home.in_(teamIds),
+        Game.visitor.in_(teamIds)
+    ))
+
 
     if oppIds:
         db_contains_opp = True
@@ -192,46 +220,14 @@ def masterQuery(json_form):
                 mappings[opp] = translated.team_id
 
         if db_contains_opp:
-            games_query = session.query(Game).filter(
+            games_query = games_query.filter(
                 or_(
                     (and_(Game.home.in_(teamIds), Game.visitor.in_(oppIds))),
                     (and_(Game.visitor.in_(teamIds), Game.home.in_(oppIds)))
                 )
             )
 
-    else:
-        games_query = session.query(Game).filter(
-            or_(
-                Game.home.in_(teamIds),
-                Game.visitor.in_(teamIds)
-            )
-     )
 
-    if teamIds:
-        db_contains_team = True
-        for team in teamIds:
-            t = session.query(Team).filter_by(team_id=team).first()
-            if not t:
-                j_engine = create_engine(sqlite_json, echo=False)
-                JSession = sessionmaker(bind=j_engine)
-                j_session = JSession()
-                team_name = j_session.query(Team).filter_by(team_id=team).first().name
-                translated = session.query(Team).filter_by(name=team_name).first()
-                if not translated:
-                    # There is no XML data for that team
-                    db_contains_opp = False
-                    return {}, {}, mappings
-                teamIds.remove(team)
-                teamIds.append(translated.team_id)
-                mappings[team] = translated.team_id
-
-        if db_contains_team:
-                games_query = games_query.filter(
-                or_(
-                    (and_(Game.home.in_(teamIds))),
-                    (and_(Game.visitor.in_(teamIds)))
-                )
-            )
 
 
 
@@ -595,8 +591,8 @@ def masterQuery(json_form):
 # data = masterQuery({
 #   "page": "players",
 #   "position": [],
-#   "team": ["COR"],
-#   "opponent": [],
+#   "team": ["SYR"],
+#   "opponent": ["COR"],
 #   "in": [],
 #   "out": [],
 #   "upOrDown": [
@@ -652,7 +648,7 @@ def masterQuery(json_form):
 #   }
 # })[1]
 # print("--- %s seconds ---" % (time.time() - start_time))
-#
+
 # import pprint
 # pprint.pprint(data, width=1)
 #
