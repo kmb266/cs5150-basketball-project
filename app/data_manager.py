@@ -8,7 +8,7 @@ def sampleForm():
         "page": "players",
         "position": [],
         "team": [
-            "SYR"
+            "COR"
         ],
         "opponent": [
         ],
@@ -92,8 +92,13 @@ def getAverages(players_score, team_score):
     team_score: box score for the team in each game
     """
     attributes = ["FG", "FGA", "3PT", "FGA3", "FT", "FTA", "OREB", "DREB", "REB",
-    "PF", "AST", "TO", "BLK", "STL", "TP", "PTS", "MIN", "GAMES",]
-    advanced_attributes = ["Usage_Rate", "PIE", "Game_Score"]
+    "PF", "AST", "TO", "BLK", "STL", "TP", "PTS", "MIN", "GAMES"]
+    advanced_attributes = ["PProdAst", "q5","q12","ASTPart","FTPart","FTmPoss","DOREB_perc","DFG_perc",
+    "eFG_perc","Turnover_perc","FTr","FG_2_perc","FG_3_perc","FGr_2","FGr_3",
+    "Usage_Rate","ASTPart","ASTr","AST_Ratio","TS_perc","Total_REB_pect","BLK_perc","Game_Score","PIE",
+    "qAST", "FGmPoss", "FMwt", "Pace", "STL_perc", "PProdFG", "FGPart", "PProdOREB", "OREBPart","Stops_1", "Stops_2", "Stops",
+    "PProd", "ScPoss", "Stop_perc", "TotPoss", "DRTG", "Individual_Offensize_Rating", "Individual_Floor_Percentage"]
+
     players_boxscore = []
     teams_boxscore = {}
 
@@ -248,11 +253,18 @@ def retrieveData(form):
         page = form["page"]
 
     (players_score, team_score) = masterQuery(form)
-
     #final = {"dataTab" : "players", "data" : players_score, "teamOverall" : team_score}
 
     if page == "players":
-        final = {"dataTab" : "players", "data" : players_score, "teamOverall" : team_score}
+        if 'advanced_stats' in form:
+            final = {"dataTab" : "players", "data" : players_score, "teamOverall" : team_score}
+            final = stats_calculation(final)
+            players_score = final["data"]
+            #p1 = players_score[1]
+            #p1_String = json.dumps(p1)
+            #raise Exception(p1)
+            team_score = final["teamOverall"]
+
         (players_score, team_score) = getAverages(players_score, team_score)
         players_score = filterResults(players_score, team_score, form)
         final = {"dataTab" : "players", "data" : players_score, "teamOverall" : team_score}
@@ -266,35 +278,6 @@ def retrieveData(form):
 
     final = json.dumps(final)
     return final
-
-'''
-retrieve the data from the backend
-'''
-def retrieveAdvancedData(form):
-    """
-    Name: getAdvancedData
-    Returns: the advanced data for each player and each team
-    Arguments:
-    form : filter form from the frontend
-    """
-    page = "players"
-    if "page" in form:
-        page = form["page"]
-
-    (players_score, team_score) = masterQuery(form)
-
-    #final = {"dataTab" : "players", "data" : players_score, "teamOverall" : team_score}
-
-    if page == "players":
-        final = {"dataTab" : "players", "data" : players_score, "teamOverall" : team_score}
-        advanced_stats = stats_calculation(final)
-    elif page == "teams":
-        final = {"dataTab" : "players", "data" : players_score, "teamOverall" : team_score}
-        advanced_stats = stats_calculation(final)
-
-    advanced_stats = json.dumps(advanced_stats)
-    return advanced_stats
-
 
 def tidyForm(form):
     if ('season' in form) == False:
@@ -318,16 +301,12 @@ def getForm():
 
 def main():
     form = getForm()
-    # form = sampleForm()
+    #form = sampleForm()
 
     form = tidyForm(form)
     try:
-        if ('advanced_stats' in form):
-            data = retrieveAdvancedData(form)
-        else:
-            data = retrieveData(form)
+        data = retrieveData(form)
     except Exception as e:
-
         data = {"error" : e.message, "doc" : e.__doc__}
         data = json.dumps(data)
 

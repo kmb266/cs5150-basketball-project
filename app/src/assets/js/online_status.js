@@ -3,7 +3,7 @@ const connection = new ElectronOnline()
 
 connection.on('online', () => {
   console.log('App is online!')
-  require('./update_json_db');
+  require('./update_dbs');
 })
 
 connection.on('offline', () => {

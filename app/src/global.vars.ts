@@ -181,9 +181,8 @@ export const getUpOrDown = () => {
 export const filters = null;
 
 var active_child_processes = {};
-export var adv_data = {};
 
-var callAdvancedStats = (page, filters_data) => {
+var callAdvancedStats = (page, filters_data, emitter) => {
   /*
     activate a call to get the advanced stats
   */
@@ -222,17 +221,9 @@ var callAdvancedStats = (page, filters_data) => {
     else {
       try {
         var data = JSON.parse(dataString);
-        console.log(data);
+        // console.log(data);
         // show table after data loaded -- THIS IS DIFFERENT THAN BEFORE DUE TO TIME CONSTRAINTS
-        adv_data[page] = data;
-        // for (let i in data) {
-        //   var player = data[i]
-        //   var tr = $('<tr></tr>');
-        //   for (let stat in player){
-        //     tr.append(`<td>${player[stat]}</td>`)
-        //   }
-        //   $('#'+page+"adv-table").append(tr);
-        // }
+        emitter.emit(dataString.replace(/'/g, ' '));
 
       }
       catch(err) {
@@ -261,7 +252,7 @@ var callAdvancedStats = (page, filters_data) => {
   py.stdin.write(JSON.stringify(data));
   py.stdin.end();
 }
-export const applyFilters = (page, filters_data, emitter) => {
+export const applyFilters = (page, filters_data, emitter, emitter_adv) => {
   // initial a child process
 
   this.filters = filters_data;
@@ -310,7 +301,7 @@ export const applyFilters = (page, filters_data, emitter) => {
         // send data up to app component
         emitter.emit(dataString.replace(/'/g, ' '));
         //call the advanced stats function
-        callAdvancedStats(page, filters_data)
+        if (page == "players") callAdvancedStats(page, filters_data, emitter_adv);
       }
       catch(err) {
         console.log(err)
@@ -617,16 +608,19 @@ export const getTeams = (page) => {
       Program runs python auto_complete.py and sets the select2s with the id
   */
 
-  // uncomment below to package app after pyinstalling auto_complete
-  var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'auto_complete'),
-      py = require('child_process').execFile(path_to_exe),
-      data = {'field': 0},
-      dataString = '';
-
-  // var spawn = require('child_process').spawn,
-  // py = spawn('python', ['./auto_complete.py']),
-  // data = {'field': 0},
-  // dataString = '';
+  if (PROD) {
+    // uncomment below to package app after pyinstalling auto_complete
+    var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'auto_complete'),
+        py = require('child_process').execFile(path_to_exe),
+        data = {'field': 0},
+        dataString = '';
+  }
+  else {
+    var spawn = require('child_process').spawn,
+        py = spawn('python', ['./auto_complete.py']),
+        data = {'field': 0},
+        dataString = '';
+  }
 
   // retrieve the data from the data_manager.py
   py.stdout.on('data', function(data){
@@ -690,17 +684,19 @@ export const getPlayers = (page) => {
       Program runs python auto_complete.py and sets the select2s with the id
   */
   // uncomment below to package app after pyinstalling auto_complete
-  var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'auto_complete'),
-      py = require('child_process').execFile(path_to_exe),
-      data = {'field': 1},
-      dataString = '';
-  // console.log(path_to_exe);
-  // console.log(fs.existsSync(path_to_exe));
-
-  // var spawn = require('child_process').spawn,
-  // py = spawn('python', ['./auto_complete.py']),
-  // data = {"field": 1},
-  // dataString = '';
+  if (PROD) {
+    // uncomment below to package app after pyinstalling auto_complete
+    var path_to_exe = path.join(__dirname, 'python', 'middle_stack', 'auto_complete'),
+        py = require('child_process').execFile(path_to_exe),
+        data = {'field': 1},
+        dataString = '';
+  }
+  else {
+    var spawn = require('child_process').spawn,
+        py = spawn('python', ['./auto_complete.py']),
+        data = {'field': 1},
+        dataString = '';
+  }
 
   // retrieve the data from the auto_complete.py
   py.stdout.on('data', function(data){

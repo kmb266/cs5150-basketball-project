@@ -17,6 +17,7 @@ import * as select2 from 'select2';
 export class GamesFilterComponent implements OnInit {
   // use this to pass data to app.component in applyFilters
   @Output() dataEvent = new EventEmitter<string>();
+  @Output() dataEvent_adv = new EventEmitter<string>();
 
   // Receive the saved filter from the app component
   @Input()
@@ -29,7 +30,7 @@ export class GamesFilterComponent implements OnInit {
     if ($('#saved-filters').val() != -1 ) {
 
       // apply the saved filters and send to middle stack
-      globals.applyFilters(this.currentPageName, savedFilterObj, this.dataEvent);
+      globals.applyFilters(this.currentPageName, savedFilterObj, this.dataEvent, this.dataEvent_adv);
 
       this.updateFilters(savedFilterObj);
 
@@ -311,7 +312,7 @@ export class GamesFilterComponent implements OnInit {
     */
     var filters = this.getAllFilters();
     // this.saveFilters(filters);
-    globals.applyFilters(this.currentPageName, filters, this.dataEvent);
+    globals.applyFilters(this.currentPageName, filters, this.dataEvent, this.dataEvent_adv);
   }
 
   cancelFilterProcess() {
