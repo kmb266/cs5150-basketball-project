@@ -11,7 +11,7 @@ def sampleForm():
             "COR"
         ],
         "opponent": [
-            "ACU"
+            "YALE"
         ],
         "in": [],
         "out": [],
@@ -304,8 +304,8 @@ def getForm():
     return json.loads(lines[0])
 
 def main():
-    form = getForm()
-    # form = sampleForm()
+    # form = getForm()
+    form = sampleForm()
 
     form = tidyForm(form)
     try:
