@@ -67,7 +67,7 @@ def getAllPlayers(teamId):
 
     return json.dumps(result)
 
-def query_full_length(game_ids, sess):
+def query_full_length(game_ids, sess, mappings):
     """
     If the information requested is for full length games (with no additional filters), we query the teamstats and
     playersin tables rather than getting all the relevant plays.
@@ -144,7 +144,7 @@ def query_full_length(game_ids, sess):
             "MIN": player.mins or 0 # TODO: Populate db with player minutes
         }
 
-    return player_dict.values(), team_dict
+    return player_dict.values(), team_dict, mappings
     # return player_dict, team_dict
 
 
@@ -165,6 +165,14 @@ def masterQuery(json_form):
     session = Session()
 
     # Games query selects all games where teams in team play against teams in opponent
+    mappings = {}
+    for team in teamIds:
+        mappings[team] = team
+    for opp in oppIds:
+        mappings[opp] = opp
+
+    # print(mappings)
+
     if oppIds:
         db_contains_opp = True
         for opp in oppIds:
@@ -178,9 +186,10 @@ def masterQuery(json_form):
                 if not translated:
                     # There is no XML data for that team
                     db_contains_opp = False
-                    return {}, {}
+                    return {}, {}, mappings
                 oppIds.remove(opp)
                 oppIds.append(translated.team_id)
+                mappings[opp] = translated.team_id
 
         if db_contains_opp:
             games_query = session.query(Game).filter(
@@ -211,9 +220,10 @@ def masterQuery(json_form):
                 if not translated:
                     # There is no XML data for that team
                     db_contains_opp = False
-                    return {}, {}
+                    return {}, {}, mappings
                 teamIds.remove(team)
                 teamIds.append(translated.team_id)
+                mappings[team] = translated.team_id
 
         if db_contains_team:
             games_query = session.query(Game).filter(
@@ -284,7 +294,7 @@ def masterQuery(json_form):
         #and len(data["position"]) == 0 and ot_stuff["otSlider"]["start"]["sec"] == 0 \
         #and ot_stuff["otSlider"]["end"]["sec"] == 300:
             #print("calling query full length")
-            return query_full_length(selected_game_ids, session)
+            return query_full_length(selected_game_ids, session, mappings)
             # pass
 
     #print("play query")
@@ -575,7 +585,7 @@ def masterQuery(json_form):
     (box_score, teams) = generate_box_score(plays)
     # for key in teams:
     #     print(key)
-    return box_score.values(), teams
+    return box_score.values(), teams, mappings
     # return box_score, teams
 
 

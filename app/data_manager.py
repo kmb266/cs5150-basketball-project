@@ -11,6 +11,7 @@ def sampleForm():
             "COR"
         ],
         "opponent": [
+            "ACU"
         ],
         "in": [],
         "out": [],
@@ -209,19 +210,21 @@ def getAverageForTeam(team_score):
 
 
 
-def filterResults(players_score, team_score, form):
+def filterResults(players_score, team_score, form, mappings):
     teamIds = form["team"]
     data = []
-    for team_id in teamIds:
-        team_boxscore = team_score[team_id]
-        team_boxscore["name"] = team_id
-        data.append(team_boxscore)
-        for player in players_score:
-            if player["team"] == team_id:
-                data.append(player)
+    for team in teamIds:
+        team_id = mappings[team]
+        if team_id in team_score:
+            team_boxscore = team_score[team_id]
+            team_boxscore["name"] = team_id
+            data.append(team_boxscore)
+            for player in players_score:
+                if player["team"] == team_id:
+                    data.append(player)
     return data
 
-def filterTeams(game_data, form):
+def filterTeams(game_data, form, mappings):
     """
     name : filterTeams for games page
     Returns: the box score of the only team without opponent
@@ -231,7 +234,8 @@ def filterTeams(game_data, form):
     """
     teamIds = form["team"]
     data = []
-    for team_id in teamIds:
+    for team in teamIds:
+        team_id = mappings[team]
         for games in game_data:
             if games["team_id"] == team_id:
                 # change the name to the opponent team name
@@ -252,7 +256,7 @@ def retrieveData(form):
     if "page" in form:
         page = form["page"]
 
-    (players_score, team_score) = masterQuery(form)
+    (players_score, team_score, mappings) = masterQuery(form)
     #final = {"dataTab" : "players", "data" : players_score, "teamOverall" : team_score}
 
     if page == "players":
@@ -266,14 +270,14 @@ def retrieveData(form):
             team_score = final["teamOverall"]
 
         (players_score, team_score) = getAverages(players_score, team_score)
-        players_score = filterResults(players_score, team_score, form)
+        players_score = filterResults(players_score, team_score, form, mappings)
         final = {"dataTab" : "players", "data" : players_score, "teamOverall" : team_score}
     elif page == "teams":
         game_data = getAverageForTeam(team_score)
         final = {"dataTab" : "teams", "data" : game_data}
     elif page == "games":
         game_data = getAverageForTeam(team_score)
-        data = filterTeams(game_data, form)
+        data = filterTeams(game_data, form, mappings)
         final = {"dataTab" : "games", "data" : data}
 
     final = json.dumps(final)
@@ -301,7 +305,7 @@ def getForm():
 
 def main():
     form = getForm()
-    #form = sampleForm()
+    # form = sampleForm()
 
     form = tidyForm(form)
     try:
