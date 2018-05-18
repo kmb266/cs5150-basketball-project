@@ -104,9 +104,74 @@ function finshedJsonDbBUpdate(stdout) {
   store.set('update.json.end_date', end_date);
   store.set('update.json.status', DONE);
   store.set('update.json.success', true);
+  if (store.get('update.xml.status') != undefined && store.get('update.xml.status') != IN_PROGRESS) {
+    win.webContents.send('update_status', {msg:DONE});
+  }
   win.webContents.send('update_status', {msg:DONE});
 }
 
+
+
+function updateXmlDB(today, callback) {
+  /*
+    Makes a call to the backend to update the basketball_json db with new data
+  */
+
+  // set json updating status to in progress and update other data
+  store.set('update.xml.start_date', today);
+  store.delete('update.xml.end_date');
+  store.set('update.xml.status',IN_PROGRESS);
+  store.set('update.xml.success', false);
+
+  var path_to_exe = path.join(__dirname, '../../python', 'middle_stack', 'xml_downloader'),
+      py = require('child_process').execFile(path_to_exe),
+      dataString = '';
+  // console.log(path_to_exe);
+  // console.log(require('fs').existsSync(path_to_exe));
+
+  // retrieve the data from the auto_complete.py
+  py.stdout.on('data', function(data){
+    dataString += data.toString();
+  });
+
+  // print the data when the child process ends
+  py.stdout.on('end', function(){
+    // console.log(dataString)
+  });
+
+  // if there is an error, print it out
+  py.on('error', function(err) {
+    console.log("Failed to start child. " + err);
+    store.set('update.xml.status', FAILURE);
+    store.set('update.xml.success', false);
+  });
+
+  py.on('exit', function(code){
+    console.log('Exit code: ', code)
+    if (code == 0) {
+      callback(dataString)
+    }
+    else {
+      store.set('update.xml.status', FAILURE);
+      store.set('update.xml.success', false);
+    }
+  })
+
+  // py.stdin.write(JSON.stringify(data));
+  py.stdin.end();
+}
+
+function finshedXmlDbBUpdate(stdout) {
+  console.log(stdout);
+  // set json updating status to complete and update other data
+  var end_date = new Date();
+  store.set('update.xml.end_date', end_date);
+  store.set('update.xml.status', DONE);
+  store.set('update.xml.success', true);
+  if (store.get('update.xml.status') != IN_PROGRESS) {
+    win.webContents.send('update_status', {msg:DONE});
+  }
+}
 
 console.log('previous store:', store.store);
 
@@ -122,11 +187,5 @@ else {
   console.log('starting jsonDB update');
   createUpdateDbWindow();
   updateJsonDB(date, finshedJsonDbBUpdate);
+  updateXmlDB(date, finshedXmlDbBUpdate);
 }
-
-console.log('Trying to update xml files')
-var path_to_exe = path.join(__dirname, '../../python', 'middle_stack', 'xml_downloader'),
-    py = require('child_process').execFile(path_to_exe)
-console.log('Finished updating XML files')
-
-
