@@ -229,6 +229,9 @@ div .minimize {
   color: red;
 }
 
-p {
+td>p {
   margin: 0px !important;
+}
+#version:hover {
+  cursor: pointer;
 }

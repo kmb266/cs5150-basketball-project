@@ -1,6 +1,7 @@
+const {app} = require('electron').remote;
 import { NgModule, Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { CommonModule } from "@angular/common";
-const {ipcRenderer} = require('electron');
+const ipcRenderer = require('electron').ipcRenderer;
 const fs = require('fs');
 
 import * as globals from './../global.vars';
@@ -23,6 +24,12 @@ export class MainNavComponent {
   @Output() savedFilterChanged = new EventEmitter<string>();
   currentPage = "players";
   savedFiltersFromFile = this.getSavedFilters();
+
+  app_version = "1.0"
+
+  quitAndInstall() {
+    ipcRenderer.send('quitAndInstall');
+  }
 
   getSavedFilters() {
     /*
@@ -127,7 +134,18 @@ export class MainNavComponent {
     $("#saved-filters-wrapper").tooltip();
     $("#save-filter-tooltip").tooltip();
     $(".nav-tooltip").tooltip();
+    $("#version").tooltip();
 
+    // set app Version
+    this.app_version = app.getVersion();
+    $('#version').click(function(){
+      ipcRenderer.send('checkForUpdate');
+    })
+    ipcRenderer.on('updateReady', function(event, text) {
+      if (confirm("An update needs to be installed.\nDownload and Install Update?")) {
+        ipcRenderer.send('quitAndInstall');
+      }
+    })
   }
 
   pageClicked(event){

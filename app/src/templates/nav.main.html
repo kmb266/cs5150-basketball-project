@@ -6,7 +6,6 @@
         <img alt="Brand" src="assets/images/cornell-logo.png" id="nav-logo">
       </a>
     </div>
-
     <ul class="nav navbar-nav navbar-main">
       <!-- TODO: make back and forward buttons work -->
       <!-- <li class="navigation-btn navbar-item" id="back-btn">
@@ -15,7 +14,10 @@
       <li class="navigation-btn navbar-item" id="forward-btn">
           <a (click)="printMsg($event)"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
       </li> -->
-      <li class="navbar-item" [ngClass]="{'active':currentPage == 'players'}" style="margin-left:59px;">
+      <p class="navbar-text" style="font-size:12px; width:85px;padding-top:5px;text-align:center;padding-left:0px;">
+        Version: <span id="version" data-toggle="tooltip" data-placement="bottom" title="Click to check for an update">{{app_version}}</span>
+      </p>
+      <li class="navbar-item" [ngClass]="{'active':currentPage == 'players'}">
         <a id="players" (click)="pageClicked($event)">Players</a>
       </li>
       <li class="navbar-item" [ngClass]="{'active':currentPage == 'teams'}">
