@@ -6,6 +6,7 @@
 body {
   overflow-y: hidden;
   line-height: 1em;
+  height: 100%;
   /* font-family: Inconsolata; */
 }
 
@@ -203,6 +204,14 @@ span.filter-label {
   padding-left: 154px !important;
 }
 
+.do-something {
+  margin: 0 auto;
+  text-align: center;
+  width: 80%;
+  margin-top: 30%;
+}
+
+
 .table-striped > tbody > tr:nth-child(2n) > td {
    background-color: white;
 }
@@ -235,3 +244,4 @@ td>p {
 #version:hover {
   cursor: pointer;
 }
+
