@@ -1,12 +1,3 @@
-<!-- <table class="table table-striped table-bordered" id="stats-table">
-  <tr>
-    <th *ngFor="let key of headers; let in = index" [class]="'col-'+in">{{key}}</th>
-  </tr>
-  <tr *ngFor="let player of playerList">
-    <td *ngFor="let key of passed_in_headers; let in = index" [class]="'col-'+in" >{{player[key]}}</td>
-  </tr>
-</table> -->
-
 <div class="no-stats" [hidden]="hide_adv_stats == false || hide_stats == false">
     <div class="do-something alert" role="alert">
         <h4>Apply a filter to see statistics</h4>
@@ -15,33 +6,33 @@
 
 
 <table class="table table-striped table-bordered stats-table" [id]="pageName + '-table'" [hidden]="hide_stats" onclick="dragify()">
- <tr>
-   <th *ngFor="let key of headers; let in = index" [class]="'handle col-'+in" id="{{passed_in_headers[in]}}_header"><div class="minimize" id="{{passed_in_headers[in]}}" onclick="hideCol(this)">-</div><p class="{{passed_in_headers[in]}}">{{key+'\t'}}</p></th>
- </tr>
- <tr *ngFor="let player of playerList">
-   <td *ngFor="let key of passed_in_headers; let in = index" [class]="'col-'+in" ><p class="{{key}}">{{player[key]+'\t'}}</p></td>
- </tr>
+    <tr>
+        <th *ngFor="let key of headers; let in = index" [class]="'col-'+in" id="{{passed_in_headers[in]}}_header"><div class="minimize" id="{{passed_in_headers[in]}}" onclick="hideCol(this)">-</div><p class="{{passed_in_headers[in]}}">{{key+'\t'}}</p></th>
+    </tr>
+    <tr *ngFor="let player of playerList">
+        <td *ngFor="let key of passed_in_headers; let in = index" [class]="'col-'+in" ><p class="{{key}}">{{player[key]+'\t'}}</p></td>
+    </tr>
 </table>
 
 <div class="adv-spinner-wrapper" [id]="pageName + 'adv-stat-spinner-wrapper'" style="display: none; text-align:center;">
-  <span>calculating advanced statistics</span>
-  <div class="spinner" style="padding-top:8px;">
-    <div class="bounce1"></div>
-    <div class="bounce2"></div>
-    <div class="bounce3"></div>
-  </div>
+  <span class="calculating-adv-stat alert" style="padding-top: 8px">Calculating advanced statistics...</span>
+    <div class="spinner" style="padding-top:8px; float: right">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
 </div>
 
 <div [hidden]="hide_adv_stats">
-  Advanced Stats
-  <table class="table table-striped table-bordered" class="stats-table" [id]="pageName + 'adv-table'">
-    <tr>
-      <th *ngFor="let key of headers_adv; let in = index" [class]="'col-'+in">{{key+'\t'}}</th>
-    </tr>
-    <tr *ngFor="let player of playerList_adv">
-      <td *ngFor="let key of passed_in_headers_adv; let in = index" [class]="'col-'+in" >{{player[key]+'\t'}}</td>
-    </tr>
-  </table>
+    Advanced Stats
+    <table class="table table-striped table-bordered" class="stats-table" [id]="pageName + 'adv-table'">
+        <tr>
+            <th *ngFor="let key of headers_adv; let in = index" [class]="'col-'+in">{{key+'\t'}}</th>
+        </tr>
+        <tr *ngFor="let player of playerList_adv">
+            <td *ngFor="let key of passed_in_headers_adv; let in = index" [class]="'col-'+in" >{{player[key]+'\t'}}</td>
+        </tr>
+    </table>
 </div>
 
 <input hidden [id]="pageName + '-hidden-data'" class="hidden-input" value="nothing" />
