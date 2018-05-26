@@ -2,6 +2,8 @@ import { NgModule, Component, Input, OnInit, OnChanges, SimpleChanges, SimpleCha
 import { CommonModule } from '@angular/common';
 import * as globals from './../global.vars';
 
+import tableDragger from 'table-dragger';
+
 import * as jquery from 'jquery';
 window['$'] = jquery;
 window['jQuery'] = jquery;
