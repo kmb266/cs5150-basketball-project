@@ -206,10 +206,13 @@ span.filter-label {
 
 .do-something {
   margin: 0 auto;
-  text-align: center;
-  width: 80%;
+  width: 50%;
   margin-top: 30%;
+  background-color: #222;
+  color: white;
+  text-align: center;
 }
+
 
 
 .table-striped > tbody > tr:nth-child(2n) > td {
@@ -236,6 +239,7 @@ span.filter-label {
 
 div .minimize {
   color: red;
+  cursor: pointer;
 }
 
 td>p {
