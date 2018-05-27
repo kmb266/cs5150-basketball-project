@@ -24,6 +24,14 @@ const COLOR_SCALE = d3.scaleOrdinal()
     .range(["red", "orange", "blue", "green", "teal", "yellow", "grey", "black", "pink", "blue"]);
 
 
+function whitespace(str_in, len) {
+    let temp = str_in.trim();
+    if (temp.length < len) {
+        let output = temp + " ".repeat(len - temp.length);
+        return output;
+    }
+    return temp;
+}
 
 function plotPlays(chart_id, home_team, away_team) {
     console.log("DEBUG: entering plotPlays");
@@ -43,7 +51,12 @@ function plotPlays(chart_id, home_team, away_team) {
       let o = Object.assign({}, el);
       o.difference = o.home_score - o.away_score;
       o.time_converted = timeScale(o.time_converted);
+      o.player_name = whitespace(o.player_name, 25);
+      o.action = whitespace(o.action, 10);
+      o.team = whitespace(o.team, 6);
+      o.type_edited = whitespace(o.type, 6);
       diffs.push(o.difference);
+      console.log(o.player_name.length);
       return o;
     });
 
@@ -108,17 +121,22 @@ function plotPlays(chart_id, home_team, away_team) {
             for (let i = 0; i < d.values.length; i++) {
                 html_content += d.values[i].player_name + " | " + d.values[i].team + " : " + d.values[i].action;
                 if (d.values[i].type.length > 0) {
-                    html_content += " | " + d.values[i].type;
+                    html_content += " | " + d.values[i].type_edited;
                 }
-                html_content += "<br/>";
+                else {
+                    html_content += "   " + whitespace(d.values[i].type, 6);
+                }
+                html_content += "\n";
             }
             div.transition()
                 .duration(200)
                 .style("opacity", .9)
-                .style("background-color", team_color_scale(d.values[0].team));
+                .style("background-color", team_color_scale(d.values[0].team))
+                .style("white-space", "pre");
             div	.html(html_content)
                 .style("left", (d3.event.pageX) + "px")
-                .style("top", (d3.event.pageY - 28) + "px");
+                .style("top", (d3.event.pageY - 28) + "px")
+                .style("white-space", "pre");
             })
         .on("mouseout", function(d) {
             div.transition()
