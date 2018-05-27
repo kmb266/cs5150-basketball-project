@@ -25,6 +25,7 @@ const COLOR_SCALE = d3.scaleOrdinal()
 
 
 function whitespace(str_in, len) {
+    // Adds whitespace to make a string len characters long
     let temp = str_in.trim();
     if (temp.length < len) {
         let output = temp + " ".repeat(len - temp.length);
@@ -32,6 +33,60 @@ function whitespace(str_in, len) {
     }
     return temp;
 }
+
+
+function getColor(events, home_team, away_team) {
+    // Determines if an event was beneficial for the home team (green) or not (red)
+    for (let i = 0; i < events.length; i++) {
+        let act = events[i].action.trim();
+        let t = events[i].team.trim();
+        if (act == "GOOD" ) {
+            if (t == home_team) {
+                // Home team scored
+                return "green";
+            }
+            else {
+                // Away team scored
+                return "red";
+            }
+        }
+
+        if (act == "STEAL") {
+            if (t == home_team) {
+                // Home team scored
+                return "green";
+            }
+            else {
+                return "red";
+            }
+        }
+
+        if (act == "BLOCK") {
+            if (t == home_team) {
+                // Home team scored
+                return "green";
+            }
+            else {
+                return "red";
+            }
+        }
+
+        if (act == "TURNOVER") {
+            if (t == home_team) {
+                // Home team scored
+                return "red";
+            }
+            else {
+                return "green";
+            }
+        }
+    }
+
+    // Just subs or timeouts
+    return "grey";
+
+}
+
 
 function plotPlays(chart_id, home_team, away_team) {
     console.log("DEBUG: entering plotPlays");
@@ -114,9 +169,10 @@ function plotPlays(chart_id, home_team, away_team) {
         .attr("cx", function(d) { return xScale(d.values[0].time_converted); })
         .attr("cy", function(d) { return yScale(d.values[0].difference); })
         // .style("fill", function (d) { return COLOR_SCALE(d.type); })
-        .style("fill", function (d) {return team_color_scale(d.values[0].team)})
-        .style("opacity", 0.2)
+        .style("fill", function (d) { return getColor(d.values, home_team, away_team)})
+        .style("opacity", 0.7)
         .on("mouseover", function(d) {
+            let col = getColor(d.values, home_team, away_team);
             let html_content = "";
             for (let i = 0; i < d.values.length; i++) {
                 html_content += d.values[i].player_name + " | " + d.values[i].team + " : " + d.values[i].action;
@@ -131,7 +187,7 @@ function plotPlays(chart_id, home_team, away_team) {
             div.transition()
                 .duration(200)
                 .style("opacity", .9)
-                .style("background-color", team_color_scale(d.values[0].team))
+                .style("background-color", col)
                 .style("white-space", "pre");
             div	.html(html_content)
                 .style("left", (d3.event.pageX) + "px")
@@ -193,7 +249,7 @@ function plotPlays(chart_id, home_team, away_team) {
         .attr("y", HEIGHT - PADDING - 10)
         .text(away_team)
         .style("font-family", "Inconsolata")
-        .style("fill", team_color_scale(away_team))
+        .style("fill", team_color_scale(away_team));
 
 
     console.log("DEBUG: exiting plotPlays");
