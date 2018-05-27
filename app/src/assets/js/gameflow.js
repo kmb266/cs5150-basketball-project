@@ -42,7 +42,7 @@ function plotPlays(chart_id, home_team, away_team) {
     playsList = playsList.map(function(el) {
       let o = Object.assign({}, el);
       o.difference = o.home_score - o.away_score;
-      // o.time_converted = timeScale(o.time_converted);
+      o.time_converted = timeScale(o.time_converted);
       diffs.push(o.difference);
       return o;
     });
