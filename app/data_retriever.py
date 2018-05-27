@@ -665,7 +665,7 @@ def masterQuery(json_form):
 # engine = create_engine(sqlite_xml, echo=False)
 # Session = sessionmaker(bind=engine)
 # session = Session()
-# plays = session.query(Play).filter_by(game_id=1).all()
+# plays = session.query(Play).filter_by(game_id=3).all()
 # ps = []
 # for p in plays:
 #     if p.time_converted:
