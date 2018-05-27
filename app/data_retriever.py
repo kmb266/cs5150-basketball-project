@@ -659,3 +659,27 @@ def masterQuery(json_form):
 #     if player_id == 6:
 #         print(player_id, sum)
 #         print("AVERAGE:", sum/len(data[player_id]["games"]))
+
+
+# Generate plays from one game
+# engine = create_engine(sqlite_xml, echo=False)
+# Session = sessionmaker(bind=engine)
+# session = Session()
+# plays = session.query(Play).filter_by(game_id=1).all()
+# ps = []
+# for p in plays:
+#     ps.append({"id": p.id,
+#              "game_id": p.game_id,
+#               "period": p.period,
+#               "time": p.time,
+#               "scoring_play": p.scoring_play,
+#               "shooting_play": p.shooting_play,
+#               "score_value": p.score_value,
+#               "home_score": p.home_score,
+#               "away_score": p.away_score,
+#               "action": p.action,
+#               "type": p.type,
+#               "player_id": p.player_id,
+#               "time_converted": p.time_converted,
+#               })
+# print(json.dumps(ps))
