@@ -77,7 +77,8 @@ function plotPlays(chart_id, home_team, away_team) {
 
     // Home team line
     svg.append("path")
-            .attr("stroke", "green")
+            .attr("class", "path")
+            .attr("stroke", "black")
             .style("fill", "none")
             .style("stroke-width", 1)
             .attr("d", line(playsList));
@@ -92,35 +93,7 @@ function plotPlays(chart_id, home_team, away_team) {
     let nested = d3.nest()
         .key(function(d) { return d.time_converted; }).entries(playsList);
 
-    console.log(nested);
-
-    // Actually add the dots and hover functionality
-    // svg.selectAll("dot")
-    //     .data(playsList)
-    // .enter().append("circle")
-    //     .attr("class", function (d) {return "event-" + d.action})
-    //     .attr("r", 4)
-    //     .attr("cx", function(d) { return xScale(d.time_converted); })
-    //     .attr("cy", function(d) { return yScale(d.difference); })
-    //     // .style("fill", function (d) { return COLOR_SCALE(d.type); })
-    //     .style("fill", function (d) {return team_color_scale(d.team)})
-    //     .style("opacity", 0.2)
-    //     .on("mouseover", function(d) {
-    //         div.transition()
-    //             .duration(200)
-    //             .style("opacity", .9)
-    //             .style("background-color", team_color_scale(d.team));
-    //         div	.html(d.player_name + " | " + d.team + "<br/>" + d.action + " | "  + d.type)
-    //             .style("left", (d3.event.pageX) + "px")
-    //             .style("top", (d3.event.pageY - 28) + "px");
-    //         })
-    //     .on("mouseout", function(d) {
-    //         div.transition()
-    //             .duration(500)
-    //             .style("opacity", 0);
-    //     });
-
-
+     // Dots and hover functionality
      svg.selectAll("dot")
         .data(nested)
     .enter().append("circle")
@@ -133,7 +106,11 @@ function plotPlays(chart_id, home_team, away_team) {
         .on("mouseover", function(d) {
             let html_content = "";
             for (let i = 0; i < d.values.length; i++) {
-                html_content += d.values[i].player_name + " | " + d.values[i].team + "<br/>" + d.values[i].action + " | "  + d.values[i].type + "<br/>"
+                html_content += d.values[i].player_name + " | " + d.values[i].team + " : " + d.values[i].action;
+                if (d.values[i].type.length > 0) {
+                    html_content += " | " + d.values[i].type;
+                }
+                html_content += "<br/>";
             }
             div.transition()
                 .duration(200)

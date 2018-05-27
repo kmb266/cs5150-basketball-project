@@ -275,7 +275,7 @@ path {
 div.tooltip {
     position: absolute;
     text-align: center;
-    width: 200px;
+    /*width: 200px;*/
     /*height: 50px;*/
     padding: 3px;
     font: 12px Inconsolata;
@@ -287,3 +287,19 @@ div.tooltip {
 }
 
 /* End of http://bl.ocks.org/d3noob/a22c42db65eb00d4e369 styling*/
+
+
+/* Used for cool path drawing animation, taken from: https://css-tricks.com/svg-line-animation-works/*/
+/* You can comment this out to remove the path draw animation*/
+.path {
+  stroke-dasharray: 10000px;
+  stroke-dashoffset: 10000px;
+  animation: dash 10s linear forwards;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+/* End of stuff taken from: https://css-tricks.com/svg-line-animation-works/*/
