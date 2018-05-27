@@ -63,33 +63,49 @@ function plotPlays(chart_id) {
             .style("fill", "none")
             .attr("d", line_away(playsList));
 
-    // Now add vertical lines for all the events
-    for (let i = 0; i < playsList.length; i++) {
-        let play_time = playsList[i].time_converted;
-        svg.append("line")
-            .attr("x1", xScale(play_time))
-            .attr("y1", yScale(0))
-            .attr("x2", xScale(play_time))
-            .attr("y2", yScale(150))
-            .style("stroke", COLOR_SCALE(playsList[i].type))
-            .style("opacity", 0.3);
-
-    }
-
-    //
+    // Now add vertical lines for all the events - these look too ugly
     // for (let i = 0; i < playsList.length; i++) {
-    //     console.log(xScale(playsList[i].time_converted));
-    //     console.log(yScale(playsList[i].home_score));
-    //     console.log(line(playsList[i]));
-    //
-    //
-    //     let path = svg.append("path")
-    //         .attr("stroke", "red")
-    //         .style("fill", "none")
-    //         .attr("d", line(playsList[i]));
+    //     let play_time = playsList[i].time_converted;
+    //     svg.append("line")
+    //         .attr("x1", xScale(play_time))
+    //         .attr("y1", yScale(0))
+    //         .attr("x2", xScale(play_time))
+    //         .attr("y2", yScale(150))
+    //         .style("stroke", COLOR_SCALE(playsList[i].type))
+    //         .style("opacity", 0.3);
     //
     // }
 
+
+    // Try dots
+
+    // Div for tooltip
+    let div = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+    // Actually add the dots and hover functionality
+    svg.selectAll("dot")
+        .data(playsList)
+    .enter().append("circle")
+        .attr("r", 5)
+        .attr("cx", function(d) { return xScale(d.time_converted); })
+        .attr("cy", function(d) { return yScale(d.home_score); })
+        .style("fill", function (d) { return COLOR_SCALE(d.type); })
+        .style("opacity", 0.2)
+        .on("mouseover", function(d) {
+            div.transition()
+                .duration(200)
+                .style("opacity", .9);
+            div	.html(d.action + "<br/>"  + d.type)
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY - 28) + "px");
+            })
+        .on("mouseout", function(d) {
+            div.transition()
+                .duration(500)
+                .style("opacity", 0);
+        });
 
     // Add axes
     var xAxis = d3.axisBottom(xScale);
