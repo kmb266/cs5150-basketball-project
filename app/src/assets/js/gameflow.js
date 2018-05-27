@@ -6,6 +6,7 @@
 
 // Get d3
 let d3 = require("d3");
+let zoom = require("d3-zoom");
 
 // Height and width of the game chart
 const HEIGHT = 700;
@@ -22,7 +23,6 @@ const COLOR_SCALE = d3.scaleOrdinal()
 
 
 
-
 function plotPlays(chart_id, home_team, away_team) {
     console.log("DEBUG: entering plotPlays");
     // playsList = dummyData;
@@ -35,9 +35,12 @@ function plotPlays(chart_id, home_team, away_team) {
     // Filter out the starters play
     let playsList = dummyData.filter(play =>  play.time_converted != null );
     let diffs = [];
+    let timeScale = d3.scaleLinear().domain([-2400, -1200]).range([0, 20]);
+
     playsList = playsList.map(function(el) {
       let o = Object.assign({}, el);
       o.difference = o.home_score - o.away_score;
+      o.time_converted = timeScale(o.time_converted);
       diffs.push(o.difference);
       return o;
     });
@@ -48,9 +51,11 @@ function plotPlays(chart_id, home_team, away_team) {
     console.log(playsList);
 
     let svg = d3.select("#" + chart_id);
-    console.log(svg);
+    // .call(d3.zoom().on("zoom", function () { // add zoom functionality? - it's too buggy rn - come back to this
+    // svg.attr("transform", d3.event.transform)
+    // }));
 
-    let lastPlay = playsList[playsList.length - 1];
+    console.log(svg);
 
     let xScale = d3.scaleLinear()
         .domain(d3.extent(playsList.map(function (d) {
@@ -83,6 +88,7 @@ function plotPlays(chart_id, home_team, away_team) {
     .style("opacity", 0);
 
     // Actually add the dots and hover functionality
+    // TODO: Nest data by time, and then add hover functionality that shows every play that happened at that time (for asts + shots, shots + blocks, steals + TO, etc)
     svg.selectAll("dot")
         .data(playsList)
     .enter().append("circle")
@@ -90,7 +96,8 @@ function plotPlays(chart_id, home_team, away_team) {
         .attr("r", 4)
         .attr("cx", function(d) { return xScale(d.time_converted); })
         .attr("cy", function(d) { return yScale(d.difference); })
-        .style("fill", function (d) { return COLOR_SCALE(d.type); })
+        // .style("fill", function (d) { return COLOR_SCALE(d.type); })
+        .style("fill", function (d) {return team_color_scale(d.team)})
         .style("opacity", 0.2)
         .on("mouseover", function(d) {
             div.transition()
@@ -145,6 +152,8 @@ function plotPlays(chart_id, home_team, away_team) {
 
     console.log("DEBUG: exiting plotPlays");
     // Plot a line for each team's points
+
+
 
 
     return null;
