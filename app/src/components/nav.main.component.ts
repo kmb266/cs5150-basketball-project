@@ -73,12 +73,12 @@ export class MainNavComponent {
     $('.input-filter-names').each(function(){
       if ($(this).data('include')) {
         var current_filter = $(this).data('filter');
-        console.log(current_filter)
+        log.info(current_filter)
         current_filter.filterName = $(this).val();
         new_filters += JSON.stringify(current_filter) + '\n';
       }
     });
-    console.log(new_filters);
+    log.info(new_filters);
     // not checking for duplicates, if they want to make a filter the same name
     // we are going to let them do it here..
     fs.writeFile(globals.saved_filters_file, new_filters, function (err) {
@@ -89,7 +89,7 @@ export class MainNavComponent {
       $('#saved-filters').empty();
       globals.createSelect2("#saved-filters", 'Select Saved Filter', globals.getSavedFilters);
 
-      console.log('Saved!');
+      log.info('Saved!');
 
     });
 
@@ -115,7 +115,7 @@ export class MainNavComponent {
     select2();
     globals.createSelect2("#saved-filters", 'Select Saved Filter', globals.getSavedFilters);
     $('#saved-filters').on("change", (e) => {
-      console.log(e.target.value);
+      log.info(e.target.value);
       // if you select the null value, do nothing
       if (e.target.value == -1 || e.target.value == '') return;
 
@@ -146,6 +146,9 @@ export class MainNavComponent {
         ipcRenderer.send('quitAndInstall');
       }
     })
+    const log = require('electron-log');
+    log.info('loading nav');
+
   }
 
   pageClicked(event){
@@ -155,7 +158,7 @@ export class MainNavComponent {
   }
 
   printMsg(event): void {
-    console.log('Cornell Basketball Logo');
+    log.info('Cornell Basketball Logo');
   }
 
   printPage(event) {

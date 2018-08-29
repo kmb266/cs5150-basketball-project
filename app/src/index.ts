@@ -1,6 +1,7 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import { enableLiveReload } from 'electron-compile';
 const {autoUpdater} = require("electron-updater");
+const log = require('electron-log');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -19,8 +20,10 @@ const createWindow = async () => {
     minHeight: 500
   });
 
+  log.info('opening window');
   // and load the index.html of the app.
   mainWindow.loadURL(`file://${__dirname}/index.html`);
+  log.info(`loading url: file://${__dirname}/index.html`);
 
   // Open the DevTools.
   if (isDevMode) {
@@ -68,7 +71,7 @@ app.on('before-quit', () => {
   if (!store.get('update.json.success') || store.get('update.json.status') == IN_PROGRESS) {
     store.set('update.json.status', FAILURE);
   }
-  console.log(store.store);
+  log.info(store.store);
 });
 
 
@@ -76,14 +79,17 @@ app.on('before-quit', () => {
 // when the update has been downloaded and is ready to be installed, notify the BrowserWindow
 autoUpdater.on('update-downloaded', (info) => {
   mainWindow.webContents.send('updateReady')
+  log.info('sending updateReady to window');
 });
 // when receiving a quitAndInstall signal, quit and install the new version ;)
 ipcMain.on("quitAndInstall", (event, arg) => {
+  log.info('calling autoUpdater.quitAndInstall');
   autoUpdater.quitAndInstall();
 });
 ipcMain.on("checkForUpdate", (event, arg) => {
+  log.info('Received call from UI: user enacted check for app update');
   if(!isDevMode) autoUpdater.checkForUpdates();
-  else console.log("You are in dev mode. Skipping checking for updates.");
+  else log.info("You are in dev mode. Skipping checking for updates.");
 });
 
 app.on('activate', () => {

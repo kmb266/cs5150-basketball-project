@@ -9,10 +9,27 @@ def TmPoints():
 	"""
 
 
-def OREB_perc():
-	pass
+def OREB_perc(ORB, TmMP, MP, TmORB, OppDRB):
+	if (MP * (TmORB + OppDRB)) == 0: return 0
+	return 100 * (ORB * (TmMP / 5)) / (MP * (TmORB + OppDRB))
 	"""
-	Name:Total Offensive Rebounds Percentage
+	Name: Individual Offensive Rebounding Percentage
+
+	"""
+
+def DREB_perc(DRB, TmMP, MP, TmDRB, OppORB):
+	if (MP * (TmDRB + OppORB)) == 0: return 0
+	return 100 * (DRB * (TmMP / 5)) / (MP * (TmDRB + OppORB))
+	"""
+	Name:Total Defensive Rebounds Percentage
+
+	"""
+
+def TotREB_perc(TRB, TmMP, MP, TmTRB, OppTRB):
+	if (MP * (TmTRB + OppTRB)): return 0
+	return 100 * (TRB * (TmMP / 5)) / (MP * (TmTRB + OppTRB))
+	"""
+	Name:Total Rebounding Percentage
 
 	"""
 
@@ -108,11 +125,14 @@ def PProd(PProdFG, PProdAst,FTM,TmOREB,
 
 	"""
 
-
+#  **** WRONG?
 def PProdFG(FGM,PTS,FTM,FGA,qAST,FGM_3):
 	if FGA == 0:
 		return 0.0
-	return float(2.0*(FGM+0.5*FGM_3)*1-0.5*((PTS-FTM)/(2.0*FGA))*qAST)
+	# a1 = 2.0*(FGM+0.5*FGM_3)
+	# b1 = 1-(0.5*((PTS-FTM)/(2.0*FGA)))
+	# return a1 * b1 * qAST
+	return 2*(FGM + (0.5 * FGM_3))*(1-(.5*(( PTS - FTM)/(2* FGA))*qAST))
 	"""
 	Name: Points Produced Field Goal Part
 	Returns: the Points Produced Field Goal Part based on parameters
@@ -157,9 +177,8 @@ def PProdAst(TmFGM, FGM, Tm3PM, TmPTS, TmFTM, PTS, FGA, AST, FGM_3,FTM, TmFGA):
 
 	"""
 
-
-def PProdOREB(ORB,TmOREBWgt,TmPlay_pect,TmPTS,
-			TmFGM,TmFTM,TmFTA):
+#  POSSIBLY WRONG ******
+def PProdOREB(ORB,TmOREBWgt,TmPlay_pect,TmPTS,TmFGM,TmFTM,TmFTA):
 	if TmFGM+(1-(1-(float(TmFTM)/TmFTA))**2 )*0.4*TmFTA  == 0:
 		return 0.0
 	return float(float(ORB)*TmOREBWgt*TmPlay_pect*(TmPTS/(TmFGM+(1-(1-(float(TmFTM)/TmFTA))**2 )
@@ -251,7 +270,7 @@ def FGPart(FGM,PTS,FTM,FGA,qAST):
 def qAST(MIN,TmMIN,q_12,q_5):
 	if TmMIN == 0:
 		return 0.0
-	a1 = (float(MIN)/TmMIN)/5
+	a1 = float(MIN)/(TmMIN/5)
 	return a1*q_5 + ((1-a1)*q_12)
 	"""
 	Name: percentage of field goals assisted by teammates while
@@ -311,6 +330,7 @@ def q12(TmAST,TmMIN,MIN,AST,TmFGM,FGM):
 
 
 def ASTPart(TmPTS,TmFTM,PTS,FTM,TmFGA,FGA,AST):
+	# print(TmPTS,TmFTM,PTS,FTM,TmFGA,FGA,AST)
 	if TmFGA-FGA == 0:
 		return 0
 	return 0.5*(((TmPTS-TmFTM)-(PTS-FTM))/(2*(TmFGA-FGA)))*AST
@@ -390,19 +410,19 @@ def TmOREBWgt(TmOREB_pect,TmPlay_pect):
 	"""
 
 
-def TmOREB_pect(TmOREB,OppTREB,OppDREB):
-	if TmOREB+OppDREB == 0:
+def TmOREB_pect(TmOREB,OppTREB,OppOREB):
+	if (TmOREB + OppTREB - OppOREB) == 0:
 		return 0
-	return float(TmOREB/(TmOREB+OppDREB))
+	return TmOREB/float((TmOREB + OppTREB - OppOREB))
 	"""
 	Name: Team Total Offensive Rebounds Weight Percentage
 	Returns: the Team Total Offensive Rebounds Weight Percentage based on parameters
 	Arguments:
 		TmOREB: team Total Offensive Rebounds
-		OppTREB:  Opponent TREB
+		OppTREB:  Opponent Defensive Rebounds
 
 		Depend? No
-		check status: Yes 
+		check status: Yes
 		level: 1
 
 	"""
@@ -757,9 +777,8 @@ def Stops_2(OppFGA,OppFGM,TmBLK,TmMIN,FMwt,DOREB_perc
 
 
 def eFG_perc(FGM,FGA,FGM_3):
-	if FGA == 0:
-		return 0
-	return (FGM+0.5*FGM_3)/FGA
+	if FGA == 0: return 0
+	return (FGM+(0.5*FGM_3))/FGA
 	"""
 	Name: effective fieldgoal percentage
 	Returns: the effective fieldgoal percentage based on parameters
@@ -1091,7 +1110,7 @@ def Game_Score(PTS,FGM,FGA,FTA,FTM,ORE,DREB,STL,AST,BLK,PF,TOV):
 
 def Pace(TmPoss,OppPoss,TmMIN):
 	if 2*(TmMIN/5) == 0:
-		return 
+		return
 	return float(40*((TmPoss+OppPoss)/(2*(TmMIN/5))))
 	"""
 	Name: Pace

@@ -5,13 +5,14 @@ from stats_results import stats_calculation
 
 def sampleForm():
     form = {
+        "advanced_stats": True,
         "page": "players",
         "position": [],
         "team": [
-            "SYR"
+            "COR"
         ],
         "opponent": [
-            "DUKE"
+            "SYR"
         ],
         "in": [],
         "out": [],
@@ -112,13 +113,13 @@ def getAverages(players_score, team_score):
             for game, game_boxscore in games.items():
                 if attribute in game_boxscore:
                     val = game_boxscore[attribute] or 0
-                    val = int (val)
                     if attribute in player:
                         player[attribute] += val
                     else:
                         player[attribute] = val
 
             if attribute in player:
+                # take the average of the stat nased on games played
                 player[attribute] = round(player[attribute] / games_played, 2)
 
         player["GAMES"] = games_played

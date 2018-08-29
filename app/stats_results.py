@@ -3,6 +3,7 @@ import numpy
 
 
 def stats_calculation(data):
+    # print(data)
     '''
     Name: getAdvancedData
     Returns: the advanced data for each player and each team
@@ -188,10 +189,6 @@ def stats_calculation(data):
             GmPF = OppPF + TmPF
             GmTO = OppTOV + TmTOV
 
-            # TODO : Don't know what is this data
-            OREB_perc = 0
-            if (OppDREB + TmOREB) > 0:
-                OREB_perc = TmOREB / (OppDREB + TmOREB)
 
             #first level calculation
             TmPoss = a_s.TmPoss(TmFGA,TmOREB,OppDREB,TmFTA,TmFGM,TmTOV)
@@ -202,12 +199,14 @@ def stats_calculation(data):
             ASTPart =  a_s.ASTPart(TmPTS,TmFTM,PTS,FTM,TmFGA,FGA,AST)
             FTPart = a_s.FTPart(FTM,FTA)
             TmScorPoss = a_s.TmScorPoss(TmFGM,TmFTM,TmFTA)
-            TmOREB_pect = a_s.TmOREB_pect(TmOREB,OppTREB,OppDREB)
+            TmOREB_pect = a_s.TmOREB_pect(TmOREB,OppTREB,OppOREB)
             TmPlay = a_s.TmPlay(TmFGA,TmFTA,TmTOV)
             FTmPoss = a_s.FTmPoss(FTM,FTA)
-            DOREB_perc = a_s.DOREB_perc(OppOREB,TmDREB)
+            # DOREB_perc = a_s.DOREB_perc(OppOREB,TmDREB)
+            DOREB_perc = a_s.DREB_perc(DREB, TmMIN, MIN, TmDREB, OppOREB)
             DFG_perc = a_s.DFG_perc(OppFGM,OppFGA)
             eFG_perc = a_s.eFG_perc(FGM,FGA,FGM_3)
+            OREB_perc = a_s.OREB_perc(OREB, TmMIN, MIN, TmOREB, OppDREB)
             Turnover_perc = a_s.Turnover_perc(TOV,FGA,FTA)
             FTr = a_s.FTr(FTA,FGA)
             FG_2_perc = a_s.FG_2_perc(FGM_2,FGA_2)
@@ -267,7 +266,7 @@ def stats_calculation(data):
             FMwt = a_s.FMwt(DFG_perc,DOREB_perc)
             STL_perc = a_s.STL_perc(STL,TmMIN,MIN,OppPoss)
             Pace = a_s.Pace(TmPoss,OppPoss,TmMIN)
-
+            # print("{: >20} {: >20}".format(player['name'], 'qAST: '+ str(qAST)))
             #adding results to dictionary
             #box_score["TmORTG"] = TmORTG
             box_score["qAST"] = qAST
@@ -323,6 +322,11 @@ def stats_calculation(data):
 
             #seventh level calculation
             Individual_Offensize_Rating = a_s.Individual_Offensize_Rating(PProd, TotPoss)
+            # if (player['team'] == "COR"):
+            #     # print('{}\t {}\t {}\t  {}\t  {}\t  {}\t {}\t {}\t {}\t '.format('name','FGPart','ASTPart','FTPart','TmOREB','TmScorPoss','TmOREBWgt','TmPlay_pect','OREBPart'))
+            #     print('{}\t {}\t {}\t  {}\t  {}\t  {}\t {}\t {}\t {}\t '.format(player['name'],FGPart,ASTPart,FTPart,TmOREB,TmScorPoss,TmOREBWgt,TmPlay_pect,OREBPart))
+                # print('{}\t{}\t{}\t{}\t{}\t{}'.format(FGM,PTS,FTM,FGA,qAST,FGM_3))
+
             Individual_Floor_Percentage = a_s.Individual_Floor_Percentage(ScPoss,TotPoss)
 
             #adding results to dictinory

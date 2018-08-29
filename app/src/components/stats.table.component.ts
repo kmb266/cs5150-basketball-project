@@ -12,21 +12,24 @@ window['jQuery'] = jquery;
 })
 
 export class StatsTableComponent {
-  public readonly headers = ["Player", "MIN", "GP", "FGM", "FGA", "FG%", "3FGM", "3FGA","3PT%", "FTM", "FTA","FT%", "OREB","DREB","TREB","FOUL", "AST", "TO","BLK","STL", "PTS"];
-  public readonly headers_adv = ["Player", "MIN", "PProdAst", "q5","q12","ASTPart","FTPart","FTmPoss","DOREB_perc","DFG_perc",
+  public readonly headers = ["Player","GP", "MIN",  "FGM", "FGA", "FG%", "3FGM", "3FGA","3PT%", "FTM", "FTA","FT%", "OREB","DREB","TREB","FOUL", "AST", "TO","BLK","STL", "PTS"];
+  public readonly headers_adv = ["Player", "GP","MIN", "eFG %", "Usage Rate", "Off Rating", "Def Rating", "Game Score", "FTr", "Off REB %", "Def REB %", "Tot REB%", "PIE"]
+  /*["Player", "MIN", "PProdAst", "q5","q12","ASTPart","FTPart","FTmPoss","DOREB_perc","DFG_perc",
   "eFG_perc","Turnover_perc","FTr","FG_2_perc","FG_3_perc","FGr_2","FGr_3",
   "Usage_Rate","ASTPart","ASTr","AST_Ratio","TS_perc","Total_REB_pect","BLK_perc","Game_Score","PIE",
   "qAST", "FGmPoss", "FMwt", "Pace", "STL_perc", "PProdFG", "FGPart", "PProdOREB", "OREBPart","Stops_1", "Stops_2", "Stops",
-  "PProd", "ScPoss", "Stop_perc", "TotPoss", "DRTG", "Individual_Offensize_Rating", "Individual_Floor_Percentage"];
+  "PProd", "ScPoss", "Stop_perc", "TotPoss", "DRTG", "Individual_Offensize_Rating", "Individual_Floor_Percentage"];*/
 
   //list of headers/columns to display in tables *** CHANGE DO GET LIST PASSED IN FROM DB ***
-  keyHeaders = ["name","MIN","GAMES", "FG","FGA","FGPerc", "3PT", "FGA3", "FG3Perc", "FT", "FTA", "FTPerc", "OREB", "DREB", "REB", "PF", "AST","TO","BLK","STL", "PTS"];
-  keyHeaders_adv = ["name","MIN",
-    "PProdAst", "q5","q12","ASTPart","FTPart","FTmPoss","DOREB_perc","DFG_perc",
-    "eFG_perc","Turnover_perc","FTr","FG_2_perc","FG_3_perc","FGr_2","FGr_3",
-    "Usage_Rate","ASTPart","ASTr","AST_Ratio","TS_perc","Total_REB_pect","BLK_perc","Game_Score","PIE",
-    "qAST", "FGmPoss", "FMwt", "Pace", "STL_perc", "PProdFG", "FGPart", "PProdOREB", "OREBPart","Stops_1", "Stops_2", "Stops",
-    "PProd", "ScPoss", "Stop_perc", "TotPoss", "DRTG", "Individual_Offensize_Rating", "Individual_Floor_Percentage"]
+  keyHeaders = ["name", "GAMES", "MIN", "FG","FGA","FGPerc", "3PT", "FGA3", "FG3Perc", "FT", "FTA", "FTPerc", "OREB", "DREB", "REB", "PF", "AST","TO","BLK","STL", "PTS"];
+  keyHeaders_adv = ["name", "GAMES", "MIN","eFG_perc","Usage_Rate", "Individual_Offensize_Rating", "DRTG", "Game_Score", "FTr", "Off_REB_perc", "Def_REB_perc", "Total_REB_pect", "PIE"]
+
+  // keyHeaders_adv = ["name","MIN",
+  //   "PProdAst", "q5","q12","ASTPart","FTPart","FTmPoss","DOREB_perc","DFG_perc",
+  //   "eFG_perc","Turnover_perc","FTr","FG_2_perc","FG_3_perc","FGr_2","FGr_3",
+  //   "Usage_Rate","ASTPart","ASTr","AST_Ratio","TS_perc","Total_REB_pect","BLK_perc","Game_Score","PIE",
+  //   "qAST", "FGmPoss", "FMwt", "Pace", "STL_perc", "PProdFG", "FGPart", "PProdOREB", "OREBPart","Stops_1", "Stops_2", "Stops",
+  //   "PProd", "ScPoss", "Stop_perc", "TotPoss", "DRTG", "Individual_Offensize_Rating", "Individual_Floor_Percentage"]
   public init_data = [{'FT': 0, 'STL': 0, '3PT': 0, 'BLK': 0, 'FG': 0, 'REB': 0, 'DREB': 0, 'name': 'Player Name', 'AST': 0, 'OREB': 0, 'TO': 0, 'PF': 0, 'PTS': 0, 'jersey': '-'}];
 
 
@@ -51,6 +54,7 @@ export class StatsTableComponent {
 
   @Input()
   set data_adv(dataObj){
+    console.log(dataObj)
     this.passed_in_headers_adv = this.keyHeaders_adv;
     if (typeof(dataObj) === 'string') {
       var fixed_data = dataObj.replace(/'/g, '"');
@@ -68,7 +72,7 @@ export class StatsTableComponent {
         // see if the data includes json data
         for (let i in new_data){
           var player = new_data[i];
-          if (player.name == player.team_id) continue;
+          if (player.name == player.team_id || player.name == "TEAM OVERALL") continue;
           if (player.name.indexOf(',') == -1) is_json = true;
         }
         if (is_json) {
@@ -153,7 +157,7 @@ export class StatsTableComponent {
       this.keyHeaders.splice(1,1);
       this.headers.splice(1,1);
       this.headers.splice(1,1);
-      
+
       this.headers[0] = "Team";
     }
     this.generatePlayerList();

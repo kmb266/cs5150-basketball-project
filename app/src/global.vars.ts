@@ -12,7 +12,7 @@ export const navHeight: number = 50;
 export const pages: Array<string> = ["players", "teams","games"];
 export const numPages: number = pages.length;
 
-const PROD = true;
+const PROD = false;
 
 export const getSeason = () => {
   /*
@@ -221,7 +221,9 @@ var callAdvancedStats = (page, filters_data, emitter) => {
     else {
       try {
         var data = JSON.parse(dataString);
-        // console.log(data);
+        if (!PROD) {
+          console.log('advanced stats:', data);
+        }
         // show table after data loaded -- THIS IS DIFFERENT THAN BEFORE DUE TO TIME CONSTRAINTS
         emitter.emit(dataString.replace(/'/g, ' '));
 
@@ -297,7 +299,9 @@ export const applyFilters = (page, filters_data, emitter, emitter_adv) => {
     else {
       try {
         var data = JSON.parse(dataString);
-        // console.log(data);
+        if (!PROD) {
+          console.log('boxscore stats:', data);
+        }
         // send data up to app component
         emitter.emit(dataString.replace(/'/g, ' '));
         //call the advanced stats function
