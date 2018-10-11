@@ -1079,9 +1079,9 @@ def BLK_perc(BLK,TmMIN,MIN,OppFGA,Opp3PA):
 
 
 
-def Game_Score(PTS,FGM,FGA,FTA,FTM,ORE,DREB,STL,AST,BLK,PF,TOV):
+def Game_Score(PTS,FGM,FGA,FTA,FTM,OREB,DREB,STL,AST,BLK,PF,TOV):
 	return float(PTS+0.4*FGM-0.7*FGA-0.4
-	*(FTA-FTM)+0.7*ORE-0.3*DREB+STL
+	*(FTA-FTM)+0.7*OREB-0.3*DREB+STL
 	+0.7*AST+0.7*BLK-0.4*PF-TOV)
 
 '''
@@ -1093,7 +1093,7 @@ def Game_Score(PTS,FGM,FGA,FTA,FTM,ORE,DREB,STL,AST,BLK,PF,TOV):
 		FGA: field goal attemped
 		FTA: free throw attemped
 		FTM: free throw made
-		ORE: Offensive Rebounds
+		OREB: Offensive Rebounds
 		DREB: Total Offensive Rebounds
 		STL: total steals
 		AST: assist

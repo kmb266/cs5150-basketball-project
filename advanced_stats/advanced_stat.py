@@ -235,7 +235,7 @@ def FGPart(FGM,PTS,FTM,FGA,qAST):
 
 def qAST(MIN,TmMIN,q_12,q_5):
 	a1 = (MIN/TmMIN)/5
-	return a1*q_5 + ((1-a1)*q_12)
+	return a1*q_5 + (1-(a1*q_12))
 	"""
 	Name: percentage of field goals assisted by teammates while
 	the player of interest is in the game plus the expected
@@ -371,7 +371,7 @@ def TmOREB_pect(TmOREB,OppTREB,OppDREB):
 		OppTREB:  Opponent TREB
 
 		Depend? No
-		check status: Yes 
+		check status: Yes
 		level: 1
 
 	"""
@@ -1001,9 +1001,9 @@ def BLK_perc(BLK,TmMIN,MIN,OppFGA,Opp3PA):
 
 
 
-def Game_Score(PTS,FGM,FGA,FTA,FTM,ORE,DREB,STL,AST,BLK,PF,TOV):
+def Game_Score(PTS,FGM,FGA,FTA,FTM,OREB,DREB,STL,AST,BLK,PF,TOV):
 	return float(PTS+0.4*FGM-0.7*FGA-0.4
-	*(FTA-FTM)+0.7*ORE-0.3*DREB+STL
+	*(FTA-FTM)+0.7*OREB-0.3*DREB+STL
 	+0.7*AST+0.7*BLK-0.4*PF-TOV)
 
 '''
@@ -1015,7 +1015,7 @@ def Game_Score(PTS,FGM,FGA,FTA,FTM,ORE,DREB,STL,AST,BLK,PF,TOV):
 		FGA: field goal attemped
 		FTA: free throw attemped
 		FTM: free throw made
-		ORE: Offensive Rebounds
+		OREB: Offensive Rebounds
 		DREB: Total Offensive Rebounds
 		STL: total steals
 		AST: assist
